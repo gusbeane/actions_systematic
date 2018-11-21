@@ -1,5 +1,7 @@
 paper/*.aux
 paper/*.log
 paper/*.pdf
+paper/*.bib
+paper/*.blg
 V62/
 

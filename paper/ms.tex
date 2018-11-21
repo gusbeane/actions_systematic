@@ -4,6 +4,16 @@
 
 \shortauthors{Beane et al.}
 
+\newcommand{\Gus}[1]{\textcolor{red}{#1}}
+
+\newcommand{\Msun}{\text{M}_\odot}
+\newcommand{\pc}{\text{pc}}
+\newcommand{\kpc}{\text{kpc}}
+
+\newcommand{\mi}{\texttt{m12i}}
+\newcommand{\mf}{\texttt{m12f}}
+\newcommand{\mm}{\texttt{m12m}}
+
 \begin{document}
 
 \title{Actions are Bad, Mmkay}
@@ -13,15 +23,16 @@
 
 \author{Angus Beane}
 \affil{Center for Computational Astrophysics, Flatiron Institute,
-162 5th Ave., New York, NY, 10010, USA}
+162 5th Ave., New York, NY 10010, USA}
 \affil{Department of Physics \& Astronomy, University of Pennsylvania,
 209 South 33rd St., Philadelphia, PA 19104, USA}
 
-\author{others}
+\author{Many Helpful People}
+\noaffiliation
 
 \begin{abstract}
 
-In an axisymmetric potential the 6D phase space of stars' positions and velocities can be reduced to a 3D space of invariant actions. For this reason actions are commonly used to help interpret phase space. However, it is not expected that actions are invariant in detail for the Milky Way --- it's spiral arms, bar(s), and gas clouds are all non-axisymmetric features that should induce long-term evolution in action space. However, these same features will cause a star's true orbit to deviate slightly from its orbit in an axisymmetric potential. If an observer assumes an axisymmetric potential when computing actions, this will induce an artificial short-term phase dependence of the actions, which we interpret as systematic error. Using the potential of cosmological zoom-in simulations of Milky Way Mass galaxies from the FIRE collaboration (the Latte suite), we investigate the magnitude of this systematic error. We find XXX. Something something lower limit.
+In an axisymmetric potential the 6D phase space of stars' positions and velocities can be reduced to a 3D space of invariant actions. For this reason actions are commonly used to help interpret phase space. However, it is not expected that actions are invariant in detail for the Milky Way --- it's spiral arms, bar(s), and gas clouds are all non-axisymmetric features that should induce long-term evolution in action space. However, these same features will cause a star's true orbit to deviate slightly from its orbit in an axisymmetric potential. If an observer assumes an axisymmetric potential when computing actions, this will induce an artificial short-term phase dependence of the actions, which we interpret as systematic error. Using the potential of cosmological zoom-in simulations of Milky Way mass galaxies from the FIRE collaboration (the Latte suite), we investigate the magnitude of this systematic error. We find XXX. Something something lower limit.
 
 \end{abstract}
 
@@ -30,6 +41,21 @@ In an axisymmetric potential the 6D phase space of stars' positions and velociti
 \section{Introduction} \label{sec:intro}
 
 
-% \bibliography{references}
+We could have proceeded by taking an axisymmetric potential and adding analytic spiral arms, a bar, and gas clouds. However, in preliminary work with the FIRE galaxies we found that defining a consistent reference frame between snapshots was very difficult. An inaccuracy in the direction of the $z$-axis by a single degree induces a $140\,\pc$ change in the height of the midplane at $8.2\,\kpc$. In a cosmological context it is not apparent that there exists a consistent definition of the galactocentric frame, and we therefore proceed in a cosmological context to include this effect.
+
+We perform a set of three different simulations repeated for two of the Milky Way zoom-ins, \mi and \mf.\footnote{The number corresponds to the mass of the dark matter halo (here, $\sim 10^{12} \Msun$). The first letter stands for mass and the last letter is a unique identifier for the {\em initial conditions}.} The first assumes an axisymmetric potential 
+
+
+\section{Methods} \label{sec:methods}
+We begin by 
+
+\subsection{Simulated Galaxies} \label{ssec:fire}
+We wish to perform N-body integration within a realistic Galactic potential. In order to do this, we use the {\em Latte} suite of Milky Way-mass zoom-ins from the Feedback in Realistic Environments (FIRE) collaboration\footnote{\url{http://fire.northwestern.edu}} \citep{2016ApJ...827L..23W,2018MNRAS.480..800H}. In a zoom-in cosmological simulation a high resolution region of interest is embedded within a low resolution cosmological context (\Gus{cites}). In the case of {\em Latte}, a region that will evolve into a Milky Way-mass galaxy, identified in a preliminary dark matter only run, is increased in resolution using MUSIC. This allows one to achieve ultra-high resolution simulations of individual galaxies than possible in a full cosmological run.
+
+
+
+\section{Simulations}
+
+\bibliography{references}
 
 \end{document}
