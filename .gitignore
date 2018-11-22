@@ -5,3 +5,6 @@ paper/*.bib
 paper/*.blg
 V62/
 
+runs/include/utilities/
+runs/include/gizmo_analysis/
+
