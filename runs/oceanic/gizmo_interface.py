@@ -43,13 +43,13 @@ class gizmo_interface(object):
         # read in first snapshot, get rotation matrix
 
         # just gonna take a peak into the sim and see if we have it in cache
-        head = gizmo.io.Read.read_header(snapshot_value=self.startnum,
+        head = gizmo.io.Read.read_header(snapshot_value=self.snap_index,
                                          simulation_directory=
                                          self.simulation_directory)
         if self.sim_name is None:
             self.sim_name = head['simulation.name'].replace(" ", "_")
         cache_name = 'first_snapshot_' + self.sim_name+'_index' + \
-            str(self.startnum)+'.p'
+            str(self.snap_index)+'.p'
         cache_file = self.cache_directory + '/' + cache_name
 
         try:
@@ -63,7 +63,7 @@ class gizmo_interface(object):
             print('constructing...')
             self.first_snapshot =\
                 gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'],
-                                             'index', self.startnum,
+                                             'index', self.snap_index,
                                              simulation_directory=
                                              self.simulation_directory,
                                              assign_center=False)
@@ -287,7 +287,7 @@ class gizmo_interface(object):
                 starages = self.first_snapshot['star'].prop('age')[keys]
                 pos = self.first_snapshot['star'].prop('host.distance.principal')[keys]
                 self.first_ag = agama_wrapper(self.options_reader)
-                self.first_ag.update_index(self.startnum, snap=self.first_snapshot)
+                self.first_ag.update_index(self.snap_index, snap=self.first_snapshot)
                 for ss_id in np.random.permutation(self.first_snapshot['star']['id'][keys]):
                     self.first_ag.update_ss(ss_id)
                     self.chosen_actions = self.first_ag.ss_action()

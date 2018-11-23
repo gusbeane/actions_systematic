@@ -13,13 +13,12 @@ ngpu = 1 ; number of gpus available (default: 1)
 
 timestep = 0.1 ; timestep for cluster integrati
 write_frequency = 50 ; how often to write cluster snapshot to disk (default: 10)
+out_file = cluster_snapshots_m12i.p
 
 [simulation]
 simulation_directory = /mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100/
 cache_directory = /mnt/ceph/users/abeane/oceanic_tests/cache/
-startnum = 580      ; first snapshot index (where the oc sim starts)
-endnum = 600        ; last snapshot index
-num_prior = 5       ; the number of snapshots loaded before the first snapshot (default: 3)
+snap_index = 600      ; snapshot index (where the oc sim starts)
 
 star_softening_in_pc = 11.2 ; star softening [pc]
 dark_softening_in_pc = 112.0 ; dark softening [pc]
@@ -80,15 +79,3 @@ Jr_max = 20.0 ; maximum Jr [kpc km/s]
 Jz_min = 0.0 ; minimum Jz [kpc km/s]
 Jz_max = 20.0 ; maximum Jz [kpc km/s]
 
-[grid]
-# see paper for explanation of x, y
-grid_x_size_in_kpc = 0.6 ; size of grid in "x" direction [kpc]
-grid_y_size_in_kpc = 0.6 ; size of grid in "y" direction [kpc]
-grid_z_size_in_kpc = 0.6 ; size of grid in "z" direction [kpc]
-grid_resolution    = 0.005 ; grid resolution [pc]
-# grid_fine_x_size_in_kpc = 0.02 ; OPTIONAL
-# grid_fine_y_size_in_kpc = 0.02
-# grid_fine_z_size_in_kpc = 0.02
-# grid_fine_resolution = 0.0005
-
-grid_seed = 1776       ; starting seed for grid generation, see paper for details (default: 1776)

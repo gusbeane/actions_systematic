@@ -22,12 +22,10 @@ class options_reader(object):
         self._read_optional_option_('general', 'write_frequency', '10')
 
         # read in simulation parameters
-        for opt in ['simulation_directory', 'cache_directory', 'startnum',
-                    'endnum',
+        for opt in ['simulation_directory', 'cache_directory', 'snap_index',
                     'star_softening_in_pc', 'dark_softening_in_pc']:
             self._read_required_option_('simulation', opt)
 
-        self._read_optional_option_('simulation', 'num_prior', '3')
         self._read_optional_option_('simulation', 'sim_name', None)
         self._read_optional_option_('simulation', 'star_char_mass', None)
         self._read_optional_option_('simulation', 'dark_char_mass', None)
@@ -92,7 +90,7 @@ class options_reader(object):
             self.options['ss_id'] = int(self.options['ss_id'])
 
         # convert relevant parameters
-        int_options = ['startnum', 'endnum', 'num_prior',
+        int_options = ['snap_index',
                        'ss_seed', 'write_frequency',
                        'ncpu', 'ngpu', 'N', 'W0']
         for opt in int_options:

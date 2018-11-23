@@ -42,7 +42,7 @@ class agama_wrapper(object):
                                              assign_principal_axes=True)
 
         if self.sim_name is None:
-            head = gizmo.io.Read.read_header(snapshot_value=self.startnum,
+            head = gizmo.io.Read.read_header(snapshot_value=self.snap_index,
                                              simulation_directory=
                                              self.simulation_directory)
             self.sim_name = head['simulation.name'].replace(" ", "_")
@@ -144,74 +144,8 @@ class snapshot_action_calculator(object):
         else:
             self.ss_id = ss_id
 
-    def snapshot_actions(self, fileout='cluster_snapshots_snap_actions.npy',
-                         start=None, end=None):
-        # start, end are int's describing where to start and ending
-        # if both are None, will scroll through all snapshots where
-        # snapshot_file spans
-        #
-        # If start is an int and end is None, will just do start index
-        # If both are not None, will go from start to end (make sure
-        # snapshot_file spans what you want actions from)
-
-        if start is None and end is None:
-            self.snapshot_indices = list(range(self.startnum,
-                                               self.endnum+1))
-            self.start = self.snapshot_indices[0]
-            self.end = self.snapshot_indices[-1]
-        elif start is not None and end is None:
-            self.snapshot_indices = (start,)
-            self.start = start
-            self.end = end
-        elif start is not None and end is not None:
-            self.snapshot_indices = list(range(start, end+1))
-            self.start = start
-            self.end = end
-        else:
-            raise Exception('invalid start and end combination')
-
-        self.first_snap = \
-            gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'],
-                                          'index', self.startnum,
-                                         properties=['id', 'position',
-                                                     'velocity', 'mass',
-                                                     'form.scalefactor'],
-                                         simulation_directory=
-                                         self.simulation_directory,
-                                         assign_principal_axes=True)
-
-        self.first_time_in_Myr = self.first_snap.snapshot['time'] * 1000.0
-
-        cluster_times = np.array([self.cluster[i]['time'] for i in
-                                    range(len(self.cluster))])
-
-        for i,idx in enumerate(self.snapshot_indices):
-
-
-            if idx==self.start:
-                self._ag_.update_index(idx, ss_id=self.ss_id,
-                                       snap=self.first_snap)
-            else:
-                self._ag_.update_index(idx, ss_id=self.ss_id)
-
-            current_time = self._ag_.snap.snapshot['time'] * 1000.0
-            current_time -= self.first_time_in_Myr
-            diff_time = np.abs(cluster_times - current_time)
-
-            if np.min(diff_time) > 1.5 * self.timestep:
-                # this means we've gone past the end of the run
-                break
-
-            cluster_key = np.argmin(diff_time)
-            cl = self.cluster[cluster_key]
-
-            actions = self._ag_.actions(cl['position'], cl['velocity'],
-                                         add_ss=True)
-            self.cluster[cluster_key]['actions'] = actions
-            np.save('cluster_snapshots_actions.npy', self.cluster)
-
     def all_actions(self, fileout='cluster_snapshots_actions.p'):
-        self._ag_.update_index(self.startnum, ss_id=self.ss_id)
+        self._ag_.update_index(self.snap_index, ss_id=self.ss_id)
         #add_ss = not self.axisymmetric # if axi, we don't want to add ss
         add_ss = False
         for i,cl in enumerate(tqdm(self.cluster)):

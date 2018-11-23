@@ -17,9 +17,7 @@ write_frequency = 50 ; how often to write cluster snapshot to disk (default: 10)
 [simulation]
 simulation_directory = /mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100/
 cache_directory = /mnt/ceph/users/abeane/oc_nbody/cache/
-startnum = 580      ; first snapshot index (where the oc sim starts)
-endnum = 585        ; last snapshot index
-num_prior = 3       ; the number of snapshots loaded before the first snapshot (default: 3)
+snap_index = 580      ; snapshot index (where the oc sim starts)
 
 
 star_softening_in_pc = 11.2 ; star softening [pc]
