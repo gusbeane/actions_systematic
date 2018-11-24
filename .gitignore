@@ -7,4 +7,9 @@ V62/
 
 runs/include/utilities/
 runs/include/gizmo_analysis/
+runs/oceanic/__pycache__/
+cache/
+
+*.p
+log/
 

@@ -33,7 +33,12 @@ class gizmo_interface(object):
         self._read_snapshots_()
 
         # find starting star
-        self._init_starting_star_()
+        if self.axisymmetric:
+            if self.axi_Rinit is None or self.axi_vcircfrac is None or self.axi_zinit is None:
+                self._init_starting_star_()
+            self._gen_axisymmetric_()
+        else:
+            self._init_starting_star_()
 
         self._init_kdtree_()
 
@@ -82,6 +87,38 @@ class gizmo_interface(object):
             self.first_snapshot.snapshot['time'] * 1000.0
 
         self._clean_Rmag_(self.first_snapshot)
+
+    def _gen_axisymmetric_(self):
+        import agama
+        potential_cache_file = self.cache_directory + '/potential_id'+str(self.snap_index)
+        potential_cache_file += '_' + self.sim_name + '_pot'
+        try:
+            self.potential = agama.Potential(file=potential_cache_file)
+        except:
+            star_position = self.first_snapshot['star'].prop('host.distance.principal')
+            gas_position = self.first_snapshot['gas'].prop('host.distance.principal')
+            dark_position = self.first_snapshot['dark'].prop('host.distance.principal')
+
+            star_mass = self.first_snapshot['star']['mass']
+            gas_mass = self.first_snapshot['gas']['mass']
+            dark_mass = self.first_snapshot['dark']['mass']
+
+            position = np.concatenate((star_position, gas_position))
+            mass = np.concatenate((star_mass, gas_mass))
+
+            #TODO make these user-controllable
+            self.pdark = agama.Potential(type="Multipole",
+                                        particles=(dark_position, dark_mass),
+                                        symmetry='a', gridsizeR=20, lmax=2)
+            self.pbar = agama.Potential(type="CylSpline",
+                                        particles=(position, mass),
+                                        symmetry='a', gridsizer=20, gridsizez=20,
+                                        mmax=0, Rmin=0.2,
+                                        Rmax=50, Zmin=0.02, Zmax=10)
+            self.potential = agama.Potential(self.pdark, self.pbar)
+            self.potential.export(potential_cache_file)
+        return None
+
 
     def _clean_Rmag_(self, snap):
         # cleans out all particles greater than Rmag from galactic center

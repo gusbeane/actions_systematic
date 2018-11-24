@@ -41,12 +41,14 @@ class options_reader(object):
         self._read_optional_option_('force_calculation', 'axisymmetric', 'false')
         self.options['axisymmetric'] = self._convert_bool_(self.options['axisymmetric'])
         if self.options['axisymmetric']:
-            self._read_required_option_('force_calculation', 'axi_Rinit')
-            self._read_optional_option_('force_calculation', 'axi_vcircfrac', 1.0)
-            self._read_optional_option_('force_calculation', 'axi_zinit', 0)
-            self.options['axi_Rinit'] = float(self.options['axi_Rinit'])
-            self.options['axi_vcircfrac'] = float(self.options['axi_vcircfrac'])
-            self.options['axi_zinit'] = float(self.options['axi_zinit'])
+            self._read_optional_option_('force_calculation', 'axi_Rinit', None)
+            self._read_optional_option_('force_calculation', 'axi_vcircfrac', None)
+            self._read_optional_option_('force_calculation', 'axi_zinit', None)
+            if self.options['axi_Rinit'] is not None and self.options['axi_vcircfrac'] is not None \
+                and self.options['axi_zinit'] is not None:
+                self.options['axi_Rinit'] = float(self.options['axi_Rinit'])
+                self.options['axi_vcircfrac'] = float(self.options['axi_vcircfrac'])
+                self.options['axi_zinit'] = float(self.options['axi_zinit'])
 
         # read in cluster parameters
         for opt in ['N', 'W0', 'Rcluster', 'softening',
@@ -113,7 +115,6 @@ class options_reader(object):
             if opt in self.options.keys():
                 self.options[opt] = self._convert_bool_(self.options[opt])
 
-        self._convert_rbf_basis_(self.options['basis'])
         self._convert_nbodycode_(self.options['nbodycode'])
 
     def set_options(self, object):

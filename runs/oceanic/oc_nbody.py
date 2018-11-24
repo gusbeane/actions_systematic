@@ -32,16 +32,29 @@ def evolve_cluster_in_galaxy(options_file):
         import gala.dynamics as gd
         import gala.potential as gp
 
-        pos = [opt.options['axi_Rinit'], 0, 0] * u.kpc
-        vel = [0, 0, 0] * u.km/u.s
-        mw = gp.MilkyWayPotential()
-        phase = gd.PhaseSpacePosition(pos, vel)
-        vc = mw.circular_velocity(phase).to_value(u.km/u.s) | units.kms
+        if opt.options['axi_Rinit'] is None \
+            or opt.options['axi_Rinit'] is None \
+            or opt.options['axi_zinit'] is None:
+            
+            pos = galaxy_code.chosen_position_z0
+            vel = galaxy_code.chosen_velocity_z0
+            stars.x += pos[0] | units.kpc
+            stars.y += pos[1] | units.kpc
+            stars.z += pos[2] | units.kpc
+            stars.vx += vel[0] | units.kms
+            stars.vy += vel[1] | units.kms
+            stars.vz += vel[2] | units.kms
+        else:
+            pos = [opt.options['axi_Rinit'], 0, 0] * u.kpc
+            vel = [0, 0, 0] * u.km/u.s
+            mw = gp.MilkyWayPotential()
+            phase = gd.PhaseSpacePosition(pos, vel)
+            vc = mw.circular_velocity(phase).to_value(u.km/u.s) | units.kms
 
-        stars = cluster_code.particles.copy()
-        stars.x += opt.options['axi_Rinit'] | units.kpc
-        stars.vy += vc
-        stars.z += opt.options['axi_zinit'] | units.kpc
+            stars = cluster_code.particles.copy()
+            stars.x += opt.options['axi_Rinit'] | units.kpc
+            stars.vy += vc
+            stars.z += opt.options['axi_zinit'] | units.kpc
 
     else:
         pos = galaxy_code.chosen_position_z0

@@ -6,7 +6,7 @@
 # if no default value is listed, that argument is required
 
 [general]
-output_directory = /mnt/ceph/users/abeane/oc_disruption_pt1/run_fixpa_Nov8
+output_directory = /mnt/ceph/users/abeane/actions_systematic/runs/axisymmetric/
 ncpu = 8 ; number of cpus available (default: 1)
 gpu_enabled = true ; whether or not to use the gpu version of ph4 (default: false)
 ngpu = 1 ; number of gpus available (default: 1)
@@ -17,7 +17,7 @@ out_file = cluster_snapshots_m12i.p
 
 [simulation]
 simulation_directory = /mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100/
-cache_directory = /mnt/ceph/users/abeane/oceanic_tests/cache/
+cache_directory = /mnt/ceph/users/abeane/actions_systematic/runs/cache/
 snap_index = 600      ; snapshot index (where the oc sim starts)
 
 star_softening_in_pc = 11.2 ; star softening [pc]
@@ -33,10 +33,11 @@ star_char_mass = 0.048 ; characteristic softening mass [Msun]
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 [force_calculation]
-# # grid setup parameters # #
 Rmax = 50.0         ; max R to retain particles for force calculation [kpc]
 theta = 0.5         ; opening angle for tree
 period = 234.5
+
+axisymmetric = true ; compute evolution in an axisymmetric potential (default: false)
 
 # # interpolation parameters # #
 nclose = 150 ; number of close points to use in interpolation (default: 150)
@@ -45,7 +46,7 @@ order = 5    ; order for rbf (default: 5)
 eps   = 1.0  ; softening parameter (default: 1)
 
 [cluster]
-N = 4096        ; number of stars in the cluster
+N = 2048        ; number of stars in the cluster
 W0 = 3          ; king parameter
 use_kroupa = true ; whether to assign masses according to kroupa IMF (default: true)
 kroupa_max = 5.0 ; max mass for kroupa IMF [Msun] (default: 100.0)
@@ -63,8 +64,8 @@ tend  = 650.0        ; ending time for cluster
 eject_cut = 300  ; (default: 300) [kpc]
 
 [starting_star]
-ss_Rmin = 7.0   ; min R for starting star [kpc]
-ss_Rmax = 9.0   ; max R ... [kpc]
+ss_Rmin = 7.7   ; min R for starting star [kpc]
+ss_Rmax = 8.7   ; max R ... [kpc]
 ss_zmin = -1.0  ; min z for starting star [kpc]
 ss_zmax = 1.0   ; max z ... [kpc]
 ss_seed = 1776  ; seed for ss rng (default: 1776)
@@ -75,7 +76,7 @@ ss_agemax_in_Gyr = 1 ; max age for ss (default: 1) [Gyr]
 
 ss_action_cuts = true ; can specify to make cuts based on actions (default: false)
 Jr_min = 0.0 ; minimum Jr [kpc km/s]
-Jr_max = 20.0 ; maximum Jr [kpc km/s]
+Jr_max = 10.0 ; maximum Jr [kpc km/s]
 Jz_min = 0.0 ; minimum Jz [kpc km/s]
-Jz_max = 20.0 ; maximum Jz [kpc km/s]
+Jz_max = 10.0 ; maximum Jz [kpc km/s]
 
