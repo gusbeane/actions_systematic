@@ -11,5 +11,6 @@ runs/oceanic/__pycache__/
 cache/
 
 *.p
+*.npy
 log/
 
