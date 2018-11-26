@@ -14,5 +14,6 @@ cache/
 *.npy
 log/
 
+m12i_positions/
 .ipynb_checkpoints/
 
