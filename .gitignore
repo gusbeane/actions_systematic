@@ -14,3 +14,5 @@ cache/
 *.npy
 log/
 
+.ipynb_checkpoints/
+
