@@ -30,6 +30,7 @@ class options_reader(object):
         self._read_optional_option_('simulation', 'sim_name', None)
         self._read_optional_option_('simulation', 'star_char_mass', None)
         self._read_optional_option_('simulation', 'dark_char_mass', None)
+        self._read_optional_option_('simulation', 'gal_info', None)
         if self.options['star_char_mass'] is not None:
             self.options['star_char_mass'] = float(self.options['star_char_mass'])
         if self.options['dark_char_mass'] is not None:

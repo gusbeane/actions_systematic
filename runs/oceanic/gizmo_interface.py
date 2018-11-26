@@ -75,8 +75,22 @@ class gizmo_interface(object):
             pickle.dump(self.first_snapshot,
                         open(cache_file, 'wb'), protocol=4)
 
-        gizmo.io.Read.assign_center(self.first_snapshot)
-        gizmo.io.Read.assign_principal_axes(self.first_snapshot, distance_max=20, age_percent=100)
+        if self.gal_info is not None:
+            gal = np.genfromtxt(self.gal_info, comments='#', delimiter=',')
+            cen = gal[0]
+            vel = gal[1]
+            pa = gal[2:]
+            self.first_snapshot.center_position = cen
+            self.first_snapshot.center_velocity = vel
+            self.first_snapshot.principal_axes_vectors = pa
+            for k in self.first_snapshot.keys():
+                self.first_snapshot[k].center_position = cen
+                self.first_snapshot[k].center_velocity = vel
+                self.first_snapshot[k].principal_axes_vectors = pa
+        else:
+            gizmo.io.Read.assign_center(self.first_snapshot)
+            gizmo.io.Read.assign_principal_axes(self.first_snapshot, distance_max=20, age_percent=100)
+        
         self.center_position = self.first_snapshot.center_position
         self.center_velocity = self.first_snapshot.center_velocity
         self.principal_axes_vectors =\
