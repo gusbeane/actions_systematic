@@ -20,6 +20,7 @@ class options_reader(object):
         self._read_optional_option_('general', 'gpu_enabled', 'false')
         self._read_optional_option_('general', 'ngpu', '1')
         self._read_optional_option_('general', 'write_frequency', '10')
+        self._read_optional_option_('general', 'out_file', 'cluster_snapshots.p')
 
         # read in simulation parameters
         for opt in ['simulation_directory', 'cache_directory', 'snap_index',
