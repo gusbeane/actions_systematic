@@ -29,11 +29,11 @@ class snapshot_reader(object):
         self.frames = meta_array(np.append(self.frames, f), **self.frames.meta)
         # self.frames.append(self._grab_frame_(system, galaxy_code, time))
         if np.mod(i, self.write_frequency) == 0:
-            fout = self.output_directory+'/' + self.out_name
+            fout = self.output_directory+'/' + self.out_file
             dill.dump(self.frames, open(fout, 'wb'))
 
     def finish_sim(self):
-        fout = self.output_directory+'/' + self.out_name
+        fout = self.output_directory+'/' + self.out_file
         dill.dump(self.frames, open(fout, 'wb'))
 
     def _grab_frame_(self, system, galaxy_code, com, time):
