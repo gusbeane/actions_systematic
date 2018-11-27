@@ -13,6 +13,8 @@ cache/
 *.p
 *.npy
 log/
+*.log
+*.swp
 
 m12i_positions/
 .ipynb_checkpoints/

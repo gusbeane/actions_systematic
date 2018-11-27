@@ -39,7 +39,26 @@ class agama_wrapper(object):
                                                          'form.scalefactor'],
                                              simulation_directory=
                                              self.simulation_directory,
-                                             assign_principal_axes=True)
+                                             assign_center=False)
+        
+        if self.gal_info is not None:
+            try:
+                gal = np.genfromtxt(self.gal_info, comments='#', delimiter=',')
+            except:
+                gal = np.genfromtxt('../'+self.gal_info, comments='#', delimiter=',')
+            cen = gal[0]
+            vel = gal[1]
+            pa = gal[2:]
+            self.snap.center_position = cen
+            self.snap.center_velocity = vel
+            self.snap.principal_axes_vectors = pa
+            for k in self.snap.keys():
+                self.snap[k].center_position = cen
+                self.snap[k].center_velocity = vel
+                self.snap[k].principal_axes_vectors = pa
+        else:
+            gizmo.io.Read.assign_center(self.snap)
+            gizmo.io.Read.assign_principal_axes(self.snap, distance_max=20, age_percent=100)
 
         if self.sim_name is None:
             head = gizmo.io.Read.read_header(snapshot_value=self.snap_index,
