@@ -4,5 +4,5 @@ services: docker
 
 script:
   - docker pull dxjoke/tectonic-docker
-  - docker run --mount src=$TRAVIS_BUILD_DIR/paper,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --print --keep-intermediates --reruns 0 ms.tex ; biber ms ; tectonic ms.tex"
+  - docker run --mount src=$TRAVIS_BUILD_DIR/paper,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --print --keep-intermediates --reruns 0 ms.tex ; bibtex ms ; tectonic ms.tex"
   - source .ci/build-paper.sh
