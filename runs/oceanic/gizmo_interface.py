@@ -206,6 +206,19 @@ class gizmo_interface(object):
         xlist = xlist.value_in(units.kpc)
         ylist = ylist.value_in(units.kpc)
         zlist = zlist.value_in(units.kpc)
+        
+        if self.axisymmetric:
+            pos = np.transpose([xlist, ylist, zlist])
+            acc = self.potential.force(pos)
+            if len(np.shape(pos))==1:
+                ax = acc[0] | (units.kms)**2/units.kpc
+                ay = acc[1] | (units.kms)**2/units.kpc
+                az = acc[2] | (units.kms)**2/units.kpc
+            else:
+                ax = acc[:,0] | (units.kms)**2/units.kpc
+                ay = acc[:,1] | (units.kms)**2/units.kpc
+                az = acc[:,2] | (units.kms)**2/units.kpc
+            return ax, ay, az
 
         position = np.transpose([xlist, ylist, zlist])
         single = False
@@ -228,6 +241,8 @@ class gizmo_interface(object):
 
     def _rotate_gravity_(self, acc, t):
         # this is the same as rotate_position, but with a different sign for angle
+        if self.period is None:
+            return acc
         angle = (t/self.period) * 2.*np.pi
         rotmat = self._rotmat_(angle)
         
@@ -235,6 +250,8 @@ class gizmo_interface(object):
         return rot_acc
 
     def _rotate_position_(self, pos, t):
+        if self.period is None:
+            return pos
         # we want to rotate the cluster back
         # since we're keeping the galaxy fixed (so we don't have to recompute the tree)
         angle = -(t/self.period) * 2.*np.pi

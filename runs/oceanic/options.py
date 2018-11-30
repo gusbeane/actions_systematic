@@ -37,8 +37,12 @@ class options_reader(object):
             self.options['dark_char_mass'] = float(self.options['dark_char_mass'])
 
         # read in force_calculation parameters
-        for opt in ['Rmax', 'theta', 'period']:
+        for opt in ['Rmax', 'theta']:
             self._read_required_option_('force_calculation', opt)
+        
+        self._read_optional_option_('force_calculation', 'period', None)
+        if self.options['period'] is not None:
+            self.options['period'] = float(self.options['period'])
 
         self._read_optional_option_('force_calculation', 'axisymmetric', 'false')
         self.options['axisymmetric'] = self._convert_bool_(self.options['axisymmetric'])
@@ -106,7 +110,7 @@ class options_reader(object):
                          'Rcluster',
                          'softening', 'eject_cut', 'timestep', 'tend', 
                          'star_softening_in_pc', 'dark_softening_in_pc',
-                         'Rmax', 'theta', 'period',
+                         'Rmax', 'theta',
                          'Jr_min', 'Jr_max', 'Jz_min', 'Jz_max']
         for opt in float_options:
             if opt in self.options.keys():

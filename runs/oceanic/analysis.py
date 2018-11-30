@@ -163,10 +163,14 @@ class snapshot_action_calculator(object):
         else:
             self.ss_id = ss_id
 
-    def all_actions(self, fileout='cluster_snapshots_actions.p'):
-        self._ag_.update_index(self.snap_index, ss_id=self.ss_id)
+    def all_actions(self, fileout='cluster_snapshots_actions.p', pos=None, vel=None, update=True):
+        if update:
+            self._ag_.update_index(self.snap_index, ss_id=self.ss_id)
         #add_ss = not self.axisymmetric # if axi, we don't want to add ss
         add_ss = False
+        if pos is not None:
+            actions = self._ag_.actions(pos, vel)
+            return actions
         for i,cl in enumerate(tqdm(self.cluster)):
             actions = self._ag_.actions(cl['position'], cl['velocity'],
                                         add_ss=add_ss)
