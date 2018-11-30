@@ -1,0 +1,30 @@
+from oceanic.gizmo_interface import gizmo_interface
+from oceanic.options import options_reader
+from oceanic.analysis import acceleration_heatmap
+import sys
+import dill
+
+options_file = sys.argv[1]
+cluster_file = sys.argv[2]
+key = int(sys.argv[3])
+
+cluster = dill.load(open(cluster_file, 'rb'))
+time = cluster[key]['time']
+
+xcenter = 0.0
+ycenter = 0.0
+xmin = -0.1
+xmax = 0.1
+ymin = -0.1
+ymax = 0.1
+nres = 360
+zval = 0.0
+
+opt = options_reader(options_file)
+interface = gizmo_interface(opt)
+
+ac = acceleration_heatmap(options_file, interface)
+ac(time, index=key, cache=True, return_heatmap=True,
+    xcenter=xcenter, ycenter=ycenter, plot_xmin=xmin,
+    plot_xmax = xmax, plot_ymin = ymin, plot_ymax=ymax,
+    nres=nres, zval=zval)
