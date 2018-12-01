@@ -8,7 +8,7 @@
 #SBATCH --mem=150g
 #SBATCH --time=7-00:00:00
 #SBATCH --output=log/asmw_%j.log
-#SBATCH --constraint=p100
+#SBATCH --constraint=v100
 pwd; hostname; date
 
 source /mnt/home/abeane/.bash_profile

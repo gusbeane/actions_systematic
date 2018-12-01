@@ -27,7 +27,7 @@ dark_softening_in_pc = 112.0 ; dark softening [pc]
 # see paper for details
 star_char_mass = 0.048 ; characteristic softening mass [Msun]
 
-# gal_pa = pa.txt ; principal axes (default: calculate)
+gal_info = m12i_info.txt ; principal axes (default: calculate)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # NOTE: the best choice for softening lengths is NOT necessarily the  #
