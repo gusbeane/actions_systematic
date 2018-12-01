@@ -18,7 +18,7 @@
 
 \begin{document}
 
-\title{Actions are Bad, Mmkay}
+\title{Actions Computed in the Milky Way are Not Invariant}
 
 \correspondingauthor{Angus Beane}
 \email{abeane@sas.upenn.edu}
@@ -36,17 +36,37 @@ South 33rd St., Philadelphia, PA 19104, USA}
 
 In an axisymmetric potential the 6D phase space of stars' positions and
 velocities can be reduced to a 3D space of invariant actions. For this reason
-actions are commonly used to help interpret phase space. However, it is not
-expected that actions are invariant in detail for the Milky Way --- it's
-spiral arms, bar(s), and gas clouds are all non-axisymmetric features that
-should induce long-term evolution in action space. However, these same
-features will cause a star's true orbit to deviate slightly from its orbit in
-an axisymmetric potential. If an observer assumes an axisymmetric potential
-when computing actions, this will induce an artificial short-term phase
-dependence of the actions, which we interpret as systematic error. Using the
-potential of cosmological zoom-in simulations of Milky Way mass galaxies from
-the FIRE collaboration (the Latte suite), we investigate the magnitude of
-this systematic error. We find XXX. Something something lower limit.
+actions are commonly used to help interpret phase space. We show that if one
+assumes the wrong galactocentric reference frame this can induce artificial
+non-axisymmetries which manifest as time dependence in the computed actions.
+However, the Milky Way is not axisymmetric in detail and so there are no
+truly axisymmetric axes. We instead define the  ``optimally axisymmetric''
+axes as the reference frame which minimizes the time dependence of the
+actions. Using cosmological zoom-in simulations from FIRE-2, we show that the
+optimally axisymmetric reference frame can differ from standard methods of
+calculating the galactocentric reference frame by (some numbers). We further
+show that if one uses the conventional method to define the Galactic midplane
+in this simulated galaxy, the midplane can vary by nearly a scale height
+across the galaxy. This work calls into question the use of actions as
+dynamical invariants unless these reference frame issues can be resolved.
+
+% However, it is not expected that actions are invariant in detail for the
+% Milky Way. This in-invariance can come about from assuming the wrong
+% Galactic potential, but it can also come about due to true
+% non-axisymmetries. We show that actions can gain artificial time-dependence
+% also by assuming the wrong reference frame. We argue that standard methods
+% for determining the galactocentric reference frame are not gu
+
+% it's spiral arms, bar(s), and gas clouds are all non-axisymmetric features
+% that should induce long-term evolution in action space. However, these same
+% features will cause a star's true orbit to deviate slightly from its orbit
+% in an axisymmetric potential. If an observer assumes an axisymmetric
+% potential when computing actions, this will induce an artificial short-term
+% phase dependence of the actions, which we interpret as systematic error.
+% Using the potential of cosmological zoom-in simulations of Milky Way mass
+% galaxies from the FIRE collaboration (the Latte suite), we investigate the
+% magnitude of this systematic error. We find XXX. Something something lower
+% limit.
 
 \end{abstract}
 
@@ -54,6 +74,8 @@ this systematic error. We find XXX. Something something lower limit.
 
 \section{Introduction} \label{sec:intro}
 
+
+Midplane resolved with $\sim 370$ to $570$ star particles.
 
 We could have proceeded by taking an axisymmetric potential and adding
 analytic spiral arms, a bar, and gas clouds. However, in preliminary work
