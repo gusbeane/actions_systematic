@@ -100,7 +100,7 @@ def generate_cluster():
     parameters = {'epsilon_squared': (softening)**2}
     
     for name, value in parameters.items():
-        setattr(self.code.parameters, name, value)
+        setattr(code.parameters, name, value)
     
     code.particles.add_particles(bodies)
     return code
@@ -149,7 +149,7 @@ ss_key = np.where(snap['star']['id'] == ss_id)[0]
 
 
 star_mass = snap['star']['mass'][not_ss_key]
-star_softening = np.power(star_mass/self.star_char_mass, 1.0/3.0)
+star_softening = np.power(star_mass/star_char_mass, 1.0/3.0)
 star_softening /= 1000.0
 
 dark_softening = np.full(len(snap['dark']['position']),
