@@ -9,7 +9,7 @@ from astropy.constants import G as G_astropy
 from amuse.units import units, nbody_system
 from amuse.lab import ph4, new_kroupa_mass_distribution
 from amuse.ic.kingmodel import new_king_model
-from amuse.couple import bridge
+from amuse.couple.bridge import Bridge
 
 from tqdm import tqdm
 
@@ -116,8 +116,8 @@ def generate_bridge(cluster_code, gal_code, pos, vel):
 
     channel = stars.new_channel_to(cluster_code.particles)
     channel.copy_attributes(["x", "y", "z", "vx", "vy", "vz"])
-    system = Bridge(timestep=timestep, use_threading=False)
-    system.add_system(cluster_code, (galaxy_code,))
+    system = Bridge(timestep=dt | units.Myr, use_threading=False)
+    system.add_system(cluster_code, (gal_code,))
     
     return system
 
