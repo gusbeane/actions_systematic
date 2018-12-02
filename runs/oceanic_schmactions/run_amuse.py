@@ -197,3 +197,5 @@ for t in tqdm(tlist):
     pos_out.append(pos)
     bridge_code.evolve_model(t | units.Myr)
 
+np.save('pos.npy', pos_out)
+
