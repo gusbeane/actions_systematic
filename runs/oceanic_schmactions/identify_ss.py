@@ -5,6 +5,7 @@ import agama
 # first read in snapshot
 
 np.random.seed(162)
+agama.setUnits(mass=1, length=1, velocity=1)
 
 snap_idx=600
 sim_dir = '/mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100/'
@@ -21,8 +22,6 @@ zmax = 0.5
 
 age_min = 0.25
 age_max = 0.75
-
-act_cuts = zip(Jr_min_list, Jr_max_list, Jz_min_list, Jz_max_list)
 
 snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'],
                                      'index', snap_idx,
@@ -67,7 +66,8 @@ af = agama.ActionFinder(potential, interp=False)
 
 star_fid_phase = np.hstack((star_fid_pos, star_fid_vel))
 actions = af(star_fid_phase)
-for Jr_min, Jr_max, Jz_min, Jz_max in act_cuts:
+for Jr_min, Jr_max, Jz_min, Jz_max in zip(Jr_min_list, Jr_max_list,
+                                          Jz_min_list, Jz_max_list):
     Jrbool = np.logical_and(actions[:,0] > Jr_min, actions[:,0] < Jr_max)
     Jzbool = np.logical_and(actions[:,1] > Jz_min, actions[:,1] < Jz_max)
 
