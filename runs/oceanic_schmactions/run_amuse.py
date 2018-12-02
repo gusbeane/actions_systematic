@@ -4,7 +4,14 @@ import agama
 import utilities as ut
 import sys
 from pykdgrav import ConstructKDTree, GetAccelParallel
-from amuse.units import units
+from astropy.constants import G as G_astropy
+
+from amuse.units import units, nbody_system
+from amuse.lab import ph4, new_kroupa_mass_distribution
+from amuse.ic.kingmodel import new_king_model
+from amuse.couple import bridge
+
+from tqdm import tqdm
 
 from astropy.constants import G as G_astropy
 import astropy.units as u
@@ -20,12 +27,23 @@ star_char_mass = 0.048
 dark_softening_in_pc = 112.0
 Rmax = 50.0
 
+tend = 4 # Myr
+dt = 0.1 # Myr
+tlist = np.arange(0 , tend, dt)
+
 ss_ids = [23693026,
           17012804]
 ss_id = ss_ids[int(sys.argv[1])]
 
 G = G_astropy.to_value(u.kpc**2 * u.km / (u.s * u.Myr * u.Msun))
 theta = 0.5
+
+# cluster parameter
+N = 256
+kroupa_max = 5 | units.MSun
+Rcluster = 0.8 | units.parsec
+W0 = 3
+softening = 0.01 | units.parsec
 
 
 def get_position(snap, pos, center, pa=None):
@@ -70,6 +88,39 @@ class pykdgrav(object):
         az = accel[:,2] | units.kms/units.Myr
         return ax, ay, az
 
+def generate_cluster():
+    m = new_kroupa_mass_distribution(N, kroupa_max)
+    tot_m = np.sum(m)
+    converter = nbody_system.nbody_to_si(tot_m, Rcluster)
+    bodies = new_king_model(N, W0, convert_nbody=converter)
+    bodies.mass = m
+    bodies.scale_to_standard(convert_nbody=converter)
+    bodies.move_to_center()
+    code = ph4(converter, mode='gpu')
+    parameters = {'epsilon_squared': (softening)**2}
+    
+    for name, value in parameters.items():
+        setattr(self.code.parameters, name, value)
+    
+    code.particles.add_particles(bodies)
+    return code
+                                         
+def generate_bridge(cluster_code, gal_code, pos, vel):
+    stars = cluster_code.particles.copy()
+    stars.x += pos[0] | units.kpc
+    stars.y += pos[1] | units.kpc
+    stars.z += pos[2] | units.kpc
+    stars.vx += vel[0] | units.kms
+    stars.vy += vel[1] | units.kms
+    stars.vz += vel[2] | units.kms
+
+    channel = stars.new_channel_to(cluster_code.particles)
+    channel.copy_attributes(["x", "y", "z", "vx", "vy", "vz"])
+    system = Bridge(timestep=timestep, use_threading=False)
+    system.add_system(cluster_code, (galaxy_code,))
+    
+    return system
+
 
 # read in snapshot
 snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'],
@@ -93,11 +144,12 @@ for k in snap.keys():
 # # # # #
 
 # we don't want to use the ss in the gravity calc (not really important)
-ss_key = np.where(snap['star']['id'] != ss_id)[0]
+not_ss_key = np.where(snap['star']['id'] != ss_id)[0]
+ss_key = np.where(snap['star']['id'] == ss_id)[0]
 
 
-star_mass = snap['star']['mass'][ss_key]
-star_softening = np.power(star_mass/star_char_mass, 1.0/3.0)
+star_mass = snap['star']['mass'][not_ss_key]
+star_softening = np.power(star_mass/self.star_char_mass, 1.0/3.0)
 star_softening /= 1000.0
 
 dark_softening = np.full(len(snap['dark']['position']),
@@ -114,11 +166,11 @@ all_softening = np.concatenate((star_softening, dark_softening,
 # except centered on the galaxy
 # to reduce finite difference errors
 
-all_position = np.concatenate((snap['star'].prop('host.distance')[ss_key],
+all_position = np.concatenate((snap['star'].prop('host.distance')[not_ss_key],
                 snap['dark'].prop('host.distance'),
                 snap['gas'].prop('host.distance')))
 
-all_mass = np.concatenate((snap['star']['mass'][ss_key],
+all_mass = np.concatenate((snap['star']['mass'][not_ss_key],
                 snap['dark']['mass'],
                 snap['gas']['mass']))
 
@@ -130,4 +182,18 @@ all_mass = all_mass[Rkeys]
 all_softening = all_softening[Rkeys]
 
 grav_code = pykdgrav(all_position, all_mass, all_softening, theta, G)
+
+# construct star gravity solver
+
+ss_pos = snap['star'].prop('host.distance')[ss_key][0]
+ss_vel = snap['star'].prop('host.velocity')[ss_key][0]
+
+cluster_code = generate_cluster()
+bridge_code = generate_bridge(cluster_code, grav_code, ss_pos, ss_vel)
+
+pos_out = []
+for t in tqdm(tlist):
+    pos = bridge_code.particles.position.value_in(units.kpc)
+    pos_out.append(pos)
+    bridge_code.evolve_model(t | units.Myr)
 
