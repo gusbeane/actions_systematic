@@ -4,8 +4,10 @@ import agama
 import utilities as ut
 import sys
 from pykdgrav import ConstructKDTree, GetAccelParallel
-from astropy.constants import G as G_astropy
 from amuse.units import units
+
+from astropy.constants import G as G_astropy
+import astropy.units as u
 
 np.random.seed(162)
 agama.setUnits(mass=1, length=1, velocity=1)
@@ -16,10 +18,11 @@ gal_info = 'm12i_info.txt'
 
 star_char_mass = 0.048
 dark_softening_in_pc = 112.0
+Rmax = 50.0
 
 ss_ids = [23693026,
           17012804]
-ss_id = ss_ids[int(sys.argv[0])]
+ss_id = ss_ids[int(sys.argv[1])]
 
 G = G_astropy.to_value(u.kpc**2 * u.km / (u.s * u.Myr * u.Msun))
 theta = 0.5
@@ -47,7 +50,7 @@ def get_velocity(snap, pos, vel, center, center_velocity, pa=None):
 
 class pykdgrav(object):
     def __init__(self, r, m, soft, theta, G):
-        print('constructing kdtree'):
+        print('constructing kdtree')
         self.tree = ConstructKDTree( np.float64(r), np.float64(m), np.float64(soft))
         self.theta = theta
         self.G = G
@@ -94,13 +97,14 @@ ss_key = np.where(snap['star']['id'] != ss_id)[0]
 
 
 star_mass = snap['star']['mass'][ss_key]
-star_softening = np.power(star_mass/self.star_char_mass, 1.0/3.0)
+star_softening = np.power(star_mass/star_char_mass, 1.0/3.0)
 star_softening /= 1000.0
 
 dark_softening = np.full(len(snap['dark']['position']),
-    float(self.dark_softening_in_pc)/1000.0)
+    float(dark_softening_in_pc)/1000.0)
 
-gas_softening = 2.8 * snap['gas']['smooth.length'] / 1000.0
+# bug in gizmo_analysis requires dividing by 1000**2
+gas_softening = 2.8 * snap['gas']['smooth.length'] / 1000.0**2
 
 all_softening = np.concatenate((star_softening, dark_softening,
                                         gas_softening))
@@ -118,4 +122,12 @@ all_mass = np.concatenate((snap['star']['mass'][ss_key],
                 snap['dark']['mass'],
                 snap['gas']['mass']))
 
+Rmag = np.linalg.norm(all_position, axis=1)
+Rkeys = np.where(Rmag < Rmax)[0]
+
+all_position = all_position[Rkeys]
+all_mass = all_mass[Rkeys]
+all_softening = all_softening[Rkeys]
+
 grav_code = pykdgrav(all_position, all_mass, all_softening, theta, G)
+
