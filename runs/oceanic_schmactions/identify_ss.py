@@ -62,6 +62,7 @@ pbar = agama.Potential(type="CylSpline",
                        Rmax=50, Zmin=0.02, Zmax=10)
 
 potential = agama.Potential(pdark, pbar)
+potential.export('fiducial_pot')
 af = agama.ActionFinder(potential, interp=False)
 
 star_fid_phase = np.hstack((star_fid_pos, star_fid_vel))
