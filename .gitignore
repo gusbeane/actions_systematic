@@ -1,13 +1,12 @@
 paper/*.aux
 paper/*.log
 paper/*.pdf
-paper/*.bib
 paper/*.blg
 V62/
 
 runs/include/utilities/
 runs/include/gizmo_analysis/
-runs/oceanic/__pycache__/
+__pycache__/
 cache/
 
 *.p
@@ -19,3 +18,4 @@ log/
 m12i_positions/
 .ipynb_checkpoints/
 
+.DS_Store
