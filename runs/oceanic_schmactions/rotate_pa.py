@@ -1,5 +1,9 @@
 import gizmo_analysis as gizmo
 import numpy as np
+import agama
+import sys
+import utilities as ut
+from scipy.optimize import minimize
 
 np.random.seed(162)
 agama.setUnits(mass=1, length=1, velocity=1)
@@ -82,23 +86,25 @@ vel = np.load(velfile)
 nframes, npart, ndim = np.shape(pos)
 
 def actions(pos, vel):
-	flat_pos = np.reshape(pos, (nframes*npart, ndim))
-	flat_vel = np.reshape(vel, (nframes*npart, ndim))
-	phase = np.c_[pos, vel]
-	act = af(phase)
-	return np.reshape(act, (nframes, npart, ndim))
+    flat_pos = np.reshape(pos, (nframes*npart, ndim))
+    flat_vel = np.reshape(vel, (nframes*npart, ndim))
+    phase = np.c_[flat_pos, flat_vel]
+    act = af(phase)
+    return np.reshape(act, (nframes, npart, ndim))
 
 def chisq(x):
-	offset = x[:3]
-	theta = x[3:]
+    offset = x[:3]
+    theta = x[3:]
 
-	rotated_pa = euler_rotate(theta, fiducial_pa)
+    rotated_pa = euler_rotate(theta, fiducial_pa)
 
-	new_pos = get_position(snap, pos, offset, rotated_pa)
-	new_vel = get_position(snap, vel, np.array([0,0,0]), rotated_pa)
+    new_pos = get_position(snap, pos, offset, rotated_pa)
+    new_vel = get_position(snap, vel, np.array([0,0,0]), rotated_pa)
 
-	act = actions(new_pos, new_vel)
-	act_collapse = np.median(act, axis=1)
-	act_med = np.median(act_collapse, axis=0)
-	act_collapse = np.subtract(act_collapse, act_med)
-	return np.sum(np.square(act_collapse))
+    act = actions(new_pos, new_vel)
+    act_collapse = np.median(act, axis=1)
+    act_med = np.median(act_collapse, axis=0)
+    act_collapse = np.subtract(act_collapse, act_med)
+    return np.sum(np.square(act_collapse))
+
+res = minimize(chisq, np.array([0, 0, 0, 0, 0, 0]))
