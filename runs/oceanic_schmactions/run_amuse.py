@@ -27,7 +27,7 @@ star_char_mass = 0.048
 dark_softening_in_pc = 112.0
 Rmax = 50.0
 
-tend = 4 # Myr
+tend = 2000 # Myr
 dt = 0.1 # Myr
 tlist = np.arange(0 , tend, dt)
 
@@ -192,10 +192,14 @@ cluster_code = generate_cluster()
 bridge_code = generate_bridge(cluster_code, grav_code, ss_pos, ss_vel)
 
 pos_out = []
+vel_out = []
 for t in tqdm(tlist):
     pos = bridge_code.particles.position.value_in(units.kpc)
     pos_out.append(pos)
+    vel = bridge_code.particles.velocity.value_in(units.kms)
+    vel_out.append(vel)
+    
     bridge_code.evolve_model(t | units.Myr)
 
-np.save('pos.npy', pos_out)
-
+np.save('pos_'+sys.argv[1]+'.npy', pos_out)
+np.save('vel_'+sys.argv[1]+'.npy', vel_out)
