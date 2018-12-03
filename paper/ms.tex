@@ -12,6 +12,9 @@
 \newcommand{\pc}{\text{pc}}
 \newcommand{\kpc}{\text{kpc}}
 
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\z}{z}
+
 \newcommand{\mi}{\texttt{m12i}}
 \newcommand{\mf}{\texttt{m12f}}
 \newcommand{\mm}{\texttt{m12m}}
@@ -123,29 +126,65 @@ Our centering differs from Sanderson et al. by $\sim3.2\,\pc$ for \mi.
 \section{Optimally Axisymmetric Frame}
 An analytic, axisymmetric potential with a known reference frame is a far too
 simple description of the Milky Way. We thus turn to cosmological zoom-in
-simulations as approximations to a ``true'' Milky Way potential. It is important to remember that 
+simulations as approximations to a ``true'' Milky Way potential. We will perform a few simulations of small clusters in order to 
 
 \subsection{Cosmological Zoom-in} \label{ssec:cosmozoom}
-Cosmological zoom-ins allow one to simulate a selected region at high resolution embedded in a low-resolution cosmological background \citep[e.g.][]{1993ApJ...412..455K,2014MNRAS.437.1894O}
+Cosmological zoom-ins allow one to simulate a selected region at high
+resolution embedded in a low-resolution cosmological background
+\citep[e.g.][]{1993ApJ...412..455K,2014MNRAS.437.1894O}. Here we use a
+zoom-in of a Milky Way-mass galaxy from the FIRE-2 collaboration.
 
-\subsection{Cluster Simulations} \label{ssec:cluster_sim}
+First, a dark matter only simulation was run with $\Lambda$CDM cosmology
+parameterized by $(\Omega_m, \Omega_{\Lambda}, \Omega_b, h, \sigma_8, n_s) =
+(0.272, 0.728, 0.0455, 0.702, 0.807, 0.961)$, consistent with current
+constraints \citep{2018arXiv180706209P}. Halos are selected at $z=0$ based
+solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$). Particles
+within $5 R_{200\text{m}}$ of each halo are traced back to $\z=99$ and the
+initial conditions are regenerated at higher resolution using MUSIC
+\citep{2011MNRAS.415.2101H}. A total of $\sim 10$ halos were simulated at
+higher resolution \citep{2018MNRAS.481.4133G}.
 
+These halos are uncontaminated and contain gas particles of mass $\sim 7000
+\text{--} 20000 \Msun$ and star particles of mass $\sim 5000 \text{--} 7000
+\Msun$, with the lower end coming from stellar evolution
+\citep{2018arXiv180610564S}. Softening lengths for dark matter and star
+particles are fixed at $112\,\pc$ and $11.2\,\pc$,
+respectively.\footnote{This is $2.8$ times the often-quoted
+Plummer-equivalent.} The gas softening length is adaptive, but at $z=0$ the
+median softening length for gas particles around roughly solar positions
+(with cylindrical radii within $500\,\pc$ of $8.2\,\kpc$ and
+$\abs{z}<1\,\kpc$) is $98\,\pc$.
 
+We restrict ourselves to the simulation \texttt{m12i} \citep[first introduced
+in][]{2016ApJ...827L..23W}. For this work, this galaxy is the best-case
+scenario. It does not contain a bar (like \texttt{m12m}) or companion galaxy,
+and by eye is the closest to axisymmetric of the three galaxies presented in
+\citet{2018arXiv180610564S} \citep{2018MNRAS.481.4133G}.
 
-\appendix \section{Pattern Speed} Our estimation of the pattern speed is very
-crude, but throughout the text we have adopted three different speeds in
-order to demonstrate that qualitatively our results do not depend on the
-precise numerical value of the pattern speed. We identify the spiral arms by
-first plotting a $\phi$-$R$ 2D histogram, shown in
-Figure~\ref{fig:pattern_speed}. In order to compute $\phi$ and $R$, we use
-the principal axes from \citep{2018arXiv180610564S}. Push push
+It is important to remember that simulations of Milky Way-mass galaxies are
+not perfect representations of the true Milky Way, as discussed in
+\citet{2018arXiv180610564S}. For instance, the velocity structure of
+\texttt{m12i} is closer to M31 than the Milky Way. However, in this work we
+are most interested in the global properties of the \texttt{m12i} potential,
+and specifically in deviations from axisymmetry. From this perspective,
+\texttt{m12i} is actually far more axisymmetric than we might expect of the
+Milky Way. While \texttt{m12i} has prominent spiral arms, it lacks a bar and
+a companion like the Large Magellanic Cloud. In future work, these additional
+complications also need to be addressed.
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{{pattern_speed_by_eye}.png}
-\caption{Pattern speed.}
-\label{fig:pattern_speed}
-\end{figure}
+\subsection{Cluster Simulations} \label{ssec:cluster_sim} We simulate a small
+star cluster of $256$ stars in the frozen $\z=0$ potential of
+$\texttt{m12i}$.
+
+We use the simple tree code
+\texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
+commit:\texttt{fbd1ddc}}. 
+
+We use the initial position and velocity of two star particles in
+$\texttt{m12i}$
+
+\appendix \section{Appendix 1}
+Gonna write an appendix probably 
 
 \bibliography{references}
 
