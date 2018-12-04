@@ -14,6 +14,10 @@ gal_info = 'm12i_info.txt'
 
 cadence_list = [50, 20]
 
+tend = 2000 # Myr
+dt = 0.1 # Myr
+tlist = np.arange(0 , tend, dt)
+
 snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'],
                                      'index', snap_idx,
                                      simulation_directory=sim_dir,
@@ -101,7 +105,7 @@ def actions(pos, vel):
     act = af(phase)
     return np.reshape(act, (nframes, npart, ndim))
 
-def chisq(x):
+def chisq(x, return_actions=False):
     offset = x[:3]
     theta = x[3:]
 
@@ -113,6 +117,8 @@ def chisq(x):
     act = actions(new_pos, new_vel)
     act_collapse = np.median(act, axis=1)
     act_med = np.median(act_collapse, axis=0)
+    if return_actions:
+        return act_med
     act_collapse = np.subtract(act_collapse, act_med)
     return np.sum(np.square(act_collapse))
 
@@ -132,3 +138,11 @@ oa_center_velocity = ref[1] # don't recalculate center velocity
 
 new_frame = np.vstack((oa_center_position, oa_center_velocity, oa_pa))
 np.savetxt('oa_frame.txt', new_frame)
+
+# now dump actions
+fiducial_actions = chisq(np.array([0, 0, 0, 0, 0, 0]), return_actions=True) 
+oa_actions = chisq(res.x, return_actions=True)
+
+np.save('fiducial_actions_'+sys.argv[1]+'.npy', fiducial_actions)
+np.save('oa_actions_'+sys.argv[1]+'.npy', oa_actions)
+
