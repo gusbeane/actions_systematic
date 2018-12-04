@@ -1,6 +1,6 @@
 paper/*.aux
 paper/*.log
-paper/*.pdf
+paper/ms.pdf
 paper/*.blg
 V62/
 
