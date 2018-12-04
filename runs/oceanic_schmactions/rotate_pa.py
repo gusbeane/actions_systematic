@@ -12,6 +12,8 @@ snap_idx=600
 sim_dir = '/mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100/'
 gal_info = 'm12i_info.txt'
 
+cadence_list = [50, 20]
+
 snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'],
                                      'index', snap_idx,
                                      simulation_directory=sim_dir,
@@ -26,6 +28,8 @@ for k in snap.keys():
                  'principal_axes_vectors']:
         setattr(snap[k], attr, getattr(snap, attr))
 
+fiducial_center = ref[0]
+fiducial_velocity = ref[1]
 fiducial_pa = ref[2:]
 
 def get_position(snap, pos, center, pa=None):
@@ -80,10 +84,15 @@ af = agama.ActionFinder(potential, interp=False)
 # read in simulated positions and velocities
 posfile = 'pos_' + sys.argv[1] + '.npy'
 velfile = 'vel_' + sys.argv[1] + '.npy'
-pos = np.load(posfile)
-vel = np.load(velfile)
+pos_full = np.load(posfile)
+vel_full = np.load(velfile)
 
-nframes, npart, ndim = np.shape(pos)
+def init_minimizer(cadence):
+    global nframes, npart, ndim
+    pos = pos_full[::cadence]
+    vel = vel_full[::cadence]
+
+    nframes, npart, ndim = np.shape(pos)
 
 def actions(pos, vel):
     flat_pos = np.reshape(pos, (nframes*npart, ndim))
@@ -107,4 +116,18 @@ def chisq(x):
     act_collapse = np.subtract(act_collapse, act_med)
     return np.sum(np.square(act_collapse))
 
-res = minimize(chisq, np.array([0, 0, 0, 0, 0, 0]))
+xinit = np.array([0, 0, 0, 0, 0, 0])
+for cd in cadence_list:
+    init_minimizer(cd)
+    res = minimize(chisq, xinit, method='Nelder-Mead')
+    xinit = res.x
+
+offset = xinit[:3]
+theta = xinit[3:]
+
+oa_center_position = fiducial_center + offset
+oa_pa = euler_rotate(theta, fiducial_pa)
+oa_center_velocity = get_position(snap, fiducial_velocity, np.array([0, 0, 0]), oa_pa)
+
+new_frame = np.vstack((oa_center_position, oa_center_velocity, oa_pa))
+np.savetxt('oa_frame.txt', new_frame)
