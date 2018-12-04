@@ -13,6 +13,7 @@
 \newcommand{\kpc}{\text{kpc}}
 \newcommand{\Myr}{\text{Myr}}
 \newcommand{\Gyr}{\text{Gyr}}
+\newcommand{\kms}{\text{km}/\text{s}}
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z}
@@ -20,10 +21,12 @@
 \newcommand{\mi}{\texttt{m12i}}
 \newcommand{\mf}{\texttt{m12f}}
 \newcommand{\mm}{\texttt{m12m}}
+\newcommand{\gdr}{{\em Gaia} DR2}
 
 \begin{document}
 
-\title{The Actions We Compute are Not Invariant}
+\title{Our Galactocentric Reference Frame Is Probably Wrong, and Not by a
+Little}
 
 \correspondingauthor{Angus Beane}
 \email{abeane@sas.upenn.edu}
@@ -40,20 +43,19 @@ South 33rd St., Philadelphia, PA 19104, USA}
 \begin{abstract}
 
 In an axisymmetric potential the 6D phase space of stars' positions and
-velocities can be reduced to a 3D space of invariant actions. For this reason
-actions are commonly used to help interpret phase space. We show that if one
-assumes the wrong galactocentric reference frame this can induce artificial
-non-axisymmetries which manifest as time dependence in the computed actions.
-However, the Milky Way is not axisymmetric in detail and so there are no
-truly axisymmetric axes. We instead define the  ``optimally axisymmetric''
-axes as the reference frame which minimizes the time dependence of the
-actions. Using cosmological zoom-in simulations from FIRE-2, we show that the
-optimally axisymmetric reference frame can differ from standard methods of
-calculating the galactocentric reference frame by (some numbers). We further
-show that if one uses the conventional method to define the Galactic midplane
-in this simulated galaxy, the midplane can vary by nearly a scale height
-across the galaxy. This work calls into question the use of actions as
-dynamical invariants unless these reference frame issues can be resolved.
+velocities can be reduced to a 3D space of invariant actions. We show that if
+one assumes the wrong galactocentric reference frame this can induce
+artificial non-axisymmetries which manifest as time dependence in the
+computed actions. However, the Milky Way is not axisymmetric in detail and so
+there are no truly axisymmetric axes. We instead define the  ``optimally
+axisymmetric'' axes as the reference frame which minimizes the time
+dependence of the computed actions. Standard methods for determining the
+galactocentric reference frame typically involve finding the median height of
+stars in the disk. Using cosmological zoom-in simulations from FIRE-2, we
+show that the optimally axisymmetric reference frame can differ from standard
+methods of calculating the galactocentric reference frame by nearly a scale
+height. This work calls into question the use of actions as dynamical
+invariants unless these reference frame issues can be resolved.
 
 % However, it is not expected that actions are invariant in detail for the
 % Milky Way. This in-invariance can come about from assuming the wrong
@@ -78,57 +80,28 @@ dynamical invariants unless these reference frame issues can be resolved.
 \keywords{actions}
 
 \section{Introduction} \label{sec:intro}
+Our understanding of the Milky Way is currently undergoing a revolution in the era of \gdr. Recent major discoveries include the remnants of a major merger \citep{2018Natur.563...85H}, a phase-space spiral (\Gus{cites}) indicating local substructure infall (\Gus{cites}), a gap indicative of a dark matter subtructure in GD1 \citep{2018arXiv181103631B}, and \Gus{others}. 
 
+\section{Reference Frame Gone Wrong} \label{sec:ref_frame}
+We begin by quantifying how 
 
-Midplane resolved with $\sim 370$ to $570$ star particles.
-
-We could have proceeded by taking an axisymmetric potential and adding
-analytic spiral arms, a bar, and gas clouds. However, in preliminary work
-with the FIRE galaxies we found that defining a consistent reference frame
-between snapshots was very difficult. An inaccuracy in the direction of the
-$z$-axis by a single degree induces a $140\,\pc$ change in the height of the
-midplane at $8.2\,\kpc$. In a cosmological context it is not apparent that
-there exists a consistent definition of the galactocentric frame, and we
-therefore proceed in a cosmological context to include this effect.
-
-We perform a set of three different simulations repeated for two of the Milky
-Way zoom-ins, \mi and \mf.\footnote{The number corresponds to the mass of the
-dark matter halo (here, $\sim 10^{12} \Msun$). The first ``m'' stands for
-mass and the last letter is a unique identifier for the {\em initial
-conditions}.} The first assumes an axisymmetric potential and also implicitly
-a well-defined galactocentric frame. This first simulation shows that our
-integration technique respects the fact that in an axisymmetric potential
-actions are invariant and that our calculation of the actions does not
-imprint some artificial phase dependence in the actions.
-
-
-\section{Methods} \label{sec:methods}
-We begin by 
-
-Rockstar import in gizmo\_analysis is commented out
-
-\subsection{Simulated Galaxies} \label{ssec:fire}
-We wish to perform N-body integration within a realistic Galactic potential.
-In order to do this, we use the {\em Latte} suite of Milky Way-mass zoom-ins
-from the Feedback in Realistic Environments (FIRE)
-collaboration\footnote{\url{http://fire.northwestern.edu}}
-\citep{2016ApJ...827L..23W,2018MNRAS.480..800H}. In a zoom-in cosmological
-simulation a high resolution region of interest is embedded within a low
-resolution cosmological context (\Gus{cites}). In the case of {\em Latte}, a
-region that will evolve into a Milky Way-mass galaxy, identified in a
-preliminary dark matter only run, is increased in resolution using MUSIC.
-This allows one to achieve ultra-high resolution simulations of individual
-galaxies than possible in a full cosmological run. 
-
-
-
-Our centering differs from Sanderson et al. by $\sim3.2\,\pc$ for \mi.
-
-
-\section{Optimally Axisymmetric Frame}
+\section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
 An analytic, axisymmetric potential with a known reference frame is a far too
 simple description of the Milky Way. We thus turn to cosmological zoom-in
-simulations as approximations to a ``true'' Milky Way potential. We will perform a few simulations of small clusters in order to 
+simulations as approximations to a ``true'' Milky Way potential. We will
+perform a few simulations of small clusters embedded in the potential of a
+frozen $\z=0$ snapshot of one such zoom-in. We take our fiducial reference
+frame from \citet{2018arXiv180610564S}.
+
+Freezing the potential means that during the course of our simulation the
+cluster will rapidly pass by much of the substructure in the potential. To
+illustrate that this has little effect on our results, we resimulate each
+cluster with the softening lengths of the embedded potential increased by a
+factor of \Gus{something}.
+
+Once we perform this simulation, we calculate the actions of each star in the
+cluster assuming the best-fit smooth, axisymmetric potential, as we do
+observationally for the Milky Way. We refer to this space as the observational action space. We will find that there is significant time evolution in observational action space. Attributing some of this evolution to our fiducial reference frame being incorrect, we minimize the time-dispersion in action space 
 
 \subsection{Cosmological Zoom-in} \label{ssec:cosmozoom}
 Cosmological zoom-ins allow one to simulate a selected region at high
@@ -137,17 +110,17 @@ resolution embedded in a low-resolution cosmological background
 zoom-in of a Milky Way-mass galaxy from the FIRE-2 collaboration.
 
 First, a dark matter only simulation was run with $\Lambda$CDM cosmology
-parameterized by $(\Omega_m, \Omega_{\Lambda}, \Omega_b, h, \sigma_8, n_s) =
-(0.272, 0.728, 0.0455, 0.702, 0.807, 0.961)$, consistent with current
-constraints \citep{2018arXiv180706209P}. Halos are selected at $z=0$ based
-solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$). Particles
-within $5 R_{200\text{m}}$ of each halo are traced back to $\z=99$ and the
-initial conditions are regenerated at higher resolution using MUSIC
+parameterized by $\Omega_m = 0.272$, $\Omega_{\Lambda} = 0.728$, $\Omega_b =
+0.0455$, $h = 0.702$, $\sigma_8 = 0.807$, and $n_s = 0.961$, consistent with
+current constraints \citep{2018arXiv180706209P}. Halos are selected at $z=0$
+based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$).
+Particles within $5 R_{200\text{m}}$ of each halo are traced back to $\z=99$
+and the initial conditions are regenerated at higher resolution using MUSIC
 \citep{2011MNRAS.415.2101H}. A total of $\sim 10$ halos were simulated at
 higher resolution \citep{2018MNRAS.481.4133G}.
 
 These halos are uncontaminated and contain gas particles of mass $\sim 7000
-\text{--} 20000 \Msun$ and star particles of mass $\sim 5000 \text{--} 7000
+\text{--} 20,000\,\Msun$ and star particles of mass $\sim 5000 \text{--} 7000\,
 \Msun$, with the lower end coming from stellar evolution
 \citep{2018arXiv180610564S}. Softening lengths for dark matter and star
 particles are fixed at $112\,\pc$ and $11.2\,\pc$,
@@ -192,6 +165,10 @@ commit:\texttt{fbd1ddc}}.
 
 We use the initial position and velocity of two star particles in
 $\texttt{m12i}$
+
+Even though we change the center, we do not recalculate the center velocity.
+This is largely irrelevant, as the recalculated center velocity differs from
+the fiducial center velocity by $<0.1\,\kms$.
 
 \appendix \section{Appendix 1}
 Gonna write an appendix probably 
