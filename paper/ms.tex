@@ -21,7 +21,6 @@
 \newcommand{\mi}{\texttt{m12i}}
 \newcommand{\mf}{\texttt{m12f}}
 \newcommand{\mm}{\texttt{m12m}}
-\newcommand{\gdr}{{\em Gaia} DR2}
 
 \begin{document}
 
@@ -45,17 +44,17 @@ South 33rd St., Philadelphia, PA 19104, USA}
 In an axisymmetric potential the 6D phase space of stars' positions and
 velocities can be reduced to a 3D space of invariant actions. We show that if
 one assumes the wrong galactocentric reference frame this can induce
-artificial non-axisymmetries which manifest as time dependence in the
-computed actions. However, the Milky Way is not axisymmetric in detail and so
-there are no truly axisymmetric axes. We instead define the  ``optimally
-axisymmetric'' axes as the reference frame which minimizes the time
-dependence of the computed actions. Standard methods for determining the
-galactocentric reference frame typically involve finding the median height of
-stars in the disk. Using cosmological zoom-in simulations from FIRE-2, we
-show that the optimally axisymmetric reference frame can differ from standard
-methods of calculating the galactocentric reference frame by nearly a scale
-height. This work calls into question the use of actions as dynamical
-invariants unless these reference frame issues can be resolved.
+artificial non-axisymmetries which manifest as time dependence in the computed
+actions. However, the Milky Way is not axisymmetric in detail and so there are
+no truly axisymmetric axes. We instead define the  ``optimally axisymmetric''
+axes as the reference frame which minimizes the time dependence of the
+computed actions. Standard methods for determining the galactocentric
+reference frame typically involve finding the median height of stars in the
+disk. Using cosmological zoom-in simulations from FIRE-2, we show that the
+optimally axisymmetric reference frame can differ from standard methods of
+calculating the galactocentric reference frame by nearly a scale height. This
+work calls into question the use of actions as dynamical invariants unless
+these reference frame issues can be resolved.
 
 % However, it is not expected that actions are invariant in detail for the
 % Milky Way. This in-invariance can come about from assuming the wrong
@@ -80,10 +79,82 @@ invariants unless these reference frame issues can be resolved.
 \keywords{actions}
 
 \section{Introduction} \label{sec:intro}
-Our understanding of the Milky Way is currently undergoing a revolution in the era of \gdr. Recent major discoveries include the remnants of a major merger \citep{2018Natur.563...85H}, a phase-space spiral (\Gus{cites}) indicating local substructure infall (\Gus{cites}), a gap indicative of a dark matter subtructure in GD1 \citep{2018arXiv181103631B}, and \Gus{others}. 
+Our understanding of the Milky Way is currently undergoing a revolution in the
+era of {\em Gaia} DR2. Recent major discoveries include the remnants of a
+major merger \citep{2018Natur.563...85H}, a phase-space spiral (\Gus{cites})
+indicating local substructure infall (\Gus{cites}), a gap indicative of a dark
+matter subtructure in GD1 \citep{2018arXiv181103631B}, and \Gus{others}.
+
+Underlying all of these discoveries is the assumption of a galactocentric
+reference frame \citep{2008gady.book.....B}. In angular
+coordinates, the center of the galaxy is taken to be the location of
+Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From stellar
+motions near Sgr~A\textsuperscript{*}, the distance to the center is taken to
+be $\sim 8.1\text{--}8.3\,\kpc$
+\citep{2009ApJ...692.1075G,2018A&A...615L..15G}. The vertical height is found
+by identifying where the stellar positions and velocities reach a maximum
+(effectively the median height of all disk stars), and is usually taken to be
+$\sim 25\,\pc$ \citep{2001ApJ...553..184C}, with more recent measurements from
+{\em Gaia} DR2 placing it at $\sim 20\,\pc$ \citep{2019MNRAS.482.1417B}.
+
+These measurements of the galactocentric reference frame rely on the
+assumption of an axisymmetric Milky Way. Under this assumption, these
+estimates would provide the correct parameters for the galactocentric
+reference frame up to measurement error. However, the Milky Way is not
+axisymmetric in detail. Spiral arms, bar(s), and infalling satellite galaxies
+such as Sagittarius and the Large Magellanic Cloud all induce
+non-axisymmetries.
+
+Since the Milky Way is not truly axisymmetric, it is not clear the best way to
+define the galactocentric reference frame. In this work, we consider one
+possible physically motivated approach to defining the galactocentric
+reference frame, and show that it can differ from conventional methods of
+frame measurements.
+
+In a slowly-evolving axisymmetric potential, the actions of stars' orbits are
+conserved quantities \citep{2008gady.book.....B,2014RvMP...86....1S}. In other
+words, if we could measure the actions of a star in such a potential, we would
+measure the same actions over the course of the orbit. The non-axisymmetries
+of a more realistic potential induce time evolution in the {\em measured}
+actions --- the true orbital invariants (if they exist) are invariant by
+definition. Through simple tests, we will see that even in a truly
+axisymmetric potential, if the wrong reference frame is assumed then there
+will be additional time evolution in the measured actions.
+
+To provide one such realization of a realistic Galactic potential, we turn to
+cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
+Realistic Environments (FIRE)
+collaboration\footnote{\url{https://fire.northwestern.edu}} (the Latte suite
+of simulations).
 
 \section{Reference Frame Gone Wrong} \label{sec:ref_frame}
-We begin by quantifying how 
+We show and quantify the time evolution of measured actions that comes about
+from inaccuracies in the galactocentric reference frame.
+
+\subsection{Cartoon} \label{ssec:cartoon}
+We begin with a cartoon illustrating what we mean in Figure~\ref{fig:cartoon}.
+The solid gray line indicates a hypothetical ``true'' orbit. The y-axis
+corresponds to the vertical height of the orbit and the x-axis to either time
+or orbital phase. The dashed gray line is an incorrect midplane which an
+observer uses to compute orbits.
+
+Now suppose this observer makes a measurement of the true orbit at the orange
+point or the red point. Then the orange and red lines correspond to the orbits
+that the observer would compute for each point. In action space, this would
+correspond to a different value of $J_z$ for the orange and red points. In
+this way, assuming the wrong reference frame induces time dependence in the
+actions {\em computed by an observer}.
+
+\begin{figure*}
+\plotone{cartoon.pdf}
+\caption{Caption.}
+\label{fig:cartoon}
+\end{figure*}
+
+\subsection{Quantification} \label{ssec:quant}
+We now turn to classical orbital integration in a commonly assumed Milky Way potential to quantify the time variation of computed actions for different reference frame errors.
+
+
 
 \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
 An analytic, axisymmetric potential with a known reference frame is a far too
@@ -101,7 +172,11 @@ factor of \Gus{something}.
 
 Once we perform this simulation, we calculate the actions of each star in the
 cluster assuming the best-fit smooth, axisymmetric potential, as we do
-observationally for the Milky Way. We refer to this space as the observational action space. We will find that there is significant time evolution in observational action space. Attributing some of this evolution to our fiducial reference frame being incorrect, we minimize the time-dispersion in action space 
+observationally for the Milky Way. We refer to this space as the observational
+action space. We will find that there is significant time evolution in
+observational action space. Attributing some of this evolution to our fiducial
+reference frame being incorrect, we minimize the time-dispersion in action
+space
 
 \subsection{Cosmological Zoom-in} \label{ssec:cosmozoom}
 Cosmological zoom-ins allow one to simulate a selected region at high
@@ -168,7 +243,11 @@ $\texttt{m12i}$
 
 Even though we change the center, we do not recalculate the center velocity.
 This is largely irrelevant, as the recalculated center velocity differs from
-the fiducial center velocity by $<0.1\,\kms$.
+the fiducial center velocity by $<0.1\,\kms$. In recentering the galaxy, the
+package \texttt{gizmo\_analysis} will subtract a slightly different value for
+the Hubble flow from each particle's velocity to convert to a physical
+reference frame. The error this introduces is $\sim 0.02\,\kms$, which we also
+ignore.
 
 \appendix \section{Appendix 1}
 Gonna write an appendix probably 
