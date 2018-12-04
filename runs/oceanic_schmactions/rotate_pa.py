@@ -122,7 +122,7 @@ def chisq(x, return_actions=False):
     if return_actions:
         return act_collapse
     act_collapse = np.subtract(act_collapse, act_med)
-    return np.sum(np.square(act_collapse))
+    return np.sum(np.square(act_collapse/act_med))
 
 xinit = np.array([0, 0, 0, 0, 0, 0])
 for cd in cadence_list:
