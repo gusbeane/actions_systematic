@@ -92,7 +92,7 @@ pos_full = np.load(posfile)
 vel_full = np.load(velfile)
 
 def init_minimizer(cadence):
-    global nframes, npart, ndim
+    global nframes, npart, ndim, pos, vel
     pos = pos_full[::cadence]
     vel = vel_full[::cadence]
 
