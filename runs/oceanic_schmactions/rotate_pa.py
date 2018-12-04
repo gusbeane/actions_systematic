@@ -127,7 +127,8 @@ theta = xinit[3:]
 
 oa_center_position = fiducial_center + offset
 oa_pa = euler_rotate(theta, fiducial_pa)
-oa_center_velocity = get_position(snap, fiducial_velocity, np.array([0, 0, 0]), oa_pa)
+oa_center_velocity = ref[1] # don't recalculate center velocity
+# remember that center velocity is calculated *before* rotation
 
 new_frame = np.vstack((oa_center_position, oa_center_velocity, oa_pa))
 np.savetxt('oa_frame.txt', new_frame)
