@@ -120,7 +120,7 @@ def chisq(x, return_actions=False):
     act_collapse = np.median(act, axis=1)
     act_med = np.median(act_collapse, axis=0)
     if return_actions:
-        return act_med
+        return act_collapse
     act_collapse = np.subtract(act_collapse, act_med)
     return np.sum(np.square(act_collapse))
 
