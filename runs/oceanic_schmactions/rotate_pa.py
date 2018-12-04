@@ -98,6 +98,7 @@ def init_minimizer(cadence):
     vel = vel_full[::cadence]
 
     nframes, npart, ndim = np.shape(pos)
+    return pos, vel, nframes, npart, ndim
 
 def actions(pos, vel):
     flat_pos = np.reshape(pos, (nframes*npart, ndim))
@@ -125,7 +126,7 @@ def chisq(x, return_actions=False):
 
 xinit = np.array([0, 0, 0, 0, 0, 0])
 for cd in cadence_list:
-    init_minimizer(cd)
+    pos, vel, nframes, npart, ndim = init_minimizer(cd)
     res = minimize(chisq, xinit, method='Nelder-Mead')
     xinit = res.x
 
