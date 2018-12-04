@@ -1,10 +1,8 @@
 =======
-Actions are Bad
+Where the hell are we?
 =======
 
-Not really - it's what we want to find out!
-
-We want to find out just how bad the _axisymmetric_ assumption is.
+Is our galactocentric reference frame wrong?
 
 See current status of paper:
 
