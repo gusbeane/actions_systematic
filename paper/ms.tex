@@ -14,6 +14,7 @@
 \newcommand{\Myr}{\text{Myr}}
 \newcommand{\Gyr}{\text{Gyr}}
 \newcommand{\kms}{\text{km}/\text{s}}
+\newcommand{\actunit}{\text{kpc}\,\kms}
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z}
@@ -21,6 +22,14 @@
 \newcommand{\mi}{\texttt{m12i}}
 \newcommand{\mf}{\texttt{m12f}}
 \newcommand{\mm}{\texttt{m12m}}
+
+% affiliations
+\newcommand{\cca}{Center for Computational Astrophysics, Flatiron Institute, 162 5th
+Ave., New York, NY 10010, USA}
+\newcommand{\penn}{Department of Physics \& Astronomy, University of Pennsylvania, 209
+South 33rd St., Philadelphia, PA 19104, USA}
+\newcommand{\amnh}{Department of Astrophysics, American Museum of Natural History, Central Park West at 79th St., New York, NY 10024, USA}
+\newcommand{\columbia}{Department of Astronomy, Columbia University, 550 W 120th St., New York, NY 10027, USA}
 
 \begin{document}
 
@@ -31,13 +40,26 @@ Little}
 \email{abeane@sas.upenn.edu}
 
 \author{Angus Beane}
-\affil{Center for Computational Astrophysics, Flatiron Institute, 162 5th
-Ave., New York, NY 10010, USA}
-\affil{Department of Physics \& Astronomy, University of Pennsylvania, 209
-South 33rd St., Philadelphia, PA 19104, USA}
+\affil{\cca}
+\affil{\penn}
 
-\author{Many Helpful People}
-\noaffiliation
+\author{Robyn Sanderson}
+\affil{\cca}
+\affil{\penn}
+
+\author{Mordecai-Mark Mac Low}
+\affil{\cca}
+\affil{\amnh}
+
+\author{Melissa K. Ness}
+\affil{\cca}
+\affil{\columbia}
+
+\author{Daniel Angl\'es-Alc\'azar}
+\affil{\cca}
+
+\author{Megan Bedell}
+\affil{\cca}
 
 \begin{abstract}
 
@@ -154,9 +176,50 @@ actions {\em computed by an observer}.
 \subsection{Quantification} \label{ssec:quant}
 We now turn to classical orbital integration in a commonly assumed Milky Way
 potential to quantify the time variation of computed actions for different
-reference frame errors. 
+reference frame errors.
+
+We use the code \texttt{gala} v0.3 to perform orbit integrations and
+conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
+which uses an action estimator technique presented by
+\citet{2014MNRAS.441.3284S}. We use the default \texttt{MWPotential} as our
+potential, which is based on the Milky Way potential available in
+\texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
+Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
+\citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
+is fit to empirically match some observations. We use the Dormand-Prince
+8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
+$1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for
+a Sun-like star.
+
+First, we illustrate the time-dependence of one possible inaccurate reference
+frame. We begin by taking an orbit with initial position $(8, 0, 0)\,\kpc$ and
+initial velocity $(0, -190, 50)\,\kms$ --- this corresponds to an orbit with
+actions $(J_r, L_z, J_z) = (32.5, -1520, 23.0)\,\actunit$. The orbit is
+plotted in \Gus{Appendix x}. We then suppose that an observer makes
+observations of this orbit in a reference frame that is incorrect in radius by
+$200\,\pc$ and height by $100\,\pc$ --- we subtract the vector $(200, 0,
+100)\,\pc$ from each position in the orbit. This corresponds to an observer
+physically located at the position $(8, 0, 0)\,\kpc$ but erroneously thinking
+they are located at $(8.2, 0, 0.1)\,\kpc$.
+
+Using the observations of the orbit that this erroneous observer makes every
+$\Myr$, we perform the same orbit integration procedure as before to compute
+the actions our observer would make in the incorrect reference frame over the
+duration of the orbit. The erroneous computed actions are shown for the first
+$\Gyr$ of the orbit in Figure~\ref{fig:one_orbit_wrong_ref}. Occasionally the
+numerical scheme fails and very large actions are reported by \texttt{gala}
+--- we perform a $5\sigma$ clip on each action to exclude such orbits, but
+this only excludes a total of $5$ orbits out of the $1000$ considered for
+Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
+vast majority of orbits are computed properly.
 
 
+
+\begin{figure*}
+\plotone{fig/one_orbit.pdf}
+\caption{Caption.}
+\label{fig:one_orbit_wrong_ref}
+\end{figure*}
 
 \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
 An analytic, axisymmetric potential with a known reference frame is a far too
@@ -238,10 +301,14 @@ $\sim 10$ orbits.
 
 To compute the forces from the frozen potential, we use the simple tree code
 \texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
-commit:\texttt{fbd1ddc}}. 
+commit:\texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
+at distances $R>50\,\kpc$ in the fiducial reference frame.
 
 We use the initial position and velocity of two star particles in
-$\texttt{m12i}$
+$\texttt{m12i}$. These two star particles are randomly chosen from all star
+particles in the simulation with the following properties:
+
+
 
 Even though we change the center, we do not recalculate the center velocity.
 This is largely irrelevant, as the recalculated center velocity differs from
