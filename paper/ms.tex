@@ -172,11 +172,19 @@ Milky Way. While \texttt{m12i} has prominent spiral arms, it lacks a bar and
 a companion like the Large Magellanic Cloud. In future work, these additional
 complications also need to be addressed.
 
-\subsection{Cluster Simulations} \label{ssec:cluster_sim} We simulate a small
-star cluster of $256$ stars in the frozen $\z=0$ potential of
-$\texttt{m12i}$.
+\subsection{Cluster Simulations} \label{ssec:cluster_sim}
+We simulate a small star cluster of $256$ stars in the frozen $\z=0$
+potential of $\texttt{m12i}$. We use the code \texttt{ph4} within the
+\texttt{AMUSE} framework \citep{2011ascl.soft07007P, 2013CoPhC.184..456P,
+2013A&A...557A..84P} for the cluster integration. We use a softening length
+of $0.01\,\pc$ which means we do not correctly solve the internal dynamics of
+the cluster, but this is not important for our purposes. To couple the
+gravitational forces of the frozen snapshot to the cluster stars, we use the
+\texttt{BRIDGE} \citep{2007PASJ...59.1095F}, also implemented in
+\texttt{AMUSE}. Our simulation runs for $2\,\Gyr$, allowing us to solve for
+$\sim 10$ orbits.
 
-We use the simple tree code
+To compute the forces from the frozen potential, we use the simple tree code
 \texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
 commit:\texttt{fbd1ddc}}. 
 
