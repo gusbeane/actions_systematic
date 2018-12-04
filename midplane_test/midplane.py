@@ -15,13 +15,24 @@ tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
 nbootstrap = 1000
 np.random.seed(162)
 
+gal_info = 'oa_frame.txt'
+
 sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100'
 snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'], 'index', 600,
                                    properties=['position', 'id',
                                                'mass', 'velocity',
                                                'form.scalefactor'],
-                                     assign_principal_axes=True,
+                                     assign_center=False,
                                      simulation_directory=sim_directory)
+
+ref = np.genfromtxt(gal_info, comments='#')
+snap.center_position = ref[0]
+snap.center_velocity = ref[1]
+snap.principal_axes_vectors = ref[2:]
+for k in snap.keys():
+    for attr in ['center_position', 'center_velocity', 
+                 'principal_axes_vectors']:
+        setattr(snap[k], attr, getattr(snap, attr))
 
 star_pos = snap['star'].prop('host.distance.principal')
 
