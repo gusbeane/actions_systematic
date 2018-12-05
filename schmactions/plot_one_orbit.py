@@ -13,6 +13,9 @@ import warnings
 
 from tqdm import tqdm
 
+from joblib import Parallel, delayed
+import multiprocessing
+
 import matplotlib as mpl
 from matplotlib import rc
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
@@ -26,10 +29,11 @@ dt = 1 * u.Myr
 t1 = 0.0 * u.Gyr
 t2 = 5.0 * u.Gyr
 
+ncpu = 8
+
 wrong_max = 1000 # times dt, so 1 Gyr
 
 mw = gp.MilkyWayPotential()
-
 def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wrong_max=None):
     q = gd.PhaseSpacePosition(pos=init_pos, vel=init_vel)
     with warnings.catch_warnings(record=True):
@@ -51,13 +55,15 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
 
     out_action = []
     time = orbit.t[:wrong_max][::cadence]
-    with warnings.catch_warnings(record=True):
-        warnings.simplefilter("ignore")
-        for this_q in tqdm(off_q[:wrong_max][::cadence]):
+    
+    for this_q in tqdm(off_q[:wrong_max][::cadence]):
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("ignore")
             this_orbit = mw.integrate_orbit(this_q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
             res = gd.actionangle.find_actions(this_orbit, N_max=8)
             ans = res['actions'].to(u.kpc * u.km / u.s).value
             out_action.append(ans)
+    #out_action = Parallel(n_jobs=ncpu) (delayed(loop)(this_q) for this_q in tqdm(orbit[:wrong_max][::cadence]))
     return time, np.array(out_action), orbit
 
 def plot_wrong_act(t, act, rel_error=False):
@@ -123,13 +129,30 @@ init_pos = [8, 0, 0] * u.kpc
 init_vel = [0, -190, 50] * u.km/u.s
 offset = [100, 0, 200] * u.pc
 
+sys.exit(0)
+
 t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
 plot_wrong_act(t, act)
 plt.savefig('one_orbit.pdf')
 plt.close()
 
+perc = np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
+frac = perc/np.median(act, axis=0)
+print('95th minus 5th percentiles:', perc)
+print('fractional error:', frac)
+
 offset = [0, 0, 0] * u.pc
 t_n, act_n, orbit_n = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
 plot_wrong_act(t_n, act_n, rel_error=True)
 plt.savefig('one_orbit_numerical_check.pdf')
+
+def z_off(z):
+    this_offset = [0, 0, z] * u.pc
+    print('my offset is!:', z)
+    t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, this_offset, cadence=10, wrong_max=wrong_max)
+    return np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0), t, act, orbit
+
+zofflist = np.linspace(0, 500, 50) # u.pc
+#perc_list = np.array([z_off(z) for z in tqdm(zofflist)])
+perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(z) for z in tqdm(zofflist))
 
