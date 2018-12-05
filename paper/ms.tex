@@ -216,13 +216,16 @@ vast majority of orbits are computed properly.
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the erroneous observer would
 infer significant time evolution in their computed actions. The
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $8.7$,
-$47.1$, and $19.3\,\actunit$ for $J_r$, $L_z$, and $J_z$, respectively.
+$47.1$, and $19.3\,\actunit$ for $J_r$, $L_z$, and $J_z$, respectively. These
+are fractional errors of $26.5\%$, $3.1\%$, and $81.4\%$, respectively.
 
 \begin{figure*}
 \plotone{fig/one_orbit.pdf}
 \caption{Caption.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
+
+We now 
 
 \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
 An analytic, axisymmetric potential with a known reference frame is a far too
@@ -304,14 +307,43 @@ $\sim 10$ orbits.
 
 To compute the forces from the frozen potential, we use the simple tree code
 \texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
-commit:\texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
+commit: \texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
 at distances $R>50\,\kpc$ in the fiducial reference frame.
 
 We use the initial position and velocity of two star particles in
 $\texttt{m12i}$. These two star particles are randomly chosen from all star
-particles in the simulation with the following properties:
+particles in the simulation with the following properties (in the fiducial
+reference frame):
+\begin{enumerate}
+    \item age in the range $(0.25, 0.75)\,\Gyr$,
+    \item cylindrical radius in the range $(7.7, 8.7)\,\kpc$,
+    \item height (absolute value) less than $0.5\,\kpc$,
+    \item $J_r$ and $J_z$ in the range:
+        \subitem $(10, 20)\,\actunit$ for the first star,
+        \subitem $(40, 60)\,\actunit$ for the second star.
+\end{enumerate}
+The ids we choose are \texttt{23693026} for the first star and
+\texttt{17012804} for the second star. We refrain from calling these ``low''
+or ``high'' action stars since the actions are computed in a presumably
+incorrect reference frame.
 
+To compute actions, both in the choosing of each of these star particles and
+in what follows, we use the package
+\texttt{agama}\footnote{\url{https://github.com/GalacticDynamics-Oxford/Agama},
+commit: \texttt{0e48336}}. Using only the high-resolution particles, we
+compute the symmetrized potential in two components. First, a multipole
+expansion with $20$ radial grid points and a max order of $2$ for the
+spherical-harmonic expansion is used for the dark matter. Second, a
+cylindrical spline expansion with $20$ radial and $z$ grid points, a $0$ order
+max index azimuthal-harmonic expansion, $0.2$ and $50\,\kpc$ for the minimum
+and maximum radial grid node, $0.02$ and $10\,\kpc$ for the minimum and
+maximum $z$ grid node is used for the baryonic matter (stars and gas). In both
+cases, axisymmetry is explicitly enforced. Other \texttt{agama} parameters are
+left as default.
 
+\subsection{Frame Optimization} \label{ssec:frame_opt}
+Figure~\Gus{something} shows the action computed at each time step in the
+fiducial reference frame. Clearly there is significant time evolution.
 
 Even though we change the center, we do not recalculate the center velocity.
 This is largely irrelevant, as the recalculated center velocity differs from
