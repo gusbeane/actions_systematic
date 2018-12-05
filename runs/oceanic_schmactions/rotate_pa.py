@@ -13,6 +13,7 @@ sim_dir = '/mnt/ceph/users/firesims/fire2/metaldiff/m12i_res7100/'
 gal_info = 'm12i_info.txt'
 
 cadence_list = [50, 20]
+#cadence_list = [50]
 
 tend = 2000 # Myr
 dt = 0.1 # Myr
@@ -122,7 +123,7 @@ def chisq(x, return_actions=False):
     if return_actions:
         return act_collapse
     act_collapse = np.subtract(act_collapse, act_med)
-    return np.sum(np.square(act_collapse/act_med))
+    return np.sum(np.square(act_collapse/act_med)[:,2])
 
 xinit = np.array([0, 0, 0, 0, 0, 0])
 for cd in cadence_list:
