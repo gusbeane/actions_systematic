@@ -17,7 +17,7 @@ tlist = np.arange(0 , tend, dt)
 cadence = 20
 tlist = tlist[::cadence]
 
-tmax = 1000
+tmax = 2000
 
 #idx_list = ['0', '1']
 idx_list = ['0']
