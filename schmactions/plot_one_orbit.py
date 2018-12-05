@@ -150,7 +150,7 @@ def z_off(z):
     this_offset = [0, 0, z] * u.pc
     print('my offset is!:', z)
     t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, this_offset, cadence=10, wrong_max=wrong_max)
-    return np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0), t, act, orbit
+    return np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
 
 zofflist = np.linspace(0, 500, 50) # u.pc
 #perc_list = np.array([z_off(z) for z in tqdm(zofflist)])
