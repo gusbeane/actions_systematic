@@ -127,6 +127,7 @@ for gal in glist:
     A = res.x[0]
     B = res.x[1]
     C = res.x[2]
+    print('A=', A, 'B=', B, 'C=', C)
     fit = A*np.cos(theta + B) + C
 
     np.save('fit_'+gal+'.npy', fit)
