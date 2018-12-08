@@ -18,4 +18,6 @@ log/
 m12i_positions/
 .ipynb_checkpoints/
 
+data/
+
 .DS_Store
