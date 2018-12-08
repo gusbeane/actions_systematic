@@ -19,10 +19,6 @@
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z}
 
-\newcommand{\mi}{\texttt{m12i}}
-\newcommand{\mf}{\texttt{m12f}}
-\newcommand{\mm}{\texttt{m12m}}
-
 % affiliations
 \newcommand{\cca}{Center for Computational Astrophysics, Flatiron Institute, 162 5th
 Ave., New York, NY 10010, USA}
@@ -73,32 +69,17 @@ height at which the number counts of stars reaches a maximum. This local
 midplane is then used as the global midplane, an assumption which would be
 justified in a completely axisymmetric potential. Assuming a global Galactic
 midplane exists, we show in three cosmological zoom-in simulations from the
-FIRE collaboration that local determinations of the midplane can vary by
-nearly a thin disk scale height. Using standard orbit integration techniques,
-we show that such an inaccuracy in the midplane can induce artifical time
-evolution in the vertical action that makes it virtually unusable for
-individual stars in the disk. The situation is less dire for angular momentum
-
-% Local determinations of the Galactic midplane rely on finding the height at
-% which the number count of stars reaches a maximum. This is not guaranteed to
-% be
-
-% In an axisymmetric, adiabatic potential, the 6D phase space of stars' positions and velocities can be reduced to a 3D space of invariant actions. We show that if one assumes the wrong galactocentric coordinate system this can induce significant artificial time dependence in the computed actions. 
-
-% In an axisymmetric potential the 6D phase space of stars' positions and
-% velocities can be reduced to a 3D space of invariant actions. We show that if
-% one assumes the wrong galactocentric coordinate system this can induce
-% artificial non-axisymmetries which manifest as time dependence in the computed
-% actions. However, the Milky Way is not axisymmetric in detail and so there are
-% no truly axisymmetric axes. We instead define the  ``optimally axisymmetric''
-% axes as the coordinate system which minimizes the time dependence of the
-% computed actions. Standard methods for determining the galactocentric
-% coordinate system typically involve finding the median height of stars in the
-% disk. Using cosmological zoom-in simulations from FIRE-2, we show that the
-% optimally axisymmetric coordinate system can differ from standard methods of
-% calculating the galactocentric coordinate system by nearly a scale height.
-% This work calls into question the use of actions as dynamical invariants
-% unless these coordinate system issues can be resolved.
+FIRE collaboration that local determinations of the midplane can vary by up to
+a thin disk scale height. The effect is more pronounced in galaxies with less
+quiescent histories (e.g. Sagittarius-like encounters). We explore one
+consequence of such an inaccuracy of the midplane in the context of orbital
+actions. Using standard orbit integration techniques, we show that midplane
+inaccuracy induces artifical time evolution in the vertical action that makes
+it virtually unusable for individual stars in the disk. The situation is less
+dire for angular momentum and radial action determinations, though we also
+show that inaccuracies in the solar radius can have a similar effect on the
+latter. As a result, we question the use of actions as dynamical invariants in
+the Milky Way disk.
 
 \end{abstract}
 
@@ -162,9 +143,9 @@ resolution embedded in a low-resolution cosmological background
 collaboration has simulated a number of Milky Way-mass zoom-ins as part of the
 {\em Latte} suite of FIRE-2 simulations
 \citep{2016ApJ...827L..23W,2018MNRAS.481.4133G}. We use the three zoom-ins
-considered in \citet{2018arXiv180610564S} --- \texttt{m12i}, \texttt{m12f},
-\texttt{m12m}, since they have associated mock {\em Gaia} DR2 catalogues and
-the $z=0$ snapshots are publicly available.
+considered in \citet{2018arXiv180610564S} --- m12i, m12f, m12m, since they
+have associated mock {\em Gaia} DR2 catalogues and the $z=0$ snapshots are
+publicly available.
 
 First, a dark matter only simulation was run with $\Lambda$CDM cosmology
 parameterized by $\Omega_m = 0.272$, $\Omega_{\Lambda} = 0.728$, $\Omega_b =
@@ -184,16 +165,31 @@ conservative gravitational force softening for gas.
 
 These halos are uncontaminated and contain gas particles of mass $\sim 7000
 \text{--} 20,000\,\Msun$ and star particles of mass $\sim 5000 \text{--} 7000\,
-\Msun$, with the lower end coming from stellar evolution
-\citep{2018arXiv180610564S}. Softening lengths for dark matter and star
-particles are fixed at $112\,\pc$ and $11.2\,\pc$,
+\Msun$\footnote{In fact, the simulation m12i contained a gas
+splitting bug which causes a small number of gas and star particles to have
+larger than typical masses. These constitute only $\sim0.2\%$ of the star
+particles in the $z=0$ snapshots, and are only a factor of a few more massive
+than typical star particles. Since our results are broadly consistent between
+the three simulations, we ignore this minor complication.}, with the lower end
+coming from stellar evolution \citep{2018arXiv180610564S}. Softening lengths
+for dark matter and star particles are fixed at $112\,\pc$ and $11.2\,\pc$,
 respectively.\footnote{This is $2.8$ times the often-quoted
 Plummer-equivalent.} The gas softening length is adaptive, but at $z=0$ the
-median softening length for gas particles around roughly solar positions
-(with cylindrical radii within $500\,\pc$ of $8.2\,\kpc$ and
-$\abs{z}<1\,\kpc$) is $98\,\pc$.
+median softening length for gas particles around roughly solar positions (with
+cylindrical radii within $500\,\pc$ of $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is
+$98\,\pc$.
 
-% We restrict ourselves to the simulation \texttt{m12i} \citep[first introduced
+In this work, we take the coordinate systems used in
+\citet{2018arXiv180610564S} as our fiducial coordinate systems for each
+galaxy. The center of the galaxy is found through an iterative ``shrinking
+spheres'' method, where the center is calculated for a given radius which is
+then reduced by $50\%$ until converging on the galaxy's center. The center of
+mass velocity is then determined by all star particles within $15\,\kpc$ of
+this center. The galaxy is then rotated onto the principal axis frame as
+determined by stars younger than $1\,\Gyr$ inside of the fiducial solar radius
+$R_{\odot} = 8.2\,\kpc$.
+
+% We restrict ourselves to the simulation m12i \citep[first introduced
 % in][]{2016ApJ...827L..23W}. For this work, this galaxy is the best-case
 % scenario. It does not contain a bar (like \texttt{m12m}) or companion galaxy,
 % and by eye is the closest to axisymmetric of the three galaxies presented in
@@ -201,24 +197,60 @@ $\abs{z}<1\,\kpc$) is $98\,\pc$.
 
 It is important to remember that simulations of Milky Way-mass galaxies are
 not perfect representations of the true Milky Way, as discussed in
-\citet{2018arXiv180610564S}. For instance, the velocity structure of
-\texttt{m12i} is closer to M31 than the Milky Way. However, in this work we
-are most interested in the global properties of the \texttt{m12i} potential,
-and specifically in deviations from axisymmetry. From this perspective,
-\texttt{m12i} is actually far more axisymmetric than we might expect of the
-Milky Way. While \texttt{m12i} has prominent spiral arms, it lacks a bar and
-a companion like the Large Magellanic Cloud. In future work, these additional
-complications also need to be addressed.
+\citet{2018arXiv180610564S}. For instance, the velocity structure of m12i is
+closer to M31 than the Milky Way. However, in this work we are most interested
+in the global properties of the m12i potential, and specifically in deviations
+from axisymmetry. From this perspective, m12i is actually far more
+axisymmetric than we might expect of the Milky Way. While m12i has prominent
+spiral arms, it lacks a bar and a companion like the Large Magellanic Cloud.
+In future work, these additional complications also need to be addressed.
 
 \subsection{Local Midplane} \label{sec:local_midplane}
-We 
+We now turn to defining the local midplane that an observer might measure if
+they were situated in each of these galaxies. We place our imaginary observer
+at the solar radius of $8.2\,\kpc$ and azimuth $\phi$, and consider stars
+within a cylinder perpendicular to the fiducial disk
+
+For a given azimuth $\phi$ at the solar radius of $8.2\,\kpc$, we take the
+median height of all star particles within a cylinder of radius $0.5\,\kpc$
+and total height $2\,\kpc$. This median height is taken to be what our
+imaginary observer would measure as the local Galactic midplane, and is
+reported for each galaxy in Figure~\ref{fig:midplane}. We find that only $10$
+iterations of this procedure are necessary for convergence. We bootstrap
+resample $1000$ times and report the $95^{\text{th}}$ minus $5^{\text{th}}$
+percentile as the dashed-line error bars.
+
+To allow for potential small inaccuracies in the fiducial coordinate systems,
+we also subtract the best fit $\text{A} \sin{\phi + \text{B}} + C$ from the
+midplane as a function of azimuth. For $\text{A}$, the values are $-165$,
+$45$, $9\,\pc$ and for $\text{C}$ the values are $-69$, $19$, and $-18\,\pc$
+for m12i, m12f, and m12m, respectively. For the assumed solar radius of
+$8.2\,\kpc$, we can approximate the angle offset for the $z$-axis from the
+values of $\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$ for m12i,
+m12f, and m12m. These angle offsets are consistent with the values given in
+\citet{2018arXiv180610564S} for the difference between the $z$-axis as defined
+by the gas and stars.
+
+Figure~\ref{fig:midplane} shows the inferred midplane our imaginary observer
+would make as a function of azimuth for each galaxy. The $90\%$ interquartile
+range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m. 
+
+\begin{figure*}
+\plotone{fig/midplane_fit.pdf}
+\caption{Caption.}
+\label{fig:midplane}
+\end{figure*}
+
+Our analysis makes the assumption that a global midplane is well defined.
+However, our results are also consistent with the notion that the global
+midplane is not a well-defined concept. Furthermore, none of the galaxies chosen in this work have 
 
 \section{Coordinate System Gone Wrong} \label{sec:ref_frame}
 We show and quantify the time evolution of measured actions that comes about
 from inaccuracies in the galactocentric coordinate system.
 
 \subsection{Cartoon} \label{ssec:cartoon}
-We begin with a cartoon illustrating what we mean in Figure~\ref{fig:cartoon}.
+We begin with a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate determination of 
 The solid gray line indicates a hypothetical ``true'' orbit. The y-axis
 corresponds to the vertical height of the orbit and the x-axis to either time
 or orbital phase. The dashed gray line is an incorrect midplane which an
@@ -315,7 +347,7 @@ space
 
 \subsection{Cluster Simulations} \label{ssec:cluster_sim}
 We simulate a small star cluster of $256$ stars in the frozen $\z=0$
-potential of $\texttt{m12i}$. We use the code \texttt{ph4} within the
+potential of m12i. We use the code \texttt{ph4} within the
 \texttt{AMUSE} framework \citep{2011ascl.soft07007P, 2013CoPhC.184..456P,
 2013A&A...557A..84P} for the cluster integration. We use a softening length
 of $0.01\,\pc$ which means we do not correctly solve the internal dynamics of
@@ -331,7 +363,7 @@ commit: \texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
 at distances $R>50\,\kpc$ in the fiducial coordinate system.
 
 We use the initial position and velocity of two star particles in
-$\texttt{m12i}$. These two star particles are randomly chosen from all star
+m12i. These two star particles are randomly chosen from all star
 particles in the simulation with the following properties (in the fiducial
 coordinate system):
 \begin{enumerate}
