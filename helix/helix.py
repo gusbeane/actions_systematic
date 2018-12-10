@@ -61,7 +61,7 @@ def helix(x):
     hlx = x[:4]
     x0 = x[4:7]
     theta = x[7:10]
-    out = np.transpose([hlx[0]*np.cos(tlist), hlx[1]*np.sin(tlist), hlx[2]*tlist])
+    out = np.transpose([hlx[0]*np.cos(hlx[3]*tlist), hlx[1]*np.sin(hlx[3]*tlist), hlx[2]*tlist])
     out += x0
     out = euler_rotate(theta, out)
     return out
@@ -140,7 +140,8 @@ if True:
     pts_list = np.array([p[k] for p,k in zip(all_star_pos, all_snap_keys) ])
     
     pts_list = np.transpose(pts_list, axes=(1,0,2))
-    
+    np.save('pts_list_'+gal+'.npy', pts_list)
+
     def get_res(pts):
         try:
             res = minimize(chisq, xinit, args=(pts,), method='Nelder-Mead', options={'maxiter': 100000})
