@@ -116,7 +116,7 @@ if True:
     
     #all_snap_keys = np.array([ np.intersect1d(star_ids, s['star']['id'], assume_unique=True, return_indices=True)[2].tolist() for s in snap ])
     
-    xinit = np.zeros(10)
+    xinit = np.zeros(13)
     xinit[3:6] = snap[-1].center_position
    
     all_snap_keys = []
@@ -145,11 +145,12 @@ if True:
     np.save('pts_list_'+gal+'.npy', pts_list)
 
     def get_res(pts):
-        try:
+        #try:
+        if True:
             res = minimize(chisq, xinit, args=(pts,), method='Nelder-Mead', options={'maxiter': 100000})
             return res    
-        except:
-            return np.nan
+        #except:
+        #    return np.nan
     
     res_list = Parallel(n_jobs=nproc) (delayed(get_res)(pts) for pts in tqdm(pts_list))
     np.save('res_list_'+gal+'.npy', res_list)
