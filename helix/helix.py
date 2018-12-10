@@ -124,9 +124,9 @@ if True:
         sort = np.sort(s['star']['id'])
         j = 0
         nxt = star_ids[j]
-        for i,sid in tqdm(enumerate(sort)):
+        for sid,key in tqdm(zip(sort,sorted_keys)):
             if sid == nxt:
-                this_star_ids_keys.append(i)
+                this_star_ids_keys.append(key)
                 j += 1
                 if j == len(star_ids):
                     break
@@ -134,12 +134,13 @@ if True:
                     nxt = star_ids[j]
         all_snap_keys.append(this_star_ids_keys)
 
-    pts_list = []
-    for sid in tqdm(star_ids[:100000]):
-        keys = np.array([int(np.where(s['star']['id'] == sid)[0]) for s in snap])
-        pts = np.array([ s['star']['position'][k] for s,k in zip(snap, keys)])
-        pts_list.append(pts)
+    all_snap_keys = np.array(all_snap_keys)
+    all_star_pos = np.array([ s['star']['position'] for s in snap ])
 
+    pts_list = np.array([p[k] for p,k in zip(all_star_pos, all_snap_keys) ])
+    
+    pts_list = np.transpose(pts_list, axes=(1,0,2))
+    
     def get_res(pts):
         try:
             res = minimize(chisq, xinit, args=(pts,), method='Nelder-Mead', options={'maxiter': 100000})
@@ -148,3 +149,4 @@ if True:
             return np.nan
     
     res_list = Parallel(n_jobs=nproc) (delayed(get_res)(pts) for pts in tqdm(pts_list))
+    np.save('res_list_'+gal+'.npy', res_list)
