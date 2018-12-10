@@ -145,12 +145,11 @@ if True:
     np.save('pts_list_'+gal+'.npy', pts_list)
 
     def get_res(pts):
-        #try:
-        if True:
+        try:
             res = minimize(chisq, xinit, args=(pts,), method='Nelder-Mead', options={'maxiter': 100000})
             return res    
-        #except:
-        #    return np.nan
+        except:
+            return np.nan
     
     res_list = Parallel(n_jobs=nproc) (delayed(get_res)(pts) for pts in tqdm(pts_list))
     np.save('res_list_'+gal+'.npy', res_list)
