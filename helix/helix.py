@@ -63,7 +63,7 @@ def helix(x):
     theta = x[7:10]
     acc = x[10:13]
     out = np.transpose([hlx[0]*np.cos(hlx[3]*tlist), hlx[1]*np.sin(hlx[3]*tlist), hlx[2]*tlist])
-    out += x0 + 0.5*acc*np.square(tlist)
+    out += x0 + np.multiply(0.5, np.transpose(np.outer(acc, np.square(tlist))))
     out = euler_rotate(theta, out)
     return out
 
