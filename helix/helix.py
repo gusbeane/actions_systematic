@@ -61,8 +61,9 @@ def helix(x):
     hlx = x[:4]
     x0 = x[4:7]
     theta = x[7:10]
+    acc = x[10:13]
     out = np.transpose([hlx[0]*np.cos(hlx[3]*tlist), hlx[1]*np.sin(hlx[3]*tlist), hlx[2]*tlist])
-    out += x0
+    out += x0 + 0.5*acc*np.square(tlist)
     out = euler_rotate(theta, out)
     return out
 
@@ -91,7 +92,8 @@ if True:
     #tlist = np.array([
     tlist = np.array([s.snapshot['time'] for s in snap])
     tlist = (tlist - tlist[0]) * 1000
-    
+    np.save('tlist_'+gal+'.npy', tlist)
+
     ref = np.genfromtxt(gal_info, comments='#', delimiter=',')
     snap[-1].center_position = ref[0]
     snap[-1].center_velocity = ref[1]
@@ -114,7 +116,7 @@ if True:
     
     #all_snap_keys = np.array([ np.intersect1d(star_ids, s['star']['id'], assume_unique=True, return_indices=True)[2].tolist() for s in snap ])
     
-    xinit = np.zeros(9)
+    xinit = np.zeros(10)
     xinit[3:6] = snap[-1].center_position
    
     all_snap_keys = []
