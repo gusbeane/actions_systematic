@@ -6,6 +6,7 @@ from scipy.optimize import minimize
 
 from joblib import Parallel, delayed
 import multiprocessing
+import sys
 
 from matplotlib import rc
 import matplotlib as mpl
@@ -69,11 +70,14 @@ def chisq(x, pts):
     guess = helix(x)
     return np.sum(np.square(np.subtract(pts, guess)))
 
-xinit = np.zeros(9)
-xinit[3:6] = snap[-1].center_position
 
 #for gal,ax_col in zip(glist, ax.transpose()):
-for gal in glist:
+#for gal in glist:
+
+i = int(sys.argv[1])
+gal = glist[i]
+
+if True:
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
 
     sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
@@ -96,6 +100,7 @@ for gal in glist:
         for attr in ['center_position', 'center_velocity', 
                      'principal_axes_vectors']:
             setattr(snap[-1][k], attr, getattr(snap[-1], attr))
+    
 
     star_pos_z0 = snap[-1]['star'].prop('host.distance.principal.cylindrical')
     
@@ -105,14 +110,41 @@ for gal in glist:
     star_ids = snap[-1]['star']['id'][keys]
     star_ids = np.intersect1d(star_ids, snap[0]['star']['id'])
 
-    all_snap_keys = np.array([ np.intersect1d(star_ids, s['star']['id'], assume_unique=True, return_indices=True)[2].tolist() for s in snap ])
+    star_ids = np.sort(star_ids)
+    
+    #all_snap_keys = np.array([ np.intersect1d(star_ids, s['star']['id'], assume_unique=True, return_indices=True)[2].tolist() for s in snap ])
+    
+    xinit = np.zeros(9)
+    xinit[3:6] = snap[-1].center_position
    
-    def get_res(sid):
+    all_snap_keys = []
+    for s in snap:
+        this_star_ids_keys = []
+        sorted_keys = s['star']['id'].argsort()
+        sort = np.sort(s['star']['id'])
+        j = 0
+        nxt = star_ids[j]
+        for i,sid in tqdm(enumerate(sort)):
+            if sid == nxt:
+                this_star_ids_keys.append(i)
+                j += 1
+                if j == len(star_ids):
+                    break
+                else:
+                    nxt = star_ids[j]
+        all_snap_keys.append(this_star_ids_keys)
+
+    pts_list = []
+    for sid in tqdm(star_ids[:100000]):
+        keys = np.array([int(np.where(s['star']['id'] == sid)[0]) for s in snap])
+        pts = np.array([ s['star']['position'][k] for s,k in zip(snap, keys)])
+        pts_list.append(pts)
+
+    def get_res(pts):
         try:
-            keys = np.array([int(np.where(s['star']['id'] == sid)[0]) for s in snap])
-            pts = np.array([ s['star']['position'][k] for s,k in zip(snap, keys)])
             res = minimize(chisq, xinit, args=(pts,), method='Nelder-Mead', options={'maxiter': 100000})
             return res    
         except:
             return np.nan
-    res_list = Parallel(n_jobs=nproc) (delayed(get_res)(sid) for sid in tqdm(star_ids[:100000]))
+    
+    res_list = Parallel(n_jobs=nproc) (delayed(get_res)(pts) for pts in tqdm(pts_list))
