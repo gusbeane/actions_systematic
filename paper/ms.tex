@@ -5,6 +5,8 @@
 \shortauthors{Beane et al.}
 
 \usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{bm}
 
 \newcommand{\Gus}[1]{\textcolor{red}{#1}}
 
@@ -18,6 +20,9 @@
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
 
 % affiliations
 \newcommand{\cca}{Center for Computational Astrophysics, Flatiron Institute, 162 5th
@@ -243,18 +248,71 @@ range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m.
 
 Our analysis makes the assumption that a global midplane is well defined.
 However, our results are also consistent with the notion that the global
-midplane is not a well-defined concept. Furthermore, none of the galaxies chosen in this work have 
+midplane is not a well-defined concept.
+
+\subsection{Dynamical Midplane}
+We now seek to define the midplane in a dynamically consistent manner, which
+we refer to as the ``dynamical midplane''. By this, we mean we would like to
+define the midplane in a manner consistent with some sort of dynamical
+constraint. Our method, which we describe now, is just one of many possible
+ways the dynamical midplane can be defined.
+
+We define the dynamical midplane based on the principle that perfectly
+circular, planar orbits will trace the midplane. Once the circular, planar
+orbits have been identified, the procedure for finding the dynamical midplane
+is relatively simple. From the measurement of each star's orbit, the midplane
+of the galaxy can be computed at $z=0$ easily. Furthermore, we will find that
+each orbit also gives a measure of the: dynamical center of the galaxy,
+velocity of the galaxy, and acceleration of the galaxy.
+
+We pause briefly to consider general difficulties in measuring stellar orbits
+in a cosmological simulation. It may seem reasonable to place the galaxy in an
+inertial reference frame and then to simply measure the positions of each star
+particle over time. However, it is not generally the case that the center of
+mass of the stellar disk experiences a vanishing acceleration. Indeed, in a
+re-run of the simulations presented here\footnote{The re-run contained a
+cosmic ray bug fix which is unimportant here, but the re-run also output the
+acceleration of each particle, which is not the case for the simulations in
+this work.}, we measure a total acceleration of $\sim 0.4\,\kms/\text{Myr}$
+for stars with cylindrical radii within $0.5\,\kpc$ of $8.2\,\kpc$ and
+vertical heights less than $0.4\,\kpc$. Assuming a constant acceleration, over
+$22\,\Myr$ --- the time spacing of snapshots considered in this work --- this
+results in a $\sim90\,\pc$ shift of the disk. Since the offset scales with
+$t^2$, this presents a significant problem for measuring stellar orbits over
+longer timescales.
+
+Another option is to recenter and reorient the galaxy at each snapshot.
+However, the centering and orientation procedures are not without
+stochasticity themselves. This stochasticity can easily dominate the magnitude
+of the orbit. For instance, a shift in the direction of the $z$-axis by a mere
+$0.7\degree$ results in a shift in the midplane of $100\,\pc$ at a radius of
+$8.2\,\kpc$. We attempted this procedure in various ways (i.e. exploring
+different centering and orientation procedures), but were not able to cleanly
+measure the orbits of disk stars.
+
+Here we choose to simplify the problem by considering only perfectly circular,
+planar orbits. Since these orbits have no phase-dependent structure, we can
+work on shorter timescales, i.e. for orbits with significant radial or
+vertical action a large fraction of their orbit would need to be sampled in
+order to measure the orbit accurately. Because we know the analytic form of
+these orbits, we can forward model the trajectory of each star particle in the
+cosmological simulation. Working in comoving coordinates, we can write down
+the trajectory of a star particle as
+
+\beq
+\bm{r}(t) = R(\theta, \phi, \psi) \left( (A\cos{\omega t}, B\sin{\omega t}, C t) + \bm{x_0} \right)
+\eeq
 
 \section{Coordinate System Gone Wrong} \label{sec:ref_frame}
 We show and quantify the time evolution of measured actions that comes about
 from inaccuracies in the galactocentric coordinate system.
 
 \subsection{Cartoon} \label{ssec:cartoon}
-We begin with a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate determination of 
-The solid gray line indicates a hypothetical ``true'' orbit. The y-axis
-corresponds to the vertical height of the orbit and the x-axis to either time
-or orbital phase. The dashed gray line is an incorrect midplane which an
-observer uses to compute orbits.
+We begin with a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate
+determination of The solid gray line indicates a hypothetical ``true'' orbit.
+The y-axis corresponds to the vertical height of the orbit and the x-axis to
+either time or orbital phase. The dashed gray line is an incorrect midplane
+which an observer uses to compute orbits.
 
 Now suppose this observer makes a measurement of the true orbit at the orange
 point or the red point. Then the orange and red lines correspond to the orbits
@@ -323,87 +381,87 @@ are fractional errors of $26.5\%$, $3.1\%$, and $81.4\%$, respectively.
 
 We now 
 
-\section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
-An analytic, axisymmetric potential with a known coordinate system is a far
-too simple description of the Milky Way. We thus turn to cosmological zoom-in
-simulations as approximations to a ``true'' Milky Way potential. We will
-perform a few simulations of small clusters embedded in the potential of a
-frozen $\z=0$ snapshot of one such zoom-in. We take our fiducial reference
-frame from \citet{2018arXiv180610564S}.
+% \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
+% An analytic, axisymmetric potential with a known coordinate system is a far
+% too simple description of the Milky Way. We thus turn to cosmological zoom-in
+% simulations as approximations to a ``true'' Milky Way potential. We will
+% perform a few simulations of small clusters embedded in the potential of a
+% frozen $\z=0$ snapshot of one such zoom-in. We take our fiducial reference
+% frame from \citet{2018arXiv180610564S}.
 
-Freezing the potential means that during the course of our simulation the
-cluster will rapidly pass by much of the substructure in the potential. To
-illustrate that this has little effect on our results, we resimulate each
-cluster with the softening lengths of the embedded potential increased by a
-factor of \Gus{something}.
+% Freezing the potential means that during the course of our simulation the
+% cluster will rapidly pass by much of the substructure in the potential. To
+% illustrate that this has little effect on our results, we resimulate each
+% cluster with the softening lengths of the embedded potential increased by a
+% factor of \Gus{something}.
 
-Once we perform this simulation, we calculate the actions of each star in the
-cluster assuming the best-fit smooth, axisymmetric potential, as we do
-observationally for the Milky Way. We refer to this space as the observational
-action space. We will find that there is significant time evolution in
-observational action space. Attributing some of this evolution to our fiducial
-coordinate system being incorrect, we minimize the time-dispersion in action
-space
+% Once we perform this simulation, we calculate the actions of each star in the
+% cluster assuming the best-fit smooth, axisymmetric potential, as we do
+% observationally for the Milky Way. We refer to this space as the observational
+% action space. We will find that there is significant time evolution in
+% observational action space. Attributing some of this evolution to our fiducial
+% coordinate system being incorrect, we minimize the time-dispersion in action
+% space
 
-\subsection{Cluster Simulations} \label{ssec:cluster_sim}
-We simulate a small star cluster of $256$ stars in the frozen $\z=0$
-potential of m12i. We use the code \texttt{ph4} within the
-\texttt{AMUSE} framework \citep{2011ascl.soft07007P, 2013CoPhC.184..456P,
-2013A&A...557A..84P} for the cluster integration. We use a softening length
-of $0.01\,\pc$ which means we do not correctly solve the internal dynamics of
-the cluster, but this is not important for our purposes. To couple the
-gravitational forces of the frozen snapshot to the cluster stars, we use the
-\texttt{BRIDGE} \citep{2007PASJ...59.1095F}, also implemented in
-\texttt{AMUSE}. Our simulation runs for $2\,\Gyr$, allowing us to solve for
-$\sim 10$ orbits.
+% \subsection{Cluster Simulations} \label{ssec:cluster_sim}
+% We simulate a small star cluster of $256$ stars in the frozen $\z=0$
+% potential of m12i. We use the code \texttt{ph4} within the
+% \texttt{AMUSE} framework \citep{2011ascl.soft07007P, 2013CoPhC.184..456P,
+% 2013A&A...557A..84P} for the cluster integration. We use a softening length
+% of $0.01\,\pc$ which means we do not correctly solve the internal dynamics of
+% the cluster, but this is not important for our purposes. To couple the
+% gravitational forces of the frozen snapshot to the cluster stars, we use the
+% \texttt{BRIDGE} \citep{2007PASJ...59.1095F}, also implemented in
+% \texttt{AMUSE}. Our simulation runs for $2\,\Gyr$, allowing us to solve for
+% $\sim 10$ orbits.
 
-To compute the forces from the frozen potential, we use the simple tree code
-\texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
-commit: \texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
-at distances $R>50\,\kpc$ in the fiducial coordinate system.
+% To compute the forces from the frozen potential, we use the simple tree code
+% \texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
+% commit: \texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
+% at distances $R>50\,\kpc$ in the fiducial coordinate system.
 
-We use the initial position and velocity of two star particles in
-m12i. These two star particles are randomly chosen from all star
-particles in the simulation with the following properties (in the fiducial
-coordinate system):
-\begin{enumerate}
-    \item age in the range $(0.25, 0.75)\,\Gyr$,
-    \item cylindrical radius in the range $(7.7, 8.7)\,\kpc$,
-    \item height (absolute value) less than $0.5\,\kpc$,
-    \item $J_r$ and $J_z$ in the range:
-        \subitem $(10, 20)\,\actunit$ for the first star,
-        \subitem $(40, 60)\,\actunit$ for the second star.
-\end{enumerate}
-The ids we choose are \texttt{23693026} for the first star and
-\texttt{17012804} for the second star. We refrain from calling these ``low''
-or ``high'' action stars since the actions are computed in a presumably
-incorrect coordinate system.
+% We use the initial position and velocity of two star particles in
+% m12i. These two star particles are randomly chosen from all star
+% particles in the simulation with the following properties (in the fiducial
+% coordinate system):
+% \begin{enumerate}
+%     \item age in the range $(0.25, 0.75)\,\Gyr$,
+%     \item cylindrical radius in the range $(7.7, 8.7)\,\kpc$,
+%     \item height (absolute value) less than $0.5\,\kpc$,
+%     \item $J_r$ and $J_z$ in the range:
+%         \subitem $(10, 20)\,\actunit$ for the first star,
+%         \subitem $(40, 60)\,\actunit$ for the second star.
+% \end{enumerate}
+% The ids we choose are \texttt{23693026} for the first star and
+% \texttt{17012804} for the second star. We refrain from calling these ``low''
+% or ``high'' action stars since the actions are computed in a presumably
+% incorrect coordinate system.
 
-To compute actions, both in the choosing of each of these star particles and
-in what follows, we use the package
-\texttt{agama}\footnote{\url{https://github.com/GalacticDynamics-Oxford/Agama},
-commit: \texttt{0e48336}}. Using only the high-resolution particles, we
-compute the symmetrized potential in two components. First, a multipole
-expansion with $20$ radial grid points and a max order of $2$ for the
-spherical-harmonic expansion is used for the dark matter. Second, a
-cylindrical spline expansion with $20$ radial and $z$ grid points, a $0$ order
-max index azimuthal-harmonic expansion, $0.2$ and $50\,\kpc$ for the minimum
-and maximum radial grid node, $0.02$ and $10\,\kpc$ for the minimum and
-maximum $z$ grid node is used for the baryonic matter (stars and gas). In both
-cases, axisymmetry is explicitly enforced. Other \texttt{agama} parameters are
-left as default.
+% To compute actions, both in the choosing of each of these star particles and
+% in what follows, we use the package
+% \texttt{agama}\footnote{\url{https://github.com/GalacticDynamics-Oxford/Agama},
+% commit: \texttt{0e48336}}. Using only the high-resolution particles, we
+% compute the symmetrized potential in two components. First, a multipole
+% expansion with $20$ radial grid points and a max order of $2$ for the
+% spherical-harmonic expansion is used for the dark matter. Second, a
+% cylindrical spline expansion with $20$ radial and $z$ grid points, a $0$ order
+% max index azimuthal-harmonic expansion, $0.2$ and $50\,\kpc$ for the minimum
+% and maximum radial grid node, $0.02$ and $10\,\kpc$ for the minimum and
+% maximum $z$ grid node is used for the baryonic matter (stars and gas). In both
+% cases, axisymmetry is explicitly enforced. Other \texttt{agama} parameters are
+% left as default.
 
-\subsection{Frame Optimization} \label{ssec:frame_opt}
-Figure~\Gus{something} shows the action computed at each time step in the
-fiducial coordinate system. Clearly there is significant time evolution.
+% \subsection{Frame Optimization} \label{ssec:frame_opt}
+% Figure~\Gus{something} shows the action computed at each time step in the
+% fiducial coordinate system. Clearly there is significant time evolution.
 
-Even though we change the center, we do not recalculate the center velocity.
-This is largely irrelevant, as the recalculated center velocity differs from
-the fiducial center velocity by $<0.1\,\kms$. In recentering the galaxy, the
-package \texttt{gizmo\_analysis} will subtract a slightly different value for
-the Hubble flow from each particle's velocity to convert to a physical
-coordinate system. The error this introduces is $\sim 0.02\,\kms$, which we
-also ignore.
+% Even though we change the center, we do not recalculate the center velocity.
+% This is largely irrelevant, as the recalculated center velocity differs from
+% the fiducial center velocity by $<0.1\,\kms$. In recentering the galaxy, the
+% package \texttt{gizmo\_analysis} will subtract a slightly different value for
+% the Hubble flow from each particle's velocity to convert to a physical
+% coordinate system. The error this introduces is $\sim 0.02\,\kms$, which we
+% also ignore.
 
 \appendix \section{Appendix 1}
 Gonna write an appendix probably 
