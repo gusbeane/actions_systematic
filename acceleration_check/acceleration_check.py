@@ -19,13 +19,18 @@ np.random.seed(162)
 # glist = ['m12i', 'm12f', 'm12m']
 glist = ['m12i', 'm12f']
 
+start_idx = 590
+end_indx = 600
+snap_idx = np.arange(start_idx, end_indx+1)
+
 for gal in glist:
     # gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
 
     sim_directory = '/mnt/ceph/users/firesims/fire2/cr_heating_fix/'+gal+'_res7100'
-    snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'], 'index', 600,
+    snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'], 'index', snap_idx,
                                         properties=['position', 'id',
                                                     'mass', 'velocity',
                                                     'form.scalefactor', 'acceleration'],
-                                        simulation_directory=sim_directory)
+                                        simulation_directory=sim_directory,
+                                        assign_principal_axes=True)
 
