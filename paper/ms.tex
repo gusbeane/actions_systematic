@@ -298,10 +298,52 @@ order to measure the orbit accurately. Because we know the analytic form of
 these orbits, we can forward model the trajectory of each star particle in the
 cosmological simulation. Working in comoving coordinates, we can write down
 the trajectory of a star particle as
-
-\beq
-\bm{r}(t) = R(\theta, \phi, \psi) \left( (A\cos{\omega t}, B\sin{\omega t}, C t) + \bm{x_0} \right)
+\beq\label{eq:helix}
+\bm{r}(t) = R(\theta, \phi, \psi) \left[ (A\cos{\omega t}, B\sin{\omega t}, C
+t) + \bm{x_0} \right]\text{,}
 \eeq
+where $R(\theta, \phi, \psi)$ is an Euler angle transformation, $A$, $B$, $C$,
+and $\omega$ are arbitrary constants, and $\bm{x_0}$ is an arbitrary 3-vector.
+This equation is a helix with an arbitrary constant and rotation. It describes
+the
+
+We minimize the summed squared difference between Equation~\ref{eq:helix} and
+the true trajectory of each star with $R$ within $1\,\kpc$ of $R_{\odot} =
+8.2\,\kpc$ in each simulation. We consider minimum rms error (i.e. the typical
+error in the Equation~\ref{eq:helix} model in describing the true trajectory).
+This rms error characterizes how well the helix model we consider, which would
+be exactly correct if the overall motion of the galaxy is well-described by
+constant speed motion and the orbit of a particular store is exactly circular
+and planar.
+
+We plot a histogram of the rms error for each galaxy in
+Figure~\ref{fig:something}. As we estimated before, the total effect of the
+galaxy's acceleration is roughly $90\,\pc$ (\Gus{Check for m12f, m12m}). We
+find that this is small compared to the typical error, even for the stars
+whose trajectories are best modeled by Equation~\ref{eq:helix}.
+
+There are many reasons for the failure of this model. First, there could be no
+stars on circular orbits. This seems unlikely considering that typical
+distribution functions peak on perfectly circular, planar orbits
+\citep[e.g.][]{2013MNRAS.434..652T}. Second, the trajectory of the galaxy may
+not be well-described by constant-speed motion. This also seems unlikely,
+considering that the bulk acceleration of the stellar disk only results in a
+$\sim90\,\pc$ (\Gus{m12f, m12m}) deviation from constant-speed motion over the
+$22\,\Myr$ time we considered.
+
+Furthermore, in Figure~\ref{fig:something} we plot the center of mass of the
+galaxy (in comoving coordinates) for the $22\,\Myr$ timeframe described. The
+center of mass at each snapshot is computed using the iterative shrinking
+spheres method described in Section~\ref{ssec:cosmozoom}. The rms error on the
+constant-speed motion is $\sim\text{something}$, which we interpret as
+\Gus{something}.
+
+One potential explanation is that {\em no star can remain on a circular,
+planar orbit}. The order unity density variations may be strong enough such
+that each star's orbit is perturbed. If there are truly stars in the
+simulation on perfectly circular, planar orbits, then the magnitude of their
+acceleration over the last $22\,\Myr$ must be constant. Furthermore, their
+trajectory in acceleration space must be well-described by a rotation. In the re-runs, 
 
 \section{Coordinate System Gone Wrong} \label{sec:ref_frame}
 We show and quantify the time evolution of measured actions that comes about
@@ -379,7 +421,7 @@ are fractional errors of $26.5\%$, $3.1\%$, and $81.4\%$, respectively.
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
-We now 
+We now repeat the procedure but for 
 
 % \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
 % An analytic, axisymmetric potential with a known coordinate system is a far
