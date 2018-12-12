@@ -4,6 +4,9 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
+from joblib import Parallel, delayed
+import multiprocessing
+
 from matplotlib import rc
 import matplotlib as mpl
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
@@ -19,6 +22,8 @@ np.random.seed(162)
 rcut = 0.5
 zcut = 1.0
 nspoke = 50
+
+nproc = 40
 
 #fig, ax = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(8,3.5))
 
@@ -46,6 +51,7 @@ for gal in glist:
             setattr(snap[k], attr, getattr(snap, attr))
 
     star_pos = snap['star'].prop('host.distance.principal')
+    print(len(star_pos))
 
     R = 8.2
     theta = np.linspace(0, 2.*np.pi, nspoke)
@@ -55,44 +61,53 @@ for gal in glist:
     posz = np.zeros(len(posx))
     pos = np.transpose([posx, posy, posz])
 
-    def get_keys(p):
+    def get_init_keys(p):
         pos_diff = np.subtract(star_pos, p)
+        rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
+        rbool = rmag < rcut
+        zbool = np.abs(pos_diff[:,2]) < 2.0 * zcut
+        keys = np.where(np.logical_and(rbool, zbool))[0]
+        return keys
+    
+    def get_keys(p, part):
+        pos_diff = np.subtract(part, p)
         rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
         rbool = rmag < rcut
         zbool = np.abs(pos_diff[:,2]) < zcut
         keys = np.where(np.logical_and(rbool, zbool))[0]
         return keys
 
-    midplane_est = []
-    err_low = []
-    err_high = []
-    for p in pos:
-        new_p = p.copy()
+    def midplane(pos, init_pos):
+        mid_pos = pos.copy()
         for _ in range(10):
-            keys = get_keys(new_p)
-            new_p[2] = np.median(star_pos[:,2][keys])
-        midplane_est.append(new_p[2])
+            keys = get_keys(mid_pos, init_pos)
+            mid_pos[2] = np.median(init_pos[:,2][keys])
+        return mid_pos[2]
+    
+    def get_midplane_with_error(pos):
+        init_keys = get_init_keys(pos)
+        init_pos = star_pos[init_keys]
+        midplane_central = midplane(pos, init_pos)
+        
+        keys_to_choose = list(range(len(init_pos)))
+        rand_choice = np.random.choice(keys_to_choose, len(init_pos)*nbootstrap)
 
-        central_val = new_p[2]
-
-        to_bootstrap = star_pos[:,2][keys]
-        keys_to_choose = list(range(len(to_bootstrap)))
-        rand_choice = np.random.choice(keys_to_choose, len(to_bootstrap)*nbootstrap)
-
-        heights_rand = to_bootstrap[rand_choice]
-        heights_rand = np.reshape(heights_rand, (nbootstrap, len(to_bootstrap)))
-        med_rand = np.median(heights_rand, axis=1)
-        dist = np.subtract(med_rand, central_val)
+        rand_choice = np.reshape(rand_choice, (nbootstrap, len(init_pos)))
+        init_pos_rand = init_pos[rand_choice]
+        med_rand = np.array([ midplane(pos, ipos) for ipos in init_pos_rand ])
+        dist = np.subtract(med_rand, midplane_central)
         up = np.percentile(dist, 95)
         low = np.percentile(dist, 5)
-        err_low.append(central_val - up)
-        err_high.append(central_val - low)
-        print(central_val - up, central_val - low)
+        return midplane_central, midplane_central - up, midplane_central - low
 
-    midplane_est = np.array(midplane_est)
-    err_low = np.array(err_low)
-    err_high = np.array(err_high)
-    
+    # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
+    result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
+    result = np.array(result)
+
+    midplane_est = result[:,0]
+    err_low = result[:,1]
+    err_high = result[:,2]
+
     np.save('midplane_est_'+gal+'.npy', midplane_est)
     np.save('err_low_'+gal+'.npy', err_low)
     np.save('err_high_'+gal+'.npy', err_high)
@@ -131,6 +146,8 @@ for gal in glist:
     fit = A*np.cos(theta + B) + C
 
     np.save('fit_'+gal+'.npy', fit)
+
+    del star_pos
 
     #ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
     #ax_col[1].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
