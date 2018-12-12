@@ -126,13 +126,13 @@ if True:
 
     # now try to fit each pts_acc with a circle (up to Euler rotation)
     def circle(x):
-        traj = np.transpose([x[0] * np.cos(x[2] * tlist), x[1] * np.sin(x[2]*tlist), np.zeros(len(tlist))]) + np.array([x[3], x[4], x[5]])
-        return euler_rotate(x[6:9], traj)
+        traj = np.transpose([x[0] * np.cos(x[1] * tlist), x[0] * np.sin(x[1]*tlist), np.zeros(len(tlist))]) + np.array([x[2], x[3], x[4]])
+        return euler_rotate(x[5:8], traj)
 
     def chisq(x, pts):
         return np.sum(np.square(np.subtract(circle(x), pts)))
     
-    xinit = np.zeros(9)
+    xinit = np.zeros(8)
 
     def get_res(pts):
         try:
