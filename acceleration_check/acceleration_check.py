@@ -90,7 +90,6 @@ if True:
     star_ids = np.sort(star_ids)
     
     np.save('star_ids_'+gal+'.npy', star_ids)
-    sys.exit(0)
 
     all_snap_keys = []
     for s in snap:
