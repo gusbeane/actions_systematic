@@ -50,9 +50,6 @@ for gal in glist:
                      'principal_axes_vectors']:
             setattr(snap[k], attr, getattr(snap, attr))
 
-    star_pos = snap['star'].prop('host.distance.principal')
-    print(len(star_pos))
-
     R = 8.2
     theta = np.linspace(0, 2.*np.pi, nspoke)
     np.save('theta.npy', theta)
@@ -61,7 +58,7 @@ for gal in glist:
     posz = np.zeros(len(posx))
     pos = np.transpose([posx, posy, posz])
 
-    def get_init_keys(p):
+    def get_init_keys(p, star_pos):
         pos_diff = np.subtract(star_pos, p)
         rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
         rbool = rmag < rcut
@@ -85,7 +82,8 @@ for gal in glist:
         return mid_pos[2]
     
     def get_midplane_with_error(pos):
-        init_keys = get_init_keys(pos)
+        star_pos = snap['star'].prop('host.distance.principal')
+        init_keys = get_init_keys(pos, star_pos)
         init_pos = star_pos[init_keys]
         midplane_central = midplane(pos, init_pos)
         
@@ -100,9 +98,9 @@ for gal in glist:
         low = np.percentile(dist, 5)
         return midplane_central, midplane_central - up, midplane_central - low
 
-    # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
-    result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
-    result = np.array(result)
+    result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
+    # result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
+    # result = np.array(result)
 
     midplane_est = result[:,0]
     err_low = result[:,1]
