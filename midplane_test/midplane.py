@@ -26,15 +26,7 @@ nspoke = 50
 
 nproc = 40
 
-#fig, ax = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(8,3.5))
-
-glist = ['m12i', 'm12f', 'm12m']
-
-# for gal,ax_col in zip(glist, ax.transpose()):
-# for gal in glist:
-i = int(sys.argv[1])
-gal = glist[i]
-if True:
+def main(gal):
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
 
     sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
@@ -53,6 +45,8 @@ if True:
         for attr in ['center_position', 'center_velocity', 
                      'principal_axes_vectors']:
             setattr(snap[k], attr, getattr(snap, attr))
+    
+    star_pos = snap['star'].prop('host.distance.principal')
 
     R = 8.2
     theta = np.linspace(0, 2.*np.pi, nspoke)
@@ -86,7 +80,6 @@ if True:
         return mid_pos[2]
     
     def get_midplane_with_error(pos):
-        star_pos = snap['star'].prop('host.distance.principal')
         init_keys = get_init_keys(pos, star_pos)
         init_pos = star_pos[init_keys]
         midplane_central = midplane(pos, init_pos)
@@ -114,24 +107,6 @@ if True:
     np.save('err_low_'+gal+'.npy', err_low)
     np.save('err_high_'+gal+'.npy', err_high)
 
-    #ax_col[0].plot(theta/np.pi, midplane_est*1000, c=tb_c[0])
-    #ax_col[0].plot(theta/np.pi, err_low*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[0].plot(theta/np.pi, err_high*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[0].fill_between(theta/np.pi, err_high*1000, err_low*1000, color=tb_c[0], alpha=0.25)
-
-    #ax_col[1].set_xlabel(r'$\phi/\pi$')
-
-    #ax_col[0].text(0.05, 0.88, gal, 
-                #horizontalalignment='left', 
-                #verticalalignment='center', 
-                #transform = ax_col[0].transAxes)
-
-    #ax_col[0].set_xlim(0, 2)
-    #ax_col[1].set_xlim(0, 2)
-
-    #ax_col[0].set_ylim(-200, 200)
-    #ax_col[1].set_ylim(-200, 200)
-
     def chisq(x):
         A = x[0]
         B = x[1]
@@ -149,13 +124,8 @@ if True:
 
     np.save('fit_'+gal+'.npy', fit)
 
-    #ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
-    #ax_col[1].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[1].plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[1].fill_between(theta/np.pi, (err_high-fit)*1000, (err_low-fit)*1000, color=tb_c[0], alpha=0.25)
+if __name__ == '__main__':
+    glist = ['m12i', 'm12f', 'm12m']
+    for gal in glist:
+        main(gal)
 
-#ax[0][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
-#ax[1][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
-
-#fig.tight_layout()
-#plt.savefig('midplane.pdf')
