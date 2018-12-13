@@ -4,6 +4,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
+import sys
 from joblib import Parallel, delayed
 import multiprocessing
 
@@ -29,8 +30,11 @@ nproc = 40
 
 glist = ['m12i', 'm12f', 'm12m']
 
-#for gal,ax_col in zip(glist, ax.transpose()):
-for gal in glist:
+# for gal,ax_col in zip(glist, ax.transpose()):
+# for gal in glist:
+i = int(sys.argv[1])
+gal = glist[i]
+if True:
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
 
     sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
@@ -98,9 +102,9 @@ for gal in glist:
         low = np.percentile(dist, 5)
         return midplane_central, midplane_central - up, midplane_central - low
 
-    result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
-    # result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
-    # result = np.array(result)
+    # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
+    result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
+    result = np.array(result)
 
     midplane_est = result[:,0]
     err_low = result[:,1]
@@ -144,8 +148,6 @@ for gal in glist:
     fit = A*np.cos(theta + B) + C
 
     np.save('fit_'+gal+'.npy', fit)
-
-    del star_pos
 
     #ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
     #ax_col[1].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
