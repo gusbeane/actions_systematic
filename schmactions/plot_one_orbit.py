@@ -127,9 +127,7 @@ def plot_wrong_act(t, act, rel_error=False):
 
 init_pos = [8, 0, 0] * u.kpc
 init_vel = [0, -190, 50] * u.km/u.s
-offset = [100, 0, 200] * u.pc
-
-sys.exit(0)
+offset = [0, 0, 100] * u.pc
 
 t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
 plot_wrong_act(t, act)
