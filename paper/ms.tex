@@ -317,28 +317,30 @@ In future work, these additional complications also need to be addressed.
 \subsection{Local Midplane} \label{sec:local_midplane}
 We now turn to defining the local midplane that an observer might measure if
 they were situated in each of these galaxies. We place our imaginary observer
-at the solar radius of $8.2\,\kpc$ and azimuth $\phi$, and consider stars
-within a cylinder perpendicular to the fiducial disk.
+at the solar radius of $8.2\,\kpc$ and azimuth $\phi$\footnote{Our erroneous,
+immortal observer is also warp-drive capable.}, and consider stars within a
+cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$ perpendicular to the
+fiducial disk.
 
-For a given azimuth $\phi$ at the solar radius of $8.2\,\kpc$, we take the
-median height of all star particles within a cylinder of radius $0.5\,\kpc$
-and total height $2\,\kpc$. This median height is taken to be what our
-imaginary observer would measure as the local Galactic midplane, and is
-reported for each galaxy in Figure~\ref{fig:midplane}. We find that only $10$
-iterations of this procedure are necessary for convergence. We bootstrap
-resample $1000$ times and report the $95^{\text{th}}$ minus $5^{\text{th}}$
-percentile as the dashed-line error bars.
+This median height is taken to be what our observer would measure as the local
+Galactic midplane at each $\phi$, and is reported for each galaxy in
+Figure~\ref{fig:midplane}. We find that only $10$ iterations of this procedure
+are necessary for convergence. We bootstrap resample $1000$ times and report
+the $95^{\text{th}}$ minus $5^{\text{th}}$ percentile as the dashed-line error
+bars. This bootstrap resampling is performed by first selecting all stars
+within a height of $2\,\kpc$, resampling that selection, and then repeating
+the $10$ iterations.
 
 To allow for potential small inaccuracies in the fiducial coordinate systems,
-we also subtract the best fit $\text{A} \sin{\phi + \text{B}} + C$ curve from
-the midplane as a function of azimuth. For $\text{A}$, the values are $-165$,
-$45$, $9\,\pc$ and for $\text{C}$ the values are $-69$, $19$, and $-18\,\pc$
-for m12i, m12f, and m12m, respectively. For the assumed solar radius of
-$8.2\,\kpc$, we can approximate the angle offset for the $z$-axis from the
-values of $\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$ for m12i,
-m12f, and m12m. These angle offsets are consistent with the values given in
-\citet{2018arXiv180610564S} for the difference between the $z$-axis as defined
-by the gas and stars.
+we also subtract the best fit $\text{A} \sin{\left(\phi + \text{B}\right)} +
+\text{C}$ curve from the midplane as a function of azimuth. For $\text{A}$,
+the values are $-165$, $45$, $9\,\pc$ and for $\text{C}$ the values are $-69$,
+$19$, and $-18\,\pc$ for m12i, m12f, and m12m, respectively \Gus{Double check
+numbers}. For the assumed solar radius of $8.2\,\kpc$, we can approximate the
+angle offset for the $z$-axis from the values of $\text{A}$ --- we compute
+\Gus{$1.15$, $0.31$, and $0.06\,\deg$} for m12i, m12f, and m12m. These angle
+offsets are consistent with the values given in \citet{2018arXiv180610564S}
+for the difference between the $z$-axis as defined by the gas and stars.
 
 Figure~\ref{fig:midplane} shows the inferred midplane our imaginary observer
 would make as a function of azimuth for each galaxy. The $90\%$ interquartile
@@ -349,10 +351,6 @@ range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m.
 \caption{Caption.}
 \label{fig:midplane}
 \end{figure*}
-
-Our analysis makes the assumption that a global midplane is well defined.
-However, our results are also consistent with the notion that the global
-midplane is not a well-defined concept.
 
 % \subsection{Dynamical Midplane}
 % We now seek to define the midplane in a dynamically consistent manner, which
