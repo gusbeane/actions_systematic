@@ -3,6 +3,7 @@
 % \submitjournal{ApJ}
 
 \shortauthors{Beane et al.}
+\shorttitle{Where the Hell Are We?}
 
 \usepackage{graphicx}
 \usepackage{gensymb}
@@ -20,6 +21,7 @@
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z}
+\newcommand{\uth}{\textsuperscript{th}} % why is this so long in the first place??
 
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}
@@ -36,8 +38,7 @@ History, Central Park West at 79th St., New York, NY 10024, USA}
 
 \begin{document}
 
-\title{Our Galactocentric Coordinate System Is Probably Wrong, and Not by a
-Little}
+\title{Our Galactic Midplane Is Probably Wrong, and Not by a Little}
 
 \correspondingauthor{Angus Beane}
 \email{abeane@sas.upenn.edu}
@@ -118,10 +119,7 @@ such as Sagittarius and the Large Magellanic Cloud all induce
 non-axisymmetries.
 
 Since the Milky Way is not truly axisymmetric, it is not clear the best way to
-define the galactocentric coordinate system. In this work, we consider one
-possible physically motivated approach to defining the galactocentric
-coordinate system, and show that it can differ from conventional methods of
-frame measurements.
+define the Galactocentric coordinate system. In this work, we focus on the midplane and, equivalently, the solar height. 
 
 In a slowly-evolving axisymmetric potential, the actions of stars' orbits are
 conserved quantities \citep{2008gady.book.....B,2014RvMP...86....1S}. In other
@@ -138,6 +136,112 @@ cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
 Realistic Environments (FIRE)
 collaboration\footnote{\url{https://fire.northwestern.edu}} (the Latte suite
 of simulations).
+
+\section{Impact on Actions} \label{sec:ref_frame}
+We first demonstrate the importance of measuring the Galactic midplane to very
+high accuracy. We explore the consequence of an incorrect midplane in the
+context of computing orbital actions of disk stars. An inaccuracy in the
+midplane is only one potential systematic error in the way actions are
+presently computed. The assumed axisymmetric model of the Galaxy may be a poor
+description of the Galactic potential, and the parameters in this axisymmetric
+model may be estimated incorrectly.
+
+In this work, we assume both that an axisymmetric model of the Galaxy is a good description of the potential and that we have correctly determined the parameters of that model. We are only concerned with an inaccuracy
+
+\subsection{Summary of Action Computation} \label{ssec:action_comp}
+We begin by summarizing one way in which actions are computed in the
+literature \Gus{cite}. One first assumes an axisymmetric model of the Galaxy.
+This model may itself be a poor description of the Galactic potential,
+
+We use the code \texttt{gala} v0.3 to perform orbit integrations and
+conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
+which uses an action estimator technique presented by
+\citet{2014MNRAS.441.3284S}. Another common alternative is \texttt{galpy}
+\citep{2015ApJS..216...29B} using either direct orbit integration or the
+\Gus{Stackel Fudge} approximation. We use the default \texttt{MWPotential} as
+our potential, which is based on the Milky Way potential available in
+\texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
+Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
+\citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
+is fit to empirically match some observations. We use the Dormand-Prince
+8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
+$1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for a
+Sun-like star.
+
+\subsection{Cartoon} \label{ssec:cartoon}
+We present a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate
+determination of the midplane can lead to a phase-dependence of the {\em
+observed} actions. The solid gray line indicates a hypothetical ``true''
+orbit. The y-axis corresponds to the vertical height of the orbit and the
+x-axis orbital phase. The dashed gray line is an incorrect midplane which an
+observer uses to compute orbits.
+
+Now suppose this observer makes a measurement of the true orbit at the orange
+point or the red point. Then the orange and red lines correspond to the orbits
+that the observer would compute for each point. In action space, this would
+correspond to a different value of $J_z$ for the orange and red points. In
+this way, assuming the wrong coordinate system induces time dependence in the
+actions {\em computed by an observer}.
+
+\begin{figure*}
+\plotone{fig/cartoon.pdf}
+\caption{Caption.}
+\label{fig:cartoon}
+\end{figure*}
+
+\subsection{Quantification} \label{ssec:quant}
+We now turn to classical orbital integration in a commonly assumed Milky Way
+potential to quantify the time variation of computed actions for different
+coordinate system errors. Our action computation procedure is described in
+Section~\ref{ssec:action_comp}.
+
+First, we illustrate the time-dependence of one possible inaccurate reference
+frame. We begin by taking an orbit with initial position $(8, 0, 0)\,\kpc$ and
+initial velocity $(0, -190, 50)\,\kms$ --- this corresponds to an orbit with
+actions $(J_r, L_z, J_z) = (32.5, -1520, 23.0)\,\actunit$. The orbit is
+plotted in \Gus{Appendix x}. We then suppose that an observer makes
+observations of this orbit in a coordinate system that is incorrect in radius by
+$200\,\pc$ and height by $100\,\pc$ --- we subtract the vector $(200, 0,
+100)\,\pc$ from each position in the orbit. This corresponds to an observer
+physically located at the position $(8, 0, 0)\,\kpc$ but erroneously thinking
+they are located at $(8.2, 0, 0.1)\,\kpc$.
+
+Using the observations of the orbit that this erroneous observer makes every
+$\Myr$\footnote{In addition to being erroneous, we also assume our fictitious
+observer is immortal.}, we perform the same orbit integration procedure as
+before to compute the actions our observer would make in the incorrect
+coordinate system over the duration of the orbit. The erroneous computed
+actions are shown for the first $\Gyr$ of the orbit in
+Figure~\ref{fig:one_orbit_wrong_ref}. Occasionally the numerical scheme fails
+and very large actions are reported by \texttt{gala}
+--- we perform a $5\sigma$ clip on each action to exclude such orbits, but
+this only excludes a total of $5$ orbits out of the $1000$ considered for
+Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
+vast majority of orbits are computed properly.
+
+Figure~\ref{fig:one_orbit_wrong_ref} shows that the erroneous observer would
+infer significant time evolution in their computed actions. The
+95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $8.7$,
+$47.1$, and $19.3\,\actunit$ for $J_r$, $L_z$, and $J_z$, respectively. These
+are fractional errors of $26.5\%$, $3.1\%$, and $81.4\%$, respectively.
+
+\begin{figure*}
+\plotone{fig/one_orbit.pdf}
+\caption{Caption.}
+\label{fig:one_orbit_wrong_ref}
+\end{figure*}
+
+We now repeat the procedure but continuously changing the error in the assumed
+midplane. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth minus
+5\uth
+
+
+
+\begin{figure*}
+% \plotone{fig/something.pdf}
+\caption{Caption.}
+\label{fig:many_orbit_wrong_ref}
+\end{figure*}
 
 \section{Local Midplane in FIRE} \label{sec:local_fire}
 \subsection{Description of Simulation} \label{ssec:cosmozoom}
@@ -213,28 +317,30 @@ In future work, these additional complications also need to be addressed.
 \subsection{Local Midplane} \label{sec:local_midplane}
 We now turn to defining the local midplane that an observer might measure if
 they were situated in each of these galaxies. We place our imaginary observer
-at the solar radius of $8.2\,\kpc$ and azimuth $\phi$, and consider stars
-within a cylinder perpendicular to the fiducial disk
+at the solar radius of $8.2\,\kpc$ and azimuth $\phi$\footnote{Our erroneous,
+immortal observer is also warp-drive capable.}, and consider stars within a
+cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$ perpendicular to the
+fiducial disk.
 
-For a given azimuth $\phi$ at the solar radius of $8.2\,\kpc$, we take the
-median height of all star particles within a cylinder of radius $0.5\,\kpc$
-and total height $2\,\kpc$. This median height is taken to be what our
-imaginary observer would measure as the local Galactic midplane, and is
-reported for each galaxy in Figure~\ref{fig:midplane}. We find that only $10$
-iterations of this procedure are necessary for convergence. We bootstrap
-resample $1000$ times and report the $95^{\text{th}}$ minus $5^{\text{th}}$
-percentile as the dashed-line error bars.
+This median height is taken to be what our observer would measure as the local
+Galactic midplane at each $\phi$, and is reported for each galaxy in
+Figure~\ref{fig:midplane}. We find that only $10$ iterations of this procedure
+are necessary for convergence. We bootstrap resample $1000$ times and report
+the $95^{\text{th}}$ minus $5^{\text{th}}$ percentile as the dashed-line error
+bars. This bootstrap resampling is performed by first selecting all stars
+within a height of $2\,\kpc$, resampling that selection, and then repeating
+the $10$ iterations.
 
 To allow for potential small inaccuracies in the fiducial coordinate systems,
-we also subtract the best fit $\text{A} \sin{\phi + \text{B}} + C$ from the
-midplane as a function of azimuth. For $\text{A}$, the values are $-165$,
-$45$, $9\,\pc$ and for $\text{C}$ the values are $-69$, $19$, and $-18\,\pc$
-for m12i, m12f, and m12m, respectively. For the assumed solar radius of
-$8.2\,\kpc$, we can approximate the angle offset for the $z$-axis from the
-values of $\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$ for m12i,
-m12f, and m12m. These angle offsets are consistent with the values given in
-\citet{2018arXiv180610564S} for the difference between the $z$-axis as defined
-by the gas and stars.
+we also subtract the best fit $\text{A} \sin{\left(\phi + \text{B}\right)} +
+\text{C}$ curve from the midplane as a function of azimuth. For $\text{A}$,
+the values are $-165$, $45$, $9\,\pc$ and for $\text{C}$ the values are $-69$,
+$19$, and $-18\,\pc$ for m12i, m12f, and m12m, respectively \Gus{Double check
+numbers}. For the assumed solar radius of $8.2\,\kpc$, we can approximate the
+angle offset for the $z$-axis from the values of $\text{A}$ --- we compute
+\Gus{$1.15$, $0.31$, and $0.06\,\deg$} for m12i, m12f, and m12m. These angle
+offsets are consistent with the values given in \citet{2018arXiv180610564S}
+for the difference between the $z$-axis as defined by the gas and stars.
 
 Figure~\ref{fig:midplane} shows the inferred midplane our imaginary observer
 would make as a function of azimuth for each galaxy. The $90\%$ interquartile
@@ -246,182 +352,100 @@ range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m.
 \label{fig:midplane}
 \end{figure*}
 
-Our analysis makes the assumption that a global midplane is well defined.
-However, our results are also consistent with the notion that the global
-midplane is not a well-defined concept.
+% \subsection{Dynamical Midplane}
+% We now seek to define the midplane in a dynamically consistent manner, which
+% we refer to as the ``dynamical midplane''. By this, we mean we would like to
+% define the midplane in a manner consistent with some sort of dynamical
+% constraint. Our method, which we describe now, is just one of many possible
+% ways the dynamical midplane can be defined.
 
-\subsection{Dynamical Midplane}
-We now seek to define the midplane in a dynamically consistent manner, which
-we refer to as the ``dynamical midplane''. By this, we mean we would like to
-define the midplane in a manner consistent with some sort of dynamical
-constraint. Our method, which we describe now, is just one of many possible
-ways the dynamical midplane can be defined.
+% We define the dynamical midplane based on the principle that perfectly
+% circular, planar orbits will trace the midplane. Once the circular, planar
+% orbits have been identified, the procedure for finding the dynamical midplane
+% is relatively simple. From the measurement of each star's orbit, the midplane
+% of the galaxy can be computed at $z=0$ easily. Furthermore, we will find that
+% each orbit also gives a measure of the: dynamical center of the galaxy,
+% velocity of the galaxy, and acceleration of the galaxy.
 
-We define the dynamical midplane based on the principle that perfectly
-circular, planar orbits will trace the midplane. Once the circular, planar
-orbits have been identified, the procedure for finding the dynamical midplane
-is relatively simple. From the measurement of each star's orbit, the midplane
-of the galaxy can be computed at $z=0$ easily. Furthermore, we will find that
-each orbit also gives a measure of the: dynamical center of the galaxy,
-velocity of the galaxy, and acceleration of the galaxy.
+% We pause briefly to consider general difficulties in measuring stellar orbits
+% in a cosmological simulation. It may seem reasonable to place the galaxy in an
+% inertial reference frame and then to simply measure the positions of each star
+% particle over time. However, it is not generally the case that the center of
+% mass of the stellar disk experiences a vanishing acceleration. Indeed, in a
+% re-run of the simulations presented here\footnote{The re-run contained a
+% cosmic ray bug fix which is unimportant here, but the re-run also output the
+% acceleration of each particle, which is not the case for the simulations in
+% this work.}, we measure a total acceleration of $\sim 0.4\,\kms/\text{Myr}$
+% for stars with cylindrical radii within $0.5\,\kpc$ of $8.2\,\kpc$ and
+% vertical heights less than $0.4\,\kpc$. Assuming a constant acceleration, over
+% $22\,\Myr$ --- the time spacing of snapshots considered in this work --- this
+% results in a $\sim90\,\pc$ shift of the disk. Since the offset scales with
+% $t^2$, this presents a significant problem for measuring stellar orbits over
+% longer timescales.
 
-We pause briefly to consider general difficulties in measuring stellar orbits
-in a cosmological simulation. It may seem reasonable to place the galaxy in an
-inertial reference frame and then to simply measure the positions of each star
-particle over time. However, it is not generally the case that the center of
-mass of the stellar disk experiences a vanishing acceleration. Indeed, in a
-re-run of the simulations presented here\footnote{The re-run contained a
-cosmic ray bug fix which is unimportant here, but the re-run also output the
-acceleration of each particle, which is not the case for the simulations in
-this work.}, we measure a total acceleration of $\sim 0.4\,\kms/\text{Myr}$
-for stars with cylindrical radii within $0.5\,\kpc$ of $8.2\,\kpc$ and
-vertical heights less than $0.4\,\kpc$. Assuming a constant acceleration, over
-$22\,\Myr$ --- the time spacing of snapshots considered in this work --- this
-results in a $\sim90\,\pc$ shift of the disk. Since the offset scales with
-$t^2$, this presents a significant problem for measuring stellar orbits over
-longer timescales.
+% Another option is to recenter and reorient the galaxy at each snapshot.
+% However, the centering and orientation procedures are not without
+% stochasticity themselves. This stochasticity can easily dominate the magnitude
+% of the orbit. For instance, a shift in the direction of the $z$-axis by a mere
+% $0.7\degree$ results in a shift in the midplane of $100\,\pc$ at a radius of
+% $8.2\,\kpc$. We attempted this procedure in various ways (i.e. exploring
+% different centering and orientation procedures), but were not able to cleanly
+% measure the orbits of disk stars.
 
-Another option is to recenter and reorient the galaxy at each snapshot.
-However, the centering and orientation procedures are not without
-stochasticity themselves. This stochasticity can easily dominate the magnitude
-of the orbit. For instance, a shift in the direction of the $z$-axis by a mere
-$0.7\degree$ results in a shift in the midplane of $100\,\pc$ at a radius of
-$8.2\,\kpc$. We attempted this procedure in various ways (i.e. exploring
-different centering and orientation procedures), but were not able to cleanly
-measure the orbits of disk stars.
+% Here we choose to simplify the problem by considering only perfectly circular,
+% planar orbits. Since these orbits have no phase-dependent structure, we can
+% work on shorter timescales, i.e. for orbits with significant radial or
+% vertical action a large fraction of their orbit would need to be sampled in
+% order to measure the orbit accurately. Because we know the analytic form of
+% these orbits, we can forward model the trajectory of each star particle in the
+% cosmological simulation. Working in comoving coordinates, we can write down
+% the trajectory of a star particle as
+% \beq\label{eq:helix}
+% \bm{r}(t) = R(\theta, \phi, \psi) \left[ (A\cos{\omega t}, B\sin{\omega t}, C
+% t) + \bm{x_0} \right]\text{,}
+% \eeq
+% where $R(\theta, \phi, \psi)$ is an Euler angle transformation, $A$, $B$, $C$,
+% and $\omega$ are arbitrary constants, and $\bm{x_0}$ is an arbitrary 3-vector.
+% This equation is a helix with an arbitrary constant and rotation. It describes
+% the
 
-Here we choose to simplify the problem by considering only perfectly circular,
-planar orbits. Since these orbits have no phase-dependent structure, we can
-work on shorter timescales, i.e. for orbits with significant radial or
-vertical action a large fraction of their orbit would need to be sampled in
-order to measure the orbit accurately. Because we know the analytic form of
-these orbits, we can forward model the trajectory of each star particle in the
-cosmological simulation. Working in comoving coordinates, we can write down
-the trajectory of a star particle as
-\beq\label{eq:helix}
-\bm{r}(t) = R(\theta, \phi, \psi) \left[ (A\cos{\omega t}, B\sin{\omega t}, C
-t) + \bm{x_0} \right]\text{,}
-\eeq
-where $R(\theta, \phi, \psi)$ is an Euler angle transformation, $A$, $B$, $C$,
-and $\omega$ are arbitrary constants, and $\bm{x_0}$ is an arbitrary 3-vector.
-This equation is a helix with an arbitrary constant and rotation. It describes
-the
+% We minimize the summed squared difference between Equation~\ref{eq:helix} and
+% the true trajectory of each star with $R$ within $1\,\kpc$ of $R_{\odot} =
+% 8.2\,\kpc$ in each simulation. We consider minimum rms error (i.e. the typical
+% error in the Equation~\ref{eq:helix} model in describing the true trajectory).
+% This rms error characterizes how well the helix model we consider, which would
+% be exactly correct if the overall motion of the galaxy is well-described by
+% constant speed motion and the orbit of a particular store is exactly circular
+% and planar.
 
-We minimize the summed squared difference between Equation~\ref{eq:helix} and
-the true trajectory of each star with $R$ within $1\,\kpc$ of $R_{\odot} =
-8.2\,\kpc$ in each simulation. We consider minimum rms error (i.e. the typical
-error in the Equation~\ref{eq:helix} model in describing the true trajectory).
-This rms error characterizes how well the helix model we consider, which would
-be exactly correct if the overall motion of the galaxy is well-described by
-constant speed motion and the orbit of a particular store is exactly circular
-and planar.
+% We plot a histogram of the rms error for each galaxy in
+% Figure~\ref{fig:something}. As we estimated before, the total effect of the
+% galaxy's acceleration is roughly $90\,\pc$ (\Gus{Check for m12f, m12m}). We
+% find that this is small compared to the typical error, even for the stars
+% whose trajectories are best modeled by Equation~\ref{eq:helix}.
 
-We plot a histogram of the rms error for each galaxy in
-Figure~\ref{fig:something}. As we estimated before, the total effect of the
-galaxy's acceleration is roughly $90\,\pc$ (\Gus{Check for m12f, m12m}). We
-find that this is small compared to the typical error, even for the stars
-whose trajectories are best modeled by Equation~\ref{eq:helix}.
+% There are many reasons for the failure of this model. First, there could be no
+% stars on circular orbits. This seems unlikely considering that typical
+% distribution functions peak on perfectly circular, planar orbits
+% \citep[e.g.][]{2013MNRAS.434..652T}. Second, the trajectory of the galaxy may
+% not be well-described by constant-speed motion. This also seems unlikely,
+% considering that the bulk acceleration of the stellar disk only results in a
+% $\sim90\,\pc$ (\Gus{m12f, m12m}) deviation from constant-speed motion over the
+% $22\,\Myr$ time we considered.
 
-There are many reasons for the failure of this model. First, there could be no
-stars on circular orbits. This seems unlikely considering that typical
-distribution functions peak on perfectly circular, planar orbits
-\citep[e.g.][]{2013MNRAS.434..652T}. Second, the trajectory of the galaxy may
-not be well-described by constant-speed motion. This also seems unlikely,
-considering that the bulk acceleration of the stellar disk only results in a
-$\sim90\,\pc$ (\Gus{m12f, m12m}) deviation from constant-speed motion over the
-$22\,\Myr$ time we considered.
+% Furthermore, in Figure~\ref{fig:something} we plot the center of mass of the
+% galaxy (in comoving coordinates) for the $22\,\Myr$ timeframe described. The
+% center of mass at each snapshot is computed using the iterative shrinking
+% spheres method described in Section~\ref{ssec:cosmozoom}. The rms error on the
+% constant-speed motion is $\sim\text{something}$, which we interpret as
+% \Gus{something}.
 
-Furthermore, in Figure~\ref{fig:something} we plot the center of mass of the
-galaxy (in comoving coordinates) for the $22\,\Myr$ timeframe described. The
-center of mass at each snapshot is computed using the iterative shrinking
-spheres method described in Section~\ref{ssec:cosmozoom}. The rms error on the
-constant-speed motion is $\sim\text{something}$, which we interpret as
-\Gus{something}.
-
-One potential explanation is that {\em no star can remain on a circular,
-planar orbit}. The order unity density variations may be strong enough such
-that each star's orbit is perturbed. If there are truly stars in the
-simulation on perfectly circular, planar orbits, then the magnitude of their
-acceleration over the last $22\,\Myr$ must be constant. Furthermore, their
-trajectory in acceleration space must be well-described by a rotation. In the re-runs, 
-
-\section{Coordinate System Gone Wrong} \label{sec:ref_frame}
-We show and quantify the time evolution of measured actions that comes about
-from inaccuracies in the galactocentric coordinate system.
-
-\subsection{Cartoon} \label{ssec:cartoon}
-We begin with a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate
-determination of The solid gray line indicates a hypothetical ``true'' orbit.
-The y-axis corresponds to the vertical height of the orbit and the x-axis to
-either time or orbital phase. The dashed gray line is an incorrect midplane
-which an observer uses to compute orbits.
-
-Now suppose this observer makes a measurement of the true orbit at the orange
-point or the red point. Then the orange and red lines correspond to the orbits
-that the observer would compute for each point. In action space, this would
-correspond to a different value of $J_z$ for the orange and red points. In
-this way, assuming the wrong coordinate system induces time dependence in the
-actions {\em computed by an observer}.
-
-\begin{figure*}
-\plotone{fig/cartoon.pdf}
-\caption{Caption.}
-\label{fig:cartoon}
-\end{figure*}
-
-\subsection{Quantification} \label{ssec:quant}
-We now turn to classical orbital integration in a commonly assumed Milky Way
-potential to quantify the time variation of computed actions for different
-coordinate system errors.
-
-We use the code \texttt{gala} v0.3 to perform orbit integrations and
-conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
-which uses an action estimator technique presented by
-\citet{2014MNRAS.441.3284S}. We use the default \texttt{MWPotential} as our
-potential, which is based on the Milky Way potential available in
-\texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
-Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
-\citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
-is fit to empirically match some observations. We use the Dormand-Prince
-8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
-$1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for
-a Sun-like star.
-
-First, we illustrate the time-dependence of one possible inaccurate reference
-frame. We begin by taking an orbit with initial position $(8, 0, 0)\,\kpc$ and
-initial velocity $(0, -190, 50)\,\kms$ --- this corresponds to an orbit with
-actions $(J_r, L_z, J_z) = (32.5, -1520, 23.0)\,\actunit$. The orbit is
-plotted in \Gus{Appendix x}. We then suppose that an observer makes
-observations of this orbit in a coordinate system that is incorrect in radius by
-$200\,\pc$ and height by $100\,\pc$ --- we subtract the vector $(200, 0,
-100)\,\pc$ from each position in the orbit. This corresponds to an observer
-physically located at the position $(8, 0, 0)\,\kpc$ but erroneously thinking
-they are located at $(8.2, 0, 0.1)\,\kpc$.
-
-Using the observations of the orbit that this erroneous observer makes every
-$\Myr$, we perform the same orbit integration procedure as before to compute
-the actions our observer would make in the incorrect coordinate system over the
-duration of the orbit. The erroneous computed actions are shown for the first
-$\Gyr$ of the orbit in Figure~\ref{fig:one_orbit_wrong_ref}. Occasionally the
-numerical scheme fails and very large actions are reported by \texttt{gala}
---- we perform a $5\sigma$ clip on each action to exclude such orbits, but
-this only excludes a total of $5$ orbits out of the $1000$ considered for
-Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
-vast majority of orbits are computed properly.
-
-Figure~\ref{fig:one_orbit_wrong_ref} shows that the erroneous observer would
-infer significant time evolution in their computed actions. The
-95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $8.7$,
-$47.1$, and $19.3\,\actunit$ for $J_r$, $L_z$, and $J_z$, respectively. These
-are fractional errors of $26.5\%$, $3.1\%$, and $81.4\%$, respectively.
-
-\begin{figure*}
-\plotone{fig/one_orbit.pdf}
-\caption{Caption.}
-\label{fig:one_orbit_wrong_ref}
-\end{figure*}
-
-We now repeat the procedure but for 
+% One potential explanation is that {\em no star can remain on a circular,
+% planar orbit}. The order unity density variations may be strong enough such
+% that each star's orbit is perturbed. If there are truly stars in the
+% simulation on perfectly circular, planar orbits, then the magnitude of their
+% acceleration over the last $22\,\Myr$ must be constant. Furthermore, their
+% trajectory in acceleration space must be well-described by a rotation. In the re-runs, 
 
 % \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
 % An analytic, axisymmetric potential with a known coordinate system is a far

@@ -125,26 +125,36 @@ def plot_wrong_act(t, act, rel_error=False):
 
     fig.tight_layout()
 
-init_pos = [8, 0, 0] * u.kpc
-init_vel = [0, -190, 50] * u.km/u.s
-offset = [100, 0, 200] * u.pc
 
-sys.exit(0)
+def run_one_orbit(z=False, R=False):
+    init_pos = [8, 0, 0] * u.kpc
+    init_vel = [0, -190, 30] * u.km/u.s
+    if z:
+        offset = [0, 0, 100] * u.pc
+    elif R:
+        offset = [100, 0, 0] * u.pc
+    else:
+        return None
 
-t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
-plot_wrong_act(t, act)
-plt.savefig('one_orbit.pdf')
-plt.close()
+    t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
+    plot_wrong_act(t, act)
+    if z:
+        out = 'one_orbit_z.pdf'
+    elif R:
+        out = 'one_orbit_R.pdf'
+    plt.savefig(out)
+    plt.close()
 
-perc = np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
-frac = perc/np.median(act, axis=0)
-print('95th minus 5th percentiles:', perc)
-print('fractional error:', frac)
+    perc = np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
+    frac = perc/np.median(act, axis=0)
+    print('95th minus 5th percentiles:', perc)
+    print('fractional error:', frac)
 
-offset = [0, 0, 0] * u.pc
-t_n, act_n, orbit_n = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
-plot_wrong_act(t_n, act_n, rel_error=True)
-plt.savefig('one_orbit_numerical_check.pdf')
+def run_numerical_orbit():
+    offset = [0, 0, 0] * u.pc
+    t_n, act_n, orbit_n = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
+    plot_wrong_act(t_n, act_n, rel_error=True)
+    plt.savefig('one_orbit_numerical_check.pdf')
 
 def z_off(z):
     this_offset = [0, 0, z] * u.pc
