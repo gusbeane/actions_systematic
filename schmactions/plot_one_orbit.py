@@ -155,14 +155,27 @@ def run_numerical_orbit():
     t_n, act_n, orbit_n = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
     plot_wrong_act(t_n, act_n, rel_error=True)
     plt.savefig('one_orbit_numerical_check.pdf')
+    plt.close()
 
-def z_off(z):
-    this_offset = [0, 0, z] * u.pc
-    print('my offset is!:', z)
+def z_off(num, z=False, R=False):
+    if z:
+        this_offset = [0, 0, num] * u.pc
+    elif R:
+        this_offset = [num, 0, 0] * u.pc
+    else:
+        return None
     t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, this_offset, cadence=10, wrong_max=wrong_max)
     return np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
 
-zofflist = np.linspace(0, 500, 50) # u.pc
-#perc_list = np.array([z_off(z) for z in tqdm(zofflist)])
-perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(z) for z in tqdm(zofflist))
+def run_offlist(z=False, R=False)
+    offlist = np.linspace(0, 500, 50) # u.pc
+    perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(num, z, R) for num in tqdm(offlist))
+    
+
+if __name__ == '__main__':
+    #run_one_orbit(z=True)
+    #run_one_orbit(R=True)
+    #run_numerical_orbit()
+    run_offlist(z=True)
+    #run_offlist(R=True)
 
