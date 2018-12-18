@@ -85,9 +85,12 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     return time, np.array(out_action), orbit
 
 def init_fig():
-    fig, ax = plt.subplots(1, 3, figsize=(7, 2.5))
-    for x in ax:
-        x.set_xlabel(r'$\text{offset}\,[\,\text{pc}\,]$')
+    fig, ax = plt.subplots(2, 3, figsize=(7, 5))
+    for x in ax[0]:
+        x.set_xlabel(r'$z\,\text{offset}\,[\,\text{pc}\,]$')
+        x.set_xlim(0, max_offset)
+    for x in ax[1]:
+        x.set_xlabel(r'$R\,\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)
 
     for x in ax[:,0]:
@@ -105,7 +108,7 @@ def init_fig():
 def save_fig(fig, ax, out, true_act=False):
     fig.tight_layout()
     if true_act:
-        for x in ax:
+        for x in ax[0]:
             x.legend(frameon=False)
     fig.savefig(out)
 
