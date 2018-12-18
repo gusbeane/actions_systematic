@@ -29,7 +29,8 @@ dt = 1 * u.Myr
 t1 = 0.0 * u.Gyr
 t2 = 5.0 * u.Gyr
 
-ncpu = 8
+#ncpu = 8
+ncpu = 4
 
 wrong_max = 1000 # times dt, so 1 Gyr
 
@@ -66,7 +67,7 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     #out_action = Parallel(n_jobs=ncpu) (delayed(loop)(this_q) for this_q in tqdm(orbit[:wrong_max][::cadence]))
     return time, np.array(out_action), orbit
 
-def plot_wrong_act(t, act, rel_error=False):
+def plot_wrong_act(t, act, rel_error=False, many_orbits=False, x_label=None):
     fig, ax = plt.subplots(1, 3, figsize=(7, 2.5))
     
     # perform a 5 sigma clip to remove numerical artifacts
@@ -98,7 +99,7 @@ def plot_wrong_act(t, act, rel_error=False):
     ax[1].plot(t, y2, c=tb_c[0])
     ax[2].plot(t, y3, c=tb_c[0])
 
-    if not rel_error:
+    if not rel_error and not many_orbits:
         ax[0].plot(t, Jrmed, c=tb_c[0], ls='dashed')
         ax[1].plot(t, Lzmed, c=tb_c[0], ls='dashed')
         ax[2].plot(t, Jzmed, c=tb_c[0], ls='dashed')
@@ -109,7 +110,10 @@ def plot_wrong_act(t, act, rel_error=False):
     
     y_formatter = mpl.ticker.ScalarFormatter(useOffset=True)
     for x in ax:
-        x.set_xlabel(r'$t\,[\,\text{Myr}\,]$')
+        if x_label is None:
+            x.set_xlabel(r'$t\,[\,\text{Myr}\,]$')
+        else:
+            x.set_xlabel(x_label)
         if rel_error:
             #x.yaxis.set_major_formatter(y_formatter)
             x.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
@@ -117,42 +121,78 @@ def plot_wrong_act(t, act, rel_error=False):
         ax[0].set_ylabel(r'$J_r\,\text{error}$')
         ax[1].set_ylabel(r'$L_z\,\text{error}$')
         ax[2].set_ylabel(r'$J_z\,\text{error}$')
-    else:
+    elif not many_orbits:
         ax[0].set_ylabel(r'$J_r\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
         ax[1].set_ylabel(r'$L_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
         ax[2].set_ylabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-
-
+    else:
+        ax[0].set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        ax[1].set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        
     fig.tight_layout()
 
-init_pos = [8, 0, 0] * u.kpc
-init_vel = [0, -190, 50] * u.km/u.s
-offset = [100, 0, 200] * u.pc
 
-sys.exit(0)
+def run_one_orbit(z=False, R=False):
+    init_pos = [8, 0, 0] * u.kpc
+    init_vel = [0, -190, 30] * u.km/u.s
+    if z:
+        offset = [0, 0, 100] * u.pc
+    elif R:
+        offset = [100, 0, 0] * u.pc
+    else:
+        return None
 
-t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
-plot_wrong_act(t, act)
-plt.savefig('one_orbit.pdf')
-plt.close()
+    t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
+    plot_wrong_act(t, act)
+    if z:
+        out = 'one_orbit_z.pdf'
+    elif R:
+        out = 'one_orbit_R.pdf'
+    plt.savefig(out)
+    plt.close()
 
-perc = np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
-frac = perc/np.median(act, axis=0)
-print('95th minus 5th percentiles:', perc)
-print('fractional error:', frac)
+    perc = np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
+    frac = perc/np.median(act, axis=0)
+    print('95th minus 5th percentiles:', perc)
+    print('fractional error:', frac)
 
-offset = [0, 0, 0] * u.pc
-t_n, act_n, orbit_n = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
-plot_wrong_act(t_n, act_n, rel_error=True)
-plt.savefig('one_orbit_numerical_check.pdf')
+def run_numerical_orbit():
+    offset = [0, 0, 0] * u.pc
+    t_n, act_n, orbit_n = compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=1, wrong_max=wrong_max)
+    plot_wrong_act(t_n, act_n, rel_error=True)
+    plt.savefig('one_orbit_numerical_check.pdf')
+    plt.close()
 
-def z_off(z):
-    this_offset = [0, 0, z] * u.pc
-    print('my offset is!:', z)
+def z_off(num, z=False, R=False):
+    init_pos = [8, 0, 0] * u.kpc
+    init_vel = [0, -190, 30] * u.km/u.s
+    if z:
+        this_offset = [0, 0, num] * u.pc
+    elif R:
+        this_offset = [num, 0, 0] * u.pc
+    else:
+        return None
     t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, this_offset, cadence=10, wrong_max=wrong_max)
     return np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
 
-zofflist = np.linspace(0, 500, 50) # u.pc
-#perc_list = np.array([z_off(z) for z in tqdm(zofflist)])
-perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(z) for z in tqdm(zofflist))
+def run_offlist(z=False, R=False):
+    if z:
+        xlabel = r'$z\,\text{offset}\,[\,\text{pc}\,]$'
+    elif R:
+        xlabel = r'$R\,\text{offset}\,[\,\text{pc}\,]$'
+    else:
+        return None
+
+    offlist = np.linspace(0, 500, 50) # u.pc
+    perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(num, z, R) for num in tqdm(offlist))
+    perc_list = np.array(perc_list)
+    plot_wrong_act(offlist, perc_list, rel_error=False, many_orbits=True, x_label=xlabel)
+
+if __name__ == '__main__':
+    #run_one_orbit(z=True)
+    #run_one_orbit(R=True)
+    #run_numerical_orbit()
+    run_offlist(z=True)
+    #run_offlist(R=True)
 
