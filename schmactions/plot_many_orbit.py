@@ -110,9 +110,19 @@ def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
     y2 = perc[:,1]
     y3 = perc[:,2]
     
-    ax[0].plot(off, y1, c=c)
-    ax[1].plot(off, y2, c=c)
-    ax[2].plot(off, y3, c=c)
+    if true_act is not None:
+        label0 = "{0:0.1f}".format(true_act[0])
+        label1 = "{0:0.1f}".format(true_act[1])
+        label2 = "{0:0.1f}".format(true_act[2])
+    else:
+        label0 = None
+        label1 = None
+        label2 = None
+
+    ax[0].plot(off, y1, c=c, label=label0)
+    ax[1].plot(off, y2, c=c, label=label1)
+    ax[2].plot(off, y3, c=c, label=label2)
+
 
     ax[0].set_xlim(0, max_offset)
     ax[1].set_xlim(0, max_offset)
