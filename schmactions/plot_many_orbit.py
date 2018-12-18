@@ -99,9 +99,9 @@ def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
     _, pJr_low, pJr_high = sigmaclip(perc[:,0], low=5, high=5)
     _, pLz_low, pLz_high = sigmaclip(perc[:,1], low=5, high=5)
     _, pJz_low, pJz_high = sigmaclip(perc[:,2], low=5, high=5)
-    pJrbool = np.logical_and(act[:,0] > pJr_low, act[:,0] < pJr_high)
-    pLzbool = np.logical_and(act[:,1] > pLz_low, act[:,1] < pLz_high)
-    pJzbool = np.logical_and(act[:,2] > pJz_low, act[:,2] < pJz_high)
+    pJrbool = np.logical_and(perc[:,0] > pJr_low, perc[:,0] < pJr_high)
+    pLzbool = np.logical_and(perc[:,1] > pLz_low, perc[:,1] < pLz_high)
+    pJzbool = np.logical_and(perc[:,2] > pJz_low, perc[:,2] < pJz_high)
     keys = np.where(np.logical_and(np.logical_and(pJrbool, pLzbool), pJzbool))[0]
 
     off = off[keys]
