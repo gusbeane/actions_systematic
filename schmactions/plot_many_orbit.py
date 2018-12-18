@@ -69,9 +69,12 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     for this_q in tqdm(off_q[:wrong_max][::cadence]):
         with warnings.catch_warnings(record=True):
             warnings.simplefilter("ignore")
-            this_orbit = mw.integrate_orbit(this_q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
-            res = gd.actionangle.find_actions(this_orbit, N_max=8)
-            ans = res['actions'].to(u.kpc * u.km / u.s).value
+            try:
+                this_orbit = mw.integrate_orbit(this_q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
+                res = gd.actionangle.find_actions(this_orbit, N_max=8)
+                ans = res['actions'].to(u.kpc * u.km / u.s).value
+            except:
+                ans = [np.nan, np.nan, np.nan]
             out_action.append(ans)
     #out_action = Parallel(n_jobs=ncpu) (delayed(loop)(this_q) for this_q in tqdm(orbit[:wrong_max][::cadence]))
     return time, np.array(out_action), orbit
