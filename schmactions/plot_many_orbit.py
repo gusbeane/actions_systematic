@@ -80,7 +80,8 @@ def init_fig():
     fig, ax = plt.subplots(1, 3, figsize=(7, 2.5))
     for x in ax:
         x.set_xlabel(r'$\text{offset}\,[\,\text{pc}\,]$')
-    
+        x.set_xlim(0, max_offset)
+
     ax[0].set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
     ax[1].set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
     ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
@@ -124,10 +125,6 @@ def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
     ax[2].plot(off, y3, c=c, label=label2)
 
 
-    ax[0].set_xlim(0, max_offset)
-    ax[1].set_xlim(0, max_offset)
-    ax[2].set_xlim(0, max_offset)
-    
     return fig, ax
 
 def z_off(num, z=False, R=False, init_pos=None, init_vel=None):
