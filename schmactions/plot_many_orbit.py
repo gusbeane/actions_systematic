@@ -37,6 +37,10 @@ wrong_max = 1000 # times dt, so 1 Gyr
 max_offset = 500
 d_offset = 50
 
+JrIQR_max = 50
+LzIQR_max = 250
+JzIQR_max = 50
+
 mw = gp.MilkyWayPotential()
 
 def compute_actions(pos=None, vel=None, phase=None):
@@ -86,9 +90,15 @@ def init_fig():
         x.set_xlabel(r'$\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)
 
-    ax[0].set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-    ax[1].set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-    ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    for x in ax[:,0]:
+        x.set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylim(0, JrIQR_max)
+    for x in ax[:,1]:
+        x.set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylim(0, LzIQR_max)
+    for x in ax[:,2]:
+        x.set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylim(0, JzIQR_max)
 
     return fig, ax
 
