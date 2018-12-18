@@ -203,9 +203,15 @@ if __name__ == '__main__':
         pickle.dump(init_act_list, open('init_act_list.p', 'wb'))
 
     fig, ax = init_fig()
-    for r, act, c in zip(result, init_act_list, tb_c):
-        offlist = r[0]
-        perc_list = r[1]
-        fig, ax = plot_wrong_act(fig, ax, offlist, perc_list, true_act = act)
+    for r_z, r_R, act, c in zip(result_z, result_R, init_act_list, tb_c):
+        offlist = r_z[0]
+        perc_list = r_z[1]
+        fig, ax[0] = plot_wrong_act(fig, ax[0], offlist, perc_list, c=c, true_act = act)
+        
+        offlist = r_R[0]
+        perc_list = r_R[1]
+        fig, ax[1] = plot_wrong_act(fig, ax[1], offlist, perc_list, c=c, true_act = act)
+
+    save_fig(fig, ax, 'test.pdf', true_act=True)
 
 
