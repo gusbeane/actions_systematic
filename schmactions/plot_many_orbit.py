@@ -86,8 +86,12 @@ def init_fig():
     ax[1].set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
     ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
-def save_fig(fig, ax, out):
+    return fig, ax
+
+def save_fig(fig, ax, out, true_act=False):
     fig.tight_layout()
+    if true_act:
+        fig.legend(frameon=False)
     fig.savefig(out)
 
 def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
