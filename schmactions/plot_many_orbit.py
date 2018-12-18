@@ -12,6 +12,7 @@ from scipy.stats import sigmaclip
 import warnings
 
 from tqdm import tqdm
+import sys
 
 from joblib import Parallel, delayed
 import multiprocessing
@@ -29,8 +30,7 @@ dt = 1 * u.Myr
 t1 = 0.0 * u.Gyr
 t2 = 5.0 * u.Gyr
 
-ncpu = 8
-#ncpu = 40
+ncpu = int(sys.argv[1])
 
 wrong_max = 1000 # times dt, so 1 Gyr
 max_offset = 500
