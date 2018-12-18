@@ -150,7 +150,7 @@ def run_offlist(z=False, R=False, init_pos=None, init_vel=None):
         return None
 
     offlist = np.linspace(0, max_offset, d_offset) # u.pc
-    perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(num, z, R) for num in tqdm(offlist))
+    perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(num, z, R, init_pos, init_vel) for num in tqdm(offlist))
     perc_list = np.array(perc_list)
     return offlist, perc_list
 
