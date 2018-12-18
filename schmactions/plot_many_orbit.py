@@ -175,3 +175,10 @@ if __name__ == '__main__':
 
     result = [run_offlist(z=True, init_pos=init_pos, init_vel=init_vel) for init_vel in init_vel_list]
 
+    fig, ax = init_fig()
+    for r, act, c in zip(result, init_act_list, tb_c):
+        offlist = r[0]
+        perc_list = r[1]
+        fig, ax = plot_wrong_act(fig, ax, offlist, perc_list, true_act = act)
+
+
