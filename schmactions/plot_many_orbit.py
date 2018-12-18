@@ -76,9 +76,20 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     #out_action = Parallel(n_jobs=ncpu) (delayed(loop)(this_q) for this_q in tqdm(orbit[:wrong_max][::cadence]))
     return time, np.array(out_action), orbit
 
-def plot_wrong_act(t, act, rel_error=False, many_orbits=False, x_label=None):
+def init_fig():
     fig, ax = plt.subplots(1, 3, figsize=(7, 2.5))
+    for x in ax:
+        x.set_xlabel(r'$\text{offset}\,[\,\text{pc}\,]$')
     
+    ax[0].set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    ax[1].set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
+def save_fig(fig, ax, out):
+    fig.tight_layout()
+    fig.savefig(out)
+
+def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
     # perform a 5 sigma clip to remove numerical artifacts
     _, Jr_low, Jr_high = sigmaclip(act[:,0], low=5, high=5)
     _, Lz_low, Lz_high = sigmaclip(act[:,1], low=5, high=5)
