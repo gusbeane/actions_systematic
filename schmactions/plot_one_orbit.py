@@ -30,7 +30,7 @@ t1 = 0.0 * u.Gyr
 t2 = 5.0 * u.Gyr
 
 #ncpu = 8
-ncpu = 4
+ncpu = 40
 
 wrong_max = 1000 # times dt, so 1 Gyr
 
@@ -131,6 +131,7 @@ def plot_wrong_act(t, act, rel_error=False, many_orbits=False, x_label=None):
         ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
         
     fig.tight_layout()
+    return fig, ax
 
 
 def run_one_orbit(z=False, R=False):
@@ -187,7 +188,12 @@ def run_offlist(z=False, R=False):
     offlist = np.linspace(0, 500, 50) # u.pc
     perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(num, z, R) for num in tqdm(offlist))
     perc_list = np.array(perc_list)
-    plot_wrong_act(offlist, perc_list, rel_error=False, many_orbits=True, x_label=xlabel)
+    fig, ax = plot_wrong_act(offlist, perc_list, rel_error=False, many_orbits=True, x_label=xlabel)
+    if z:
+        fig.savefig('offset_z.pdf')
+    elif R:
+        fig.savefig('offset_R.pdf')
+
 
 if __name__ == '__main__':
     #run_one_orbit(z=True)
