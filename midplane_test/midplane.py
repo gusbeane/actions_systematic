@@ -47,6 +47,7 @@ def main(gal):
             setattr(snap[k], attr, getattr(snap, attr))
     
     star_pos = snap['star'].prop('host.distance.principal')
+    star_vel = snap['star'].prop('host.velocity.principal')
 
     R = 8.2
     theta = np.linspace(0, 2.*np.pi, nspoke)
@@ -72,28 +73,34 @@ def main(gal):
         keys = np.where(np.logical_and(rbool, zbool))[0]
         return keys
 
-    def midplane(pos, init_pos):
+    def midplane(pos, init_pos, init_vel):
         mid_pos = pos.copy()
         for _ in range(10):
             keys = get_keys(mid_pos, init_pos)
             mid_pos[2] = np.median(init_pos[:,2][keys])
-        return mid_pos[2]
+        mid_vel = np.median(init_vel[:,2][keys])
+        return mid_pos[2], mid_vel
     
     def get_midplane_with_error(pos):
         init_keys = get_init_keys(pos, star_pos)
         init_pos = star_pos[init_keys]
-        midplane_central = midplane(pos, init_pos)
+        init_vel = star_vel[init_keys]
+        midplane_central, midplane_vel = midplane(pos, init_pos, init_vel)
         
         keys_to_choose = list(range(len(init_pos)))
         rand_choice = np.random.choice(keys_to_choose, len(init_pos)*nbootstrap)
 
         rand_choice = np.reshape(rand_choice, (nbootstrap, len(init_pos)))
         init_pos_rand = init_pos[rand_choice]
-        med_rand = np.array([ midplane(pos, ipos) for ipos in init_pos_rand ])
-        dist = np.subtract(med_rand, midplane_central)
-        up = np.percentile(dist, 95)
-        low = np.percentile(dist, 5)
-        return midplane_central, midplane_central - up, midplane_central - low
+        init_vel_rand = init_vel[rand_choice]
+        med_rand = np.array([ midplane(pos, ipos, ivel) for ipos,ivel in zip(init_pos_rand,init_vel_rand) ])
+        dist_pos = np.subtract(med_rand[:,0], midplane_central)
+        dist_vel = np.subtract(med_rand[:,1], midplane_vel)
+        up_pos = np.percentile(dist_pos, 95)
+        low_pos = np.percentile(dist_pos, 5)
+        up_vel = np.percentile(dist_vel, 95)
+        low_vel = np.percentile(dist_vel, 5)
+        return midplane_central, midplane_central - up_pos, midplane_central - low_pos, midplane_vel, midplane_vel - up_vel, midplane_vel - low_vel
 
     # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
     result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
@@ -103,9 +110,17 @@ def main(gal):
     err_low = result[:,1]
     err_high = result[:,2]
 
+    midplane_vel = result[:,3]
+    err_vel_low = result[:,4]
+    err_vel_high = result[:,5]
+
     np.save('midplane_est_'+gal+'.npy', midplane_est)
     np.save('err_low_'+gal+'.npy', err_low)
     np.save('err_high_'+gal+'.npy', err_high)
+    
+    np.save('midplane_vel_'+gal+'.npy', midplane_vel)
+    np.save('err_vel_low_'+gal+'.npy', err_vel_low)
+    np.save('err_vel_high_'+gal+'.npy', err_vel_high)
 
     def chisq(x):
         A = x[0]
