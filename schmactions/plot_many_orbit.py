@@ -29,16 +29,18 @@ dt = 1 * u.Myr
 t1 = 0.0 * u.Gyr
 t2 = 5.0 * u.Gyr
 
-#ncpu = 8
-ncpu = 40
+ncpu = 8
+#ncpu = 40
 
 wrong_max = 1000 # times dt, so 1 Gyr
+max_offset = 500
+d_offset = 50
 
 mw = gp.MilkyWayPotential()
 
 def compute_actions(pos=None, vel=None, phase=None):
     if phase is None:
-        q = gd.PhaseSpacePosition(pos=init_pos, vel=init_vel)
+        q = gd.PhaseSpacePosition(pos=pos, vel=vel)
     else:
         q = phase
     orbit = mw.integrate_orbit(q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
@@ -48,6 +50,9 @@ def compute_actions(pos=None, vel=None, phase=None):
 
 
 def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wrong_max=None):
+    q = gd.PhaseSpacePosition(pos=init_pos, vel=init_vel)
+    orbit = mw.integrate_orbit(q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
+
     pos = np.transpose(orbit.pos.xyz.to_value(u.kpc))
     offset = offset.to_value(u.kpc)
     pos = np.subtract(pos, offset)
@@ -158,7 +163,7 @@ def z_off(num, z=False, R=False, init_pos=None, init_vel=None):
     t, act, orbit = compute_actions_wrong_ref_frame(init_pos, init_vel, this_offset, cadence=10, wrong_max=wrong_max)
     return np.percentile(act, 95, axis=0) - np.percentile(act, 5, axis=0)
 
-def run_offlist(z=False, R=False):
+def run_offlist(z=False, R=False, init_pos=None, init_vel=None):
     if z:
         xlabel = r'$z\,\text{offset}\,[\,\text{pc}\,]$'
     elif R:
@@ -166,17 +171,18 @@ def run_offlist(z=False, R=False):
     else:
         return None
 
-    offlist = np.linspace(0, 500, 50) # u.pc
+    offlist = np.linspace(0, max_offset, d_offset) # u.pc
     perc_list = Parallel(n_jobs=ncpu) (delayed(z_off)(num, z, R) for num in tqdm(offlist))
     perc_list = np.array(perc_list)
-    fig, ax = plot_wrong_act(offlist, perc_list, rel_error=False, many_orbits=True, x_label=xlabel)
-    if z:
-        fig.savefig('offset_z.pdf')
-    elif R:
-        fig.savefig('offset_R.pdf')
+    return offlist, perc_list
 
 if __name__ == '__main__':
+    init_pos = [8, 0, 0] * u.kpc
+    init_vel_list = [[0, -190, 10] * u.km/u.s,
+                     [0, -190, 30] * u.km/u.s,
+                     [0, -190, 50] * u.km/u.s,
+                     [0, -190, 100] * u.km/u.s]
+    init_act_list = [compute_actions(init_pos, init_vel) for init_vel in init_vel_list]
 
-
-
+    result = [run_offlist(z=True, init_pos=init_pos, init_vel=init_vel) for init_vel in init_vel_list]
 
