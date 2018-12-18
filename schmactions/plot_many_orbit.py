@@ -91,66 +91,33 @@ def save_fig(fig, ax, out):
 
 def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
     # perform a 5 sigma clip to remove numerical artifacts
-    _, Jr_low, Jr_high = sigmaclip(act[:,0], low=5, high=5)
-    _, Lz_low, Lz_high = sigmaclip(act[:,1], low=5, high=5)
-    _, Jz_low, Jz_high = sigmaclip(act[:,2], low=5, high=5)
-    Jrbool = np.logical_and(act[:,0] > Jr_low, act[:,0] < Jr_high)
-    Lzbool = np.logical_and(act[:,1] > Lz_low, act[:,1] < Lz_high)
-    Jzbool = np.logical_and(act[:,2] > Jz_low, act[:,2] < Jz_high)
-    keys = np.where(np.logical_and(np.logical_and(Jrbool, Lzbool), Jzbool))[0]
-    print(len(keys), len(act[:,0]))
+    _, pJr_low, pJr_high = sigmaclip(perc[:,0], low=5, high=5)
+    _, pLz_low, pLz_high = sigmaclip(perc[:,1], low=5, high=5)
+    _, pJz_low, pJz_high = sigmaclip(perc[:,2], low=5, high=5)
+    pJrbool = np.logical_and(act[:,0] > pJr_low, act[:,0] < pJr_high)
+    pLzbool = np.logical_and(act[:,1] > pLz_low, act[:,1] < pLz_high)
+    pJzbool = np.logical_and(act[:,2] > pJz_low, act[:,2] < pJz_high)
+    keys = np.where(np.logical_and(np.logical_and(pJrbool, pLzbool), pJzbool))[0]
 
-    t = t[keys]
-    act = act[keys]
+    off = off[keys]
+    perc = perc[keys]
     
-    Jrmed = np.full(len(act), np.median(act[:,0]))
-    Lzmed = np.full(len(act), np.median(act[:,1]))
-    Jzmed = np.full(len(act), np.median(act[:,2]))
+    pJrmed = np.full(len(perc), np.median(perc[:,0]))
+    pLzmed = np.full(len(perc), np.median(perc[:,1]))
+    pJzmed = np.full(len(perc), np.median(perc[:,2]))
 
-    if rel_error:
-        y1 = (act[:,0] - Jrmed)/act[:,0] 
-        y2 = (act[:,1] - Lzmed)/act[:,1] 
-        y3 = (act[:,2] - Jzmed)/act[:,2] 
-    else:
-        y1 = act[:,0]
-        y2 = act[:,1]
-        y3 = act[:,2]
-    ax[0].plot(t, y1, c=tb_c[0])
-    ax[1].plot(t, y2, c=tb_c[0])
-    ax[2].plot(t, y3, c=tb_c[0])
-
-    if not rel_error and not many_orbits:
-        ax[0].plot(t, Jrmed, c=tb_c[0], ls='dashed')
-        ax[1].plot(t, Lzmed, c=tb_c[0], ls='dashed')
-        ax[2].plot(t, Jzmed, c=tb_c[0], ls='dashed')
-
-    ax[0].set_xlim(0, wrong_max)
-    ax[1].set_xlim(0, wrong_max)
-    ax[2].set_xlim(0, wrong_max)
+    y1 = perc[:,0]
+    y2 = perc[:,1]
+    y3 = perc[:,2]
     
-    y_formatter = mpl.ticker.ScalarFormatter(useOffset=True)
-    for x in ax:
-        if x_label is None:
-            x.set_xlabel(r'$t\,[\,\text{Myr}\,]$')
-        else:
-            x.set_xlabel(x_label)
-        if rel_error:
-            #x.yaxis.set_major_formatter(y_formatter)
-            x.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-    if rel_error:
-        ax[0].set_ylabel(r'$J_r\,\text{error}$')
-        ax[1].set_ylabel(r'$L_z\,\text{error}$')
-        ax[2].set_ylabel(r'$J_z\,\text{error}$')
-    elif not many_orbits:
-        ax[0].set_ylabel(r'$J_r\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-        ax[1].set_ylabel(r'$L_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-        ax[2].set_ylabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-    else:
-        ax[0].set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-        ax[1].set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-        ax[2].set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-        
-    fig.tight_layout()
+    ax[0].plot(off, y1, c=c)
+    ax[1].plot(off, y2, c=c)
+    ax[2].plot(off, y3, c=c)
+
+    ax[0].set_xlim(0, max_offset)
+    ax[1].set_xlim(0, max_offset)
+    ax[2].set_xlim(0, max_offset)
+    
     return fig, ax
 
 def z_off(num, z=False, R=False, init_pos=None, init_vel=None):
