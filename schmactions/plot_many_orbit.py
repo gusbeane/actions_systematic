@@ -95,7 +95,8 @@ def init_fig():
 def save_fig(fig, ax, out, true_act=False):
     fig.tight_layout()
     if true_act:
-        fig.legend(frameon=False)
+        for x in ax:
+            x.legend(frameon=False)
     fig.savefig(out)
 
 def plot_wrong_act(fig, ax, off, perc, c=tb_c[0], true_act=None):
