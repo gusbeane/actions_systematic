@@ -13,6 +13,7 @@ import warnings
 
 from tqdm import tqdm
 import sys
+import pickle
 
 from joblib import Parallel, delayed
 import multiprocessing
@@ -169,14 +170,23 @@ def run_offlist(z=False, R=False, init_pos=None, init_vel=None):
     return offlist, perc_list
 
 if __name__ == '__main__':
-    init_pos = [8, 0, 0] * u.kpc
-    init_vel_list = [[0, -190, 10] * u.km/u.s,
-                     [0, -190, 30] * u.km/u.s,
-                     [0, -190, 50] * u.km/u.s,
-                     [0, -190, 100] * u.km/u.s]
-    init_act_list = [compute_actions(init_pos, init_vel) for init_vel in init_vel_list]
+    try:
+        result_z = pickle.load(open('result_z.p', 'rb'))
+        result_R = pickle.load(open('result_R.p', 'rb'))
+        init_act_list = pickle.load(open('init_act_list.p', 'rb'))
+    except:
+        init_pos = [8, 0, 0] * u.kpc
+        init_vel_list = [[0, -190, 10] * u.km/u.s,
+                         [0, -190, 30] * u.km/u.s,
+                         [0, -190, 50] * u.km/u.s]
+        init_act_list = [compute_actions(init_pos, init_vel) for init_vel in init_vel_list]
 
-    result = [run_offlist(z=True, init_pos=init_pos, init_vel=init_vel) for init_vel in init_vel_list]
+        result_z = [run_offlist(z=True, init_pos=init_pos, init_vel=init_vel) for init_vel in init_vel_list]
+        result_R = [run_offlist(R=True, init_pos=init_pos, init_vel=init_vel) for init_vel in init_vel_list]
+
+        pickle.dump(result_z, open('result_z.p', 'wb'))
+        pickle.dump(result_R, open('result_R.p', 'wb'))
+        pickle.dump(init_act_list, open('init_act_list.p', 'wb'))
 
     fig, ax = init_fig()
     for r, act, c in zip(result, init_act_list, tb_c):
