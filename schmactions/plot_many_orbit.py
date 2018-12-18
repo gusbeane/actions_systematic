@@ -94,7 +94,7 @@ def save_fig(fig, ax, out, true_act=False):
         fig.legend(frameon=False)
     fig.savefig(out)
 
-def plot_wrong_act(fig, ax, off, perc, c=tb_c[0]):
+def plot_wrong_act(fig, ax, off, perc, c=tb_c[0], true_act=None):
     # perform a 5 sigma clip to remove numerical artifacts
     _, pJr_low, pJr_high = sigmaclip(perc[:,0], low=5, high=5)
     _, pLz_low, pLz_high = sigmaclip(perc[:,1], low=5, high=5)
