@@ -22,14 +22,18 @@ ax.plot(x, y, c=tb_c[-1])
 ax.plot(x, y2, c=tb_c[1])
 ax.scatter(3.*np.pi, -1, c=tb_c[1])
 
-ax.plot(x, y3, c=tb_c[2])
-ax.scatter(4.*np.pi, 1, c=tb_c[2])
+ax.plot(x, y3, c=tb_c[4])
+ax.scatter(4.*np.pi, 1, c=tb_c[4])
 
+ax.plot(x, np.full(len(x), 0), c=tb_c[-1])
 ax.plot(x, np.full(len(x), -1.25), c=tb_c[-1], ls='dashed')
 #ax.axis('off')
 
 ax.set_xlabel(r'$\text{orbital angle}$')
 ax.set_ylabel(r'$z$')
+
+ax.set_xticklabels([])
+ax.set_yticklabels([])
 
 fig.tight_layout()
 fig.savefig('cartoon.pdf', bbox_inches='tight', pad_inches=0)
