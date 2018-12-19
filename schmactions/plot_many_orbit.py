@@ -37,9 +37,9 @@ wrong_max = 1000 # times dt, so 1 Gyr
 max_offset = 500
 d_offset = 50
 
-JrIQR_max = 50
-LzIQR_max = 250
-JzIQR_max = 50
+JrIQR_max = 100
+LzIQR_max = 10
+JzIQR_max = 200
 
 mw = gp.MilkyWayPotential()
 
@@ -94,13 +94,13 @@ def init_fig():
         x.set_xlim(0, max_offset)
 
     for x in ax[:,0]:
-        x.set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylabel(r'$\Delta J_r / J_{r,\text{true}}\,[\,\%\,]$')
         x.set_ylim(0, JrIQR_max)
     for x in ax[:,1]:
-        x.set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylabel(r'$\Delta L_z / L_{z,\text{true}}\,[\,\%\,]$')
         x.set_ylim(0, LzIQR_max)
     for x in ax[:,2]:
-        x.set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylabel(r'$\Delta J_z / J_{z,\text{true}}\,[\,\%\,]$')
         x.set_ylim(0, JzIQR_max)
 
     return fig, ax
@@ -129,9 +129,9 @@ def plot_wrong_act(fig, ax, off, perc, c=tb_c[0], true_act=None):
     pLzmed = np.full(len(perc), np.median(perc[:,1]))
     pJzmed = np.full(len(perc), np.median(perc[:,2]))
 
-    y1 = perc[:,0]
-    y2 = perc[:,1]
-    y3 = perc[:,2]
+    y1 = 100 * perc[:,0]/true_act[0]
+    y2 = 100 * perc[:,1]/np.abs(true_act[1])
+    y3 = 100 * perc[:,2]/true_act[2]
     
     if true_act is not None:
         label0 = "{0:0.1f}".format(true_act[0])
