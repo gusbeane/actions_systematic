@@ -215,6 +215,6 @@ if __name__ == '__main__':
         perc_list = r_R[1]
         fig, ax[1] = plot_wrong_act(fig, ax[1], offlist, perc_list, c=c, true_act = act)
 
-    save_fig(fig, ax, 'test.pdf', true_act=True)
+    save_fig(fig, ax, 'many_orbits_schmactions.pdf', true_act=True)
 
 
