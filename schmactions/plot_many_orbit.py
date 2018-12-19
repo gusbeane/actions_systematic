@@ -53,6 +53,11 @@ def compute_actions(pos=None, vel=None, phase=None):
     ans = res['actions'].to(u.kpc * u.km / u.s).value
     return ans
 
+def compute_orbit(pos, vel):
+    q = gd.PhaseSpacePosition(pos=pos, vel=vel)
+    orbit = mw.integrate_orbit(q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
+    return orbit
+
 
 def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wrong_max=None):
     q = gd.PhaseSpacePosition(pos=init_pos, vel=init_vel)
@@ -217,4 +222,10 @@ if __name__ == '__main__':
 
     save_fig(fig, ax, 'many_orbits_schmactions.pdf', true_act=True)
 
+    # examine orbits, I know this is hacky, just want orbits loaded in ipython
+    init_pos = [8, 0, 0] * u.kpc
+    init_vel_list = [[0, -190, 10] * u.km/u.s,
+                    [0, -190, 30] * u.km/u.s,
+                    [0, -190, 50] * u.km/u.s]
 
+    orbit_list = [compute_orbit(init_pos, init_vel) for init_vel in init_vel_list]
