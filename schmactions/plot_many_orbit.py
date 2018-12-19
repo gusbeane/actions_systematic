@@ -110,8 +110,9 @@ def init_fig():
 def save_fig(fig, ax, out, true_act=False):
     fig.tight_layout()
     if true_act:
-        for x in ax[0]:
-            x.legend(frameon=False)
+        ax[0][0].legend(frameon=False, title=r'$J_{r,\text{true}}$')
+        ax[0][1].legend(frameon=False, title=r'$L_{z,\text{true}}$')
+        ax[0][2].legend(frameon=False, title=r'$J_{z,\text{true}}$')
     fig.savefig(out)
 
 def plot_wrong_act(fig, ax, off, perc, c=tb_c[0], true_act=None):
