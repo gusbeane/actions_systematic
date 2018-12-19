@@ -89,9 +89,11 @@ def init_fig():
     for x in ax[0]:
         x.set_xlabel(r'$z\,\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)
+        x.set_xticks(np.arange(0, max_offset, 50), minor=True)
     for x in ax[1]:
         x.set_xlabel(r'$R\,\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)
+        x.set_xticks(np.arange(0, max_offset, 50), minor=True)
 
     for x in ax[:,0]:
         x.set_ylabel(r'$\Delta J_r / J_{r,\text{true}}\,[\,\%\,]$')
