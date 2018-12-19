@@ -252,9 +252,35 @@ and we also consider two more planar orbits with initial vertical velocities
 of $30\,\kms$ (\Gus{orange}) and $10\,\kms$ (\Gus{blue}). For these two new
 orbits, the true actions are $(J_r, L_z, J_z) = (37.9, -1520, 7.0)\,\actunit$
 and $(40.4, -1520, 0.7)\,\actunit$ for the \Gus{orange} and \Gus{blue} orbits,
-respectively. \Gus{Easy way to explain change in $J_r$?}
+respectively. The value of $z_{\text{max}}$ for these orbits are $122\,\pc$
+and $425\,\pc$, respectively (with the blue orbit having $z_{\text{max}}$ of
+$854\,\pc$.) \Gus{Easy way to explain change in $J_r$?}
 
+The top row of Figure~\ref{Fig:many_orbit_wrong_ref} shows the error in each
+action assuming an offset in the midplane. In the {\em bottom row} we also
+consider offsets in the Galactocentric radius $R$. The {\em left}, {\em
+middle}, and {\em right} columns show the 95\uth minus 5\uth percentile of the
+measured action over the course of the incorrect orbit divided by the true
+action value as a percentage. 
 
+In the {\em upper middle} panel, there is essentially no error in the
+determination of $L_z$. This is expected since, in principle, $L_z$ only
+depends on the $x$- and $y$-components of the position and velocity of the
+stars\footnote{Though this is not how we compute $L_z$ in practice.}, and is
+thus unaffected by offsets in $z$.
+
+The {\em upper right} panel shows that the fractional error in $J_z$ is more
+exaggerated for more planar orbits. For the nearly planar (blue) orbit,
+deviations that are $\sim30\,\pc$ already give $100\%$ deviations in the
+actions. The required offset for $100\%$ deviation is $\sim120$ and
+$\sim225\,\pc$ for the orange and red orbits, respectively. \Gus{Make these
+numbers exact.}
+
+For completeness, we also consider the effect of offsets in the Galactocentric
+radius $R$ in the {\em bottom panels}. The error is largest for $J_r$, with
+some deviations resulting in $L_z$ and relatively small deviations in $J_z$.
+In the {\em bottom left} panel the orange and blue lines overlap, and in the
+{\em bottom middle} and {\em bottom right} panels all three lines overlap.
 
 \begin{figure*}
 \plotone{fig/many_orbits_schmactions.pdf}
