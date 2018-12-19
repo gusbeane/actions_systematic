@@ -38,7 +38,7 @@ max_offset = 500
 d_offset = 50
 
 JrIQR_max = 100
-LzIQR_max = 10
+LzIQR_max = 100
 JzIQR_max = 200
 
 mw = gp.MilkyWayPotential()
