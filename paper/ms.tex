@@ -21,16 +21,16 @@
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z}
-\newcommand{\uth}{\textsuperscript{th}} % why is this so long in the first place??
+\newcommand{\uth}{\textsuperscript{th}}
 
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}
 
 % affiliations
-\newcommand{\cca}{Center for Computational Astrophysics, Flatiron Institute, 162 5th
-Ave., New York, NY 10010, USA}
-\newcommand{\penn}{Department of Physics \& Astronomy, University of Pennsylvania, 209
-South 33rd St., Philadelphia, PA 19104, USA}
+\newcommand{\cca}{Center for Computational Astrophysics, Flatiron Institute,
+162 5th Ave., New York, NY 10010, USA}
+\newcommand{\penn}{Department of Physics \& Astronomy, University of
+Pennsylvania, 209 South 33rd St., Philadelphia, PA 19104, USA}
 \newcommand{\amnh}{Department of Astrophysics, American Museum of Natural
 History, Central Park West at 79th St., New York, NY 10024, USA}
 \newcommand{\columbia}{Department of Astronomy, Columbia University, 550 W
@@ -98,7 +98,7 @@ major merger \citep{2018Natur.563...85H}, a phase-space spiral (\Gus{cites})
 indicating local substructure infall (\Gus{cites}), a gap indicative of a dark
 matter subtructure in GD1 \citep{2018arXiv181103631B}, and \Gus{others}.
 
-Underlying all of these discoveries is the assumption of a galactocentric
+Underlying all of these discoveries is the assumption of a Galactocentric
 coordinate system \citep{2008gady.book.....B}. In angular
 coordinates, the center of the galaxy is taken to be the location of
 Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From stellar
@@ -112,14 +112,16 @@ $\sim 25\,\pc$ \citep{2001ApJ...553..184C}, with more recent measurements from
 
 These measurements of the galactocentric coordinate system rely on the
 assumption of an axisymmetric Milky Way. Under this assumption, these
-estimates would provide the correct parameters for the galactocentric
+estimates would provide the correct parameters for the Galactocentric
 coordinate system up to measurement error. However, the Milky Way is not
 axisymmetric in detail. Spiral arms, bar(s), and infalling satellite galaxies
 such as Sagittarius and the Large Magellanic Cloud all induce
 non-axisymmetries.
 
 Since the Milky Way is not truly axisymmetric, it is not clear the best way to
-define the Galactocentric coordinate system. In this work, we focus on the midplane and, equivalently, the solar height. 
+define the Galactocentric coordinate system --- or, perhaps, the best way to
+modify the current implicit definition of the Galactocentric coordinate system
+in order to account for non-axisymmetries.
 
 In a slowly-evolving axisymmetric potential, the actions of stars' orbits are
 conserved quantities \citep{2008gady.book.....B,2014RvMP...86....1S}. In other
@@ -130,6 +132,14 @@ actions --- the true orbital invariants (if they exist) are invariant by
 definition. Through simple tests, we will see that even in a truly
 axisymmetric potential, if the wrong coordinate system is assumed then there
 will be additional time evolution in the measured actions.
+
+The transformation to action space is not trivial, and many of the assumptions
+of the transformation are potentially incorrect. It is therefore natural to
+consider the reason to transform to action space. One reason is dimensionality
+reduction --- in the action space paradigm, a stellar orbit is completely
+described by three actions, as opposed to six dimensions of phase space. This
+means that the relationship between {\em orbital} properties of individual
+stars and stellar properties such as age or metallicity can be investigated.
 
 To provide one such realization of a realistic Galactic potential, we turn to
 cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
@@ -146,7 +156,9 @@ presently computed. The assumed axisymmetric model of the Galaxy may be a poor
 description of the Galactic potential, and the parameters in this axisymmetric
 model may be estimated incorrectly.
 
-In this work, we assume both that an axisymmetric model of the Galaxy is a good description of the potential and that we have correctly determined the parameters of that model. We are only concerned with an inaccuracy
+In this work, we assume both that an axisymmetric model of the Galaxy is a
+good description of the potential and that we have correctly determined the
+parameters of that model. We are only concerned with an inaccuracy
 
 \subsection{Summary of Action Computation} \label{ssec:action_comp}
 We begin by summarizing one way in which actions are computed in the
@@ -351,6 +363,26 @@ range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m.
 \caption{Caption.}
 \label{fig:midplane}
 \end{figure*}
+
+\section{Discussion} \label{sec:discussion}
+{\em Gaia} DR2 has ushered in a new era of Galactic dynamics. High-precision
+phase space measurements have been made for an unprecedented number of stars.
+In the face of such large data, it is worth considering the goal of such
+measurements --- a goal which should inform the usage of such data.
+
+In this work we considered one such question: given the current position in
+phase space of a single star, what can we infer about that star's past phase
+space trajectory? Current methodology involves using a smoothed, analytic form
+for the Galactic potential (with perhaps crude implementations of spiral arms
+or sattelites), fitting such form to some selection of observations, and
+integrating from the currently measured position in phase space. This orbit
+integration is also commonly accompanied with a transformation into
+action-angle space. Other than the integration, every step of that process
+should be viewed with significant scrutiny.
+
+The more general problem of measuring the orbits of stars in cosmological
+simulations is essentially unexplored in this work and the literature, and we
+delay discussion to future work.
 
 % \subsection{Dynamical Midplane}
 % We now seek to define the midplane in a dynamically consistent manner, which

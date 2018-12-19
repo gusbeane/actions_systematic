@@ -26,15 +26,7 @@ nspoke = 50
 
 nproc = 40
 
-#fig, ax = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(8,3.5))
-
-glist = ['m12i', 'm12f', 'm12m']
-
-# for gal,ax_col in zip(glist, ax.transpose()):
-# for gal in glist:
-i = int(sys.argv[1])
-gal = glist[i]
-if True:
+def main(gal):
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
 
     sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
@@ -53,6 +45,9 @@ if True:
         for attr in ['center_position', 'center_velocity', 
                      'principal_axes_vectors']:
             setattr(snap[k], attr, getattr(snap, attr))
+    
+    star_pos = snap['star'].prop('host.distance.principal')
+    star_vel = snap['star'].prop('host.velocity.principal')
 
     R = 8.2
     theta = np.linspace(0, 2.*np.pi, nspoke)
@@ -78,29 +73,34 @@ if True:
         keys = np.where(np.logical_and(rbool, zbool))[0]
         return keys
 
-    def midplane(pos, init_pos):
+    def midplane(pos, init_pos, init_vel):
         mid_pos = pos.copy()
         for _ in range(10):
             keys = get_keys(mid_pos, init_pos)
             mid_pos[2] = np.median(init_pos[:,2][keys])
-        return mid_pos[2]
+        mid_vel = np.median(init_vel[:,2][keys])
+        return mid_pos[2], mid_vel
     
     def get_midplane_with_error(pos):
-        star_pos = snap['star'].prop('host.distance.principal')
         init_keys = get_init_keys(pos, star_pos)
         init_pos = star_pos[init_keys]
-        midplane_central = midplane(pos, init_pos)
+        init_vel = star_vel[init_keys]
+        midplane_central, midplane_vel = midplane(pos, init_pos, init_vel)
         
         keys_to_choose = list(range(len(init_pos)))
         rand_choice = np.random.choice(keys_to_choose, len(init_pos)*nbootstrap)
 
         rand_choice = np.reshape(rand_choice, (nbootstrap, len(init_pos)))
         init_pos_rand = init_pos[rand_choice]
-        med_rand = np.array([ midplane(pos, ipos) for ipos in init_pos_rand ])
-        dist = np.subtract(med_rand, midplane_central)
-        up = np.percentile(dist, 95)
-        low = np.percentile(dist, 5)
-        return midplane_central, midplane_central - up, midplane_central - low
+        init_vel_rand = init_vel[rand_choice]
+        med_rand = np.array([ midplane(pos, ipos, ivel) for ipos,ivel in zip(init_pos_rand,init_vel_rand) ])
+        dist_pos = np.subtract(med_rand[:,0], midplane_central)
+        dist_vel = np.subtract(med_rand[:,1], midplane_vel)
+        up_pos = np.percentile(dist_pos, 95)
+        low_pos = np.percentile(dist_pos, 5)
+        up_vel = np.percentile(dist_vel, 95)
+        low_vel = np.percentile(dist_vel, 5)
+        return midplane_central, midplane_central - up_pos, midplane_central - low_pos, midplane_vel, midplane_vel - up_vel, midplane_vel - low_vel
 
     # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
     result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
@@ -110,27 +110,17 @@ if True:
     err_low = result[:,1]
     err_high = result[:,2]
 
+    midplane_vel = result[:,3]
+    err_vel_low = result[:,4]
+    err_vel_high = result[:,5]
+
     np.save('midplane_est_'+gal+'.npy', midplane_est)
     np.save('err_low_'+gal+'.npy', err_low)
     np.save('err_high_'+gal+'.npy', err_high)
-
-    #ax_col[0].plot(theta/np.pi, midplane_est*1000, c=tb_c[0])
-    #ax_col[0].plot(theta/np.pi, err_low*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[0].plot(theta/np.pi, err_high*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[0].fill_between(theta/np.pi, err_high*1000, err_low*1000, color=tb_c[0], alpha=0.25)
-
-    #ax_col[1].set_xlabel(r'$\phi/\pi$')
-
-    #ax_col[0].text(0.05, 0.88, gal, 
-                #horizontalalignment='left', 
-                #verticalalignment='center', 
-                #transform = ax_col[0].transAxes)
-
-    #ax_col[0].set_xlim(0, 2)
-    #ax_col[1].set_xlim(0, 2)
-
-    #ax_col[0].set_ylim(-200, 200)
-    #ax_col[1].set_ylim(-200, 200)
+    
+    np.save('midplane_vel_'+gal+'.npy', midplane_vel)
+    np.save('err_vel_low_'+gal+'.npy', err_vel_low)
+    np.save('err_vel_high_'+gal+'.npy', err_vel_high)
 
     def chisq(x):
         A = x[0]
@@ -149,13 +139,8 @@ if True:
 
     np.save('fit_'+gal+'.npy', fit)
 
-    #ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
-    #ax_col[1].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[1].plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
-    #ax_col[1].fill_between(theta/np.pi, (err_high-fit)*1000, (err_low-fit)*1000, color=tb_c[0], alpha=0.25)
+if __name__ == '__main__':
+    glist = ['m12i', 'm12f', 'm12m']
+    for gal in glist:
+        main(gal)
 
-#ax[0][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
-#ax[1][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
-
-#fig.tight_layout()
-#plt.savefig('midplane.pdf')
