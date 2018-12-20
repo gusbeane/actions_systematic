@@ -100,7 +100,12 @@ def main(gal):
         low_pos = np.percentile(dist_pos, 5)
         up_vel = np.percentile(dist_vel, 95)
         low_vel = np.percentile(dist_vel, 5)
-        return midplane_central, midplane_central - up_pos, midplane_central - low_pos, midplane_vel, midplane_vel - up_vel, midplane_vel - low_vel
+
+        l = midplane_central - up_pos
+        h = midplane_central - low_pos
+        l_v = midplane_vel - up_vel
+        h_v = midplane_vel - low_vel
+        return midplane_central, l, h, midplane_vel, l_v, h_v
 
     # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
     result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
