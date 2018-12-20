@@ -29,7 +29,7 @@ Rmin = 7.2
 Rmax = 9.2
 dR = 0.1
 
-nproc = 40
+nproc = int(sys.argv[1])
 
 def main(gal):
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
