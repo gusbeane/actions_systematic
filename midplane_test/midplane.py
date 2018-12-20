@@ -117,6 +117,8 @@ def main(gal):
     result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
     result = np.array(result)
 
+    midplane_est = result[:,0]
+
     def chisq(x):
         A = x[0]
         B = x[1]
