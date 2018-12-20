@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
 import sys
+import itertools
 from joblib import Parallel, delayed
 import multiprocessing
 
@@ -23,6 +24,10 @@ np.random.seed(162)
 rcut = 0.5
 zcut = 1.0
 nspoke = 50
+
+Rmin = 7.2
+Rmax = 9.2
+dR = 0.1
 
 nproc = 40
 
@@ -49,11 +54,12 @@ def main(gal):
     star_pos = snap['star'].prop('host.distance.principal')
     star_vel = snap['star'].prop('host.velocity.principal')
 
-    R = 8.2
+    R = np.arange(Rmin, Rmax, dR)
     theta = np.linspace(0, 2.*np.pi, nspoke)
-    np.save('theta.npy', theta)
-    posx = R*np.cos(theta)
-    posy = R*np.sin(theta)
+    R_theta = list(itertools.product(R, theta))
+
+    posx = [Rval*np.cos(thetaval) for Rval,thetaval in R_theta]
+    posy = [Rval*np.sin(thetaval) for Rval,thetaval in R_theta]
     posz = np.zeros(len(posx))
     pos = np.transpose([posx, posy, posz])
 
