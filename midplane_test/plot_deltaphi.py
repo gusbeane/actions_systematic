@@ -18,6 +18,7 @@ np.random.seed(162)
 rcut = 0.5
 zcut = 1.0
 nspoke = 50
+Rsolar = 8.2
 
 glist = ['m12i', 'm12f', 'm12m']
 
@@ -48,7 +49,7 @@ def get_range_vs_dphi(theta, midplane):
     return np.array(dphi_list_list), np.array(r_list_list)
 
 
-fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(8,3.5/2))
+fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(8,2.25))
 # now make paper plot, with just fit
 for gal,ax_col in zip(glist, ax.transpose()):
     midplane_est = np.load('midplane_est_'+gal+'.npy')
@@ -77,6 +78,18 @@ for gal,ax_col in zip(glist, ax.transpose()):
     dphi_mean = np.mean(dphi_list_list, axis=0) 
     r_mean = np.mean(r_list_list, axis=0) 
     ax_col.plot(dphi_mean/np.pi, r_mean*1000, c=tb_c[0])
+
+    def tick_function(l):
+        return np.round(l * Rsolar, 1)
+
+    ax2 = ax_col.twiny()
+    #ax2.invert_xaxis()
+    ax2.set_xticks(ax_col.get_xticks())
+    ax2.set_xbound(ax_col.get_xbound())
+    ax2.set_xticklabels(tick_function(ax_col.get_xticks()))
+    #ax2.set_xlabel(r'$\nu\,[\,\text{MHz}\,]$')
+    ax2.set_xlabel(r'$\Delta R\,[\,\text{kpc}\,]$')
+
 
 ax[0].set_ylabel(r'$\text{range}\,[\,\text{pc}\,]$')
 
