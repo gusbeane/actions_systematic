@@ -54,12 +54,11 @@ def main(gal):
     star_pos = snap['star'].prop('host.distance.principal')
     star_vel = snap['star'].prop('host.velocity.principal')
 
-    R = np.arange(Rmin, Rmax, dR)
+    R = 8.2
     theta = np.linspace(0, 2.*np.pi, nspoke)
-    R_theta = list(itertools.product(R, theta))
 
-    posx = [Rval*np.cos(thetaval) for Rval,thetaval in R_theta]
-    posy = [Rval*np.sin(thetaval) for Rval,thetaval in R_theta]
+    posx = R * np.cos(theta)
+    posy = R * np.sin(theta)
     posz = np.zeros(len(posx))
     pos = np.transpose([posx, posy, posz])
 
