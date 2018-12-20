@@ -398,24 +398,94 @@ range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m.
 \end{figure*}
 
 \section{Discussion} \label{sec:discussion}
-{\em Gaia} DR2 has ushered in a new era of Galactic dynamics. High-precision
-phase space measurements have been made for an unprecedented number of stars.
-In the face of such large data, it is worth considering the goal of such
-measurements --- a goal which should inform the usage of such data.
+We have shown that, in simulation, the ``local midplane'' can have strong
+azimuthal dependence. The implications of this finding are not clear, but
+clearly demonstrate that assuming our local midplane is the same as the global
+midplane is insufficient for extracting the most dynamical information from
+the {\em Gaia} mission.
 
-In this work we considered one such question: given the current position in
-phase space of a single star, what can we infer about that star's past phase
-space trajectory? Current methodology involves using a smoothed, analytic form
-for the Galactic potential (with perhaps crude implementations of spiral arms
-or sattelites), fitting such form to some selection of observations, and
-integrating from the currently measured position in phase space. This orbit
-integration is also commonly accompanied with a transformation into
-action-angle space. Other than the integration, every step of that process
-should be viewed with significant scrutiny.
+A possible interpretation of our finding is that one should use a star's local
+midplane in order to compute dynamical quantities like the vertical action.
+Under the assumption that this interpretation is correct, we now consider the
+implications for dynamical studies of disrupting open clusters (the original
+motivation of this study).
 
-The more general problem of measuring the orbits of stars in cosmological
-simulations is essentially unexplored in this work and the literature, and we
-delay discussion to future work.
+Suppose an open cluster of mass $M_c$ on an orbit with actions $\bm{J}_c$ is
+disrupted, and that the cluster is currently at an orbit phase of
+$\bm{\theta}_0$. We would like to determine all stars in the {\em Gaia}
+dataset\footnote{This is likely to be more successful with DR3/4 than DR2,
+since upcoming data releases will contain a far greater number of stars with
+radial velocities --- though targeted, follow-up radial velocity surveys may
+allow this program to be performed sooner.} that are likely to be ejected
+members from that cluster. One could proceed by integrating the cluster's
+orbit and selecting all stars within a certain distance of that orbit,
+accounting for the fact that the stream will not exactly follow the orbit of
+the cluster \citep[e.g.][]{2011MNRAS.413.1852E}.
+
+One could then make a further selection by requiring that the action of each
+field star $i$ be close to the cluster's actions to within some bound, i.e.
+$\bm{J}_i - \bm{J}_c \in V_e$ where $V_e$ is some volume in action space
+enclosing a region of acceptable error. A natural choice for $V_e$ is to
+center it at the origin and allow its extent to be the intrinsic action-space
+dispersion of a disrupted cluster. This dispersion can be estimated as
+\citep[\S~8.3.3][]{2008gady.book.....B}
+\beq \label{eq:action_disp}
+\frac{\Delta J_i}{J_i} \sim \left(\frac{m}{M}\right)^{1/3}\text{,}
+\eeq
+where $m$ is the mass of the cluster and $M$ is the mass enclosed by the
+cluster's orbit. A more sophisticated treatment of the action-space dispersion
+of disrupted clusters can be obtained by following
+\citet{2011MNRAS.413.1852E}, but such a treatment is premature for this work.
+
+The act of comparing a field star's action to a cluster's action (i.e. in
+computing $\bm{J}_i - \bm{J}_c$) is subject to significant error if the
+cluster and field star have significantly different local midplanes and an
+observer assumed a single global midplane.
+
+To explore the magnitude of this effect, we consider the following program.
+First, we assume a cluster mass $m$ and estimate the expected action-space
+dispersion from Equation~\ref{eq:action_disp}. We then consult
+Figure~\ref{fig:many_orbit_wrong_ref} to determine the $z$ offset necessary in
+order for the induced error in the vertical action to be the same as the
+expected action-space dispersion. If this were the case, an observer would
+have to account for the different midplane of the field star and the cluster.
+We repeat this analysis for each of the three orbits considered in
+Section~\ref{ssec:quant}.
+
+With a characteristic $z$ offset in hand, we consult Figure~\ref{fig:deltaphi}
+to convert this $z$ offset into a $\Delta \phi$, which we convert to an
+arclength or characteristic distance (the difference between the two will be
+negligible for the small $\Delta \phi$'s we will compute). Therefore, if an
+observer is attempting to reconstruct a cluster with a given mass on a given
+orbit, we will give a characteristic distance between a field star and the
+cluster within which an observer might not need to consider differences in
+their respective local midplanes.
+
+From the simulation we have the best handle on the $z$ offset
+(Figure~\ref{fig:midplane}), and this $z$ offset has the greatest impact on
+the vertical action $J_z$ (Figure~\ref{fig:many_orbit_wrong_ref}). Therefore,
+we only consider the impact of a $z$ offset on the vertical action $J_z$.
+
+
+
+% {\em Gaia} DR2 has ushered in a new era of Galactic dynamics. High-precision
+% phase space measurements have been made for an unprecedented number of stars.
+% In the face of such large data, it is worth considering the goal of such
+% measurements --- a goal which should inform the usage of such data.
+
+% In this work we considered one such question: given the current position in
+% phase space of a single star, what can we infer about that star's past phase
+% space trajectory? Current methodology involves using a smoothed, analytic form
+% for the Galactic potential (with perhaps crude implementations of spiral arms
+% or sattelites), fitting such form to some selection of observations, and
+% integrating from the currently measured position in phase space. This orbit
+% integration is also commonly accompanied with a transformation into
+% action-angle space. Other than the integration, every step of that process
+% should be viewed with significant scrutiny.
+
+% The more general problem of measuring the orbits of stars in cosmological
+% simulations is essentially unexplored in this work and the literature, and we
+% delay discussion to future work.
 
 % \subsection{Dynamical Midplane}
 % We now seek to define the midplane in a dynamically consistent manner, which
