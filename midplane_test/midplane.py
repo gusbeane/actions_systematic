@@ -117,22 +117,6 @@ def main(gal):
     result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
     result = np.array(result)
 
-    midplane_est = result[:,0]
-    err_low = result[:,1]
-    err_high = result[:,2]
-
-    midplane_vel = result[:,3]
-    err_vel_low = result[:,4]
-    err_vel_high = result[:,5]
-
-    np.save('midplane_est_'+gal+'.npy', midplane_est)
-    np.save('err_low_'+gal+'.npy', err_low)
-    np.save('err_high_'+gal+'.npy', err_high)
-    
-    np.save('midplane_vel_'+gal+'.npy', midplane_vel)
-    np.save('err_vel_low_'+gal+'.npy', err_vel_low)
-    np.save('err_vel_high_'+gal+'.npy', err_vel_high)
-
     def chisq(x):
         A = x[0]
         B = x[1]
@@ -148,7 +132,9 @@ def main(gal):
     print('A=', A, 'B=', B, 'C=', C)
     fit = A*np.cos(theta + B) + C
 
-    np.save('fit_'+gal+'.npy', fit)
+    out = np.concatenate((R_theta, result, fit), axis=1)
+
+    np.save('out_'+gal+'.npy', out)
 
 if __name__ == '__main__':
     glist = ['m12i', 'm12f', 'm12m']
