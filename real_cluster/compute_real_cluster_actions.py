@@ -47,7 +47,7 @@ def actions(star):
         return np.append(ans,orbit.zmax(approximate=True).to(u.pc).value)
 
 result = [actions(s) for s in scdyn]
-result2 = np.append((m, result), axis=1)
+result2 = np.concatenate((m, result), axis=1)
 r = Table(result2, names=('cluster', 'distance', 'Jr', 'Lz', 'Jz', 'zmax'))
 r['distance'].unit = u.pc
 r['Jr'].unit = u.kpc * u.km/u.s
