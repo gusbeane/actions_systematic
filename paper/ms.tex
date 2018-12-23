@@ -20,8 +20,9 @@
 \newcommand{\actunit}{\text{kpc}\,\kms}
 
 \newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\z}{z}
+\newcommand{\z}{z_r}
 \newcommand{\uth}{\textsuperscript{th}}
+\newcommand{\n}{\text{n}}
 
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}
@@ -318,11 +319,12 @@ publicly available.
 First, a dark matter only simulation was run with $\Lambda$CDM cosmology
 parameterized by $\Omega_m = 0.272$, $\Omega_{\Lambda} = 0.728$, $\Omega_b =
 0.0455$, $h = 0.702$, $\sigma_8 = 0.807$, and $n_s = 0.961$, consistent with
-current constraints \citep{2018arXiv180706209P}. Halos are selected at $z=0$
-based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$).
-Particles within $5 R_{200\text{m}}$ of each halo are traced back to $\z=99$
-and the initial conditions are regenerated at higher resolution using MUSIC
-\citep{2011MNRAS.415.2101H}.
+current constraints \citep{2018arXiv180706209P}. Halos are selected at $\z=0$
+based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$). In this
+work, to avoid confusion with the vertical height $z$, we refer to
+cosmological redshift as $\z$. Particles within $5 R_{200\text{m}}$ of each
+halo are traced back to $\z=99$ and the initial conditions are regenerated at
+higher resolution using MUSIC \citep{2011MNRAS.415.2101H}.
 
 Simulations were run using
 \texttt{GIZMO}\footnote{\url{http://www.tapir.caltech.edu/~phopkins/Site/GIZMO.html}}
@@ -418,6 +420,21 @@ clearly demonstrate that assuming our local midplane is the same as the global
 midplane is insufficient for extracting the most dynamical information from
 the {\em Gaia} mission.
 
+To gain further handle on the midplane behavior as a function of azimuth, we
+compute the range of midplane values for a given $\Delta \phi$ segment of the
+midplane in Figure~\ref{fig:range_deltaphi}. With the observer's azimuth set
+to zero, we consider a region extending from $-\Delta \phi/2$ to
+$\Delta\phi/2$. We also compute the chord length for the chord extending from
+the observer to $\pm \Delta\phi/2$. We repeat this for each of the $50$ bins
+in azimuth. Each bin is plotted as a gray line, with the mean value in solid
+blue and the $1\,\sigma$ dispersion as the dashed blue lines.
+
+\begin{figure*}
+\plotone{fig/range_dphi.pdf}
+\caption{Caption.}
+\label{fig:rand_deltaphi}
+\end{figure*}
+
 A possible interpretation of our finding is that one should use a star's local
 midplane in order to compute dynamical quantities like the vertical action.
 Under the assumption that this interpretation is correct, we now consider the
@@ -444,9 +461,9 @@ center it at the origin and allow its extent to be the intrinsic action-space
 dispersion of a disrupted cluster. This dispersion can be estimated as
 \citep[\S~8.3.3][]{2008gady.book.....B}
 \beq \label{eq:action_disp}
-\frac{\Delta J_i}{J_i} \sim \left(\frac{m}{M}\right)^{1/3}\text{,}
+\frac{\Delta J_i}{J_i} \sim \left(\frac{m_c}{M}\right)^{1/3}\text{,}
 \eeq
-where $m$ is the mass of the cluster and $M$ is the mass enclosed by the
+where $m_c$ is the mass of the cluster and $M$ is the mass enclosed by the
 cluster's orbit. A more sophisticated treatment of the action-space dispersion
 of disrupted clusters can be obtained by following
 \citet{2011MNRAS.413.1852E}, but such a treatment is premature for this work.
@@ -484,14 +501,22 @@ their respective local midplanes.
 In Figure~\ref{fig:cluster_offset}, we show the $z$ offset necessary to induce
 the action space dispersion computed from Equation~\ref{eq:action_disp}, using
 the \texttt{gala} computed mass enclosed within a radius of $8.2\,\kpc$ ($\sim
-10^{11}\,[\,M_{\odot}\,]$). 
+10^{11}\,M_{\odot}$).
 
-From the simulation we have the best handle on the $z$ offset
-(Figure~\ref{fig:midplane}), and this $z$ offset has the greatest impact on
-the vertical action $J_z$ (Figure~\ref{fig:many_orbit_wrong_ref}). Therefore,
-we only consider the impact of a $z$ offset on the vertical action $J_z$.
+We now convert the $z$~offset-$m_c$ relation to an $R_{\n}$-$m_c$ relation,
+where $R_{\n}$ indicates a sort of ``solar neighborhood'' radius. An observer
+attempting to reconstruct an open cluster of mass $m_c$ with perfect knowledge
+of the midplane at the location of the cluster would expect to find the
+ejected members using a dynamical cut for field stars within a distance
+$R_{\n}$ of the cluster. If such an observer wants to find ejected stars that
+are at a distance greater than $R_{\n}$, a more sophisticated analysis would
+be required, the details of which are not apparent to the authors of this
+work.
 
-
+We use the relation in Figure~\ref{fig:deltaphi}, which shows the typical $z$
+offset at each $\Delta \phi$, to convert a given $z$ offset into a $\Delta
+\phi$, which we then convert into a chord length which we interpret as
+$R_{\n}$. 
 
 % {\em Gaia} DR2 has ushered in a new era of Galactic dynamics. High-precision
 % phase space measurements have been made for an unprecedented number of stars.
