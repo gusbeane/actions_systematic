@@ -84,6 +84,8 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col.plot(dphi_mean/np.pi, r_up*1000, alpha=0.75, ls='dashed', c=tb_c[0])
     ax_col.plot(dphi_mean/np.pi, r_low*1000, alpha=0.75, ls='dashed', c=tb_c[0])
 
+    out = np.hstack((dphi_mean, r_mean, r_sigma))
+    np.save('r_vs_dphi_'+gal+'.npy', out)
 
     # chord length
     def tick_function(l):
