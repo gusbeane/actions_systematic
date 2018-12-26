@@ -135,7 +135,7 @@ def main(gal):
 
     out = np.concatenate((R_theta, result, fit), axis=1)
 
-    np.save('out_'+gal+'.npy', out)
+    np.save('output/out_'+gal+'.npy', out)
 
 if __name__ == '__main__':
     glist = ['m12i', 'm12f', 'm12m']
