@@ -133,7 +133,7 @@ def main(gal):
     print('A=', A, 'B=', B, 'C=', C)
     fit = A*np.cos(theta + B) + C
 
-    out = np.concatenate((R_theta, result, fit), axis=1)
+    out = np.concatenate((theta, result, fit), axis=1)
 
     np.save('output/out_'+gal+'.npy', out)
 
