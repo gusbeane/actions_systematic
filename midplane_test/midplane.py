@@ -88,7 +88,7 @@ def midplane(pos, init_pos, init_vel):
     mid_vel = np.median(init_vel[:,2][keys])
     return mid_pos[2], mid_vel
 
-def get_midplane_with_error(pos):
+def get_midplane_with_error(pos, star_pos, star_vel):
     init_keys = get_init_keys(pos, star_pos)
     init_pos = star_pos[init_keys]
     init_vel = star_vel[init_keys]
@@ -127,7 +127,7 @@ def main(gal):
     theta, pos = gen_pos()
 
     # result = np.array([ get_midplane_with_error(p) for p in tqdm(pos) ])
-    result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p) for p in tqdm(pos))
+    result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p, star_pos, star_vel) for p in tqdm(pos))
     result = np.array(result)
 
     midplane_est = result[:,0]
