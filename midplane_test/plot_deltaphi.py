@@ -52,9 +52,18 @@ def get_range_vs_dphi(theta, midplane):
 fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(8,2.25))
 # now make paper plot, with just fit
 for gal,ax_col in zip(glist, ax.transpose()):
-    midplane_est = np.load('midplane_est_'+gal+'.npy')
-    err_low = np.load('err_low_'+gal+'.npy')
-    err_high = np.load('err_high_'+gal+'.npy')
+    out = np.load('output/out_'+gal+'.npy')
+    theta = out[:,0]
+    result = out[:,1:7]
+    fit = out[:,7]
+
+    midplane_est = result[:,0]
+    err_low = result[:,1]
+    err_high = result[:,2]
+
+    midplane_vel = result[:,3]
+    err_vel_low = result[:,4]
+    err_vel_high = result[:,5]
 
     ax_col.set_xlabel(r'$\Delta \phi/\pi$')
 
@@ -66,8 +75,6 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col.set_xlim(0, 2)
 
     ax_col.set_ylim(0, 400)
-
-    fit = np.load('fit_'+gal+'.npy')
 
     m = midplane_est - fit
 
