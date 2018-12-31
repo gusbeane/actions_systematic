@@ -7,6 +7,7 @@ from scipy.optimize import minimize
 from pykdgrav import ConstructKDTree, GetAccelParallel
 from astropy.constants import G as G_astropy
 from scipy.optimize import root_scalar
+import astropy.units as u
 
 import sys
 import itertools
