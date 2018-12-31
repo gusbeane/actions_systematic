@@ -116,7 +116,7 @@ def get_keys(p, part):
     keys = np.where(np.logical_and(rbool, zbool))[0]
     return keys
 
-def midplane(pos, init_pos, init_vel):
+def _midplane_med_(pos, init_pos, init_vel):
     mid_pos = pos.copy()
     for _ in range(10):
         keys = get_keys(mid_pos, init_pos)
@@ -124,12 +124,41 @@ def midplane(pos, init_pos, init_vel):
     mid_vel = np.median(init_vel[:,2][keys])
     return mid_pos[2], mid_vel
 
-def get_midplane_with_error(pos, star_pos, star_vel):
+class _midplane_force_(object):
+    def __init__(self, tree):
+        self.tree = tree
+
+    def _force_z_(self, z, xy):
+        r = np.append(xy, z)
+        accel = GetAccelParallel(r, self.tree, G, theta)
+        return accel[2]
+
+    def __call__(pos, init_pos, init_vel):
+        zinit = init_pos[2]
+        xy = init_pos[0:2]
+        res = root_scalar(self._force_z_, zinit, args=(xy,))
+        return res.root
+
+    
+
+def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
+    if force:
+        if tree is None:
+            print('pass tree when using force!')
+            sys.exit(1)
+        midplane = _midplane_force_(tree)
+    else:
+        midplane = _midplane_med_
+
+    # get all particles within 2x zheight
     init_keys = get_init_keys(pos, star_pos)
     init_pos = star_pos[init_keys]
     init_vel = star_vel[init_keys]
+
+    # calculate midplane using all particles
     midplane_central, midplane_vel = midplane(pos, init_pos, init_vel)
     
+    # prepare to bootstrap
     keys_to_choose = list(range(len(init_pos)))
     rand_choice = np.random.choice(keys_to_choose, len(init_pos)*nbootstrap)
     rand_choice = np.reshape(rand_choice, (nbootstrap, len(init_pos)))
