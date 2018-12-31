@@ -61,6 +61,12 @@ def _setup_tree_(snap):
     gas_softening = 2.8 * snap['gas']['smooth.length']/(1000**2) # due to bug in gizmo analysis
     soft = np.concatenate((star_softening, gas_softening, dark_softening))
 
+    rmag = np.linalg.norm(r, axis=1)
+    keys = np.where(rmag < Rcut)[0]
+    r = r[keys]
+    m = m[keys]
+    soft = soft[keys]
+
     tree = ConstructKDTree( np.float64(r), np.float64(m), np.float64(soft))
     
     return tree
