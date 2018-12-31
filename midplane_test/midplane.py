@@ -4,6 +4,10 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
+from pykdgrav import ConstructKDTree, GetAccelParallel
+from astropy.constants import G as G_astropy
+from scipy.optimize import root_scalar
+
 import sys
 import itertools
 from joblib import Parallel, delayed
@@ -32,6 +36,35 @@ dR = 0.1
 
 nproc = int(sys.argv[1])
 
+# options for pykdgrav
+Rcut = 50.0 # kpc, max R (in fid.) to use particles
+theta = 0.5
+G = G_astropy.to_value(u.kpc**2 * u.km / (u.s * u.Myr * u.Msun))
+
+star_softening_in_kpc = 2.8 * 4 / 1000
+dark_softening_in_kpc = 2.8 * 40 / 1000
+
+def _setup_tree_(snap):
+    star_mass = snap['star'].prop('mass')
+    gas_mass = snap['gas'].prop('mass')
+    dark_mass = snap['dark'].prop('mass')
+    m = np.concatenate((star_mass, gas_mass, dark_mass))
+
+    star_pos = snap['star'].prop('host.distance.principal')
+    gas_pos = snap['gas'].prop('host.distance.principal')
+    dark_pos = snap['dark'].prop('host.distance.principal')
+    r = np.concatenate((star_pos, gas_pos, dark_pos))
+
+    star_softening = np.full(snap['star']['mass'].shape, star_softening_in_kpc)
+    dark_softening = np.full(snap['dark']['mass'].shape, star_softening_in_kpc)
+    gas_softening = 2.8 * snap['gas']['smooth.length']/(1000**2) # due to bug in gizmo analysis
+    soft = np.concatenate((star_softening, gas_softening, dark_softening))
+
+    tree = ConstructKDTree( np.float64(r), np.float64(m), np.float64(soft))
+    
+    return tree
+
+
 def read_snap(gal):
     # takes in galaxy (string = m12i, m12f, m12m, etc.)
     # reads in and sets fiducial coordinates
@@ -41,7 +74,8 @@ def read_snap(gal):
     snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'], 'index', 600,
                                         properties=['position', 'id',
                                                     'mass', 'velocity',
-                                                    'form.scalefactor'],
+                                                    'form.scalefactor',
+                                                    'smooth.length'],
                                         assign_center=False,
                                         simulation_directory=sim_directory)
     ref = np.genfromtxt(gal_info, comments='#', delimiter=',')
@@ -53,7 +87,9 @@ def read_snap(gal):
                      'principal_axes_vectors']:
             setattr(snap[k], attr, getattr(snap, attr))
 
-    return snap
+    tree = _setup_tree_(snap)
+
+    return snap, tree
 
 def gen_pos():
     theta = np.linspace(0, 2.*np.pi, nspoke)
@@ -119,7 +155,7 @@ def chisq(x, theta, midplane_est):
         return np.sum(np.square(np.subtract(fit(x, theta), midplane_est)))
 
 def main(gal):
-    snap = read_snap(gal)
+    snap, tree = read_snap(gal)
     
     star_pos = snap['star'].prop('host.distance.principal')
     star_vel = snap['star'].prop('host.velocity.principal')
