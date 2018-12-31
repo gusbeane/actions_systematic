@@ -137,13 +137,14 @@ class _midplane_force_(object):
 
     def _force_z_(self, z, xy):
         r = np.append(xy, z)
+        r = np.reshape(r, (1, 3))
         accel = GetAccelParallel(r, self.tree, G, theta)
-        return accel[2]
+        return accel[0][2]
 
-    def __call__(pos, init_pos, init_vel):
-        zinit = init_pos[2]
-        xy = init_pos[0:2]
-        res = root_scalar(self._force_z_, zinit, args=(xy,))
+    def __call__(self, pos, init_pos, init_vel):
+        zinit = pos[2]
+        xy = pos[0:2]
+        res = root_scalar(self._force_z_, args=(xy,), x0=zinit, bracket=(-1, 1))
         return res.root, 0
 
     
@@ -167,8 +168,8 @@ def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
     
     # prepare to bootstrap
     if force:
-        l = 0.9*midplane_center
-        h = 1.1*midplane_center
+        l = 0.9*midplane_central
+        h = 1.1*midplane_central
         l_v = 0.9*midplane_vel
         h_v = 1.1*midplane_vel
     else:
@@ -207,7 +208,7 @@ def main(gal):
     force=True
 
     if force:
-        result = np.array([ get_midplane_with_error(p, star_pos, star_vel) for p in tqdm(pos) ])
+        result = np.array([ get_midplane_with_error(p, star_pos, star_vel, force=force, tree=tree) for p in tqdm(pos) ])
     else:
         result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p, star_pos, star_vel, force=force, tree=tree) for p in tqdm(pos))
         result = np.array(result)
