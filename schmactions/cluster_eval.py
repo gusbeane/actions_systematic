@@ -44,6 +44,7 @@ for result_orbit, action_orbit, c in zip(result_z, init_act_list, tb_c):
     Jz = action_orbit[2]
     dJzJz = dJz/Jz
 
+def zoffset_gen(offlist, dJzJz):
     interp = interp1d(offlist, dJzJz)
 
     def to_minimize(off, target):
@@ -54,6 +55,18 @@ for result_orbit, action_orbit, c in zip(result_z, init_act_list, tb_c):
         this_off = float(minimize(to_minimize, 0, args=(this_dJzJz,)).x)
         offlist_target.append(this_off)
     offlist_target = np.array(offlist_target)
+    return offlist_target
+
+# set up figure
+fig, ax = plt.subplots(1, 1, figsize=(4, 3))
+
+for result_orbit, action_orbit, c in zip(result_z, init_act_list, tb_c):
+    offlist = result_orbit[0]
+    dJz = result_orbit[1][:,2]
+    Jz = action_orbit[2]
+    dJzJz = dJz/Jz
+
+    offlist_target = zoffset_gen(offlist, dJzJz)
 
     ax.plot(mc_list, offlist_target*1000, c=c, label="{0:0.1f}".format(Jz))
 
@@ -70,3 +83,4 @@ ax.legend(frameon=False, title=r'$J_{z,\text{true}}$')
 
 fig.tight_layout()
 fig.savefig('cluster_offset.pdf')
+plt.close()
