@@ -90,7 +90,7 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     return time, np.array(out_action), orbit
 
 def init_fig():
-    fig, ax = plt.subplots(2, 3, figsize=(7, 5))
+    fig, ax = plt.subplots(2, 3, figsize=(7, 4))
     for x in ax[0]:
         x.set_xlabel(r'$z\,\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)

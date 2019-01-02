@@ -68,7 +68,7 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     return time, np.array(out_action), orbit
 
 def plot_wrong_act(t, act, rel_error=False, many_orbits=False, x_label=None):
-    fig, ax = plt.subplots(1, 3, figsize=(7, 2.5))
+    fig, ax = plt.subplots(1, 3, figsize=(7, 2))
     
     # perform a 5 sigma clip to remove numerical artifacts
     _, Jr_low, Jr_high = sigmaclip(act[:,0], low=5, high=5)
