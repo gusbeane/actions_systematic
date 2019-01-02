@@ -22,7 +22,7 @@ Rsolar = 8.2
 
 glist = ['m12i', 'm12f', 'm12m']
 
-theta = np.load('theta.npy')
+theta = np.load('output/theta.npy')
 
 def rotate(l, n):
     return np.append(l[n:], l[:n])
@@ -91,7 +91,7 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col.plot(dphi_mean/np.pi, r_up*1000, alpha=0.75, ls='dashed', c=tb_c[0])
     ax_col.plot(dphi_mean/np.pi, r_low*1000, alpha=0.75, ls='dashed', c=tb_c[0])
 
-    out = np.hstack((dphi_mean, r_mean, r_sigma))
+    out = np.transpose([dphi_mean, r_mean, r_sigma])
     np.save('output/r_vs_dphi_'+gal+'.npy', out)
 
     # chord length
