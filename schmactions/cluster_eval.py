@@ -10,6 +10,7 @@ from scipy.optimize import minimize
 import matplotlib as mpl
 from matplotlib import rc
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
@@ -135,9 +136,9 @@ for ax, gal in zip(ax_list, glist):
         Rn_low_target = np.abs(Rn_low_target)
         Rn_high_target = np.abs(Rn_high_target)
 
-        ax.plot(mc_list, Rn_target*1000, c=c, label="{0:0.1f}".format(Jz))
-        ax.plot(mc_list, Rn_low_target*1000, c=c, ls='dashed')
-        ax.plot(mc_list, Rn_high_target*1000, c=c, ls='dashed')
+        ax.plot(mc_list, Rn_target, c=c, label="{0:0.1f}".format(Jz))
+        ax.plot(mc_list, Rn_low_target, c=c, ls='dashed')
+        ax.plot(mc_list, Rn_high_target, c=c, ls='dashed')
 
         if gal=='m12f':
             l = 0.05
@@ -153,11 +154,12 @@ for ax, gal in zip(ax_list, glist):
 for ax in ax_list:
     ax.set_xlabel(r'$m_c\,[\,M_{\odot}\,]$')
     ax.set_xscale('log')
-    ax.set_ylim((200, 20000))
+    ax.set_ylim((0.2, 20))
     ax.set_xlim((mc_min, mc_max))
     ax.set_yscale('log')
+    ax.yaxis.set_major_formatter(mticker.ScalarFormatter())
 
-ax_list[0].set_ylabel(r'$R_n[\,\text{pc}\,]$')
+ax_list[0].set_ylabel(r'$R_n[\,\text{kpc}\,]$')
 
 ax.legend(frameon=False, title=r'$J_{z,\text{true}}$')
 
