@@ -195,7 +195,7 @@ def fit(x, theta):
     return x[0]*np.cos(theta+x[1]) + x[2]
 
 def chisq(x, theta, midplane_est):
-        return np.sum(np.square(np.subtract(fit(x, theta), midplane_est)))
+    return np.sum(np.square(np.subtract(fit(x, theta), midplane_est)))
 
 def main(gal):
     snap, tree = read_snap(gal)
