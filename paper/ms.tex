@@ -162,16 +162,11 @@ good description of the potential and that we have correctly determined the
 parameters of that model. We are only concerned with an inaccuracy
 
 \subsection{Summary of Action Computation} \label{ssec:action_comp}
-We begin by summarizing one way in which actions are computed in the
-literature \Gus{cite}. One first assumes an axisymmetric model of the Galaxy.
-This model may itself be a poor description of the Galactic potential,
-
+We follow our previous work in computing actions \citep{2018ApJ...867...31B}.
 We use the code \texttt{gala} v0.3 to perform orbit integrations and
 conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
 which uses an action estimator technique presented by
-\citet{2014MNRAS.441.3284S}. Another common alternative is \texttt{galpy}
-\citep{2015ApJS..216...29B} using either direct orbit integration or the
-\Gus{Stackel Fudge} approximation. We use the default \texttt{MWPotential} as
+\citet{2014MNRAS.441.3284S}. We use the default \texttt{MWPotential} as
 our potential, which is based on the Milky Way potential available in
 \texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
 Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
@@ -180,6 +175,12 @@ is fit to empirically match some observations. We use the Dormand-Prince
 8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
 $1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for a
 Sun-like star.
+
+Other methods for computing actions are used in the literature. For example,
+the St\"ackel Fudge method \citep{2016MNRAS.457.2107S} which uses the
+St\"ackel potential to approximate the Galactic potential
+\citep{1985MNRAS.216..273D,2012MNRAS.426.1324B} is commonly used
+\citep{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}.
 
 \subsection{Cartoon} \label{ssec:cartoon}
 We present a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate
