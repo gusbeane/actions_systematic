@@ -196,9 +196,9 @@ def run_offlist(z=False, R=False):
 
 
 if __name__ == '__main__':
-    #run_one_orbit(z=True)
+    run_one_orbit(z=True)
     #run_one_orbit(R=True)
     #run_numerical_orbit()
-    run_offlist(z=True)
+    #run_offlist(z=True)
     #run_offlist(R=True)
 
