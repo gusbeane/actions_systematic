@@ -216,33 +216,41 @@ initial velocity $(0, -190, 30)\,\kms$ --- this corresponds to an orbit with
 actions $(J_r, L_z, J_z) = (37.9, -1520, 7.0)\,\actunit$ and
 $z_{\text{max}}=425\,\pc$. The orbit is plotted in \Gus{Appendix x}. We then
 suppose that an observer makes observations of this orbit in a coordinate
-system that is incorrect in radius by $200\,\pc$ and height by $100\,\pc$ ---
-we subtract the vector $(200, 0, 100)\,\pc$ from each position in the orbit.
-This corresponds to an observer physically located at the position $(8, 0,
-0)\,\kpc$ but erroneously thinking they are located at $(8.2, 0, 0.1)\,\kpc$.
+system that is incorrect in height by $100\,\pc$ --- i.e. we subtract the
+vector $(0, 0, 100)\,\pc$ from each position in the orbit. This corresponds to
+an observer physically located at the position $(8, 0, 0)\,\kpc$ but
+erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
-Using the observations of the orbit that this erroneous observer makes every
-$\Myr$\footnote{In addition to being erroneous, we also assume our fictitious
-observer is immortal.}, we perform the same orbit integration procedure as
-before to compute the actions our observer would make in the incorrect
+Using the observations of the orbit that this erroneous (and immortal)
+observer makes every $\Myr$, we perform the same orbit integration procedure
+as before to compute the actions our observer would observe in the incorrect
 coordinate system over the duration of the orbit. The erroneous computed
-actions are shown for the first $\Gyr$ of the orbit in
+actions are shown for the first $\Gyr$ of the orbit in the {\em upper} panels
 Figure~\ref{fig:one_orbit_wrong_ref}. Occasionally the numerical scheme fails
 and very large actions are reported by \texttt{gala}
 --- we perform a $5\sigma$ clip on each action to exclude such orbits, but
-this only excludes a total of $5$ orbits out of the $1000$ considered for
-Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
-vast majority of orbits are computed properly.
+    this only excludes a total of $5$ orbits out of the $1000$ considered for
+    Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but
+    the vast majority of orbits are computed properly. We perform the same
+    procedure but assume a $100\,\pc$ offset in the $x$ component (i.e.
+    subtracting the vector $(100, 0, 0)\,\pc$) in the {\em lower} panels. This
+    is equivalent to an observer making an incorrect measurement of the Solar
+    radius.
 
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the erroneous observer would
-infer significant time evolution in their computed actions. The
-95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $2.2$ and
-$6.2 \actunit$ for $J_r$ and $J_z$, respectively. These are fractional errors
-of $5.7\%$ and $85.7\%$, respectively. The error induced in $L_z$ is
-negligible, as expected since $L_z$ does not depend on the value of $z$. It is
-worth pointing out that a $100\,\pc$ error in an orbit with
-$z_{\text{max}}=425\,\pc$ --- a $24\%$ error --- induced an $85.7\%$ error in
-the computation of $J_z$.
+infer significant time evolution in their computed actions. For an error in
+$z$ ({\em upper} panels), the 95\textsuperscript{th} minus
+5\textsuperscript{th} percentiles are $2.2$ and $6.2 \actunit$ for $J_r$ and
+$J_z$, respectively. These are fractional errors of $5.7\%$ and $85.7\%$,
+respectively. The error induced in $L_z$ is negligible, as expected since
+$L_z$ does not depend on the value of $z$. It is worth pointing out that a
+$100\,\pc$ error in an orbit with $z_{\text{max}}=425\,\pc$ --- a $24\%$ error
+--- induced an $85.7\%$ error in the computation of $J_z$.
+
+For an error in the $x$ component (or Solar radius), the 95\textsuperscript{th} minus
+5\textsuperscript{th} percentiles are $x$, $y$, and $z \actunit$ for $J_r$, $L_z$ and
+$J_z$, respectively. These are fractional errors of $x\%$, $y\%$ and $z\%$,
+respectively.
 
 \begin{figure*}
 \plotone{fig/one_orbit.pdf}
