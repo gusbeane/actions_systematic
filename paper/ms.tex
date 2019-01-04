@@ -452,6 +452,47 @@ inaccuracies in the Solar radius. While all that we state about the midplane
 applies to the Solar radius as well, it is not clear the best way to determine
 the dynamical center of the galaxy in the FIRE simulations.
 
+\subsection{Applicability to the Milky Way} \label{ssec:is_it_real}
+As we briefly discussed in Section~\ref{ssec:cosmozoom}, cosmological zoom-in
+simulations of Milky Way-mass galaxies are not perfect representations of the
+Milky Way, and do not reproduce every available observation of the Milky Way.
+For instance, the velocity dispersion-age relation in m12i, m12f, and m12m is
+closer to that of M31 \citep{2018arXiv180610564S}.
+
+In order to assess the applicability of our work to the real Milky Way, we
+consider a subset of Table~3 from \citet{2018arXiv180610564S} --- our
+Table~\ref{tab:scale_height} shows the stellar scale heights of m12i, m12f,
+and m12m and the current best estimates for the Milky Way. One noticeable
+feature is that the FIRE galaxies are more ``puffy'' than the Milky Way.
+\Gus{Maybe FIRE collaboration has some insight into the mechanism for this?}.
+This would seem to suggest that the midplane estimates from
+Figure~\ref{fig:midplane} over-estimate the true variation in the Milky Way.
+
+\begin{deluxetable}{ccc}
+\tablecaption{Stellar Disk Scale Heights}
+\tablehead{\colhead{galaxy} & \colhead{thin disk} & \colhead{thick disk} \\ 
+\colhead{} & \colhead{(pc)} & \colhead{(pc)} } 
+\startdata
+MW\tablenotemark{a} & 300 & 900 \\
+m12i\tablenotemark{b} & 480 & 2000 \\
+m12f\tablenotemark{b} & 440 & 1280 \\
+m12m\tablenotemark{b} & 290 & 1030 \\
+\enddata
+% \tablerefs{\citet{2016ARAA..54..529B,2018arXiv180610564S,2008ApJ...673..864J}}
+
+\tablenotetext{a}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
+\tablenotetext{b}{\citet{2018arXiv180610564S}}
+
+\label{tab:scale_height}
+\end{deluxetable}
+
+Another important aspect to consider when comparing the simulated galaxies to
+the Milky Way is the environment/merger history. For instance, m12i and m12m
+both lack a massive neighbor analogous to the LMC. On the other hand, m12f has
+had a recenter merger with \Gus{something}. \Gus{Expand more here - how to
+incorporate merger trees?}
+
+\subsection{Solar Neighborhood} \label{ssec:neighborhood}
 To gain further handle on the midplane behavior as a function of azimuth, we
 compute the range of midplane values for a given $\Delta \phi$ segment of the
 midplane in Figure~\ref{fig:range_deltaphi}. With the observer's azimuth set
