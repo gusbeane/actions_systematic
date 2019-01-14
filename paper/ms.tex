@@ -158,6 +158,38 @@ described by three actions, as opposed to six dimensions of phase space. This
 means that the relationship between {\em orbital} properties of individual
 stars and stellar properties such as age or metallicity can be investigated.
 
+We explore one science goal that relies on the conservation of actions --- the
+reconstruction of open clusters across large distances using dynamical
+tagging. The basic program is to match stars with roughly the same actions. To
+set the scene, we consider the orbits of the nine open clusters within
+$250\,\pc$ as reported by the {\em Gaia} collaboration
+\citep{2018A&A...616A..10G}. In Table~\ref{tab:real_clusters}, we report the
+distance to each cluster, the three actions, and the maximum vertical extent
+of their orbits ($z_{\text{max}}$). The actions are computed using the
+technique described in Section~\ref{ssec:action_comp}.
+
+\begin{deluxetable*}{cccccc}
+\tablehead{\colhead{cluster} & \colhead{distance} & \colhead{$J_r$} &
+\colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$}\\ \colhead{ } &
+\colhead{$\mathrm{pc}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{pc}$}}
+\startdata
+alphaPer & 174.9 & 14.0 & -1739 & 0.0045 & 10.5 \\
+Blanco1 & 237.2 & 1.6 & -1841 & 1.53 & 207.0 \\
+ComaBer & 85.9 & 1.6 & -1860 & 0.71 & 139.7 \\
+Hyades & 47.5 & 20.3 & -1757 & 0.26 & 81.5 \\
+IC2391 & 151.6 & 5.5 & -1790 & 0.018 & 21.2 \\
+IC2602 & 152.2 & 11.5 & -1718 & 0.32 & 88.6 \\
+NGC2451 & 193.7 & 5.8 & -1805 & 0.21 & 73.4 \\
+Pleiades & 135.8 & 19.3 & -1696 & 0.38 & 96.3 \\
+Praesepe & 186.2 & 21.2 & -1766 & 0.58 & 122.9
+\enddata
+\tablerefs{\citet{2018AA...616A..10G}}
+\label{tab:real_clusters}
+\end{deluxetable*}
+
+
 To provide one such realization of a realistic Galactic potential, we turn to
 cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
 Realistic Environments (FIRE)
