@@ -156,22 +156,29 @@ if the wrong coordinate system is assumed then there will be additional time
 evolution in the measured actions.
 
 The transformation to action space is not trivial, and many of the assumptions
-of the transformation are potentially incorrect. It is therefore natural to
-consider the reason to transform to action space. One reason is dimensionality
-reduction --- in the action space paradigm, a stellar orbit is completely
-described by three actions, as opposed to six dimensions of phase space. This
-means that the relationship between {\em orbital} properties of individual
-stars and stellar properties such as age or metallicity can be investigated.
+of the transformation are potentially incorrect. For instance, the assumption
+that the Galactic potential is axisymmetric may be inadequate with current
+measurement errors. Even if this assumption is valid, the parameters used in
+our axisymmetric models may be inadequately tuned to observations. In
+addition, the necessity of 6D phase space measurements of a star limits the
+Galactic volume observable in action space.
+
+With these limitations in mind, it is therefore natural to consider the reason
+to transform to action space. One reason is dimensionality reduction --- in
+the action space paradigm, a stellar orbit is completely described by three
+actions, as opposed to six dimensions of phase space. This means that the
+relationship between {\em orbital} properties of individual stars and stellar
+properties such as age or metallicity can be investigated.
 
 We explore one science goal that relies on the conservation of actions --- the
 reconstruction of open clusters across large distances using dynamical
-tagging. The basic program is to match stars with roughly the same actions. To
-set the scene, we consider the orbits of the nine open clusters within
-$250\,\pc$ as reported by the {\em Gaia} collaboration
-\citep{2018A&A...616A..10G}. In Table~\ref{tab:real_clusters}, we report the
-distance to each cluster, the three actions, and the maximum vertical extent
-of their orbits ($z_{\text{max}}$). The actions are computed using the
-technique described in Section~\ref{ssec:action_comp}.
+tagging. The basic program is to match stars with roughly the same actions as
+their supposed natal cluster. To set the scene, we consider the orbits of the
+nine open clusters within $250\,\pc$ as reported by the {\em Gaia}
+collaboration \citep{2018A&A...616A..10G}. In Table~\ref{tab:real_clusters},
+we report the distance to each cluster, the three actions, and the maximum
+vertical extent of their orbits ($z_{\text{max}}$). The actions are computed
+using the technique described in Section~\ref{ssec:action_comp}.
 
 \begin{deluxetable*}{cccccc}
 \tablehead{\colhead{cluster} & \colhead{distance} & \colhead{$J_r$} &
@@ -194,11 +201,10 @@ Praesepe & 186.2 & 21.2 & -1766 & 0.58 & 122.9
 \label{tab:real_clusters}
 \end{deluxetable*}
 
-
-To provide one such realization of a realistic Galactic potential, we turn to
+To provide a realization of a realistic Galactic potential, we turn to
 cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
 Realistic Environments (FIRE)
-collaboration\footnote{\url{https://fire.northwestern.edu}} (the Latte suite
+collaboration\footnote{\url{https://fire.northwestern.edu}} (the {\em Latte} suite
 of simulations).
 
 \section{Impact on Actions} \label{sec:ref_frame}
