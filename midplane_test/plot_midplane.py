@@ -1,4 +1,3 @@
-import gizmo_analysis as gizmo
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
@@ -23,14 +22,21 @@ nspoke = 50
 
 glist = ['m12i', 'm12f', 'm12m']
 
-theta = np.load('theta.npy')
-
 fig, ax = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(8,3.5))
 # first make midplane comparison plot
 for gal,ax_col in zip(glist, ax.transpose()):
-    midplane_est = np.load('midplane_est_'+gal+'.npy')
-    err_low = np.load('err_low_'+gal+'.npy')
-    err_high = np.load('err_high_'+gal+'.npy')
+    out = np.load('output/out_'+gal+'.npy')
+    theta = out[:,0]
+    result = out[:,1:7]
+    fit = out[:,7]
+
+    midplane_est = result[:,0]
+    err_low = result[:,1]
+    err_high = result[:,2]
+
+    midplane_vel = result[:,3]
+    err_vel_low = result[:,4]
+    err_vel_high = result[:,5]
 
     ax_col[0].plot(theta/np.pi, midplane_est*1000, c=tb_c[0])
     ax_col[0].plot(theta/np.pi, err_low*1000, c=tb_c[0], ls='dashed', alpha=0.5)
@@ -50,8 +56,6 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col[0].set_ylim(-200, 200)
     ax_col[1].set_ylim(-200, 200)
 
-    fit = np.load('fit_'+gal+'.npy')
-
     ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
     ax_col[1].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     ax_col[1].plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
@@ -70,13 +74,27 @@ plt.savefig('midplane.pdf')
 fig, ax = plt.subplots(2, 3, sharex=True, figsize=(8,3.5))
 # now make paper plot, with just fit
 for gal,ax_col in zip(glist, ax.transpose()):
-    midplane_est = np.load('midplane_est_'+gal+'.npy')
-    err_low = np.load('err_low_'+gal+'.npy')
-    err_high = np.load('err_high_'+gal+'.npy')
+    out = np.load('output/out_'+gal+'.npy')
+    theta = out[:,0]
+    result = out[:,1:7]
+    fit = out[:,7]
 
-    midplane_vel = np.load('midplane_vel_'+gal+'.npy')
-    err_vel_low = np.load('err_vel_low_'+gal+'.npy')
-    err_vel_high = np.load('err_vel_high_'+gal+'.npy')
+    midplane_est = result[:,0]
+    err_low = result[:,1]
+    err_high = result[:,2]
+
+    midplane_vel = result[:,3]
+    err_vel_low = result[:,4]
+    err_vel_high = result[:,5]
+
+    out_force = np.load('output/out_force_'+gal+'.npy')
+    theta_force = out_force[:,0]
+    result_force = out_force[:,1:7]
+    fit_force = out_force[:,7]
+
+    midplane_est_force = result_force[:,0]
+    err_low_force = result_force[:,1]
+    err_high_force = result_force[:,2]
 
     ax_col[0].set_xlabel(r'$\phi/\pi$')
 
@@ -89,20 +107,20 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col[1].set_xlim(0, 2)
 
     ax_col[0].set_ylim(-200, 200)
-
-    fit = np.load('fit_'+gal+'.npy')
+    ax_col[1].set_ylim(-200, 200)
 
     ax_col[0].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
     ax_col[0].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     ax_col[0].plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     ax_col[0].fill_between(theta/np.pi, (err_high-fit)*1000, (err_low-fit)*1000, color=tb_c[0], alpha=0.25)
     
-    ax_col[1].plot(theta/np.pi, (midplane_vel), c=tb_c[1])
-    ax_col[1].plot(theta/np.pi, (err_vel_low), c=tb_c[1], ls='dashed', alpha=0.5)
-    ax_col[1].plot(theta/np.pi, (err_vel_high), c=tb_c[1], ls='dashed', alpha=0.5)
-    ax_col[1].fill_between(theta/np.pi, (err_vel_high), (err_vel_low), color=tb_c[1], alpha=0.25)
+    ax_col[1].plot(theta_force/np.pi, (midplane_est_force-fit_force)*1000, c=tb_c[1])
+    ax_col[1].plot(theta_force/np.pi, (err_low_force-fit_force)*1000, c=tb_c[1], ls='dashed', alpha=0.5)
+    ax_col[1].plot(theta_force/np.pi, (err_high_force-fit_force)*1000, c=tb_c[1], ls='dashed', alpha=0.5)
+    ax_col[1].fill_between(theta_force/np.pi, (err_high_force-fit_force)*1000, (err_low_force-fit_force)*1000, color=tb_c[1], alpha=0.25)
 
 ax[0][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
+ax[0][1].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
 
 fig.tight_layout()
 plt.savefig('midplane_fit.pdf')

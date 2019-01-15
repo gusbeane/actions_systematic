@@ -18,10 +18,11 @@ np.random.seed(162)
 rcut = 0.5
 zcut = 1.0
 nspoke = 50
+Rsolar = 8.2
 
 glist = ['m12i', 'm12f', 'm12m']
 
-theta = np.load('theta.npy')
+theta = np.load('output/theta.npy')
 
 def rotate(l, n):
     return np.append(l[n:], l[:n])
@@ -48,12 +49,21 @@ def get_range_vs_dphi(theta, midplane):
     return np.array(dphi_list_list), np.array(r_list_list)
 
 
-fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(8,3.5/2))
+fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(8,2.25))
 # now make paper plot, with just fit
 for gal,ax_col in zip(glist, ax.transpose()):
-    midplane_est = np.load('midplane_est_'+gal+'.npy')
-    err_low = np.load('err_low_'+gal+'.npy')
-    err_high = np.load('err_high_'+gal+'.npy')
+    out = np.load('output/out_'+gal+'.npy')
+    theta = out[:,0]
+    result = out[:,1:7]
+    fit = out[:,7]
+
+    midplane_est = result[:,0]
+    err_low = result[:,1]
+    err_high = result[:,2]
+
+    midplane_vel = result[:,3]
+    err_vel_low = result[:,4]
+    err_vel_high = result[:,5]
 
     ax_col.set_xlabel(r'$\Delta \phi/\pi$')
 
@@ -66,17 +76,36 @@ for gal,ax_col in zip(glist, ax.transpose()):
 
     ax_col.set_ylim(0, 400)
 
-    fit = np.load('fit_'+gal+'.npy')
-
     m = midplane_est - fit
 
     dphi_list_list, r_list_list = get_range_vs_dphi(theta, m)
     for dphi_list, r_list in zip(dphi_list_list, r_list_list):
         ax_col.plot(dphi_list/np.pi, r_list*1000,  c=tb_c[-1], alpha=0.15, lw=1)
 
-    dphi_mean = np.mean(dphi_list_list, axis=0) 
+    dphi_mean = np.mean(dphi_list_list, axis=0)
     r_mean = np.mean(r_list_list, axis=0) 
+    r_sigma = np.std(r_list_list, axis=0, ddof=1)
+    r_up = r_mean + r_sigma
+    r_low = r_mean - r_sigma
     ax_col.plot(dphi_mean/np.pi, r_mean*1000, c=tb_c[0])
+    ax_col.plot(dphi_mean/np.pi, r_up*1000, alpha=0.75, ls='dashed', c=tb_c[0])
+    ax_col.plot(dphi_mean/np.pi, r_low*1000, alpha=0.75, ls='dashed', c=tb_c[0])
+
+    out = np.transpose([dphi_mean, r_mean, r_sigma])
+    np.save('output/r_vs_dphi_'+gal+'.npy', out)
+
+    # chord length
+    def tick_function(l):
+        return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
+
+    ax2 = ax_col.twiny()
+    #ax2.invert_xaxis()
+    ax2.set_xticks(ax_col.get_xticks())
+    ax2.set_xbound(ax_col.get_xbound())
+    ax2.set_xticklabels(tick_function(ax_col.get_xticks()))
+    #ax2.set_xlabel(r'$\nu\,[\,\text{MHz}\,]$')
+    ax2.set_xlabel(r'$\text{chord length}\,[\,\text{kpc}\,]$')
+
 
 ax[0].set_ylabel(r'$\text{range}\,[\,\text{pc}\,]$')
 

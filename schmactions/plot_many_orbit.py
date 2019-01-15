@@ -37,9 +37,9 @@ wrong_max = 1000 # times dt, so 1 Gyr
 max_offset = 500
 d_offset = 50
 
-JrIQR_max = 50
-LzIQR_max = 250
-JzIQR_max = 50
+JrIQR_max = 100
+LzIQR_max = 100
+JzIQR_max = 200
 
 mw = gp.MilkyWayPotential()
 
@@ -52,6 +52,11 @@ def compute_actions(pos=None, vel=None, phase=None):
     res = gd.find_actions(orbit, N_max=8)
     ans = res['actions'].to(u.kpc * u.km / u.s).value
     return ans
+
+def compute_orbit(pos, vel):
+    q = gd.PhaseSpacePosition(pos=pos, vel=vel)
+    orbit = mw.integrate_orbit(q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
+    return orbit
 
 
 def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wrong_max=None):
@@ -85,22 +90,24 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, cadence=25, wron
     return time, np.array(out_action), orbit
 
 def init_fig():
-    fig, ax = plt.subplots(2, 3, figsize=(7, 5))
+    fig, ax = plt.subplots(2, 3, figsize=(7, 4))
     for x in ax[0]:
         x.set_xlabel(r'$z\,\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)
+        x.set_xticks(np.arange(0, max_offset, 50), minor=True)
     for x in ax[1]:
         x.set_xlabel(r'$R\,\text{offset}\,[\,\text{pc}\,]$')
         x.set_xlim(0, max_offset)
+        x.set_xticks(np.arange(0, max_offset, 50), minor=True)
 
     for x in ax[:,0]:
-        x.set_ylabel(r'$J_r\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylabel(r'$\Delta J_r / J_{r,\text{true}}\,[\,\%\,]$')
         x.set_ylim(0, JrIQR_max)
     for x in ax[:,1]:
-        x.set_ylabel(r'$L_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylabel(r'$\Delta L_z / L_{z,\text{true}}\,[\,\%\,]$')
         x.set_ylim(0, LzIQR_max)
     for x in ax[:,2]:
-        x.set_ylabel(r'$J_z\,\text{IQR}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+        x.set_ylabel(r'$\Delta J_z / J_{z,\text{true}}\,[\,\%\,]$')
         x.set_ylim(0, JzIQR_max)
 
     return fig, ax
@@ -108,8 +115,9 @@ def init_fig():
 def save_fig(fig, ax, out, true_act=False):
     fig.tight_layout()
     if true_act:
-        for x in ax[0]:
-            x.legend(frameon=False)
+        ax[0][0].legend(frameon=False, title=r'$J_{r,\text{true}}$')
+        ax[0][1].legend(frameon=False, title=r'$L_{z,\text{true}}$')
+        ax[0][2].legend(frameon=False, title=r'$J_{z,\text{true}}$')
     fig.savefig(out)
 
 def plot_wrong_act(fig, ax, off, perc, c=tb_c[0], true_act=None):
@@ -129,9 +137,9 @@ def plot_wrong_act(fig, ax, off, perc, c=tb_c[0], true_act=None):
     pLzmed = np.full(len(perc), np.median(perc[:,1]))
     pJzmed = np.full(len(perc), np.median(perc[:,2]))
 
-    y1 = perc[:,0]
-    y2 = perc[:,1]
-    y3 = perc[:,2]
+    y1 = 100 * perc[:,0]/true_act[0]
+    y2 = 100 * perc[:,1]/np.abs(true_act[1])
+    y3 = 100 * perc[:,2]/true_act[2]
     
     if true_act is not None:
         label0 = "{0:0.1f}".format(true_act[0])
@@ -212,6 +220,12 @@ if __name__ == '__main__':
         perc_list = r_R[1]
         fig, ax[1] = plot_wrong_act(fig, ax[1], offlist, perc_list, c=c, true_act = act)
 
-    save_fig(fig, ax, 'test.pdf', true_act=True)
+    save_fig(fig, ax, 'many_orbits_schmactions.pdf', true_act=True)
 
+    # examine orbits, I know this is hacky, just want orbits loaded in ipython
+    init_pos = [8, 0, 0] * u.kpc
+    init_vel_list = [[0, -190, 10] * u.km/u.s,
+                    [0, -190, 30] * u.km/u.s,
+                    [0, -190, 50] * u.km/u.s]
 
+    orbit_list = [compute_orbit(init_pos, init_vel) for init_vel in init_vel_list]

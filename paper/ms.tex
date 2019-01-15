@@ -3,7 +3,7 @@
 % \submitjournal{ApJ}
 
 \shortauthors{Beane et al.}
-\shorttitle{Where the Hell Are We?}
+\shorttitle{Our Galactic Midplane}
 
 \usepackage{graphicx}
 \usepackage{gensymb}
@@ -20,8 +20,9 @@
 \newcommand{\actunit}{\text{kpc}\,\kms}
 
 \newcommand{\abs}[1]{\left| #1 \right|}
-\newcommand{\z}{z}
+\newcommand{\z}{z_r}
 \newcommand{\uth}{\textsuperscript{th}}
+\newcommand{\n}{\text{n}}
 
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}
@@ -40,7 +41,7 @@ History, Central Park West at 79th St., New York, NY 10024, USA}
 
 \title{Our Galactic Midplane Is Probably Wrong, and Not by a Little}
 
-\correspondingauthor{Angus Beane}
+% \correspondingauthor{Angus Beane}
 \email{abeane@sas.upenn.edu}
 
 \author{Angus Beane}
@@ -118,67 +119,109 @@ axisymmetric in detail. Spiral arms, bar(s), and infalling satellite galaxies
 such as Sagittarius and the Large Magellanic Cloud all induce
 non-axisymmetries.
 
-Since the Milky Way is not truly axisymmetric, it is not clear the best way to
-define the Galactocentric coordinate system --- or, perhaps, the best way to
-modify the current implicit definition of the Galactocentric coordinate system
-in order to account for non-axisymmetries.
+We define the ``global Galactic midplane'' to be the plane of $z$ symmetry in
+the axisymmetric model of the Milky Way. We define the ``local Galactic
+midplane'' to be the plane of $z$ symmetry inferred by an observer at a
+particular location. The true global Galactic midplane is the plane of $z$
+symmetry in the best-fit axisymmetric model. It is not guaranteed that the
+local Galactic midplane coincide with the global Galactic midplane. Even
+without a high-precision definition and measurement of the global Galactic
+midplane, we can still assess how different the two should be by measuring the
+azimuthal dependence of the local Galactic midplane. This procedure may be
+readily tractable with current datasets. However, we turn to simulation in
+this work.
 
-In a slowly-evolving axisymmetric potential, the actions of stars' orbits are
-conserved quantities \citep{2008gady.book.....B,2014RvMP...86....1S}. In other
-words, if we could measure the actions of a star in such a potential, we would
-measure the same actions over the course of the orbit. The non-axisymmetries
-of a more realistic potential induce time evolution in the {\em measured}
-actions --- the true orbital invariants (if they exist) are invariant by
-definition. Through simple tests, we will see that even in a truly
-axisymmetric potential, if the wrong coordinate system is assumed then there
-will be additional time evolution in the measured actions.
+It's important for us to emphasize that when we state our local Galactic
+midplane may be erroneous, we do not mean that past measurements/estimates of
+it are wrong. Rather, what we mean is that it may vary from the local midplane
+at other points in the Galaxy. In the face of {\em Gaia} DR2 (and soon DR3/4),
+this may be an important effect to consider when performing dynamical
+modelling across large distances.
+
+Since an azimuthal-dependent midplane is effectively a departure from a
+perfectly axisymmetric potential, we consider the effect that an erroneous
+midplane has on the conservations of actions. The actions of an orbit are
+typically computed in a cylindrical coordinate system as,
+\beq\label{eq:actions}
+J_i \equiv
+\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
+\eeq
+where $i=R,z,\phi$. Note that $J_{\phi} \equiv L_z$. In a slowly-evolving axisymmetric potential, the actions
+of stars' orbits are conserved quantities
+\citep{2008gady.book.....B,2014RvMP...86....1S}. The non-axisymmetries of a
+more realistic potential induce time evolution in the {\em measured} actions
+--- the true orbital invariants (if they exist) are invariant by definition.
+Through simple tests, we will see that even in a truly axisymmetric potential,
+if the wrong coordinate system is assumed then there will be additional time
+evolution in the measured actions.
 
 The transformation to action space is not trivial, and many of the assumptions
-of the transformation are potentially incorrect. It is therefore natural to
-consider the reason to transform to action space. One reason is dimensionality
-reduction --- in the action space paradigm, a stellar orbit is completely
-described by three actions, as opposed to six dimensions of phase space. This
-means that the relationship between {\em orbital} properties of individual
-stars and stellar properties such as age or metallicity can be investigated.
+of the transformation are potentially incorrect. For instance, the assumption
+that the Galactic potential is axisymmetric may be inadequate with current
+measurement errors. Even if this assumption is valid, the parameters used in
+our axisymmetric models may be inadequately tuned to observations. In
+addition, the necessity of 6D phase space measurements of a star limits the
+Galactic volume observable in action space.
 
-To provide one such realization of a realistic Galactic potential, we turn to
+With these limitations in mind, it is therefore natural to consider the reason
+to transform to action space. One reason is dimensionality reduction --- in
+the action space paradigm, a stellar orbit is completely described by three
+actions, as opposed to six dimensions of phase space. This means that the
+relationship between {\em orbital} properties of individual stars and stellar
+properties such as age or metallicity can be investigated.
+
+We explore one science goal that relies on the conservation of actions --- the
+reconstruction of open clusters across large distances using dynamical
+tagging. The basic program is to match stars with roughly the same actions as
+their supposed natal cluster. To set the scene, we consider the orbits of the
+nine open clusters within $250\,\pc$ as reported by the {\em Gaia}
+collaboration \citep{2018A&A...616A..10G}. In Table~\ref{tab:real_clusters},
+we report the distance to each cluster, the three actions, and the maximum
+vertical extent of their orbits ($z_{\text{max}}$). The actions are computed
+using the technique described in Section~\ref{ssec:action_comp}.
+
+\begin{deluxetable*}{cccccc}
+\tablehead{\colhead{cluster} & \colhead{distance} & \colhead{$J_r$} &
+\colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$}\\ \colhead{ } &
+\colhead{$\mathrm{pc}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{pc}$}}
+\startdata
+alphaPer & 174.9 & 14.0 & -1739 & 0.0045 & 10.5 \\
+Blanco1 & 237.2 & 1.6 & -1841 & 1.53 & 207.0 \\
+ComaBer & 85.9 & 1.6 & -1860 & 0.71 & 139.7 \\
+Hyades & 47.5 & 20.3 & -1757 & 0.26 & 81.5 \\
+IC2391 & 151.6 & 5.5 & -1790 & 0.018 & 21.2 \\
+IC2602 & 152.2 & 11.5 & -1718 & 0.32 & 88.6 \\
+NGC2451 & 193.7 & 5.8 & -1805 & 0.21 & 73.4 \\
+Pleiades & 135.8 & 19.3 & -1696 & 0.38 & 96.3 \\
+Praesepe & 186.2 & 21.2 & -1766 & 0.58 & 122.9
+\enddata
+\tablerefs{\citet{2018AA...616A..10G}}
+\label{tab:real_clusters}
+\end{deluxetable*}
+
+To provide a realization of a realistic Galactic potential, we turn to
 cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
 Realistic Environments (FIRE)
-collaboration\footnote{\url{https://fire.northwestern.edu}} (the Latte suite
+collaboration\footnote{\url{https://fire.northwestern.edu}} (the {\em Latte} suite
 of simulations).
 
+In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
+system errors have on the measured actions. In Section~\ref{sec:local_fire},
+we measure the local midplane in cosmological zoom-in simulations from the
+FIRE collaboration. In Section~\ref{sec:discussion} we discuss and give some
+context for our results, and implications for the definition of the Solar
+neighborhood. We conclude in Section~\ref{sec:conclusion}.
+
 \section{Impact on Actions} \label{sec:ref_frame}
-We first demonstrate the importance of measuring the Galactic midplane to very
-high accuracy. We explore the consequence of an incorrect midplane in the
-context of computing orbital actions of disk stars. An inaccuracy in the
-midplane is only one potential systematic error in the way actions are
-presently computed. The assumed axisymmetric model of the Galaxy may be a poor
-description of the Galactic potential, and the parameters in this axisymmetric
-model may be estimated incorrectly.
-
-In this work, we assume both that an axisymmetric model of the Galaxy is a
-good description of the potential and that we have correctly determined the
-parameters of that model. We are only concerned with an inaccuracy
-
-\subsection{Summary of Action Computation} \label{ssec:action_comp}
-We begin by summarizing one way in which actions are computed in the
-literature \Gus{cite}. One first assumes an axisymmetric model of the Galaxy.
-This model may itself be a poor description of the Galactic potential,
-
-We use the code \texttt{gala} v0.3 to perform orbit integrations and
-conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
-which uses an action estimator technique presented by
-\citet{2014MNRAS.441.3284S}. Another common alternative is \texttt{galpy}
-\citep{2015ApJS..216...29B} using either direct orbit integration or the
-\Gus{Stackel Fudge} approximation. We use the default \texttt{MWPotential} as
-our potential, which is based on the Milky Way potential available in
-\texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
-Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
-\citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
-is fit to empirically match some observations. We use the Dormand-Prince
-8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
-$1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for a
-Sun-like star.
+We first demonstrate the importance of measuring the Galactic midplane and
+Solar radius to very high accuracy. To be clear, the consequences we explore
+here may also arise from various other observational errors. For instance, the
+symmetrized Galactic potential used by observers may not be a good description
+of the true potential --- or the parameters used may be incorrect. In this
+Section, we assume these approximations are valid and simply explore the
+consequences of an inaccurate Galactocentric coordinate system.
 
 \subsection{Cartoon} \label{ssec:cartoon}
 We present a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate
@@ -188,70 +231,164 @@ orbit. The y-axis corresponds to the vertical height of the orbit and the
 x-axis orbital phase. The dashed gray line is an incorrect midplane which an
 observer uses to compute orbits.
 
-Now suppose this observer makes a measurement of the true orbit at the orange
-point or the red point. Then the orange and red lines correspond to the orbits
+Now suppose this observer makes a measurement of the true orbit at the blue
+point or the pink point. Then the blue and pink lines correspond to the orbits
 that the observer would compute for each point. In action space, this would
-correspond to a different value of $J_z$ for the orange and red points. In
-this way, assuming the wrong coordinate system induces time dependence in the
+correspond to a different value of $J_z$ for the blue and pink points. In this
+way, assuming the wrong coordinate system induces time dependence in the
 actions {\em computed by an observer}.
 
 \begin{figure*}
 \plotone{fig/cartoon.pdf}
-\caption{Caption.}
+\caption{Cartoon showing the effect an incorrect midplane can have on orbit
+integrations and as an extension on action computations. The x-axis shows the
+orbital phase and the y-axis the vertical height. The top gray curve depicts a
+hypothetical true orbit oscillating about the true midplane, the horizontal
+solid gray line. Consider an immortal observer who erroneously assumes the
+midplane is located at the horizontal dashed line. Suppose this immortal
+observer measures the orbit at the blue and pink points. If the immortal
+observer were to perform orbit integrations at each observation, they would
+assume the blue and pink curves for the respective orbits. In this way, an
+incorrect midplane will induce phase-dependence in the {\em observed}
+actions.}
 \label{fig:cartoon}
 \end{figure*}
 
-\subsection{Quantification} \label{ssec:quant}
-We now turn to classical orbital integration in a commonly assumed Milky Way
-potential to quantify the time variation of computed actions for different
-coordinate system errors. Our action computation procedure is described in
-Section~\ref{ssec:action_comp}.
+\subsection{Summary of Action Computation} \label{ssec:action_comp}
+We follow our previous work in computing actions \citep{2018ApJ...867...31B}.
+We use the code \texttt{gala} v0.3 to perform orbit integrations and
+conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
+which uses an action estimator technique presented by
+\citet{2014MNRAS.441.3284S}. We use the default \texttt{MWPotential} as our
+potential, which is based on the Milky Way potential available in
+\texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
+Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
+\citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
+is fit to empirically match some observations. We use the Dormand-Prince
+8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
+$1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for a
+Sun-like star.
 
+Other methods for computing actions are used in the literature. For example,
+the St\"ackel Fudge method \citep{2016MNRAS.457.2107S} which uses the
+St\"ackel potential to approximate the Galactic potential
+\citep{1985MNRAS.216..273D,2012MNRAS.426.1324B} is commonly used
+\citep{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}.
+
+\subsection{Quantification} \label{ssec:quant}
 First, we illustrate the time-dependence of one possible inaccurate reference
 frame. We begin by taking an orbit with initial position $(8, 0, 0)\,\kpc$ and
-initial velocity $(0, -190, 50)\,\kms$ --- this corresponds to an orbit with
-actions $(J_r, L_z, J_z) = (32.5, -1520, 23.0)\,\actunit$. The orbit is
-plotted in \Gus{Appendix x}. We then suppose that an observer makes
-observations of this orbit in a coordinate system that is incorrect in radius by
-$200\,\pc$ and height by $100\,\pc$ --- we subtract the vector $(200, 0,
-100)\,\pc$ from each position in the orbit. This corresponds to an observer
-physically located at the position $(8, 0, 0)\,\kpc$ but erroneously thinking
-they are located at $(8.2, 0, 0.1)\,\kpc$.
+initial velocity $(0, -190, 30)\,\kms$ --- this corresponds to an orbit with
+actions $(J_r, L_z, J_z) = (37.9, -1520, 7.0)\,\actunit$ and
+$z_{\text{max}}=425\,\pc$. The orbit is plotted in \Gus{Appendix x}. We then
+suppose that an observer makes observations of this orbit in a coordinate
+system that is incorrect in height by $100\,\pc$ --- i.e. we subtract the
+vector $(0, 0, 100)\,\pc$ from each position in the orbit. This corresponds to
+an observer physically located at the position $(8, 0, 0)\,\kpc$ but
+erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
-Using the observations of the orbit that this erroneous observer makes every
-$\Myr$\footnote{In addition to being erroneous, we also assume our fictitious
-observer is immortal.}, we perform the same orbit integration procedure as
-before to compute the actions our observer would make in the incorrect
+Using the observations of the orbit that this erroneous (and immortal)
+observer makes every $\Myr$, we perform the same orbit integration procedure
+as before to compute the actions our observer would observe in the incorrect
 coordinate system over the duration of the orbit. The erroneous computed
-actions are shown for the first $\Gyr$ of the orbit in
+actions are shown for the first $\Gyr$ of the orbit in the {\em upper} panels
 Figure~\ref{fig:one_orbit_wrong_ref}. Occasionally the numerical scheme fails
 and very large actions are reported by \texttt{gala}
 --- we perform a $5\sigma$ clip on each action to exclude such orbits, but
-this only excludes a total of $5$ orbits out of the $1000$ considered for
-Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
-vast majority of orbits are computed properly.
+    this only excludes a total of $5$ orbits out of the $1000$ considered for
+    Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but
+    the vast majority of orbits are computed properly. We perform the same
+    procedure but assume a $100\,\pc$ offset in the $x$ component (i.e.
+    subtracting the vector $(100, 0, 0)\,\pc$) in the {\em lower} panels. This
+    is equivalent to an observer making an incorrect measurement of the Solar
+    radius.
 
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the erroneous observer would
-infer significant time evolution in their computed actions. The
-95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $8.7$,
-$47.1$, and $19.3\,\actunit$ for $J_r$, $L_z$, and $J_z$, respectively. These
-are fractional errors of $26.5\%$, $3.1\%$, and $81.4\%$, respectively.
+infer significant time evolution in their computed actions. For an error in
+$z$ ({\em upper} panels), the 95\textsuperscript{th} minus
+5\textsuperscript{th} percentiles are $2.2$ and $6.2 \actunit$ for $J_r$ and
+$J_z$, respectively. These are fractional errors of $5.7\%$ and $85.7\%$,
+respectively. The error induced in $L_z$ is negligible, as expected since
+$L_z$ does not depend on the value of $z$. It is worth pointing out that a
+$100\,\pc$ error in an orbit with $z_{\text{max}}=425\,\pc$ --- a $24\%$ error
+--- induced an $85.7\%$ error in the computation of $J_z$.
+
+For an error in the $x$ component (or Solar radius), the
+95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $x$, $y$,
+and $z \actunit$ for $J_r$, $L_z$ and $J_z$, respectively. These are
+fractional errors of $x\%$, $y\%$ and $z\%$, respectively.
 
 \begin{figure*}
 \plotone{fig/one_orbit.pdf}
-\caption{Caption.}
+\caption{The artificial phase-dependence in the observed actions induced by an
+error in the Galactocentric coordinate system. We consider here an orbit with
+initial position $(8,0,0)\,\kpc$ and initial velocity $(0,-190,30)\,\kms$.
+This corresponds to an orbit with actions $(J_r, L_z, J_z) = (37.9, -1520,
+7.0)\,\actunit$ and $z_{\text{max}}=425\,\pc$. We integrate the orbit
+according to the procedure laid out in Section~\ref{ssec:action_comp}. Then,
+we subtract $100\,\pc$ from the $z$ value of each position in the orbit,
+corresponding to an erroneous observer assuming a midplane that is off by
+$100\,\pc$. We then allow our (immortal) observer to observe the orbit over
+$1\,\Gyr$ and perform the same orbit integration procedure at each timestep,
+and report the values of the actions. The computation of $L_z$ is pristine to
+errors in $z$, with only numerical artifacts remaining. Only small errors are
+induced in $J_r$, with the middle $90\%$ of values over the $\Gyr$ being
+$\sim6\%$ of the true $J_r$. As expected, large errors are induced in $J_z$,
+with the middle $90\%$ of values being $\sim85\%$ of the true $J_z$.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
-We now repeat the procedure but continuously changing the error in the assumed
-midplane. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth minus
-5\uth
+We now repeat the procedure but continuously changing the error in the $z$ and
+$x$ components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth
+minus 5\uth percentile divided by the true action value for three different
+orbits. The \Gus{orange} orbit is exactly the same as in
+Figure~\ref{fig:one_orbit_wrong_ref}, and we also consider two more planar
+orbits with initial vertical velocities of $50\,\kms$ (\Gus{red}) and
+$10\,\kms$ (\Gus{blue}). For these two new orbits, the true actions are $(J_r,
+L_z, J_z) = (32.6, -1520, 22.9)\,\actunit$ and $(40.4, -1520, 0.7)\,\actunit$
+for the \Gus{red} and \Gus{blue} orbits, respectively. The value of
+$z_{\text{max}}$ for these orbits are $854\,\pc$ and $122\,\pc$, respectively
+(with the orange orbit having $z_{\text{max}}$ of $425\,\pc$.) \Gus{Easy way
+to explain change in $J_r$?}
 
+The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the error in each
+action assuming an offset in the $z$ component (i.e. the Galactic midplane).
+In the {\em bottom row} we also consider offsets in the $x$ component (i.e.
+the Solar radius). The {\em left}, {\em middle}, and {\em right} columns show
+the relative error in $J_z$, $L_z$, and $J_r$, respectively. We compute the
+relative error as the  95\uth minus 5\uth percentile of the measured action
+($\Delta J_i$) over the course of the first $\Gyr$ of the incorrectly observed
+orbit divided by the true action value as a percentage.
 
+In the {\em upper middle} panel, there is essentially no error in the
+determination of $L_z$. This is expected since, in principle, $L_z$ only
+depends on the $x$- and $y$-components of the position and velocity of the
+stars\footnote{Though this is not how we compute $L_z$ in practice.}, and is
+thus unaffected by offsets in $z$. This also agrees with the result we found
+in Figure~\ref{fig:one_orbit_wrong_ref}.
+
+The {\em upper right} panel shows that the fractional error in $J_z$ is more
+exaggerated for more planar orbits. For the nearly planar (blue) orbit,
+deviations that are $\sim30\,\pc$ already give $100\%$ deviations in the
+actions. The required offset for $100\%$ deviation is $\sim120$ and
+$\sim225\,\pc$ for the orange and red orbits, respectively. \Gus{Make these
+numbers exact.}
+
+For the offset in the Solar radius {\em bottom panels}, the error is largest
+for $J_r$, with some deviations resulting in $L_z$ and relatively small
+deviations in $J_z$. In the {\em bottom left} panel the orange and blue lines
+overlap, and in the {\em bottom middle} and {\em bottom right} panels all
+three lines overlap.
 
 \begin{figure*}
-% \plotone{fig/something.pdf}
-\caption{Caption.}
+\plotone{fig/many_orbits_schmactions.pdf}
+\caption{\Gus{update figure} We report the 95\uth minus 5\uth percentile of
+the error in the measured action ($\Delta J_i$) from coordinate system errors
+for three orbits with low-, medium-, and high-$J_z$ values (blue, orange, and
+red, respectively). The {\em left}, {\em center}, and {\em right} panels show
+the result for $J_r$, $L_z$, and $J_z$, respectively. The {\em upper} panels
+consider an offset in $z$ and the {\em lower} panels consider an offset in $x$
+(equivalently, an offset in the Solar radius).}
 \label{fig:many_orbit_wrong_ref}
 \end{figure*}
 
@@ -271,11 +408,12 @@ publicly available.
 First, a dark matter only simulation was run with $\Lambda$CDM cosmology
 parameterized by $\Omega_m = 0.272$, $\Omega_{\Lambda} = 0.728$, $\Omega_b =
 0.0455$, $h = 0.702$, $\sigma_8 = 0.807$, and $n_s = 0.961$, consistent with
-current constraints \citep{2018arXiv180706209P}. Halos are selected at $z=0$
-based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$).
-Particles within $5 R_{200\text{m}}$ of each halo are traced back to $\z=99$
-and the initial conditions are regenerated at higher resolution using MUSIC
-\citep{2011MNRAS.415.2101H}.
+current constraints \citep{2018arXiv180706209P}. Halos are selected at $\z=0$
+based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$). In this
+work, to avoid confusion with the vertical height $z$, we refer to
+cosmological redshift as $\z$. Particles within $5 R_{200\text{m}}$ of each
+halo are traced back to $\z=99$ and the initial conditions are regenerated at
+higher resolution using MUSIC \citep{2011MNRAS.415.2101H}.
 
 Simulations were run using
 \texttt{GIZMO}\footnote{\url{http://www.tapir.caltech.edu/~phopkins/Site/GIZMO.html}}
@@ -309,12 +447,6 @@ mass velocity is then determined by all star particles within $15\,\kpc$ of
 this center. The galaxy is then rotated onto the principal axis frame as
 determined by stars younger than $1\,\Gyr$ inside of the fiducial solar radius
 $R_{\odot} = 8.2\,\kpc$.
-
-% We restrict ourselves to the simulation m12i \citep[first introduced
-% in][]{2016ApJ...827L..23W}. For this work, this galaxy is the best-case
-% scenario. It does not contain a bar (like \texttt{m12m}) or companion galaxy,
-% and by eye is the closest to axisymmetric of the three galaxies presented in
-% \citet{2018arXiv180610564S} \citep{2018MNRAS.481.4133G}.
 
 It is important to remember that simulations of Milky Way-mass galaxies are
 not perfect representations of the true Milky Way, as discussed in
@@ -360,206 +492,235 @@ range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m.
 
 \begin{figure*}
 \plotone{fig/midplane_fit.pdf}
-\caption{Caption.}
+\caption{The local midplane determined at the fiducial Solar radius
+($8.2\,\kpc$) for the three FIRE galaxies m12i, m21f, and m12m ({\em left},
+{\em center}, and {\em right} panels). The local midplane is determined at a
+position $\phi$ by taking the median height of all stars within $R=0.5\,\kpc$
+and $z=1\,\kpc$ (in cylindrical coordinates). The procedure is performed again
+using the new height $10$ times to converge on the local midplane height. In
+order to allow for the possibility that the fiducial Galactocentric coordinate
+system is incorrect, we subtract the best fit $A\sin{(\phi+B)}+C$ curve from
+each panel --- this figure is reproduced with the original midplane
+determination (i.e. before subtracting the best fit sine curve) in
+Appendix~\Gus{x}. We then bootstrap resample $1000$ times on all stars within
+a $2\,\kpc$ height of the fiducial midplane to determine error bars (95\uth
+and 5\uth percentiles), which we report as dashed lines.}
 \label{fig:midplane}
 \end{figure*}
 
 \section{Discussion} \label{sec:discussion}
-{\em Gaia} DR2 has ushered in a new era of Galactic dynamics. High-precision
-phase space measurements have been made for an unprecedented number of stars.
-In the face of such large data, it is worth considering the goal of such
-measurements --- a goal which should inform the usage of such data.
+We have shown that, in simulation, the ``local midplane'' can have strong
+azimuthal dependence. The implications of this finding are not clear, but
+clearly demonstrate that assuming our local midplane is the same as the global
+midplane is insufficient for extracting the most dynamical information from
+the {\em Gaia} mission. From now on, we set aside the discussion of
+inaccuracies in the Solar radius. While all that we state about the midplane
+applies to the Solar radius as well, it is not clear the best way to determine
+the dynamical center of the galaxy in the FIRE simulations.
 
-In this work we considered one such question: given the current position in
-phase space of a single star, what can we infer about that star's past phase
-space trajectory? Current methodology involves using a smoothed, analytic form
-for the Galactic potential (with perhaps crude implementations of spiral arms
-or sattelites), fitting such form to some selection of observations, and
-integrating from the currently measured position in phase space. This orbit
-integration is also commonly accompanied with a transformation into
-action-angle space. Other than the integration, every step of that process
-should be viewed with significant scrutiny.
+\subsection{Applicability to the Milky Way} \label{ssec:is_it_real}
+As we briefly discussed in Section~\ref{ssec:cosmozoom}, cosmological zoom-in
+simulations of Milky Way-mass galaxies are not perfect representations of the
+Milky Way, and do not reproduce every available observation of the Milky Way.
+For instance, the velocity dispersion-age relation in m12i, m12f, and m12m is
+closer to that of M31 \citep{2018arXiv180610564S}.
 
-The more general problem of measuring the orbits of stars in cosmological
-simulations is essentially unexplored in this work and the literature, and we
-delay discussion to future work.
+In order to assess the applicability of our work to the real Milky Way, we
+consider a subset of Table~3 from \citet{2018arXiv180610564S} --- our
+Table~\ref{tab:scale_height} shows the stellar scale heights of m12i, m12f,
+and m12m and the current best estimates for the Milky Way. One noticeable
+feature is that the FIRE galaxies are more ``puffy'' than the Milky Way.
+\Gus{Maybe FIRE collaboration has some insight into the mechanism for this?}.
+This would seem to suggest that the midplane estimates from
+Figure~\ref{fig:midplane} over-estimate the true variation in the Milky Way.
 
-% \subsection{Dynamical Midplane}
-% We now seek to define the midplane in a dynamically consistent manner, which
-% we refer to as the ``dynamical midplane''. By this, we mean we would like to
-% define the midplane in a manner consistent with some sort of dynamical
-% constraint. Our method, which we describe now, is just one of many possible
-% ways the dynamical midplane can be defined.
+\begin{deluxetable}{ccc}
+\tablecaption{Stellar Disk Scale Heights}
+\tablehead{\colhead{galaxy} & \colhead{thin disk} & \colhead{thick disk} \\ 
+\colhead{} & \colhead{(pc)} & \colhead{(pc)} } 
+\startdata
+MW\tablenotemark{a} & 300 & 900 \\
+m12i\tablenotemark{b} & 480 & 2000 \\
+m12f\tablenotemark{b} & 440 & 1280 \\
+m12m\tablenotemark{b} & 290 & 1030 \\
+\enddata
+% \tablerefs{\citet{2016ARAA..54..529B,2018arXiv180610564S,2008ApJ...673..864J}}
 
-% We define the dynamical midplane based on the principle that perfectly
-% circular, planar orbits will trace the midplane. Once the circular, planar
-% orbits have been identified, the procedure for finding the dynamical midplane
-% is relatively simple. From the measurement of each star's orbit, the midplane
-% of the galaxy can be computed at $z=0$ easily. Furthermore, we will find that
-% each orbit also gives a measure of the: dynamical center of the galaxy,
-% velocity of the galaxy, and acceleration of the galaxy.
+\tablenotetext{a}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
+\tablenotetext{b}{\citet{2018arXiv180610564S}}
 
-% We pause briefly to consider general difficulties in measuring stellar orbits
-% in a cosmological simulation. It may seem reasonable to place the galaxy in an
-% inertial reference frame and then to simply measure the positions of each star
-% particle over time. However, it is not generally the case that the center of
-% mass of the stellar disk experiences a vanishing acceleration. Indeed, in a
-% re-run of the simulations presented here\footnote{The re-run contained a
-% cosmic ray bug fix which is unimportant here, but the re-run also output the
-% acceleration of each particle, which is not the case for the simulations in
-% this work.}, we measure a total acceleration of $\sim 0.4\,\kms/\text{Myr}$
-% for stars with cylindrical radii within $0.5\,\kpc$ of $8.2\,\kpc$ and
-% vertical heights less than $0.4\,\kpc$. Assuming a constant acceleration, over
-% $22\,\Myr$ --- the time spacing of snapshots considered in this work --- this
-% results in a $\sim90\,\pc$ shift of the disk. Since the offset scales with
-% $t^2$, this presents a significant problem for measuring stellar orbits over
-% longer timescales.
+\label{tab:scale_height}
+\end{deluxetable}
 
-% Another option is to recenter and reorient the galaxy at each snapshot.
-% However, the centering and orientation procedures are not without
-% stochasticity themselves. This stochasticity can easily dominate the magnitude
-% of the orbit. For instance, a shift in the direction of the $z$-axis by a mere
-% $0.7\degree$ results in a shift in the midplane of $100\,\pc$ at a radius of
-% $8.2\,\kpc$. We attempted this procedure in various ways (i.e. exploring
-% different centering and orientation procedures), but were not able to cleanly
-% measure the orbits of disk stars.
+Another important aspect to consider when comparing the simulated galaxies to
+the Milky Way is the environment/merger history. For instance, m12i and m12m
+both lack a massive neighbor analogous to the LMC. On the other hand, m12f has
+had a recenter merger with \Gus{something}. \Gus{Expand more here - how to
+incorporate merger trees?}
 
-% Here we choose to simplify the problem by considering only perfectly circular,
-% planar orbits. Since these orbits have no phase-dependent structure, we can
-% work on shorter timescales, i.e. for orbits with significant radial or
-% vertical action a large fraction of their orbit would need to be sampled in
-% order to measure the orbit accurately. Because we know the analytic form of
-% these orbits, we can forward model the trajectory of each star particle in the
-% cosmological simulation. Working in comoving coordinates, we can write down
-% the trajectory of a star particle as
-% \beq\label{eq:helix}
-% \bm{r}(t) = R(\theta, \phi, \psi) \left[ (A\cos{\omega t}, B\sin{\omega t}, C
-% t) + \bm{x_0} \right]\text{,}
-% \eeq
-% where $R(\theta, \phi, \psi)$ is an Euler angle transformation, $A$, $B$, $C$,
-% and $\omega$ are arbitrary constants, and $\bm{x_0}$ is an arbitrary 3-vector.
-% This equation is a helix with an arbitrary constant and rotation. It describes
-% the
+\subsection{Solar Neighborhood} \label{ssec:neighborhood}
+To gain further handle on the midplane behavior as a function of azimuth, we
+compute the range of midplane values for a given $\Delta \phi$ segment of the
+midplane in Figure~\ref{fig:range_deltaphi}. With the observer's azimuth set
+to zero, we consider a region extending from $-\Delta \phi/2$ to
+$\Delta\phi/2$. We also compute the chord length for the chord extending from
+the observer to $\pm \Delta\phi/2$. We repeat this for each of the $50$ bins
+in azimuth. Each bin is plotted as a gray line, with the mean value in solid
+blue and the $1\,\sigma$ dispersion as the dashed blue lines.
 
-% We minimize the summed squared difference between Equation~\ref{eq:helix} and
-% the true trajectory of each star with $R$ within $1\,\kpc$ of $R_{\odot} =
-% 8.2\,\kpc$ in each simulation. We consider minimum rms error (i.e. the typical
-% error in the Equation~\ref{eq:helix} model in describing the true trajectory).
-% This rms error characterizes how well the helix model we consider, which would
-% be exactly correct if the overall motion of the galaxy is well-described by
-% constant speed motion and the orbit of a particular store is exactly circular
-% and planar.
+\begin{figure*}
+\plotone{fig/range_dphi.pdf}
+\caption{The range of midplane heights encountered as a function of angular
+width. At each angle $\phi$ from Figure~\ref{fig:midplane} we consider an
+angular width of $\Delta \phi$ centered on $\phi$ and report the range of
+midplane heights within that width. We repeat the procedure for each $\phi$
+and plot the result as translucent gray lines. We also plot the mean range as
+a solid blue line and the $\pm1\sigma$ lines as dashed blue lines. The upper
+$x$-axis shows the chord length from the position $\phi$ to
+$\pm\Delta\phi/2$.}
+\label{fig:range_deltaphi}
+\end{figure*}
 
-% We plot a histogram of the rms error for each galaxy in
-% Figure~\ref{fig:something}. As we estimated before, the total effect of the
-% galaxy's acceleration is roughly $90\,\pc$ (\Gus{Check for m12f, m12m}). We
-% find that this is small compared to the typical error, even for the stars
-% whose trajectories are best modeled by Equation~\ref{eq:helix}.
+A possible interpretation of our finding is that one should use a star's local
+midplane in order to compute dynamical quantities like the vertical action.
+Under the assumption that this interpretation is correct, we now consider the
+implications for dynamical studies of disrupting open clusters (the original
+motivation of this study).
 
-% There are many reasons for the failure of this model. First, there could be no
-% stars on circular orbits. This seems unlikely considering that typical
-% distribution functions peak on perfectly circular, planar orbits
-% \citep[e.g.][]{2013MNRAS.434..652T}. Second, the trajectory of the galaxy may
-% not be well-described by constant-speed motion. This also seems unlikely,
-% considering that the bulk acceleration of the stellar disk only results in a
-% $\sim90\,\pc$ (\Gus{m12f, m12m}) deviation from constant-speed motion over the
-% $22\,\Myr$ time we considered.
+Suppose an open cluster of mass $m_c$ on an orbit with actions $\bm{J}_c$ is
+disrupted, and that the cluster is currently at an orbit phase of
+$\bm{\theta}_0$. We would like to determine all stars in the {\em Gaia}
+dataset\footnote{This is likely to be more successful with DR3/4 than DR2,
+since upcoming data releases will contain a far greater number of stars with
+radial velocities --- though targeted, follow-up radial velocity surveys may
+allow this program to be performed sooner.} that are likely to be ejected
+members from that cluster. One could proceed by integrating the cluster's
+orbit and selecting all stars within a certain distance of that orbit,
+accounting for the fact that the stream will not exactly follow the orbit of
+the cluster \citep[e.g.][]{2011MNRAS.413.1852E}.
 
-% Furthermore, in Figure~\ref{fig:something} we plot the center of mass of the
-% galaxy (in comoving coordinates) for the $22\,\Myr$ timeframe described. The
-% center of mass at each snapshot is computed using the iterative shrinking
-% spheres method described in Section~\ref{ssec:cosmozoom}. The rms error on the
-% constant-speed motion is $\sim\text{something}$, which we interpret as
-% \Gus{something}.
+One could then make a further selection by requiring that the action of each
+field star $i$ be close to the cluster's actions to within some bound, i.e.
+$\bm{J}_i - \bm{J}_c \in V_e$ where $V_e$ is some volume in action space
+enclosing a region of acceptable error. A natural choice for $V_e$ is to
+center it at the origin and allow its extent to be the intrinsic action-space
+dispersion of a disrupted cluster. This dispersion can be estimated as
+\citep[\S~8.3.3][]{2008gady.book.....B}
+\beq \label{eq:action_disp}
+\frac{\Delta J_i}{J_i} \sim \left(\frac{m_c}{M}\right)^{1/3}\text{,}
+\eeq
+where $m_c$ is the mass of the cluster and $M$ is the mass enclosed by the
+cluster's orbit. A more sophisticated treatment of the action-space dispersion
+of disrupted clusters can be obtained by following
+\citet{2011MNRAS.413.1852E}, but such a treatment is premature for this work.
 
-% One potential explanation is that {\em no star can remain on a circular,
-% planar orbit}. The order unity density variations may be strong enough such
-% that each star's orbit is perturbed. If there are truly stars in the
-% simulation on perfectly circular, planar orbits, then the magnitude of their
-% acceleration over the last $22\,\Myr$ must be constant. Furthermore, their
-% trajectory in acceleration space must be well-described by a rotation. In the re-runs, 
+The act of comparing a field star's action to a cluster's action (i.e. in
+computing $\bm{J}_i - \bm{J}_c$) is subject to significant error if the
+cluster and field star have significantly different local midplanes and an
+observer assumed a single global midplane.
 
-% \section{Optimally Axisymmetric Frame} \label{sec:oa_frame}
-% An analytic, axisymmetric potential with a known coordinate system is a far
-% too simple description of the Milky Way. We thus turn to cosmological zoom-in
-% simulations as approximations to a ``true'' Milky Way potential. We will
-% perform a few simulations of small clusters embedded in the potential of a
-% frozen $\z=0$ snapshot of one such zoom-in. We take our fiducial reference
-% frame from \citet{2018arXiv180610564S}.
+To explore the magnitude of this effect, we consider the following program.
+First, we assume a cluster mass $m_c$ and estimate the expected action-space
+dispersion from Equation~\ref{eq:action_disp}. We then consult
+Figure~\ref{fig:many_orbit_wrong_ref} to determine the $z$ offset necessary in
+order for the induced error in the vertical action to be the same as the
+expected action-space dispersion. If this were the case, an observer would
+have to account for the different midplane of the field star and the cluster.
+We repeat this analysis for each of the three orbits considered in
+Section~\ref{ssec:quant}.
 
-% Freezing the potential means that during the course of our simulation the
-% cluster will rapidly pass by much of the substructure in the potential. To
-% illustrate that this has little effect on our results, we resimulate each
-% cluster with the softening lengths of the embedded potential increased by a
-% factor of \Gus{something}.
+With a characteristic $z$ offset in hand, we consult
+Figure~\ref{fig:range_deltaphi} to convert this $z$ offset into a $\Delta
+\phi$, which we convert to an arclength or characteristic distance (the
+difference between the two will be negligible for the small $\Delta \phi$'s we
+will compute). Therefore, if an observer is attempting to reconstruct a
+cluster with a given mass on a given orbit, we will give a characteristic
+distance between a field star and the cluster within which an observer might
+not need to consider differences in their respective local midplanes.
 
-% Once we perform this simulation, we calculate the actions of each star in the
-% cluster assuming the best-fit smooth, axisymmetric potential, as we do
-% observationally for the Milky Way. We refer to this space as the observational
-% action space. We will find that there is significant time evolution in
-% observational action space. Attributing some of this evolution to our fiducial
-% coordinate system being incorrect, we minimize the time-dispersion in action
-% space
+\begin{figure}
+\plotone{fig/cluster_offset.pdf}
+\caption{The $z$ offset necessary in order for the action error induced by our
+midplane effect to be comparable to the intrinsic action dispersion from a
+cluster of mass $m_c$. We compute the intrinsic dispersion from
+Equation~\ref{eq:action_disp} and convert the dispersion to a $z$ offset using
+the result from Figure~\ref{fig:many_orbit_wrong_ref}. We consider the result
+for three different orbits with varying vertical actions of $J_z = 0.7, 7.0,
+22.9\,\actunit$ ($z_{\text{max}} = 122,425,854\,\pc$) --- colored by
+\Gus{blue, orange, red}, respectively. Nearby open clusters have actions
+closest to the $J_z=0.7\,\actunit$ (blue) orbit, see Table~\Gus{x}.}
+\label{fig:cluster_offset}
+\end{figure}
 
-% \subsection{Cluster Simulations} \label{ssec:cluster_sim}
-% We simulate a small star cluster of $256$ stars in the frozen $\z=0$
-% potential of m12i. We use the code \texttt{ph4} within the
-% \texttt{AMUSE} framework \citep{2011ascl.soft07007P, 2013CoPhC.184..456P,
-% 2013A&A...557A..84P} for the cluster integration. We use a softening length
-% of $0.01\,\pc$ which means we do not correctly solve the internal dynamics of
-% the cluster, but this is not important for our purposes. To couple the
-% gravitational forces of the frozen snapshot to the cluster stars, we use the
-% \texttt{BRIDGE} \citep{2007PASJ...59.1095F}, also implemented in
-% \texttt{AMUSE}. Our simulation runs for $2\,\Gyr$, allowing us to solve for
-% $\sim 10$ orbits.
+In Figure~\ref{fig:cluster_offset}, we show the $z$ offset necessary to induce
+the action space dispersion computed from Equation~\ref{eq:action_disp}, using
+the \texttt{gala} computed mass enclosed within a radius of $8.2\,\kpc$ ($\sim
+10^{11}\,M_{\odot}$).
 
-% To compute the forces from the frozen potential, we use the simple tree code
-% \texttt{pykdgrav}\footnote{\url{https://github.com/omgspace/pykdgrav},
-% commit: \texttt{fbd1ddc}}. We use an opening angle of $0.5$ and exclude stars
-% at distances $R>50\,\kpc$ in the fiducial coordinate system.
+We now convert the $z$~offset-$m_c$ relation to an $R_{\n}$-$m_c$ relation,
+where $R_{\n}$ indicates a sort of ``solar neighborhood'' radius. An observer
+attempting to reconstruct an open cluster of mass $m_c$ with perfect knowledge
+of the midplane at the location of the cluster would expect to find the
+ejected members using a dynamical cut for field stars within a distance
+$R_{\n}$ of the cluster. If such an observer wants to find ejected stars that
+are at a distance greater than $R_{\n}$, a more sophisticated analysis would
+be required, the details of which are not apparent to the authors of this
+work.
 
-% We use the initial position and velocity of two star particles in
-% m12i. These two star particles are randomly chosen from all star
-% particles in the simulation with the following properties (in the fiducial
-% coordinate system):
-% \begin{enumerate}
-%     \item age in the range $(0.25, 0.75)\,\Gyr$,
-%     \item cylindrical radius in the range $(7.7, 8.7)\,\kpc$,
-%     \item height (absolute value) less than $0.5\,\kpc$,
-%     \item $J_r$ and $J_z$ in the range:
-%         \subitem $(10, 20)\,\actunit$ for the first star,
-%         \subitem $(40, 60)\,\actunit$ for the second star.
-% \end{enumerate}
-% The ids we choose are \texttt{23693026} for the first star and
-% \texttt{17012804} for the second star. We refrain from calling these ``low''
-% or ``high'' action stars since the actions are computed in a presumably
-% incorrect coordinate system.
+We use the relation in Figure~\ref{fig:range_deltaphi}, which shows the
+typical $z$ offset at each $\Delta \phi$, to convert a given $z$ offset into a
+$\Delta\phi$, which we then convert into a chord length which we interpret as
+$R_{\n}$, the neighborhood around the cluster. If the $z$~offset is greater
+than the maximum range value of the galaxy, we simply report the maximum chord
+length ($2\times8.2\,\kpc$). The result of this procedure is shown in
+Figure~\ref{fig:Rn_mc}. The solid lines indicate the neighborhood values
+assuming the mean relation between $z$~offset and $m_c$, and the dashed lines
+show the $+1\,\sigma$ and $-1\,\sigma$ relations, indicative of the strong
+$\phi$-dependence of the midplane effect.
 
-% To compute actions, both in the choosing of each of these star particles and
-% in what follows, we use the package
-% \texttt{agama}\footnote{\url{https://github.com/GalacticDynamics-Oxford/Agama},
-% commit: \texttt{0e48336}}. Using only the high-resolution particles, we
-% compute the symmetrized potential in two components. First, a multipole
-% expansion with $20$ radial grid points and a max order of $2$ for the
-% spherical-harmonic expansion is used for the dark matter. Second, a
-% cylindrical spline expansion with $20$ radial and $z$ grid points, a $0$ order
-% max index azimuthal-harmonic expansion, $0.2$ and $50\,\kpc$ for the minimum
-% and maximum radial grid node, $0.02$ and $10\,\kpc$ for the minimum and
-% maximum $z$ grid node is used for the baryonic matter (stars and gas). In both
-% cases, axisymmetry is explicitly enforced. Other \texttt{agama} parameters are
-% left as default.
+Figure~\ref{fig:Rn_mc} is most informative for the low $J_z$ orbit (blue). The
+neighborhood around $\sim100\Msun$ clusters can be as small as $\sim300\,\pc$
+but up to $\sim1.2\,\kpc$ for m12i and m12f, though the situation is
+marginally better for m12m with values ranging from $\sim0.8\,\kpc$ to
+$\sim3\,\kpc$. The neighborhood values steadily increase with $m_c$, topping
+out at $\sim5\,\kpc$ for $\sim10^4\,\Msun$ clusters in m12i and m12f. In m12m,
+the neighborhood value reaches the maximum allowed of $16.4\,\kpc$ for
+clusters of mass $\sim800\,\Msun$. The interpretation of this is that the
+expected action space dispersion is so high for such high mass clusters that
+the measured $z$~offset is not large enough throughout the entire galaxy to be
+important.
 
-% \subsection{Frame Optimization} \label{ssec:frame_opt}
-% Figure~\Gus{something} shows the action computed at each time step in the
-% fiducial coordinate system. Clearly there is significant time evolution.
+For the medium $J_z$ orbit (orange), the situation is better, although such an
+orbit is not a good fit to any of the nearby open clusters \Gus{Table x}. For
+m12i and m12f, the neighborhood is $\sim \text{few}\,\kpc$ for
+$m_c\sim10^2\,\Msun$. At $\sim10^3\,\Msun$ the curves reach their maximum
+value. For m12m, the neighborhood starts at $\sim10\,\kpc$ and quickly rises
+to the maximum value. For the high $J_z$ orbit (red), the neighborhood is at
+the maximum value for nearly all masses, except at the very low-mass end in
+m12i.
 
-% Even though we change the center, we do not recalculate the center velocity.
-% This is largely irrelevant, as the recalculated center velocity differs from
-% the fiducial center velocity by $<0.1\,\kms$. In recentering the galaxy, the
-% package \texttt{gizmo\_analysis} will subtract a slightly different value for
-% the Hubble flow from each particle's velocity to convert to a physical
-% coordinate system. The error this introduces is $\sim 0.02\,\kms$, which we
-% also ignore.
+\begin{figure*}
+\plotone{fig/Rn_vs_mc.pdf}
+\caption{The neighborhood around an open cluster of mass $m_c$ for our three
+orbits (blue, orange, and red) and for each of the FIRE galaxies considered
+here --- m12i, m12f, and m12m ({\em left}, {\em center}, and {\em right}
+panels, respectively). Given the $z$ offset for a cluster of mass $m_c$
+computed in Figure~\ref{fig:cluster_offset}, we convert this to a chord length
+using the result from Figure~\ref{fig:range_deltaphi} and plot as a solid blue
+line. We interpret this chord length as the ``neighborhood'' around the
+cluster, i.e. the distance from the cluster one could go before the $J_z$
+error induced by our midplane effect is comparable to the intrinsic action
+dispersion of the cluster. When the $z$ offset is larger than the maximum
+range in Figure~\ref{fig:range_deltaphi}, we report the maximum chord length
+($2\times8.2\,\kpc$). We aso report the same procedure but using the
+$\pm1\sigma$ lines from Figure~\ref{fig:range_deltaphi}, which we plot here as
+dashed lines. For the medium- and high-$J_z$ orbits (orange and red), the
+neighborhood is quite large and thus the effect is negligible. However, for
+the low-$J_z$ orbit (blue), which is closest to the orbits of nearby open
+clusters (see Table~\Gus{x}), the neighborhood is only a few hundred $\pc$ for
+low-mass clusters.}
+\label{fig:Rn_mc}
+\end{figure*}
 
 \appendix \section{Appendix 1}
 Gonna write an appendix probably 
