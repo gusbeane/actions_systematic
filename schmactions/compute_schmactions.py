@@ -57,7 +57,7 @@ def compute_actions_wrong_ref_frame(init_pos, init_vel, offset, theta=None, cade
     q = gd.PhaseSpacePosition(pos=init_pos, vel=init_vel)
     with warnings.catch_warnings(record=True):
         warnings.simplefilter("ignore")
-        orbit = mw.integrate_orbit(q, dt=dt, t1=t1, t2=t2)
+        orbit = mw.integrate_orbit(q, dt=dt, t1=t1, t2=t2, Integrator=gi.DOPRI853Integrator)
         res = gd.find_actions(orbit, N_max=8)
         ans = res['actions'].to(u.kpc * u.km / u.s).value
         print(ans)
