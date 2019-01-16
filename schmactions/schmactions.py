@@ -58,3 +58,7 @@ class schmactions(object):
     def extract_time(self, out, units=u.Myr):
         return np.array([r['time'].to_value(units) for r in out])
 
+
+if __name__ == '__main__':
+    s = schmactions([8, 0, 0] * u.kpc, [0, -190, 50] * u.km/u.s)
+    out = s.compute_actions_offset([0, 0, 100] * u.pc, [0, 0, 0] * u.km/u.s)
