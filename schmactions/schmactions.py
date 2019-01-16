@@ -30,3 +30,25 @@ class schmactions(object):
                                                  t1=self.t1, t2=self.t2)
             self.res = gd.find_actions(self.orbit, N_max=self.N_max)
 
+    def compute_actions_offset(self, pos_offset, vel_offset, 
+                               cadence=10, end=1000):
+        pos = np.transpose(self.orbit.pos.xyz)
+        pos = np.add(pos, pos_offset)
+        vel = np.transpose(self.orbit.vel.d_xyz)
+        vel = np.add(vel, vel_offset)
+
+        pos = np.transpose(pos)
+        vel = np.transpose(vel)
+
+        all_q = gd.PhaseSpacePosition(pos=pos, vel=vel)
+        out = []
+        time = self.orbit.t
+        with warnings.catch_warnings(record=True):
+            for q,t in tqdm(zip(all_q[0:end:cadence],time[0:end:cadence])):
+                orbit = self.mw.integrate_orbit(q, dt=self.dt,
+                                                t1=self.t1, t2=self.t2)
+                res = gd.find_actions(orbit, N_max=self.N_max)
+                res['time'] = t
+                out.append(res)
+        return out
+
