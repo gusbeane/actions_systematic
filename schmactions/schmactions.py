@@ -52,3 +52,9 @@ class schmactions(object):
                 out.append(res)
         return out
 
+    def extract_actions(self, out, units=u.kpc * u.km/u.s):
+        return np.array([r['actions'].to_value(units) for r in out])
+
+    def extract_time(self, out, units=u.Myr):
+        return np.array([r['time'].to_value(units) for r in out])
+
