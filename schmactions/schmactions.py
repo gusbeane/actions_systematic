@@ -58,7 +58,29 @@ class schmactions(object):
     def extract_time(self, out, units=u.Myr):
         return np.array([r['time'].to_value(units) for r in out])
 
+    def compute_offset_list(self, offset_list, vel=False,
+                            cadence=10, end=1000, fname=None):
+        # vel means the offset list is a vel offset
+        if vel:
+            aux = [0, 0, 0] * u.kpc
+        else:
+            aux = [0, 0, 0] * u.km/u.s
+
+        act_result = []
+        for off in tqdm(offset_list):
+            if vel:
+                out = self.compute_actions_offset(aux, off, cadence, end)
+            else:
+                out = self.compute_actions_offset(off, aux, cadence, end)
+            act = self.extract_actions(out)
+            act_result.append(act)
+        act_result = np.array(act_result)
+        out = {'act_result': act_result,
+               'offset_list': offset_list,
+               'vel': vel}
+        return out
+
 
 if __name__ == '__main__':
     s = schmactions([8, 0, 0] * u.kpc, [0, -190, 50] * u.km/u.s)
-    out = s.compute_actions_offset([0, 0, 100] * u.pc, [0, 0, 0] * u.km/u.s)
+    # out = s.compute_actions_offset([0, 0, 100] * u.pc, [0, 0, 0] * u.km/u.s)
