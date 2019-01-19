@@ -16,6 +16,8 @@ voffset = [0, 0, 0] * u.km/u.s
 
 s = schmactions(init_pos, init_vel)
 
+pickle.dump(s.res, open('true_res.p', 'wb')) 
+
 zout = s.compute_actions_offset(zoffset, voffset, cadence=1)
 xout = s.compute_actions_offset(xoffset, voffset, cadence=1)
 
