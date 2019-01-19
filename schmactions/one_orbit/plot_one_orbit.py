@@ -29,6 +29,9 @@ y1max = -1000
 y2min = 10
 y2max = 30
 
+histmin = 15
+histmax = 30
+
 def sclip(a, s=4):
     _, low0, high0 = sigmaclip(a[:,0], low=s, high=s)
     _, low1, high1 = sigmaclip(a[:,1], low=s, high=s)
@@ -91,3 +94,17 @@ for x in ax[:,2]:
 
 fig.tight_layout()
 plt.savefig('schmactions_one_orbit.pdf')
+plt.close()
+
+fig, ax = plt.subplots(1,1, figsize=(3,3))
+
+k0, k1, k2 = sclip(zact)
+ax.hist(zact[:,2][k2], bins=np.arange(histmin, histmax, 0.25), lw=2,
+        edgecolor=tb_c[4], fc='none', histtype='stepfilled')
+ax.axvline(x=J2, color=tb_c[4], ls='dashed', lw=2)
+ax.set_xlabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+ax.set_ylabel(r'$\text{count}$')
+
+fig.tight_layout()
+plt.savefig('schmactions_Jz_hist.pdf')
+
