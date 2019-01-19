@@ -78,4 +78,4 @@ for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
         xx.set_xlim(xmin, xmax)
 
 fig.tight_layout()
-plt.show()
+plt.savefig('schmactions_one_orbit.pdf')
