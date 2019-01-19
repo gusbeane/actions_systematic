@@ -9,9 +9,12 @@ import gala.potential as gp
 from tqdm import tqdm
 import warnings
 
+from joblib import Parallel, delayed
+import multiprocessing
+
 class schmactions(object):
     def __init__(self, init_pos, init_vel, mw=None,
-                 t1=0*u.Gyr, t2=5*u.Gyr, dt=1*u.Myr, N_max=8):
+                 t1=0*u.Gyr, t2=5*u.Gyr, dt=1*u.Myr, N_max=8, save_orbit=False):
         
         if mw is None:
             self.mw = gp.MilkyWayPotential()
@@ -26,15 +29,21 @@ class schmactions(object):
         self.q = gd.PhaseSpacePosition(pos=init_pos, vel=init_vel)
         with warnings.catch_warnings(record=True):
             warnings.simplefilter("ignore")
-            self.orbit = self.mw.integrate_orbit(self.q, dt=self.dt,
+            orbit = self.mw.integrate_orbit(self.q, dt=self.dt,
                                                  t1=self.t1, t2=self.t2)
-            self.res = gd.find_actions(self.orbit, N_max=self.N_max)
+            self.res = gd.find_actions(orbit, N_max=self.N_max)
+        
+        if save_orbit:
+            #optional since orbit breaks pickling
+            self.orbit = orbit
 
     def compute_actions_offset(self, pos_offset, vel_offset, 
                                cadence=10, end=1000):
-        pos = np.transpose(self.orbit.pos.xyz)
+        orbit = self.mw.integrate_orbit(self.q, dt=self.dt,
+                                        t1=self.t1, t2=self.t2)
+        pos = np.transpose(orbit.pos.xyz)
         pos = np.add(pos, pos_offset)
-        vel = np.transpose(self.orbit.vel.d_xyz)
+        vel = np.transpose(orbit.vel.d_xyz)
         vel = np.add(vel, vel_offset)
 
         pos = np.transpose(pos)
@@ -42,7 +51,7 @@ class schmactions(object):
 
         all_q = gd.PhaseSpacePosition(pos=pos, vel=vel)
         out = []
-        time = self.orbit.t
+        time = orbit.t
         with warnings.catch_warnings(record=True):
             for q,t in tqdm(zip(all_q[0:end:cadence],time[0:end:cadence])):
                 orbit = self.mw.integrate_orbit(q, dt=self.dt,
@@ -58,27 +67,38 @@ class schmactions(object):
     def extract_time(self, out, units=u.Myr):
         return np.array([r['time'].to_value(units) for r in out])
 
-    def compute_offset_list(self, offset_list, vel=False,
-                            cadence=10, end=1000, fname=None):
-        # vel means the offset list is a vel offset
-        if vel:
-            aux = [0, 0, 0] * u.kpc
-        else:
-            aux = [0, 0, 0] * u.km/u.s
+def _helper_compute_offsets_(s, poff, voff, cd=10, end=1000):
+    return s.compute_actions_offset(poff, voff, cd, end)
 
-        act_result = []
-        for off in tqdm(offset_list):
-            if vel:
-                out = self.compute_actions_offset(aux, off, cadence, end)
-            else:
-                out = self.compute_actions_offset(off, aux, cadence, end)
-            act = self.extract_actions(out)
-            act_result.append(act)
-        act_result = np.array(act_result)
-        out = {'act_result': act_result,
-               'offset_list': offset_list,
-               'vel': vel}
-        return out
+def compute_offset_list(s, offset_list, nproc=1, vel=False,
+                        cadence=10, end=1000, fname=None):
+    # s is a schmactions object
+    # vel means the offset list is a vel offset
+    if vel:
+        aux = [0, 0, 0] * u.kpc
+    else:
+        aux = [0, 0, 0] * u.km/u.s
+
+    # act_result = []
+    # for off in tqdm(offset_list):
+    #     if vel:
+    #         out = s.compute_actions_offset(aux, off, cadence, end)
+    #     else:
+    #         out = s.compute_actions_offset(off, aux, cadence, end)
+    #     act = s.extract_actions(out)
+    #     act_result.append(act)
+    # act_result = np.array(act_result)
+
+    if vel:
+        pass
+    else:
+        act_result = Parallel(n_jobs=nproc) (delayed(_helper_compute_offsets_)(s, off, aux, cadence, end) for off in tqdm(offset_list))
+
+
+    out = {'act_result': act_result,
+           'offset_list': offset_list,
+           'vel': vel}
+    return out
 
 
 if __name__ == '__main__':
