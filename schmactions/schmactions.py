@@ -90,7 +90,7 @@ def compute_offset_list(s, offset_list, nproc=1, vel=False,
     # act_result = np.array(act_result)
 
     if vel:
-        pass
+        act_result = Parallel(n_jobs=nproc) (delayed(_helper_compute_offsets_)(s, aux, off, cadence, end) for off in tqdm(offset_list))
     else:
         act_result = Parallel(n_jobs=nproc) (delayed(_helper_compute_offsets_)(s, off, aux, cadence, end) for off in tqdm(offset_list))
 
