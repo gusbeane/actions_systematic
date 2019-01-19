@@ -77,5 +77,17 @@ for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
     for xx in x:
         xx.set_xlim(xmin, xmax)
 
+
+for x in ax[1]:
+    x.set_xlabel(r'$t\,[\,\text{Myr}\,]$')
+    x.set_xticks(np.arange(0,1000,100), minor=True)
+
+for x in ax[:,0]:
+    x.set_ylabel(r'$J_r\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+for x in ax[:,1]:
+    x.set_ylabel(r'$L_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+for x in ax[:,2]:
+    x.set_ylabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
 fig.tight_layout()
 plt.savefig('schmactions_one_orbit.pdf')
