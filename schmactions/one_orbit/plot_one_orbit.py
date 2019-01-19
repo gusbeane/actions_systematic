@@ -57,7 +57,7 @@ xact = s.extract_actions(xout)
 ztime = s.extract_time(zout)
 xtime = s.extract_time(xout)
 
-fig, ax = plt.subplots(2, 3, figsize=(7, 4))
+fig, ax = plt.subplots(2, 3, figsize=(7, 3.5), sharex=True)
 
 for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
     # get keys corresponding to 4 sigmaclip
