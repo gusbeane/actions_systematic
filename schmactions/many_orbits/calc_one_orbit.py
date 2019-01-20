@@ -1,5 +1,6 @@
 import sys
 sys.path.append('../')
+import numpy as np
 
 from schmactions import schmactions
 from schmactions import compute_offset_list
@@ -20,8 +21,8 @@ s = schmactions(init_pos, init_vel)
 
 pickle.dump(s.res, open('true_res.p', 'wb')) 
 
-zout = s.compute_offset_list(zoffset_list, nproc=nproc)
-xout = s.compute_offset_list(xoffset_list, nproc=nproc)
+zout = compute_offset_list(s, zoffset_list, nproc=nproc)
+xout = compute_offset_list(s, xoffset_list, nproc=nproc)
 
 pickle.dump(zout, open('zout.p', 'wb'), protocol=4)
 pickle.dump(xout, open('xout.p', 'wb'), protocol=4)
