@@ -14,6 +14,7 @@ cache/
 log/
 *.log
 *.swp
+*.pyc
 
 m12i_positions/
 .ipynb_checkpoints/
