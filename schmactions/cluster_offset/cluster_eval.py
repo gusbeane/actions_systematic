@@ -54,16 +54,7 @@ def zoffset_gen(offlist, dJzJz):
     offlist_target = np.array(offlist_target)
     return offlist_target
 
-init_pos = [8, 0, 0] * u.kpc
-init_vel_list = [[0, -190, 10] * u.km/u.s,
-                 [0, -190, 50] * u.km/u.s,
-                 [0, -190, 190] * u.km/u.s]
-clist = [tb_c[7], tb_c[8], tb_c[0]]
-
-# set up figure
-fig, ax = plt.subplots(1, 1, figsize=(4, 3))
-
-for name, init_vel, c in zip(name_list, init_vel_list, clist):
+def load_orbit(name, init_pos, init_vel):
     s = schmactions(init_pos, init_vel)
     zout = pickle.load(open('zout_'+name+'.p', 'rb'))
     res = pickle.load(open('true_res_'+name+'.p', 'rb'))
@@ -76,6 +67,19 @@ for name, init_vel, c in zip(name_list, init_vel_list, clist):
 
     offlist = np.array(zout['offset_list'])[:,2]
     dJzJz = dz[:,2]/J2
+    return offlist, dJzJz
+
+init_pos = [8, 0, 0] * u.kpc
+init_vel_list = [[0, -190, 10] * u.km/u.s,
+                 [0, -190, 50] * u.km/u.s,
+                 [0, -190, 190] * u.km/u.s]
+clist = [tb_c[7], tb_c[8], tb_c[0]]
+
+# set up figure
+fig, ax = plt.subplots(1, 1, figsize=(4, 3))
+
+for name, init_vel, c in zip(name_list, init_vel_list, clist):
+    offlist, dJzJz = load_orbit(name, init_pos, init_vel)
 
     offlist_target = zoffset_gen(offlist, dJzJz)
 
