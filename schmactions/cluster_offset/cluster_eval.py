@@ -100,3 +100,87 @@ fig.tight_layout()
 fig.savefig('cluster_offset.pdf')
 plt.close()
 
+# now begin making Rn vs mc plot
+
+glist = ['m12i', 'm12f', 'm12m']
+fig, ax_list = plt.subplots(1, 3, figsize=(8, 3))
+
+def chord(l):
+        return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
+
+for ax, gal in zip(ax_list, glist):
+    dat = np.load('output/r_vs_dphi_'+gal+'.npy')
+    dphi = dat[:,0]
+    rng = dat[:,1]
+    rng_sigma = dat[:,2]
+    chord_length = chord(dphi/np.pi)
+    for name, init_vel, c in zip(name_list, init_vel_list, clist):
+        offlist, dJzJz = load_orbit(name, init_pos, init_vel)
+
+        offlist_target = zoffset_gen(offlist, dJzJz)
+
+        interp = interp1d(rng, chord_length)
+        interp_low = interp1d(rng-rng_sigma, chord_length)
+        interp_high = interp1d(rng+rng_sigma, chord_length)
+
+        def to_minimize(off, target, interp):
+            # print(off)
+            return np.abs(interp(float(off)) - target)
+
+        chord_max = np.max(chord_length)
+
+        Rn_target = []
+        Rn_low_target = []
+        Rn_high_target = []
+        for this_off_target in offlist_target:
+            if this_off_target >= np.max(rng):
+                Rn_target.append(chord_max)
+            else:
+                this_Rn = interp(this_off_target)
+                Rn_target.append(this_Rn)
+
+            if this_off_target >= np.max(rng-rng_sigma):
+                Rn_low_target.append(chord_max)
+            else:
+                this_Rn = interp_low(this_off_target)
+                Rn_low_target.append(this_Rn)
+
+            if this_off_target >= np.max(rng+rng_sigma):
+                Rn_high_target.append(chord_max)
+            else:
+                this_Rn = interp_high(this_off_target)
+                Rn_high_target.append(this_Rn)
+        Rn_target = np.abs(Rn_target)
+        Rn_low_target = np.abs(Rn_low_target)
+        Rn_high_target = np.abs(Rn_high_target)
+
+        ax.plot(mc_list, Rn_target, c=c, label=name)
+        ax.plot(mc_list, Rn_low_target, c=c, ls='dashed')
+        ax.plot(mc_list, Rn_high_target, c=c, ls='dashed')
+
+        if gal=='m12f':
+            l = 0.05
+        elif gal=='m12m':
+            l = 0.15
+        elif gal=='m12i':
+            l = 0.12
+        ax.text(l, 0.88, gal, 
+               horizontalalignment='left', 
+               verticalalignment='center', 
+               transform = ax.transAxes)
+
+for ax in ax_list:
+    ax.set_xlabel(r'$m_c\,[\,M_{\odot}\,]$')
+    ax.set_xscale('log')
+    ax.set_ylim((0.2, 20))
+    ax.set_xlim((mc_min, mc_max))
+    ax.set_yscale('log')
+    ax.yaxis.set_major_formatter(mticker.ScalarFormatter())
+
+ax_list[0].set_ylabel(r'$R_n[\,\text{kpc}\,]$')
+
+ax.legend(frameon=False, title='orbit')
+
+fig.tight_layout()
+fig.savefig('Rn_vs_mc.pdf')
+plt.close()
