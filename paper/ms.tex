@@ -287,6 +287,20 @@ vector $(0, 0, 100)\,\pc$ from each position in the orbit. This corresponds to
 an observer physically located at the position $(8, 0, 0)\,\kpc$ but
 erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
+\begin{deluxetable*}{ccccccc}
+\tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial velocity} & \colhead{$J_r$} &
+\colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$}\\ \colhead{ } &
+\colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{km}/\mathrm{s}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{pc}$}}
+\startdata
+thin & $(8, 0, 0)$ & $(0, -190, 10)$ & 40.3 & -1520 & 0.69 & 122 \\
+thick & $(8, 0, 0)$ & $(0, -190, 30)$ & 32.5 & -1520 & 23.0 & 425 \\
+halo & $(8, 0, 0)$ & $(0, -190, 50)$ & 32.8 & -1520 & 529.1 & 854
+\enddata
+\label{tab:orbits}
+\end{deluxetable*}
+
 Using the observations of the orbit that this erroneous (and immortal)
 observer makes every $\Myr$, we perform the same orbit integration procedure
 as before to compute the actions our observer would observe in the incorrect
