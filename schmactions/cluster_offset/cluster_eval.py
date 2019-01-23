@@ -94,7 +94,7 @@ ax.set_yscale('log')
 ax.set_ylim((10, 2000))
 ax.set_xlim((mc_min, mc_max))
 
-ax.legend(frameon=False, title=r'$J_{z,\text{true}}$')
+ax.legend(frameon=False, title='orbit')
 
 fig.tight_layout()
 fig.savefig('cluster_offset.pdf')
