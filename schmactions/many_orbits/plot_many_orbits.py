@@ -46,7 +46,7 @@ def sclip(a, s=4):
 
 name_list = ['thin', 'thick', 'halo']
 
-fig, ax = plt.subplots(2, 3, figsize=(7, 3.5))
+fig, ax = plt.subplots(2, 3, figsize=(7, 4))
 init_pos = [8, 0, 0] * u.kpc
 init_vel_list = [[0, -190, 10] * u.km/u.s,
                  [0, -190, 50] * u.km/u.s,
@@ -112,11 +112,11 @@ for x in ax[1]:
     x.set_xticks(np.arange(xmin,xmax,100), minor=True)
 
 for x in ax[:,0]:
-    x.set_ylabel(r'$\Delta J_r/J_r\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$\Delta J_r/J_r\,[\,\%\,]$')
 for x in ax[:,1]:
-    x.set_ylabel(r'$\Delta L_z/L_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$\Delta L_z/L_z\,[\,\%\,]$')
 for x in ax[:,2]:
-    x.set_ylabel(r'$\Delta J_z/J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
 
 ax[0][1].legend(frameon=False, title='orbit')
 
