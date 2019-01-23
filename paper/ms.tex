@@ -277,25 +277,30 @@ St\"ackel potential to approximate the Galactic potential
 
 \subsection{Quantification} \label{ssec:quant}
 First, we illustrate the time-dependence of one possible inaccurate reference
-frame. We begin by taking an orbit with initial position $(8, 0, 0)\,\kpc$ and
-initial velocity $(0, -190, 30)\,\kms$ --- this corresponds to an orbit with
-actions $(J_r, L_z, J_z) = (37.9, -1520, 7.0)\,\actunit$ and
-$z_{\text{max}}=425\,\pc$. The orbit is plotted in \Gus{Appendix x}. We then
-suppose that an observer makes observations of this orbit in a coordinate
-system that is incorrect in height by $100\,\pc$ --- i.e. we subtract the
-vector $(0, 0, 100)\,\pc$ from each position in the orbit. This corresponds to
-an observer physically located at the position $(8, 0, 0)\,\kpc$ but
-erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
+frame. Throughout this work we will consider three orbits typical of the
+stellar thin disk, stellar thick disk, and the stellar halo. We summarize
+their initial position in phase space and the actions of their integrated
+orbits in Table~\ref{tab:orbits}. Each orbit is plotted in \Gus{Appendix X}.
+We will refer to these orbits by their names henceforth.
+
+We begin by considering the thick orbit. Suppose that an observer makes
+observations of this orbit in a coordinate system that is incorrect in height
+by $100\,\pc$ --- i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each
+position in the orbit. This corresponds to an observer physically located at
+the position $(8, 0, 0)\,\kpc$ but erroneously thinking they are located at
+$(8, 0, 0.1)\,\kpc$.
 
 \begin{deluxetable*}{ccccccc}
-\tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial velocity} & \colhead{$J_r$} &
+\tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial
+velocity} & \colhead{$J_r$} &
 \colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$}\\ \colhead{ } &
-\colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{km}/\mathrm{s}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{km}/\mathrm{s}$} &
+\colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
 \colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
 \colhead{$\mathrm{pc}$}}
-\startdata
+\startdata 
 thin & $(8, 0, 0)$ & $(0, -190, 10)$ & 40.3 & -1520 & 0.69 & 122 \\
-thick & $(8, 0, 0)$ & $(0, -190, 30)$ & 32.5 & -1520 & 23.0 & 425 \\
+thick & $(8, 0, 0)$ & $(0, -190, 30)$ & 32.5 & -1520 & 23.0 & 425 \\ 
 halo & $(8, 0, 0)$ & $(0, -190, 50)$ & 32.8 & -1520 & 529.1 & 854
 \enddata
 \label{tab:orbits}
