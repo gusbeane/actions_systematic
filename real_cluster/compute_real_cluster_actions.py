@@ -57,3 +57,10 @@ r['zmax'].unit = u.pc
 
 r.write('real_cluster_actions.fits', format='fits')
 r.write('real_cluster_actions.tex', format='ascii.aastex')
+
+pos = np.transpose(scdyn.pos.xyz.to_value(u.pc))
+vel = np.transpose(scdyn.vel.d_xyz.to_value(u.km/u.s))
+
+cart = np.concatenate((m,pos,vel), axis=1)
+r2 = Table(cart, names=('cluster', 'distance', 'pos.x', 'pos.y', 'pos.z', 'vel.x', 'vel.y', 'vel.z'))
+r2.write('real_cluster_gc.fits', format='fits')
