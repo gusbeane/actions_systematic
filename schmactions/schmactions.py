@@ -54,11 +54,14 @@ class schmactions(object):
         time = orbit.t
         with warnings.catch_warnings(record=True):
             for q,t in tqdm(zip(all_q[0:end:cadence],time[0:end:cadence])):
-                orbit = self.mw.integrate_orbit(q, dt=self.dt,
+                try:
+                    orbit = self.mw.integrate_orbit(q, dt=self.dt,
                                                 t1=self.t1, t2=self.t2)
-                res = gd.find_actions(orbit, N_max=self.N_max)
-                res['time'] = t
-                out.append(res)
+                    res = gd.find_actions(orbit, N_max=self.N_max)
+                    res['time'] = t
+                    out.append(res)
+                except:
+                    np.nan
         return out
 
     def extract_actions(self, out, units=u.kpc * u.km/u.s):
