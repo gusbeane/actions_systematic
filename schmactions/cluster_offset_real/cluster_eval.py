@@ -9,6 +9,7 @@ import astropy.units as u
 import gala.dynamics as gd
 import gala.potential as gp
 import pickle
+from astropy.table import Table
 
 from scipy.interpolate import interp1d
 from scipy.optimize import minimize
@@ -38,6 +39,21 @@ M_enclosed = float(mw.mass_enclosed(q).to_value(u.Msun))
 
 dJzJz_target = np.power(mc_list / M_enclosed, 1/3)
 
+# load in results
+t = Table.read('real_cluster_gc.fits', name='fits')
+
+posx = t['pos.x'].astype('float').tolist()
+posy = t['pos.y'].astype('float').tolist()
+posz = t['pos.z'].astype('float').tolist()
+velx = t['vel.x'].astype('float').tolist()
+vely = t['vel.y'].astype('float').tolist() 
+velz = t['vel.z'].astype('float').tolist()
+
+init_pos_list = np.transpose([posx, posy, posz]) * u.pc
+init_vel_list = np.transpose([velx, vely, velz]) * u.km/u.s
+
+name_list = t['cluster']
+
 def zoffset_gen(offlist, dJzJz):
     interp = interp1d(offlist, dJzJz)
 
@@ -66,43 +82,9 @@ def load_orbit(name, init_pos, init_vel):
     dJzJz = dz[:,2]/J2
     return offlist, dJzJz
 
-
-
-init_pos = [8, 0, 0] * u.kpc
-init_vel_list = [[0, -190, 10] * u.km/u.s,
-                 [0, -190, 50] * u.km/u.s,
-                 [0, -190, 190] * u.km/u.s]
-clist = [tb_c[7], tb_c[8], tb_c[0]]
-
-# set up figure
-fig, ax = plt.subplots(1, 1, figsize=(4, 3))
-
-for name, init_vel, c in zip(name_list, init_vel_list, clist):
-    offlist, dJzJz = load_orbit(name, init_pos, init_vel)
-
-    offlist_target = zoffset_gen(offlist, dJzJz)
-
-    ax.plot(mc_list, offlist_target*1000, c=c, label=name)
-
-ax.set_xlabel(r'$m_c\,[\,M_{\odot}\,]$')
-ax.set_ylabel(r'$z\,\text{offset}\,[\,\text{pc}\,]$')
-
-ax.set_xscale('log')
-ax.set_yscale('log')
-
-ax.set_ylim((10, 2000))
-ax.set_xlim((mc_min, mc_max))
-
-ax.legend(frameon=False, title='orbit')
-
-fig.tight_layout()
-fig.savefig('cluster_offset.pdf')
-plt.close()
-
 # now begin making Rn vs mc plot
 
 glist = ['m12i', 'm12f', 'm12m']
-fig, ax_list = plt.subplots(1, 3, figsize=(8, 3))
 
 def chord(l):
         return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
@@ -113,7 +95,7 @@ for ax, gal in zip(ax_list, glist):
     rng = dat[:,1]
     rng_sigma = dat[:,2]
     chord_length = chord(dphi/np.pi)
-    for name, init_vel, c in zip(name_list, init_vel_list, clist):
+    for name, init_pos, init_vel in zip(name_list, init_pos_list, init_vel_list):
         offlist, dJzJz = load_orbit(name, init_pos, init_vel)
 
         offlist_target = zoffset_gen(offlist, dJzJz)
@@ -153,33 +135,5 @@ for ax, gal in zip(ax_list, glist):
         Rn_low_target = np.abs(Rn_low_target)
         Rn_high_target = np.abs(Rn_high_target)
 
-        ax.plot(mc_list, Rn_target, c=c, label=name)
-        ax.plot(mc_list, Rn_low_target, c=c, ls='dashed')
-        ax.plot(mc_list, Rn_high_target, c=c, ls='dashed')
-
-        if gal=='m12f':
-            l = 0.05
-        elif gal=='m12m':
-            l = 0.15
-        elif gal=='m12i':
-            l = 0.12
-        ax.text(l, 0.88, gal, 
-               horizontalalignment='left', 
-               verticalalignment='center', 
-               transform = ax.transAxes)
-
-for ax in ax_list:
-    ax.set_xlabel(r'$m_c\,[\,M_{\odot}\,]$')
-    ax.set_xscale('log')
-    ax.set_ylim((0.2, 20))
-    ax.set_xlim((mc_min, mc_max))
-    ax.set_yscale('log')
-    ax.yaxis.set_major_formatter(mticker.ScalarFormatter())
-
-ax_list[0].set_ylabel(r'$R_n[\,\text{kpc}\,]$')
-
-ax.legend(frameon=False, title='orbit')
-
-fig.tight_layout()
-fig.savefig('Rn_vs_mc.pdf')
-plt.close()
+    pickle.dump(np.c_[mc_list, Rn_target, Rn_low_target, Rn_high_target], open('Rn_vs_mc_'+gal+'_'+name+'.p', 'wb'))
+    
