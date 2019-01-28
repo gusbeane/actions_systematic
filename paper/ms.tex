@@ -299,6 +299,7 @@ the position $(8, 0, 0)\,\kpc$ but erroneously thinking they are located at
 $(8, 0, 0.1)\,\kpc$.
 
 \begin{deluxetable*}{ccccccc}
+\tablecaption{Description and names of the three orbits considered in this work.}
 \tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial
 velocity} & \colhead{$J_r$} &
 \colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$}\\ \colhead{ } &
@@ -348,20 +349,21 @@ fractional errors of $x\%$, $y\%$ and $z\%$, respectively.
 \begin{figure*}
 \plotone{fig/schmactions_one_orbit.pdf}
 \caption{The artificial phase-dependence in the observed actions induced by an
-error in the Galactocentric coordinate system. We consider here an orbit with
-initial position $(8,0,0)\,\kpc$ and initial velocity $(0,-190,30)\,\kms$.
-This corresponds to an orbit with actions $(J_r, L_z, J_z) = (37.9, -1520,
-7.0)\,\actunit$ and $z_{\text{max}}=425\,\pc$. We integrate the orbit
-according to the procedure laid out in Section~\ref{ssec:action_comp}. Then,
-we subtract $100\,\pc$ from the $z$ value of each position in the orbit,
-corresponding to an erroneous observer assuming a midplane that is off by
-$100\,\pc$. We then allow our (immortal) observer to observe the orbit over
-$1\,\Gyr$ and perform the same orbit integration procedure at each timestep,
-and report the values of the actions. The computation of $L_z$ is pristine to
-errors in $z$, with only numerical artifacts remaining. Only small errors are
-induced in $J_r$, with the middle $90\%$ of values over the $\Gyr$ being
-$\sim6\%$ of the true $J_r$. As expected, large errors are induced in $J_z$,
-with the middle $90\%$ of values being $\sim85\%$ of the true $J_z$.}
+error in the Galactocentric coordinate system. We consider here the thick disk
+orbit, which has actions of $(J_r, L_z, J_z) = (37.9, -1520, 7.0)\,\actunit$
+and $z_{\text{max}}=425\,\pc$ (see Table~\ref{tab:orbits}). We integrate the
+orbit according to the procedure laid out in Section~\ref{ssec:action_comp}.
+Then, we subtract $100\,\pc$ from the $z$ value ({\em upper panels}) or the
+$x$ value ({\em lower panels}) of each position in the orbit, corresponding to
+an erroneous observer assuming a midplane ({\em upper}) or solar radius ({\em
+lower}) that is off by $100\,\pc$. We then allow our (immortal) observer to
+observe the orbit over $1\,\Gyr$ and perform the same orbit integration
+procedure at each timestep, and report the values of the actions. The
+computation of $L_z$ is pristine to errors in $z$, with only numerical
+artifacts remaining. Only small errors are induced in $J_r$, with the middle
+$90\%$ of values over the $\Gyr$ being $\sim6\%$ of the true $J_r$. As
+expected, large errors are induced in $J_z$, with the middle $90\%$ of values
+being $\sim85\%$ of the true $J_z$.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
