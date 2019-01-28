@@ -40,7 +40,7 @@ M_enclosed = float(mw.mass_enclosed(q).to_value(u.Msun))
 dJzJz_target = np.power(mc_list / M_enclosed, 1/3)
 
 # load in results
-t = Table.read('real_cluster_gc.fits', name='fits')
+t = Table.read('real_cluster_gc.fits', format='fits')
 
 posx = t['pos.x'].astype('float').tolist()
 posy = t['pos.y'].astype('float').tolist()
@@ -89,7 +89,7 @@ glist = ['m12i', 'm12f', 'm12m']
 def chord(l):
         return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
 
-for ax, gal in zip(ax_list, glist):
+for gal in glist:
     dat = np.load('output/r_vs_dphi_'+gal+'.npy')
     dphi = dat[:,0]
     rng = dat[:,1]
