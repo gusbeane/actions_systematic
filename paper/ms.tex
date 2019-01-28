@@ -181,7 +181,8 @@ vertical extent of their orbits ($z_{\text{max}}$). The actions are computed
 using the technique described in Section~\ref{ssec:action_comp}.
 
 \begin{deluxetable*}{ccccccc}
-\tablecaption{Relevant dynamical parameters for the $9$ open clusters within $250\,\pc$ of the Sun.}
+\tablecaption{Relevant dynamical parameters for the $9$ open clusters within
+$250\,\pc$ of the Sun.\label{tab:real_clusters}}
 \tablehead{\colhead{cluster} & \colhead{distance} & \colhead{$J_r$} &
 \colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$} & \colhead{mass} \\ \colhead{ } &
 \colhead{$\mathrm{pc}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
@@ -194,21 +195,19 @@ ComaBer & 85.9 & 1.6 & -1860 & 0.71 & 139.7 & 112\tablenotemark{d} \\
 Hyades & 47.5 & 20.3 & -1757 & 0.26 & 81.5 & 400\tablenotemark{e} \\
 IC2391 & 151.6 & 5.5 & -1790 & 0.018 & 21.2 &  \\
 IC2602 & 152.2 & 11.5 & -1718 & 0.32 & 88.6 & \\
-NGC2451A\tablenotetext{a} & 193.7 & 5.8 & -1805 & 0.21 & 73.4 & \\
+NGC2451A\tablenotemark{a} & 193.7 & 5.8 & -1805 & 0.21 & 73.4 & \\
 Pleiades & 135.8 & 19.3 & -1696 & 0.38 & 96.3 & \\
 Praesepe & 186.2 & 21.2 & -1766 & 0.58 & 122.9 & 550\tablenotemark{d}
 \enddata
 
-\tablenotetext{a}{This cluster is labeled NGC2451, which we interpret as NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
+\tablenotetext{a}{This cluster is labeled NGC2451, which we interpret as
+NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
 \tablenotetext{b}{\citet{2016MNRAS.457.1028S}}
 \tablenotetext{c}{\citet{2007AA...471..499M}}
 \tablenotetext{d}{\citet{2007AJ....134.2340K}}
 \tablenotetext{e}{\citet{1998AA...331...81P}}
 
-
-
 \tablerefs{\citet{2018AA...616A..10G}}
-\label{tab:real_clusters}
 \end{deluxetable*}
 
 To provide a realization of a realistic Galactic potential, we turn to
@@ -301,7 +300,8 @@ the position $(8, 0, 0)\,\kpc$ but erroneously thinking they are located at
 $(8, 0, 0.1)\,\kpc$.
 
 \begin{deluxetable*}{ccccccc}
-\tablecaption{Description and names of the three orbits considered in this work.}
+\tablecaption{Description and names of the three orbits considered in this
+work.\label{tab:orbits}}
 \tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial
 velocity} & \colhead{$J_r$} &
 \colhead{$L_z$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$}\\ \colhead{ } &
@@ -314,7 +314,6 @@ thin & $(8, 0, 0)$ & $(0, -190, 10)$ & 40.3 & -1520 & 0.69 & 0.12 \\
 thick & $(8, 0, 0)$ & $(0, -190, 50)$ & 32.5 & -1520 & 23.0 & 0.85 \\ 
 halo & $(8, 0, 0)$ & $(0, -190, 190)$ & 32.8 & -1520 & 529.1 & 6.16
 \enddata
-\label{tab:orbits}
 \end{deluxetable*}
 
 Using the observations of the orbit that this erroneous (and immortal)
@@ -572,7 +571,8 @@ This would seem to suggest that the midplane estimates from
 Figure~\ref{fig:midplane} over-estimate the true variation in the Milky Way.
 
 \begin{deluxetable}{ccc}
-\tablecaption{Stellar Disk Scale Heights}
+\tablecaption{Stellar disk scale heights of the real Milky Way and the
+simulated galaxies considered in this work.\label{tab:scale_height}}
 \tablehead{\colhead{galaxy} & \colhead{thin disk} & \colhead{thick disk} \\ 
 \colhead{} & \colhead{(pc)} & \colhead{(pc)} } 
 \startdata
@@ -585,8 +585,6 @@ m12m\tablenotemark{b} & 290 & 1030 \\
 
 \tablenotetext{a}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
 \tablenotetext{b}{\citet{2018arXiv180610564S}}
-
-\label{tab:scale_height}
 \end{deluxetable}
 
 Another important aspect to consider when comparing the simulated galaxies to
