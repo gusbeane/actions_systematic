@@ -60,7 +60,7 @@ xact = s.extract_actions(xout)
 ztime = s.extract_time(zout)
 xtime = s.extract_time(xout)
 
-fig, ax = plt.subplots(2, 3, figsize=(7, 3.5), sharex=True)
+fig, ax = plt.subplots(2, 3, figsize=(7, 4), sharex=True)
 
 for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
     # get keys corresponding to 4 sigmaclip
@@ -91,6 +91,9 @@ for x in ax[:,1]:
     x.set_ylabel(r'$L_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 for x in ax[:,2]:
     x.set_ylabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
+ax[0][1].set_title(r'$z\,\text{offset}=100\,\text{pc}$')
+ax[1][1].set_title(r'$x\,\text{offset}=100\,\text{pc}$')
 
 fig.tight_layout()
 plt.savefig('schmactions_one_orbit.pdf')
