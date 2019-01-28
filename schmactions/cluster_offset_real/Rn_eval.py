@@ -3,7 +3,7 @@ import numpy as np
 from astropy.table import Table
 from scipy.interpolate import interp1d
 
-mlist = np.array([ 352, 410, 112, 400, np.nan, np.nan, np.nan, np.nan, 550])
+mlist = np.array([ 352, 410, 112, 400, np.nan, np.nan, np.nan, 800, 550])
 t = Table.read('real_cluster_gc.fits', format='fits')
 name_list = t['cluster']
 
