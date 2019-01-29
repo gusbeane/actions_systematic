@@ -27,6 +27,10 @@
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}
 
+\newcommand{\thincolor}{pink}
+\newcommand{\thickcolor}{brown}
+\newcommand{\halocolor}{blue}
+
 % affiliations
 \newcommand{\cca}{Center for Computational Astrophysics, Flatiron Institute,
 162 5th Ave., New York, NY 10010, USA}
@@ -378,9 +382,9 @@ respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 We now repeat the procedure but continuously changing the error in the $z$ and
 $x$ components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth
 minus 5\uth percentile divided by the true action value for three different
-orbits. The thick (brown) orbit is exactly the same as in
+orbits. The thick (\thickcolor) orbit is exactly the same as in
 Figure~\ref{fig:one_orbit_wrong_ref}, and we also consider the thin and halo
-orbits (pink and blue, respectively) from Table~\ref{tab:orbits}.
+orbits (\thincolor and \halocolor, respectively) from Table~\ref{tab:orbits}.
 
 The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the error in each
 action assuming an offset in the $z$ component (i.e. the Galactic midplane).
@@ -717,17 +721,17 @@ assuming the mean relation between $z$~offset and $m_c$, and the dashed lines
 show the $+1\,\sigma$ and $-1\,\sigma$ relations, indicative of the strong
 $\phi$-dependence of the midplane effect.
 
-Figure~\ref{fig:Rn_mc} is most informative for the low $J_z$ orbit (blue). The
-neighborhood around $\sim100\Msun$ clusters can be as small as $\sim300\,\pc$
-but up to $\sim1.2\,\kpc$ for m12i and m12f, though the situation is
-marginally better for m12m with values ranging from $\sim0.8\,\kpc$ to
-$\sim3\,\kpc$. The neighborhood values steadily increase with $m_c$, topping
-out at $\sim5\,\kpc$ for $\sim10^4\,\Msun$ clusters in m12i and m12f. In m12m,
-the neighborhood value reaches the maximum allowed of $16.4\,\kpc$ for
-clusters of mass $\sim800\,\Msun$. The interpretation of this is that the
-expected action space dispersion is so high for such high mass clusters that
-the measured $z$~offset is not large enough throughout the entire galaxy to be
-important.
+Figure~\ref{fig:Rn_mc} is most informative for the thin orbit (\thincolor).
+The neighborhood around $\sim100\Msun$ clusters can be as small as
+$\sim300\,\pc$ but up to $\sim1.2\,\kpc$ for m12i and m12f, though the
+situation is marginally better for m12m with values ranging from
+$\sim0.8\,\kpc$ to $\sim3\,\kpc$. The neighborhood values steadily increase
+with $m_c$, topping out at $\sim5\,\kpc$ for $\sim10^4\,\Msun$ clusters in
+m12i and m12f. In m12m, the neighborhood value reaches the maximum allowed of
+$16.4\,\kpc$ for clusters of mass $\sim800\,\Msun$. The interpretation of this
+is that the expected action space dispersion is so high for such high mass
+clusters that the measured $z$~offset is not large enough throughout the
+entire galaxy to be important.
 
 For the medium $J_z$ orbit (orange), the situation is better, although such an
 orbit is not a good fit to any of the nearby open clusters \Gus{Table x}. For
@@ -740,17 +744,18 @@ m12i.
 
 \begin{figure*}
 \plotone{fig/Rn_vs_mc.pdf}
-\caption{The neighborhood around an open cluster of mass $m_c$ for our three
-orbits (blue, orange, and red) and for each of the FIRE galaxies considered
-here --- m12i, m12f, and m12m ({\em left}, {\em center}, and {\em right}
-panels, respectively). Given the $z$ offset for a cluster of mass $m_c$
-computed in Figure~\ref{fig:cluster_offset}, we convert this to a chord length
-using the result from Figure~\ref{fig:range_deltaphi} and plot as a solid blue
-line. We interpret this chord length as the ``neighborhood'' around the
-cluster, i.e. the distance from the cluster one could go before the $J_z$
-error induced by our midplane effect is comparable to the intrinsic action
-dispersion of the cluster. When the $z$ offset is larger than the maximum
-range in Figure~\ref{fig:range_deltaphi}, we report the maximum chord length
+\caption{The neighborhood around an open cluster of mass $m_c$ for the thin,
+and thick orbits (\thincolor and \thickcolor, respectively; see
+Table~\ref{tab:orbits}) and for each of the FIRE galaxies considered here ---
+m12i, m12f, and m12m ({\em left}, {\em center}, and {\em right} panels,
+respectively). Given the $z$ offset for a cluster of mass $m_c$ computed in
+Figure~\ref{fig:cluster_offset}, we convert this to a chord length using the
+result from Figure~\ref{fig:range_deltaphi} and plot as a solid blue line. We
+interpret this chord length as the ``neighborhood'' around the cluster, i.e.
+the distance from the cluster one could go before the $J_z$ error induced by
+our midplane effect is comparable to the intrinsic action dispersion of the
+cluster. When the $z$ offset is larger than the maximum range in
+Figure~\ref{fig:range_deltaphi}, we report the maximum chord length
 ($2\times8.2\,\kpc$). We aso report the same procedure but using the
 $\pm1\sigma$ lines from Figure~\ref{fig:range_deltaphi}, which we plot here as
 dashed lines. For the medium- and high-$J_z$ orbits (orange and red), the
