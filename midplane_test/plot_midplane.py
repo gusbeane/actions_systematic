@@ -61,6 +61,10 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col[1].plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     ax_col[1].fill_between(theta/np.pi, (err_high-fit)*1000, (err_low-fit)*1000, color=tb_c[0], alpha=0.25)
 
+    midplane_up = np.percentile(midplane_est - fit, 95)
+    midplane_low = np.percentile(midplane_est - fit, 5)
+    print(gal, midplane_up - midplane_low)
+
 ax[0][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
 ax[1][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
 
