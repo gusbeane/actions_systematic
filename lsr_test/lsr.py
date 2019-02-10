@@ -72,5 +72,6 @@ if __name__ == '__main__':
         
         poslist = np.array( [[Rsolar*np.cos(t), Rsolar*np.sin(t), 0] for t in thetalist] )
         lsrlist = np.array( [get_lsr(pos, star_pos, star_vel) for pos in tqdm(poslist)] )
+
         out = np.concatenate((thetalist.reshape(tlist_length, 1), lsrlist), axis=1)
         np.save('output/lsr_'+gal+'.npy', out)
