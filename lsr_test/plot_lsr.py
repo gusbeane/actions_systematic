@@ -20,5 +20,18 @@ for gal, x in zip(gal_list, ax.transpose()):
     x[0].plot(lsr[:,0]/np.pi, lsr[:,1], c=tb_c[0])
     x[1].plot(lsr[:,0]/np.pi, lsr[:,2], c=tb_c[0])
     x[2].plot(lsr[:,0]/np.pi, lsr[:,3], c=tb_c[0])
+ax[0][0].set_ylabel(r'$v_{R,\text{LSR}}\,[\,\text{km}/\text{s}\,]$')
+ax[0][0].set_ylim(-100, 100)
+
+ax[1][0].set_ylabel(r'$v_{z,\text{LSR}}\,[\,\text{km}/\text{s}\,]$')
+ax[1][0].set_ylim(-50, 50)
+
+ax[2][0].set_ylabel(r'$v_{\phi,\text{LSR}}\,[\,\text{km}/\text{s}\,]$')
+ax[2][0].set_ylim(-300, -150)
+
+for x in ax[2]:
+    x.set_xlabel(r'$\phi/\pi$')
+    x.set_xlim(0, 2)
+
 fig.tight_layout()
 fig.savefig('lsr.pdf')
