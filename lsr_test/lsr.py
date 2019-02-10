@@ -1,5 +1,6 @@
 import numpy as np
 import gizmo_analysis as gizmo
+from tqdm import tqdm
 
 def read_snap(gal):
     # takes in galaxy (string = m12i, m12f, m12m, etc.)
@@ -39,7 +40,8 @@ def get_lsr(pos, star_pos, star_vel):
 if __name__ == '__main__':
     rcut_in_pc = 200 # rcut for lsr in pc
     Rsolar = 8.2
-    thetalist = np.linspace(0, 2.*np.pi, 50)
+    tlist_length = 50
+    thetalist = np.linspace(0, 2.*np.pi, tlist_length)
 
     for gal in ['m12i', 'm12f', 'm12m']:
         snap = read_snap(gal)
