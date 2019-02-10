@@ -36,6 +36,25 @@ def get_lsr(pos, star_pos, star_vel):
     star_select = star_vel[keys]
     lsr = np.median(star_select, axis=0)
     return lsr
+def get_lsr_error(star_select, nbootstrap):
+    lsr = np.median(star_select, axis=0)
+
+    keys_to_choose = list(range(len(star_select)))
+    rand_choice = np.random.choice(keys_to_choose, len(star_select)*nbootstrap)
+    rand_choice = np.reshape(rand_choice, (nbootstrap, len(star_select)))
+    
+    select_rand = star_select[rand_choice]
+    med_rand = np.array([ np.median(s, axis=0) for s in select_rand ])
+    
+    dist_vel = np.subtract(med_rand, lsr)
+
+    up_vel = np.percentile(dist_vel, 95, axis=0)
+    low_vel = np.percentile(dist_vel, 5, axis=0)
+
+    l_v = lsr - up_vel
+    h_v = lsr - low_vel
+
+    return l_v, h_v
 
 if __name__ == '__main__':
     rcut_in_pc = 200 # rcut for lsr in pc
