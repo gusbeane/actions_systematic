@@ -25,11 +25,9 @@ def read_snap(gal):
 
     return snap
 
-def get_lsr(pos, snap):
+def get_lsr(pos, star_pos, star_vel):
     # first get all star particles within rcut_in_pc of pos
     rcut = rcut_in_pc/1000
-    star_pos = snap['star'].prop('host.distance.principal')
-    star_vel = snap['star'].prop('host.velocity.principal.cylindrical')
     diff = np.subtract(star_pos, pos)
     diff_mag = np.linalg.norm(diff, axis=1)
 
@@ -45,7 +43,10 @@ if __name__ == '__main__':
 
     for gal in ['m12i', 'm12f', 'm12m']:
         snap = read_snap(gal)
+        star_pos = snap['star'].prop('host.distance.principal')
+        star_vel = snap['star'].prop('host.velocity.principal.cylindrical')
+        
         poslist = np.array( [[Rsolar*np.cos(t), Rsolar*np.sin(t), 0] for t in thetalist] )
-        lsrlist = np.array( [get_lsr(pos, snap) for pos in poslist] )
         out = np.concatenate((thetalist, lsrlist), axis=1)
+        lsrlist = np.array( [get_lsr(pos, star_pos, star_vel) for pos in tqdm(poslist)] )
         np.save('output/lsr_'+gal+'.npy', out)
