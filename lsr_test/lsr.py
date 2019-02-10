@@ -26,7 +26,7 @@ def read_snap(gal):
 
     return snap
 
-def get_lsr(pos, star_pos, star_vel):
+def get_lsr(pos, star_pos, star_vel, nbootstrap=1000):
     # first get all star particles within rcut_in_pc of pos
     rcut = rcut_in_pc/1000
     diff = np.subtract(star_pos, pos)
@@ -34,8 +34,11 @@ def get_lsr(pos, star_pos, star_vel):
 
     keys = np.where(np.less(diff_mag, rcut))[0]
     star_select = star_vel[keys]
+    
     lsr = np.median(star_select, axis=0)
-    return lsr
+    lsr_err_l, lsr_err_h = get_lsr_error(star_select, nbootstrap)
+    return np.concatenate((lsr, lsr_err_l, lsr_err_h))
+
 def get_lsr_error(star_select, nbootstrap):
     lsr = np.median(star_select, axis=0)
 
