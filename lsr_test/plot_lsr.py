@@ -17,6 +17,12 @@ fig, ax = plt.subplots(3, 3, sharex=True, sharey='row')
 for gal, x in zip(gal_list, ax.transpose()):
     fname = 'output/lsr_'+gal+'.npy'
     lsr = np.load(fname)
+
+    x[0].text(0.05, 0.88, gal, 
+               horizontalalignment='left', 
+               verticalalignment='center', 
+               transform = x[0].transAxes)
+
     x[0].plot(lsr[:,0]/np.pi, lsr[:,1], c=tb_c[0])
     x[1].plot(lsr[:,0]/np.pi, lsr[:,2], c=tb_c[0])
     x[2].plot(lsr[:,0]/np.pi, lsr[:,3], c=tb_c[0])
