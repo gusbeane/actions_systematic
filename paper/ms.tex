@@ -112,13 +112,23 @@ by identifying where the stellar positions and velocities reach a maximum
 $\sim 25\,\pc$ \citep{2001ApJ...553..184C}, with more recent measurements from
 {\em Gaia} DR2 placing it at $\sim 20\,\pc$ \citep{2019MNRAS.482.1417B}.
 
-These measurements of the galactocentric coordinate system rely on the
-assumption of an axisymmetric Milky Way. Under this assumption, these
-estimates would provide the correct parameters for the Galactocentric
-coordinate system up to measurement error. However, the Milky Way is not
-axisymmetric in detail. Spiral arms, bar(s), and infalling satellite galaxies
-such as Sagittarius and the Large Magellanic Cloud all induce
-non-axisymmetries.
+Once a Galactocentric coordinate system has been established and a 6D phase
+space measurement of a star has been made, it is desirable to convert this
+measurement into action space. Actions are quantities which describe the orbit
+of a star and are conserved quantities under some assumptions which we
+describe next. They are the typical integral of the Hamiltonian in cylindrical
+coordinates and are given by,
+\beq\label{eq:actions}
+J_i \equiv
+\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
+\eeq
+where $i=R,z,\phi$.\footnote{We typically write $J_r$ instead of $J_R$ for
+aesthetic reasons.} Note that $J_{\phi} \equiv L_z$. In a slowly-evolving
+axisymmetric potential, the actions of stars' orbits are conserved quantities
+\citep{2008gady.book.....B,2014RvMP...86....1S}. The non-axisymmetries of a
+more realistic potential induce time evolution in the {\em measured} actions
+--- the true orbital invariants (if they exist) are invariant by definition.
+
 
 We define the ``global Galactic midplane'' to be the plane of $z$ symmetry in
 the axisymmetric model of the Milky Way. We define the ``local Galactic
@@ -138,23 +148,6 @@ it are wrong. Rather, what we mean is that it may vary from the local midplane
 at other points in the Galaxy. In the face of {\em Gaia} DR2 (and soon DR3/4),
 this may be an important effect to consider when performing dynamical
 modelling across large distances.
-
-Since an azimuthal-dependent midplane is effectively a departure from a
-perfectly axisymmetric potential, we consider the effect that an erroneous
-midplane has on the conservations of actions. The actions of an orbit are
-typically computed in a cylindrical coordinate system as,
-\beq\label{eq:actions}
-J_i \equiv
-\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
-\eeq
-where $i=R,z,\phi$. Note that $J_{\phi} \equiv L_z$. In a slowly-evolving
-axisymmetric potential, the actions of stars' orbits are conserved quantities
-\citep{2008gady.book.....B,2014RvMP...86....1S}. The non-axisymmetries of a
-more realistic potential induce time evolution in the {\em measured} actions
---- the true orbital invariants (if they exist) are invariant by definition.
-Through simple tests, we will see that even in a truly axisymmetric potential,
-if the wrong coordinate system is assumed then there will be additional time
-evolution in the measured actions.
 
 The transformation to action space is not trivial, and many of the assumptions
 of the transformation are potentially incorrect. For instance, the assumption
