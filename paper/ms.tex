@@ -141,25 +141,6 @@ been used to study different models of spiral structure in the Milky Way
 \citep{2019MNRAS.tmp..155S}. A summary of the disk in action space is given by
 \citet{2018arXiv180503653T}.
 
-We define the ``global Galactic midplane'' to be the plane of $z$ symmetry in
-the axisymmetric model of the Milky Way. We define the ``local Galactic
-midplane'' to be the plane of $z$ symmetry inferred by an observer at a
-particular location. The true global Galactic midplane is the plane of $z$
-symmetry in the best-fit axisymmetric model. It is not guaranteed that the
-local Galactic midplane coincide with the global Galactic midplane. Even
-without a high-precision definition and measurement of the global Galactic
-midplane, we can still assess how different the two should be by measuring the
-azimuthal dependence of the local Galactic midplane. This procedure may be
-readily tractable with current datasets. However, we turn to simulation in
-this work.
-
-It's important for us to emphasize that when we state our local Galactic
-midplane may be erroneous, we do not mean that past measurements/estimates of
-it are wrong. Rather, what we mean is that it may vary from the local midplane
-at other points in the Galaxy. In the face of {\em Gaia} DR2 (and soon DR3/4),
-this may be an important effect to consider when performing dynamical
-modelling across large distances.
-
 The transformation to action space is not trivial, and many of the assumptions
 of the transformation are potentially incorrect. For instance, the assumption
 that the Galactic potential is axisymmetric may be inadequate with current
@@ -217,11 +198,37 @@ NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
 \tablerefs{\citet{2018AA...616A..10G}}
 \end{deluxetable*}
 
-To provide a realization of a realistic Galactic potential, we turn to
-cosmological zoom-ins of Milky Way-mass galaxies from the Feedback in
-Realistic Environments (FIRE)
+We propose a new type of error in the computation of actions which has
+implications for general dynamical modelling across the disk. Our main point
+is that the ``local'' Galactic midplane is not the same as the ``global''
+Galactic midplane. If we observe a group of stars that are
+non-local\footnote{i.e. a group of stars that is far enough away. The exact
+distance depends on the accuracy of the measurement being made and the goals
+of the particular problem.}, they will know of a different local midplane than
+our local midplane extrapolated onto their position. This means that when we
+convert those star's positions and velocities from a heliocentric to a
+Galactocentric coordinate system, we are inducing a systematic bias in those
+stars' $z$ values. The same applies to inaccuracies in measurements of
+$R_{\odot}$ and variations in the local standard of rest (LSR).
+
+We do not propose what a modeller should use for the ``true'' global midplane,
+since such a definition probably depends on the particular problem such a
+modeller is facing. Even without a high-precision definition and measurement
+of the global Galactic midplane, we can still assess how different we should
+expect the local midplane to be by measuring the azimuthal dependence of the
+local midplane. This procedure may be readily tractable over some of the disk
+with current datasets. However, we turn to simulation in this work because we
+can investigate the entire disk. Specifically, we use cosmological zoom-ins of
+Milky Way-mass galaxies from the Feedback in Realistic Environments (FIRE)
 collaboration\footnote{\url{https://fire.northwestern.edu}} (the {\em Latte}
 suite of simulations).
+
+It is important for us to emphasize that when we state our local Galactic
+midplane may be erroneous, we do not mean that past measurements/estimates of
+it are wrong. Rather, what we mean is that it may vary from the local midplane
+at other points in the Galaxy. In the face of {\em Gaia} DR2 (and soon DR3/4),
+this may be an important effect to consider when performing dynamical
+modelling across large distances.
 
 In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
 system errors have on the measured actions. In Section~\ref{sec:local_fire},
