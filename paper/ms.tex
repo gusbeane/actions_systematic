@@ -246,58 +246,45 @@ consequences of an inaccurate Galactocentric coordinate system.
 
 \subsection{Cartoon} \label{ssec:cartoon}
 We present a cartoon in Figure~\ref{fig:cartoon} to show that an inaccurate
-determination of the midplane can lead to a phase-dependence of the {\em
-observed} actions. The solid gray line indicates a hypothetical ``true''
-orbit. The y-axis corresponds to the vertical height of the orbit and the
-x-axis orbital phase. The dashed gray line is an incorrect midplane which an
-observer uses to compute orbits.
+determination of the midplane can lead to a phase-dependence of the actions calculated from an orbit specified by a phase-space point and an assumed potential. The y-axis corresponds to the vertical height of the orbit and the x-axis orbital phase. The solid gray line indicates the ``true'' orbit of the star; that is, its orbit as it oscillates around the true midplane. The dashed gray line is an erroneous midplane assigned to the potential model which an observer uses to integrate the orbit of the star and hence estimate its actions. The model potential is otherwise identical to the one in which the star is actually moving.
 
 Now suppose this observer makes a measurement of the true orbit at the blue
-point or the pink point. Then the blue and pink lines correspond to the orbits
-that the observer would compute for each point. In action space, this would
-correspond to a different value of $J_z$ for the blue and pink points. In this
-way, assuming the wrong coordinate system induces time dependence in the
-actions {\em computed by an observer}.
+point or the pink point (i.e. at two different orbital phases). Then the blue and pink lines correspond to the orbits that the observer would compute for each point based on the potential model with the erroneous midplane. In action space, this would correspond to a different value of $J_z$ for the blue and pink points. In this way, assuming the wrong coordinate system induces a phase-dependence in the
+actions estimated for the star, which in the correct potential (in this example, the one with the correct midplane) should be phase-independent.
 
 \begin{figure*}
 \plotone{fig/cartoon.pdf}
-\caption{Cartoon showing the effect an incorrect midplane can have on orbit
-integrations and as an extension on action computations. The x-axis shows the
-orbital phase and the y-axis the vertical height. The top gray curve depicts a
-hypothetical true orbit oscillating about the true midplane, the horizontal
-solid gray line. Consider an immortal observer who erroneously assumes the
-midplane is located at the horizontal dashed line. Suppose this immortal
-observer measures the orbit at the blue and pink points. If the immortal
-observer were to perform orbit integrations at each observation, they would
-assume the blue and pink curves for the respective orbits. In this way, an
-incorrect midplane will induce phase-dependence in the {\em observed}
-actions.}
+\caption{Cartoon showing the effect an error in the determination of the coordinate midplane can have on orbit integration and action estimation. The x-axis shows the
+orbital phase and the y-axis the vertical height. The top gray curve depicts an example ``true'' orbit oscillating about the true midplane (horizontal
+solid gray line). Consider an observer who erroneously assumes the
+midplane is located at the horizontal dashed line. Suppose this
+observer measures the phase-space position of the star at two different orbital phases (blue and pink points). If the observer were then to integrate the star's orbit using a model potential with the erroneous midplane, they would
+obtain the blue and pink curves for the star's orbit, respectively. The actions estimated from these two  erroneous orbits would subsequently differ, both from each other and from the actions estimated for the true orbit (in the potential with the correct midplane). Hence an
+incorrect midplane in the potential model assumed will induce phase-dependence in the actions estimated for a given star in that potential.}
 \label{fig:cartoon}
 \end{figure*}
 
 \subsection{Summary of Action Computation} \label{ssec:action_comp}
-We follow our previous work in computing actions \citep{2018ApJ...867...31B}.
-We use the code \texttt{gala} v0.3 to perform orbit integrations and
-conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018},
-which uses an action estimator technique presented by
-\citet{2014MNRAS.441.3284S}. We use the default \texttt{MWPotential} as our
+We compute actions as in our previous work \citep{2018ApJ...867...31B}, using the code \texttt{gala} v0.3 to perform orbit integrations and
+conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018}.
+To compute actions we use the torus-mapping technique first presented by \citet{1990MNRAS.244..634M} and adapted by \citet{2014MNRAS.441.3284S} to calculate actions for an orbital time-series starting from a phase-space position $(x, v)$ and integrated in a potential $\Phi$. We use the default \texttt{MWPotential} as our
 potential, which is based on the Milky Way potential available in
 \texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
 Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
 \citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
 is fit to empirically match some observations. We use the Dormand-Prince
-8(5,3) integration scheme \citep{Dormand80:integrator}. We use a timestep of
+8(5,3) integration scheme \citep{Dormand80:integrator} with a timestep of
 $1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for a
 Sun-like star.
 
 Other methods for computing actions are used in the literature. For example,
-the St\"ackel Fudge method \citep{2016MNRAS.457.2107S} which uses the
-St\"ackel potential to approximate the Galactic potential
-\citep{1985MNRAS.216..273D,2012MNRAS.426.1324B} is commonly used
-\citep{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}. For
-applications in the disk, the St\"ackel Fudge method is of acceptable
-accuracy, but since we also consider halo orbits in this work we choose to use
-orbit integration throughout \citep{2016MNRAS.457.2107S}.
+the St\"ackel Fudge method \citep{2016MNRAS.457.2107S}, which uses a single
+St\"ackel potential (with analytic actions) to approximate the Galactic potential
+\citep{1985MNRAS.216..273D,2012MNRAS.426.1324B}, was used in many recent works exploring actions in the Galactic disk
+\citep[e.g.][]{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}. For
+disk-like orbits, existing implementations of the St\"ackel Fudge method are of acceptable
+accuracy, but since we also consider halo-like orbits in this work we choose to use
+orbit integration and torus mapping throughout \citep{2016MNRAS.457.2107S}.
 
 \subsection{Quantification} \label{ssec:quant}
 First, we illustrate the time-dependence of one possible inaccurate reference
