@@ -306,8 +306,8 @@ velocity} & \colhead{$J_r$} &
 \colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
 \colhead{$\mathrm{kpc}$}}
 \startdata 
-thin & $(8, 0, 0)$ & $(0, -190, 10)$ & 40.3 & -1520 & 0.69 & 0.12 \\
-thick & $(8, 0, 0)$ & $(0, -190, 50)$ & 32.5 & -1520 & 23.0 & 0.85 \\ 
+thin-disk & $(8, 0, 0)$ & $(0, -190, 10)$ & 40.3 & -1520 & 0.69 & 0.12 \\
+thick-disk & $(8, 0, 0)$ & $(0, -190, 50)$ & 32.5 & -1520 & 23.0 & 0.85 \\ 
 halo & $(8, 0, 0)$ & $(0, -190, 190)$ & 32.8 & -1520 & 529.1 & 6.16
 \enddata
 \end{deluxetable*}
@@ -324,7 +324,9 @@ We also perform the same
     subtracting the vector $(100, 0, 0)\,\pc$) in the {\em lower} panels. This
     is equivalent to a systematic offset in the determination of the distance from the Sun to the Galactic center.
 
-Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the offset coordinate systems depend on the time (i.e. orbital phase) at which the star's phase-space position is observed. (To our extremely long-lived observer this would appear as time-dependence in the actions, which appear to oscillate around their value using the correct coordinate system even though in this example the Galaxy is described perfectly by a static, axisymmetric potential.) The relative size of the phase variation in each action depends on the direction of the systematic offset as well as the true values of the actions (i.e. the type of orbit). For a systematic offset in $z$ ({\em upper} panels), the 95\textsuperscript{th} minus
+Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the offset coordinate systems depend on the time (i.e. orbital phase) at which the star's phase-space position is observed. (To our extremely long-lived observer this would appear as time-dependence in the actions, which appear to oscillate around their value using the correct coordinate system even though in this example the Galaxy is described perfectly by a static, axisymmetric potential.) The relative size of the phase variation in each action depends on the direction of the systematic offset as well as the true values of the actions (i.e. the type of orbit). In reality we will have one measurement of the phase-space position to work with, in which case the determination of the orbital phase in $z$ or $R$ is degenerate with the degree of systematic offset in that coordinate (see Figure \ref{fig:cartoon}). Additionally, in searching for migrated members of known open clusters, we would compute actions for stars with a wide range of orbital phases and locations in the Galaxy. In the following we therefore quote percentile ranges for the possible values computed for each action as a proxy for the effect of these systematic errors in the coordinate system.
+
+For a systematic offset in $z$ ({\em upper} panels), the 95\textsuperscript{th} minus
 5\textsuperscript{th} percentiles are $2.2$ and $6.2 \actunit$ for $J_r$ and
 $J_z$, respectively. These are fractional errors of $5.7\%$ and $85.7\%$,
 respectively. The error induced in $L_z$ is negligible, as expected since
@@ -352,48 +354,46 @@ observe the orbit over $1\,\Gyr$ and perform the same orbit integration
 procedure at each timestep, and report the values of the actions. The
 computation of $L_z$ is pristine to errors in $z$, with only numerical
 artifacts remaining. Only small errors are induced in $J_r$, with the middle
-$90\%$ of values over the $\Gyr$ being $\sim8\%$ of the true $J_r$. As
+$90\%$ of values over the $\Gyr$ being within $\sim8\%$ of the true $J_r$. As
 expected, large errors are induced in $J_z$ with a $100\,\pc$ offset in $z$,
-with the middle $90\%$ of values being $\sim43\%$ of the true $J_z$. The $x$
+with the middle $90\%$ of values being within $\sim43\%$ of the true $J_z$. The $x$
 offset induces uncertainties in $J_r$ and $L_z$ of $\sim21\%$ and $\sim3\%$,
 respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
-We now repeat the procedure but continuously changing the error in the $z$ and
+We now repeat the same procedure for systematic offsets between 0 and 500 pc in the $z$ and
 $x$ components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth
-minus 5\uth percentile divided by the true action value for three different
-orbits. The thick (\thickcolor) orbit is exactly the same as in
-Figure~\ref{fig:one_orbit_wrong_ref}, and we also consider the thin and halo
-orbits (\thincolor and \halocolor, respectively) from Table~\ref{tab:orbits}.
+minus 5\uth percentile divided by the true action value for the three different fiducial
+orbits in Table \ref{tab:orbits}. The thick-disk (\thickcolor) orbit is the one from
+Figure~\ref{fig:one_orbit_wrong_ref}, but we also now consider the effect on the action determined for the thin-disk (\thincolor) and halo (\halocolor) orbits.
 
-The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the error in each
-action assuming an offset in the $z$ component (i.e. the Galactic midplane).
-In the {\em bottom row} we also consider offsets in the $x$ component (i.e.
+The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread induced in each
+action for an offset in the $z$ component (i.e. the Galactic midplane).
+In the {\em bottom row} we consider offsets in the $x$ component (i.e.
 the Solar radius). The {\em left}, {\em middle}, and {\em right} columns show
-the relative error in $J_z$, $L_z$, and $J_r$, respectively. We compute the
-relative error as the  95\uth minus 5\uth percentile of the measured action
-($\Delta J_i$) over the course of the first $\Gyr$ of the incorrectly observed
-orbit divided by the true action value as a percentage.
+the fractional spread in the values computed for $J_z$, $L_z$, and $J_r$, respectively. We compute the
+fractional spread $\Delta J_i/J_i$ as the 95\uth minus 5\uth percentile of the action computed using the 
+offset coordinate system over the course of the first $\Gyr$, divided by the true action (computed in the correct coordinate system).
 
-In the {\em upper middle} panel, there is essentially no error in the
+In the {\em upper middle} panel, there is essentially no spread in the
 determination of $L_z$. This is expected since, in principle, $L_z$ only
 depends on the $x$- and $y$-components of the position and velocity of the
-stars\footnote{Though this is not how we compute $L_z$ in practice.}, and is
-thus unaffected by offsets in $z$. This also agrees with the result we found
-in Figure~\ref{fig:one_orbit_wrong_ref}.
-
+stars\footnote{In practice, however, $L_z$ is computed as part of the torus-fitting method.}, and is
+thus unaffected by offsets in $z$. Indeed, the result we found
+in Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk orbit holds for all orbit types.
+ 
 The {\em upper right} panel shows that the fractional error in $J_z$ is more
-exaggerated for more planar orbits. For the thin orbit, deviations that are
-$\sim30\,\pc$ already give $100\%$ deviations in the actions. The required
-offset for $100\%$ deviation is $\sim225\,\pc$ for the thick orbit. The halo
+exaggerated for more planar (disk-like) orbits. For the thin-disk orbit, a systematic offset of
+$\sim30\,\pc$ in the $z$ coordinate already results in $100\%$ deviations in the actions. The required
+offset for $100\%$ deviation is $\sim225\,\pc$ for the thick-disk orbit. The halo
 orbit is relatively resistant to errors in the midplane, with only $\sim25\%$
 error in $J_z$ out to a midplane offset of $500\,\pc$.
 
 For the offset in the Solar radius {\em bottom panels}, the error is largest
 for $J_r$, with some deviations resulting in $L_z$ and relatively small
 deviations in $J_z$. In the {\em bottom middle} and {\em bottom right} panels
-all three lines overlap.
+all three lines nearly overlap.
 
 \begin{figure*}
 \plotone{fig/schmactions_many_orbits.pdf}
@@ -417,7 +417,9 @@ sort of error propagation must take this into account.}
 \label{fig:Jz_hist}
 \end{figure}
 
-\section{Local Midplane in FIRE} \label{sec:local_fire}
+%where is Figure 4 referred to? we should include a discussion of it before starting 
+
+\section{Azimuthal midplane variations at the Solar Circle: estimates from FIRE} \label{sec:local_fire}
 \subsection{Description of Simulation} \label{ssec:cosmozoom}
 Here we briefly describe the cosmological zoom-ins used in this work.
 Cosmological zoom-ins allow one to simulate a selected region at high
