@@ -236,64 +236,108 @@ context for our results, and implications for the definition of the Solar
 neighborhood. We conclude in Section~\ref{sec:conclusion}.
 
 \section{Motivation} \label{sec:ref_frame}
-We first demonstrate the significance to action computations, especially for disk-like orbits, of systematic errors in the determination of the Galactic midplane and distance to the Galactic center. The consequences we explore
-here may also arise from various other systematic errors. For instance, the
-axisymmetric Galactic potential model used in many works to compute actions may not be a good description of the true potential --- or the parameters used may yield a potential that is systematically incorrect outside an original fitted region. In this section, we assume that the Galaxy is perfectly described by our model axisymmetric potential, and simply explore the consequences of systematic errors in the determination of the Galactocentric coordinate system.
+We first demonstrate the significance to action computations, especially for
+disk-like orbits, of systematic errors in the determination of the Galactic
+midplane and distance to the Galactic center. The consequences we explore here
+may also arise from various other systematic errors. For instance, the
+axisymmetric Galactic potential model used in many works to compute actions
+may not be a good description of the true potential --- or the parameters used
+may yield a potential that is systematically incorrect outside an original
+fitted region. In this section, we assume that the Galaxy is perfectly
+described by our model axisymmetric potential, and simply explore the
+consequences of systematic errors in the determination of the Galactocentric
+coordinate system.
 
-\subsection{The effect of midplane determination on orbit and action calculations} \label{ssec:cartoon}
-We present a cartoon in Figure~\ref{fig:cartoon} to show how an inaccurate
-determination of the midplane leads to a phase-dependence of the actions calculated from an orbit specified by a phase-space point and an assumed potential model. The y-axis corresponds to the vertical height of the orbit and the x-axis orbital phase. The solid gray line indicates the ``true'' orbit of the star; that is, its orbit as it oscillates around the true midplane. The dashed gray line is an erroneous midplane assigned to the potential model which an observer uses to integrate the orbit of the star and hence estimate its actions. The model potential is otherwise identical to the one in which the star is actually moving.
+\subsection{The effect of midplane determination on orbit and action
+calculations} \label{ssec:cartoon} We present a cartoon in
+Figure~\ref{fig:cartoon} to show how an inaccurate determination of the
+midplane leads to a phase-dependence of the actions calculated from an orbit
+specified by a phase-space point and an assumed potential model. The y-axis
+corresponds to the vertical height of the orbit and the x-axis orbital phase.
+The solid gray line indicates the ``true'' orbit of the star; that is, its
+orbit as it oscillates around the true midplane. The dashed gray line is an
+erroneous midplane assigned to the potential model which an observer uses to
+integrate the orbit of the star and hence estimate its actions. The model
+potential is otherwise identical to the one in which the star is actually
+moving.
 
 Now suppose this observer makes a measurement of the true orbit at the blue
-point or the pink point (i.e. at two different orbital phases). Then the blue and pink lines correspond to the orbits that the observer would compute for each point based on the potential model with the erroneous midplane. In action space, this would correspond to a different value of $J_z$ for the blue and pink points. In this way, assuming the wrong coordinate system induces a phase-dependence in the
-actions estimated for the star, which in the correct potential (in this example, the one with the correct midplane) should be phase-independent.
+point or the pink point (i.e. at two different orbital phases). Then the blue
+and pink lines correspond to the orbits that the observer would compute for
+each point based on the potential model with the erroneous midplane. In action
+space, this would correspond to a different value of $J_z$ for the blue and
+pink points. In this way, assuming the wrong coordinate system induces a
+phase-dependence in the actions estimated for the star, which in the correct
+potential (in this example, the one with the correct midplane) should be
+phase-independent.
 
 \begin{figure*}
 \plotone{fig/cartoon.pdf}
-\caption{Cartoon showing the effect an error in the determination of the coordinate midplane can have on orbit integration and action estimation. The x-axis shows the
-orbital phase and the y-axis the vertical height. The top gray curve depicts an example ``true'' orbit oscillating about the true midplane (horizontal
-solid gray line). Consider an observer who erroneously assumes the
-midplane is located at the horizontal dashed line. Suppose this
-observer measures the phase-space position of the star at two different orbital phases (blue and pink points). If the observer were then to integrate the star's orbit using a model potential with the erroneous midplane, they would
-obtain the blue and pink curves for the star's orbit, respectively. The actions estimated from these two  erroneous orbits would subsequently differ, both from each other and from the actions estimated for the true orbit (in the potential with the correct midplane). Hence an
-incorrect midplane in the potential model assumed will induce phase-dependence in the actions estimated for a given star in that potential.}
+\caption{Cartoon showing the effect an error in the determination of the
+coordinate midplane can have on orbit integration and action estimation. The
+x-axis shows the orbital phase and the y-axis the vertical height. The top
+gray curve depicts an example ``true'' orbit oscillating about the true
+midplane (horizontal solid gray line). Consider an observer who erroneously
+assumes the midplane is located at the horizontal dashed line. Suppose this
+observer measures the phase-space position of the star at two different
+orbital phases (blue and pink points). If the observer were then to integrate
+the star's orbit using a model potential with the erroneous midplane, they
+would obtain the blue and pink curves for the star's orbit, respectively. The
+actions estimated from these two  erroneous orbits would subsequently differ,
+both from each other and from the actions estimated for the true orbit (in the
+potential with the correct midplane). Hence an incorrect midplane in the
+potential model assumed will induce phase-dependence in the actions estimated
+for a given star in that potential.}
 \label{fig:cartoon}
 \end{figure*}
 
 \subsection{Numerical methods} \label{ssec:action_comp}
-We compute actions as in our previous work \citep{2018ApJ...867...31B}, using the code \texttt{gala} v0.3 to perform orbit integrations and
-conversion to action space \citep{2017JOSS....2..388P,Price-Whelan:2018}.
-To compute actions we use the torus-mapping technique first presented by \citet{1990MNRAS.244..634M} and adapted by \citet{2014MNRAS.441.3284S} to calculate actions for an orbital time-series starting from a phase-space position $(x, v)$ and integrated in a potential $\Phi$. We use the default \texttt{MWPotential} as our
-potential, which is based on the Milky Way potential available in
-\texttt{galpy} \citep{2015ApJS..216...29B}. This potential includes a
-Hernquist bulge and nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
-\citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
-is fit to empirically match some observations. We use the Dormand-Prince
-8(5,3) integration scheme \citep{Dormand80:integrator} with a timestep of
-$1\,\Myr$ and integrate for $5\,\Gyr$, corresponding to $\sim 20$ orbits for a
-Sun-like star.
+We compute actions as in our previous work \citep{2018ApJ...867...31B}, using
+the code \texttt{gala} v0.3 to perform orbit integrations and conversion to
+action space \citep{2017JOSS....2..388P,Price-Whelan:2018}. To compute actions
+we use the torus-mapping technique first presented by
+\citet{1990MNRAS.244..634M} and adapted by \citet{2014MNRAS.441.3284S} to
+calculate actions for an orbital time-series starting from a phase-space
+position $(x, v)$ and integrated in a potential $\Phi$. We use the default
+\texttt{MWPotential} as our potential, which is based on the Milky Way
+potential available in \texttt{galpy} \citep{2015ApJS..216...29B}. This
+potential includes a Hernquist bulge and nucleus \citep{1990ApJ...356..359H},
+a Miyamoto-Nagai disk \citep{1975PASJ...27..533M}, and an NFW halo
+\citep{1997ApJ...490..493N}, and is fit to empirically match some
+observations. We use the Dormand-Prince 8(5,3) integration scheme
+\citep{Dormand80:integrator} with a timestep of $1\,\Myr$ and integrate for
+$5\,\Gyr$, corresponding to $\sim 20$ orbits for a Sun-like star.
 
 Other methods for computing actions are used in the literature. For example,
 the St\"ackel Fudge method \citep{2016MNRAS.457.2107S}, which uses a single
-St\"ackel potential (with analytic actions) to approximate the Galactic potential
-\citep{1985MNRAS.216..273D,2012MNRAS.426.1324B}, was used in many recent works exploring actions in the Galactic disk
-\citep[e.g.][]{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}. For
-disk-like orbits, existing implementations of the St\"ackel Fudge method are of acceptable
-accuracy, but since we also consider halo-like orbits in this work we choose to use
-orbit integration and torus mapping throughout \citep{2016MNRAS.457.2107S}.
+St\"ackel potential (with analytic actions) to approximate the Galactic
+potential \citep{1985MNRAS.216..273D,2012MNRAS.426.1324B}, was used in many
+recent works exploring actions in the Galactic disk
+\citep[e.g.][]{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}.
+For disk-like orbits, existing implementations of the St\"ackel Fudge method
+are of acceptable accuracy, but since we also consider halo-like orbits in
+this work we choose to use orbit integration and torus mapping throughout
+\citep{2016MNRAS.457.2107S}.
 
 \subsection{Quantification of the effect of systematic coordinate-system errors} \label{ssec:quant}
-First, we illustrate the phase-dependence of an example systematic error in the Galactocentric coordinate system. We will consider three orbits in the model potential described in \S \ref{ssec:action_comp} that are typical of stars in the
-stellar thin disk, stellar thick disk, and the stellar halo. We summarize
-their initial positions in phase space and the actions computed by integrating their
-orbits in the correct potential in Table~\ref{tab:orbits}. Each orbit, integrated without systematic coordinate errors, is plotted in
-Appendix~\ref{app:orbits}. We will refer to these orbits by their names (thin-disk, thick-disk, halo)
-henceforth.
+First, we illustrate the phase-dependence of an example systematic error in
+the Galactocentric coordinate system. We will consider three orbits in the
+model potential described in \S \ref{ssec:action_comp} that are typical of
+stars in the stellar thin disk, stellar thick disk, and the stellar halo. We
+summarize their initial positions in phase space and the actions computed by
+integrating their orbits in the correct potential in Table~\ref{tab:orbits}.
+Each orbit, integrated without systematic coordinate errors, is plotted in
+Appendix~\ref{app:orbits}. We will refer to these orbits by their names
+(thin-disk, thick-disk, halo) henceforth.
 
-We begin by considering the thick-disk orbit. Suppose that we could observe the thick-disk star's phase-space position at many different times (and hence different orbital phases), but used a coordinate system in which the midplane is systematically offset in height by $100\,\pc$ from its actual location --- i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each
-position in the orbit. This corresponds to an observer physically located at
-the position $(8, 0, 0)\,\kpc$ in the coordinate system of the true potential, but erroneously thinking they are located at
-$(8, 0, 0.1)\,\kpc$.
+We begin by considering the thick-disk orbit. Suppose that we could observe
+the thick-disk star's phase-space position at many different times (and hence
+different orbital phases), but used a coordinate system in which the midplane
+is systematically offset in height by $100\,\pc$ from its actual location ---
+i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each position in the
+orbit. This corresponds to an observer physically located at the position $(8,
+0, 0)\,\kpc$ in the coordinate system of the true potential, but erroneously
+thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
 \begin{deluxetable*}{ccccccc}
 \tablecaption{Description and names of the three orbits considered in this
@@ -312,19 +356,42 @@ halo & $(8, 0, 0)$ & $(0, -190, 190)$ & 32.8 & -1520 & 529.1 & 6.16
 \enddata
 \end{deluxetable*}
 
-Starting from each observation of the star's phase-space position that such an (extremely long-lived)
-observer makes every $\Myr$, we then compute the actions as outlined above using an integration from that starting point in phase space carried out using the true potential (but specifying the star's present-day position using the systematically offset coordinate system). The erroneous computed
-actions for each phase-space starting point are shown for the first $\Gyr$ of the orbit in the {\em upper} panels Figure~\ref{fig:one_orbit_wrong_ref}.\footnote{Occasionally the numerical scheme fails
-and very large actions are reported by \texttt{gala}---we perform a $5\sigma$ clip on each action to exclude such orbits, but this only excludes a total of $5$ orbits out of the $1000$ considered for
-    Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but
-    the vast majority of orbits are computed properly.} 
+Starting from each observation of the star's phase-space position that such an
+(extremely long-lived) observer makes every $\Myr$, we then compute the
+actions as outlined above using an integration from that starting point in
+phase space carried out using the true potential (but specifying the star's
+present-day position using the systematically offset coordinate system). The
+erroneous computed actions for each phase-space starting point are shown for
+the first $\Gyr$ of the orbit in the {\em upper} panels
+Figure~\ref{fig:one_orbit_wrong_ref}.\footnote{Occasionally the numerical
+scheme fails and very large actions are reported by \texttt{gala}---we perform
+a $5\sigma$ clip on each action to exclude such orbits, but this only excludes
+a total of $5$ orbits out of the $1000$ considered for
+Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
+vast majority of orbits are computed properly.}
     
-We also perform the same
-    procedure but assume a $100\,\pc$ offset in the $x$ component (i.e.
-    subtracting the vector $(100, 0, 0)\,\pc$) in the {\em lower} panels. This
-    is equivalent to a systematic offset in the determination of the distance from the Sun to the Galactic center.
+We also perform the same procedure but assume a $100\,\pc$ offset in the $x$
+    component (i.e. subtracting the vector $(100, 0, 0)\,\pc$) in the {\em
+    lower} panels. This is equivalent to a systematic offset in the
+    determination of the distance from the Sun to the Galactic center.
 
-Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the offset coordinate systems depend on the time (i.e. orbital phase) at which the star's phase-space position is observed. (To our extremely long-lived observer this would appear as time-dependence in the actions, which appear to oscillate around their value using the correct coordinate system even though in this example the Galaxy is described perfectly by a static, axisymmetric potential.) The relative size of the phase variation in each action depends on the direction of the systematic offset as well as the true values of the actions (i.e. the type of orbit). In reality we will have one measurement of the phase-space position to work with, in which case the determination of the orbital phase in $z$ or $R$ is degenerate with the degree of systematic offset in that coordinate (see Figure \ref{fig:cartoon}). Additionally, in searching for migrated members of known open clusters, we would compute actions for stars with a wide range of orbital phases and locations in the Galaxy. In the following we therefore quote percentile ranges for the possible values computed for each action as a proxy for the effect of these systematic errors in the coordinate system.
+Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the
+offset coordinate systems depend on the time (i.e. orbital phase) at which the
+star's phase-space position is observed. (To our extremely long-lived observer
+this would appear as time-dependence in the actions, which appear to oscillate
+around their value using the correct coordinate system even though in this
+example the Galaxy is described perfectly by a static, axisymmetric
+potential.) The relative size of the phase variation in each action depends on
+the direction of the systematic offset as well as the true values of the
+actions (i.e. the type of orbit). In reality we will have one measurement of
+the phase-space position to work with, in which case the determination of the
+orbital phase in $z$ or $R$ is degenerate with the degree of systematic offset
+in that coordinate (see Figure \ref{fig:cartoon}). Additionally, in searching
+for migrated members of known open clusters, we would compute actions for
+stars with a wide range of orbital phases and locations in the Galaxy. In the
+following we therefore quote percentile ranges for the possible values
+computed for each action as a proxy for the effect of these systematic errors
+in the coordinate system.
 
 For a systematic offset in $z$ ({\em upper} panels), the 95\textsuperscript{th} minus
 5\textsuperscript{th} percentiles are $2.2$ and $6.2 \actunit$ for $J_r$ and
@@ -362,33 +429,39 @@ respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
-We now repeat the same procedure for systematic offsets between 0 and 500 pc in the $z$ and
-$x$ components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth
-minus 5\uth percentile divided by the true action value for the three different fiducial
-orbits in Table \ref{tab:orbits}. The thick-disk (\thickcolor) orbit is the one from
-Figure~\ref{fig:one_orbit_wrong_ref}, but we also now consider the effect on the action determined for the thin-disk (\thincolor) and halo (\halocolor) orbits.
+We now repeat the same procedure for systematic offsets between 0 and 500 pc
+in the $z$ and $x$ components. In Figure~\ref{fig:many_orbit_wrong_ref}, we
+report the 95\uth minus 5\uth percentile divided by the true action value for
+the three different fiducial orbits in Table \ref{tab:orbits}. The thick-disk
+(\thickcolor) orbit is the one from Figure~\ref{fig:one_orbit_wrong_ref}, but
+we also now consider the effect on the action determined for the thin-disk
+(\thincolor) and halo (\halocolor) orbits.
 
-The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread induced in each
-action for an offset in the $z$ component (i.e. the Galactic midplane).
-In the {\em bottom row} we consider offsets in the $x$ component (i.e.
-the Solar radius). The {\em left}, {\em middle}, and {\em right} columns show
-the fractional spread in the values computed for $J_z$, $L_z$, and $J_r$, respectively. We compute the
-fractional spread $\Delta J_i/J_i$ as the 95\uth minus 5\uth percentile of the action computed using the 
-offset coordinate system over the course of the first $\Gyr$, divided by the true action (computed in the correct coordinate system).
+The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread induced
+in each action for an offset in the $z$ component (i.e. the Galactic
+midplane). In the {\em bottom row} we consider offsets in the $x$ component
+(i.e. the Solar radius). The {\em left}, {\em middle}, and {\em right} columns
+show the fractional spread in the values computed for $J_z$, $L_z$, and $J_r$,
+respectively. We compute the fractional spread $\Delta J_i/J_i$ as the 95\uth
+minus 5\uth percentile of the action computed using the offset coordinate
+system over the course of the first $\Gyr$, divided by the true action
+(computed in the correct coordinate system).
 
 In the {\em upper middle} panel, there is essentially no spread in the
 determination of $L_z$. This is expected since, in principle, $L_z$ only
 depends on the $x$- and $y$-components of the position and velocity of the
-stars\footnote{In practice, however, $L_z$ is computed as part of the torus-fitting method.}, and is
-thus unaffected by offsets in $z$. Indeed, the result we found
-in Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk orbit holds for all orbit types.
+stars\footnote{In practice, however, $L_z$ is computed as part of the
+torus-fitting method.}, and is thus unaffected by offsets in $z$. Indeed, the
+result we found in Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk
+orbit holds for all orbit types.
  
 The {\em upper right} panel shows that the fractional error in $J_z$ is more
-exaggerated for more planar (disk-like) orbits. For the thin-disk orbit, a systematic offset of
-$\sim30\,\pc$ in the $z$ coordinate already results in $100\%$ deviations in the actions. The required
-offset for $100\%$ deviation is $\sim225\,\pc$ for the thick-disk orbit. The halo
-orbit is relatively resistant to errors in the midplane, with only $\sim25\%$
-error in $J_z$ out to a midplane offset of $500\,\pc$.
+exaggerated for more planar (disk-like) orbits. For the thin-disk orbit, a
+systematic offset of $\sim30\,\pc$ in the $z$ coordinate already results in
+$100\%$ deviations in the actions. The required offset for $100\%$ deviation
+is $\sim225\,\pc$ for the thick-disk orbit. The halo orbit is relatively
+resistant to errors in the midplane, with only $\sim25\%$ error in $J_z$ out
+to a midplane offset of $500\,\pc$.
 
 For the offset in the Solar radius {\em bottom panels}, the error is largest
 for $J_r$, with some deviations resulting in $L_z$ and relatively small
@@ -419,7 +492,8 @@ sort of error propagation must take this into account.}
 
 %where is Figure 4 referred to? we should include a discussion of it before starting the next section
 
-\section{Azimuthal midplane variations at the Solar Circle: estimates from FIRE} \label{sec:local_fire}
+\section{Azimuthal midplane variations at the Solar Circle: estimates from
+FIRE} \label{sec:local_fire}
 \subsection{Description of Simulation} \label{ssec:cosmozoom}
 Here we briefly describe the cosmological zoom-ins used in this work.
 Cosmological zoom-ins allow one to simulate a selected region at high
