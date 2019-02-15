@@ -755,17 +755,18 @@ Figure~\ref{fig:many_orbit_wrong_ref} to determine the $z$ offset necessary in
 order for the induced error in the vertical action to be the same as the
 expected action-space dispersion. If this were the case, an observer would
 have to account for the different midplane of the field star and the cluster.
-We repeat this analysis for each of the three orbits considered in
-Section~\ref{ssec:quant}.
+We perform this analysis for the thin-disk and thick-disk orbits considered in
+Section~\ref{ssec:quant}, since the halo orbit is unrealistic for known open
+clusters (Table~\ref{tab:real_clusters}).
 
 With a characteristic $z$ offset in hand, we consult
 Figure~\ref{fig:range_deltaphi} to convert this $z$ offset into a $\Delta
-\phi$, which we convert to an arclength or characteristic distance (the
-difference between the two will be negligible for the small $\Delta \phi$'s we
-will compute). Therefore, if an observer is attempting to reconstruct a
-cluster with a given mass on a given orbit, we will give a characteristic
-distance between a field star and the cluster within which an observer might
-not need to consider differences in their respective local midplanes.
+\phi$, which we convert to an arclength or characteristic distance, which we
+refer to as the ``neighborhood radius'' or $R_{\n}$. Therefore, if an observer
+is attempting to reconstruct a cluster with a given mass on a given orbit, we
+will give a characteristic distance between a field star and the cluster
+within which an observer might not need to consider differences in their
+respective local midplanes.
 
 \begin{figure}
 \plotone{fig/cluster_offset.pdf}
@@ -785,21 +786,21 @@ the \texttt{gala} computed mass enclosed within a radius of $8.2\,\kpc$ ($\sim
 10^{11}\,M_{\odot}$).
 
 We now convert the $z$~offset-$m_c$ relation to an $R_{\n}$-$m_c$ relation,
-where $R_{\n}$ indicates a sort of ``solar neighborhood'' radius. An observer
+where $R_{\n}$ indicates the neighborhood radius. An observer
 attempting to reconstruct an open cluster of mass $m_c$ with perfect knowledge
 of the midplane at the location of the cluster would expect to find the
 ejected members using a dynamical cut for field stars within a distance
 $R_{\n}$ of the cluster. If such an observer wants to find ejected stars that
 are at a distance greater than $R_{\n}$, a more sophisticated analysis would
-be required, the details of which are not apparent to the authors of this
-work.
+be required.
 
 We use the relation in Figure~\ref{fig:range_deltaphi}, which shows the
-typical $z$ offset at each $\Delta \phi$, to convert a given $z$ offset into a
-$\Delta\phi$, which we then convert into a chord length which we interpret as
-$R_{\n}$, the neighborhood around the cluster. If the $z$~offset is greater
-than the maximum range value of the galaxy, we simply report the maximum chord
-length ($2\times8.2\,\kpc$). The result of this procedure is shown in
+typical $z$ offset at each $\Delta \phi$, to convert a given $z$~offset into a
+typical $\Delta\phi$. We then convert this $\Delta \phi$ into a chord length
+(see Figure~\ref{fig:fig_to_explain}) which we interpret as $R_{\n}$, the
+neighborhood around the cluster. If the $z$~offset is greater than the maximum
+range value of the galaxy, we simply report the maximum chord length
+($2\times8.2\,\kpc$). The result of this procedure is shown in
 Figure~\ref{fig:Rn_mc}. The solid lines indicate the neighborhood values
 assuming the mean relation between $z$~offset and $m_c$, and the dashed lines
 show the $+1\,\sigma$ and $-1\,\sigma$ relations, indicative of the strong
@@ -882,11 +883,12 @@ integration, since the computation of actions and orbit integrations are
 essentially equivalent.
 
 \acknowledgments
-We would like to thank Megan Bedell, David W. Hogg, and Kathryn Johnston for
-many useful discussions. A.B. would like to thank Todd Phillips for helpful
-discussions. A.B. was supported in part by the Roy \& Diana Vagelos Program in
-the Molecular Life Sciences and the Roy \& Diana Vagelos Challenge Award. The
-work of \Gus{everyone} is supported by the Simons Foundation.
+We would like to thank Megan Bedell, Tobias Buck, David W. Hogg, and Kathryn
+Johnston for many useful discussions. A.B. would like to thank Todd Phillips
+for helpful discussions. A.B. was supported in part by the Roy \& Diana
+Vagelos Program in the Molecular Life Sciences and the Roy \& Diana Vagelos
+Challenge Award. The work of \Gus{everyone} is supported by the Simons
+Foundation. \Gus{remove last sentence if everyone CCA affiliated}
 
 \appendix
 \section{Orbits} \label{app:orbits}
