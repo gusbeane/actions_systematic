@@ -100,9 +100,13 @@ major merger \citep{2018Natur.563...85H}, a phase-space spiral (\Gus{cites})
 indicating local substructure infall (\Gus{cites}), a gap indicative of a dark
 matter subtructure in GD1 \citep{2018arXiv181103631B}, and \Gus{others}.
 
-Underlying all of these discoveries is the assumption of a Galactocentric
-coordinate system \citep{2008gady.book.....B}. In angular
-coordinates, the center of the galaxy is taken to be the location of
+These discoveries are all indicative that the Milky Way departs from
+axisymmetry and is undergoing phase mixing and dynamical interactions across a
+range of spatial and temporal scales. Underlying the quantitative description
+of the mechanisms at work that give rise to these signatures is the assumption
+of a Galactocentric coordinate system \citep{2008gady.book.....B} which can
+both precisely and accurately be defined and measured. In angular coordinates,
+the center of the galaxy is taken to be the location of
 Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From stellar
 motions near Sgr~A\textsuperscript{*}, the distance to the center is taken to
 be $\sim 8.1\text{--}8.3\,\kpc$
@@ -161,10 +165,14 @@ reconstruction of open clusters across large distances using dynamical
 tagging. The basic program is to match stars with roughly the same actions as
 their supposed natal cluster. To set the scene, we consider the orbits of the
 nine open clusters within $250\,\pc$ as reported by the {\em Gaia}
-collaboration \citep{2018AA...616A..10G}. In Table~\ref{tab:real_clusters},
-we report the distance to each cluster, the three actions, and the maximum
+collaboration \citep{2018AA...616A..10G}. In Table~\ref{tab:real_clusters}, we
+report the distance to each cluster, the three actions, and the maximum
 vertical extent of their orbits ($z_{\text{max}}$). The actions are computed
-using the technique described in Section~\ref{ssec:action_comp}.
+using the technique described in Section~\ref{ssec:action_comp}. We also show
+the mass of each cluster and the ``neighborhood'' we compute for each cluster,
+which gives a rough sense of how far one can move away from the cluster before
+the issue which we discuss next becomes important. This neighborhood is
+discussed in more detail in Section~\ref{sssec:neighborhood}.
 
 \begin{deluxetable*}{cccccccc}
 \tablecaption{Relevant dynamical parameters for the $9$ open clusters within
@@ -676,7 +684,8 @@ both lack a massive neighbor analogous to the LMC. On the other hand, m12f has
 had a recenter merger with \Gus{something}. \Gus{Expand more here - how to
 incorporate merger trees?}
 
-\subsection{Solar Neighborhood} \label{ssec:neighborhood}
+\subsection{Impact on Milky Way observations} \label{ssec:impact_on_mw}
+\subsubsection{The Solar neighborhood} \label{sssec:neighborhood{}}
 To gain further handle on the midplane behavior as a function of azimuth, we
 compute the range of midplane values for a given $\Delta \phi$ segment of the
 midplane in Figure~\ref{fig:range_deltaphi}. With the observer's azimuth set
@@ -713,6 +722,9 @@ A cartoon explanation of this Figure is given in
 Figure~\ref{fig:fig_to_explain}.}
 \label{fig:range_deltaphi}
 \end{figure*}
+
+\subsubsection{Consequences for disrupted cluster reconstruction}
+\label{sssec:reconstruction}
 
 A possible interpretation of our finding is that one should use a star's local
 midplane in order to compute dynamical quantities like the vertical action.
