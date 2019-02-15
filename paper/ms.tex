@@ -11,13 +11,19 @@
 
 \newcommand{\Gus}[1]{\textcolor{red}{#1}}
 
-\newcommand{\Msun}{\text{M}_\odot}
+\newcommand{\Msun}{\ensuremath{\text{M}_\odot}}
 \newcommand{\pc}{\text{pc}}
 \newcommand{\kpc}{\text{kpc}}
 \newcommand{\Myr}{\text{Myr}}
 \newcommand{\Gyr}{\text{Gyr}}
 \newcommand{\kms}{\text{km}/\text{s}}
 \newcommand{\actunit}{\text{kpc}\,\kms}
+
+\newcommand{\unit}[2]{\ensuremath{\textrm{#1}^{\mathrm{#2}}}}
+\newcommand{\m12i}{\textsf{m12i}}
+\newcommand{\m12f}{\textsf{m12f}}
+\newcommand{\m12m}{\textsf{m12m}}
+
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\z}{z_r}
@@ -321,7 +327,7 @@ this work we choose to use orbit integration and torus mapping throughout
 
 \subsection{Quantification of the effect of systematic coordinate-system
 errors} \label{ssec:quant}
-First, we illustrate the phase-dependence of an
+First, we illustrate the phase-dependence induced by an
 example systematic error in the Galactocentric coordinate system. We will
 consider three orbits in the model potential described in \S
 \ref{ssec:action_comp} that are typical of stars in the stellar thin disk,
@@ -504,75 +510,58 @@ Furthermore, neither of the modes lie at the true value of $J_z$.
 \section{Azimuthal midplane variations at the Solar Circle: estimates from
 FIRE} \label{sec:local_fire}
 \subsection{Description of Simulation} \label{ssec:cosmozoom}
-Here we briefly describe the cosmological zoom-ins used in this work.
-Cosmological zoom-ins allow one to simulate a selected region at high
-resolution embedded in a low-resolution cosmological background
-\citep[e.g.][]{1993ApJ...412..455K,2014MNRAS.437.1894O}. The FIRE
-collaboration has simulated a number of Milky Way-mass zoom-ins as part of the
-{\em Latte} suite of FIRE-2 simulations
-\citep{2016ApJ...827L..23W,2018MNRAS.481.4133G}. We use the three zoom-ins
-considered in \citet{2018arXiv180610564S} --- m12i, m12f, m12m, since they
-have associated mock {\em Gaia} DR2 catalogues and the $z=0$ snapshots are
-publicly available.
+Here we briefly describe the cosmological-hydrodynamical zoom-in simulations used in this work.
+Cosmological zoom-ins allow one to simulate a selected region at high resolution embedded in a low-resolution cosmological background \citep[e.g.][]{1993ApJ...412..455K,2014MNRAS.437.1894O}, to which can be added a hydrodynamical simulation of the baryonic component with recipes for star formation and feedback. 
+The FIRE collaboration has simulated a number of Milky Way-mass galaxies using this technique as part of the
+{\em Latte} suite of FIRE-2 simulations \citep{2016ApJ...827L..23W,2018MNRAS.481.4133G}. 
+For this work we focus on the three zoom-ins considered in \citet{2018arXiv180610564S}, which show broad agreement of many of their global properties with observations of the Milky Way. The $\z=0$ snapshots\footnote{In this work, to avoid confusion with the vertical height $z$, we refer to cosmological redshift as $\z$.} of these three simulations, called m12i, m12f, and m12m for shorthand, are publicly available alongside associated mock {\em Gaia} DR2 catalogues generated from them.\footnote{available at \url{http://ananke.hub.yt}} 
 
-First, a dark matter only simulation was run with $\Lambda$CDM cosmology
-parameterized by $\Omega_m = 0.272$, $\Omega_{\Lambda} = 0.728$, $\Omega_b =
-0.0455$, $h = 0.702$, $\sigma_8 = 0.807$, and $n_s = 0.961$, consistent with
-current constraints \citep{2018arXiv180706209P}. Halos are selected at $\z=0$
-based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$). In this
-work, to avoid confusion with the vertical height $z$, we refer to
-cosmological redshift as $\z$. Particles within $5 R_{200\text{m}}$ of each
-halo are traced back to $\z=99$ and the initial conditions are regenerated at
-higher resolution using MUSIC \citep{2011MNRAS.415.2101H}.
+%First, a dark matter only simulation was run with $\Lambda$CDM cosmology parameterized by $\Omega_m = 0.272$, $\Omega_{\Lambda} = 0.728$, $\Omega_b = 0.0455$, $h = 0.702$, $\sigma_8 = 0.807$, and $n_s = 0.961$, consistent with current constraints \citep{2018arXiv180706209P}. Halos are selected at $\z=0$ based solely on their mass ($\sim 1\text{--}2 \times 10^{12} \Msun$).  Particles within $5 R_{200\text{m}}$ of each halo are traced back to $\z=99$ and the initial conditions are regenerated at higher resolution using MUSIC \citep{2011MNRAS.415.2101H}.
 
-Simulations were run using
-\texttt{GIZMO}\footnote{\url{http://www.tapir.caltech.edu/~phopkins/Site/GIZMO.html}}
-\citep{2015MNRAS.450...53H}. Hydrodynamics is solved using the meshless
-finite-mass method and gravity is solved using a modified version of the
-Tree-PM solver of \texttt{GADGET-3}, using fully adaptive and fully
-conservative gravitational force softening for gas.
+%Simulations were run using \texttt{GIZMO}\footnote{\url{http://www.tapir.caltech.edu/~phopkins/Site/GIZMO.html}} \citep{2015MNRAS.450...53H}. Hydrodynamics is solved using the meshless finite-mass method and gravity is solved using a modified version of the Tree-PM solver of \texttt{GADGET-3}, using fully adaptive and fully conservative gravitational force softening for gas.
 
-These halos are uncontaminated and contain gas particles of mass $\sim 7000
-\text{--} 20,000\,\Msun$ and star particles of mass $\sim 5000 \text{--} 7000\,
-\Msun$\footnote{In fact, the simulation m12i contained a gas
+These simulations contain dark matter particles of mass $\sim$35,000 \Msun, gas particles of mass $\sim 7000
+\text{--} 20,000\,\Msun$, and star particles of mass $\sim 5000 \text{--} 7000\,
+\Msun$,\footnote{In fact, the simulation m12i contained a gas
 splitting bug which causes a small number of gas and star particles to have
 larger than typical masses. These constitute only $\sim0.2\%$ of the star
-particles in the $z=0$ snapshots, and are only a factor of a few more massive
+particles in the $\z=0$ snapshots, and are only a factor of a few more massive
 than typical star particles. Since our results are broadly consistent between
-the three simulations, we ignore this minor complication.}, with the lower end
+the three simulations, we ignore this minor complication.} with the lower end
 coming from stellar evolution \citep{2018arXiv180610564S}. Softening lengths
 for dark matter and star particles are fixed at $112\,\pc$ and $11.2\,\pc$,
 respectively.\footnote{This is $2.8$ times the often-quoted
 Plummer-equivalent.} The gas softening length is adaptive, but at $z=0$ the
 median softening length for gas particles around roughly solar positions (with
 cylindrical radii within $500\,\pc$ of $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is
-$98\,\pc$.
+$98\,\pc$. 
 
-In this work, we take the coordinate systems used in
-\citet{2018arXiv180610564S} as our fiducial coordinate systems for each
-galaxy. The center of the galaxy is found through an iterative ``shrinking
-spheres'' method, where the center is calculated for a given radius which is
-then reduced by $50\%$ until converging on the galaxy's center. The center of
-mass velocity is then determined by all star particles within $15\,\kpc$ of
-this center. The galaxy is then rotated onto the principal axis frame as
-determined by stars younger than $1\,\Gyr$ inside of the fiducial solar radius
-$R_{\odot} = 8.2\,\kpc$.
+The softening lengths used in the simulations can affect the ability to resolve the very thinnest planar structures, which in turn can affect how much the density-based midplane varies as a function of azimuth. The Milky Way's gas disk is thought to have a scale height of {\bf XXX} pc (XX times the median gas softening length) and the thin stellar disk a scale height of {\bf XXX} pc (XX times the stellar softening length). We therefore expect that resolution effects may still be affecting the scale heights of these components in the simulations, and indeed the gas and stellar scale heights of the simulated galaxies are all somewhat larger than the MW's. However, in this work we are considering azimuthal variations in the midplane \emph{as defined by the mass density}, which will subsequently be lower in the simulations than in the MW: within 200 pc of the Sun the measured gas and stellar volume densities in the MW are roughly comparable at $\sim .04\ \Msun\ \unit{pc}{-3}$, while in the simulations they are a factor of a few lower (see Table 3 of \citealt{2018arXiv180610564S}). We thus expect that the degree of midplane variation we find in the simulated systems is likely to be \emph{less} than in the real MW, since on the smallest scales the simulations are \emph{smoother} than the real Galaxy.
 
-It is important to remember that simulations of Milky Way-mass galaxies are
-not perfect representations of the true Milky Way, as discussed in
+
+Cosmological simulations of Milky Way-mass galaxies are
+not perfect representations of the true Milky Way in other ways as well, as discussed in
 \citet{2018arXiv180610564S}. For instance, the velocity structure of m12i is
-closer to M31 than the Milky Way. However, in this work we are most interested
-in the global properties of the m12i potential, and specifically in deviations
-from axisymmetry. From this perspective, m12i is actually far more
-axisymmetric than we might expect of the Milky Way. While m12i has prominent
-spiral arms, it lacks a bar and a companion like the Large Magellanic Cloud.
-In future work, these additional complications also need to be addressed.
+closer to M31's than the Milky Way's (Loebman et al. in prep). However, in this work we are most interested
+in the global properties of the potential, and specifically in deviations
+from axisymmetry. From this perspective, the simulated galaxies are actually \emph{more}
+axisymmetric than we might expect of the Milky Way. While they have prominent
+spiral arms, none has as strong a bar as the MW does at present day, and none has a nearby companion like the Large Magellanic Cloud. One of the three we consider (\m12f) does have an ongoing interaction with a satellite galaxy similar to Sagittarius, which has punched through the galactic disk outside the solar circle and induced some warping. However, we expect that, as with the use of finite smoothing lengths, the degree of midplane variation in the simulations is likely a factor of a few lower than what could be expected in the MW.
+
+
+In this work, we take the galactocentric coordinate system described in Section 3 of
+\citet{2018arXiv180610564S} as our fiducial coordinate system for each
+galaxy. In short, the center of the galaxy is found iteratively, the center of
+mass velocity is then determined by all star particles within $15\,\kpc$ of
+this center, and the galaxy is then rotated onto a principal-axis frame
+determined by stars younger than $1\,\Gyr$ inside of the fiducial solar radius
+$R_{\odot} = 8.2\,\kpc$, such that the disk plane is the $x$--$y$ plane.
 
 \subsection{Local Midplane} \label{ssec:local_midplane}
-We now turn to defining the local midplane that an observer might measure if
+Using the three simulations, we determine the \emph{local} midplane that an observer might measure if
 they were situated in each of these galaxies. We place our imaginary observer
-at the solar radius of $8.2\,\kpc$ and azimuth $\phi$\footnote{Our erroneous,
-immortal observer is also warp-drive capable.}, and consider stars within a
+at the solar radius of $8.2\,\kpc$ and azimuth $0<\phi<2\pi$\footnote{Our 
+nearly immortal observer also has warp-drive.}, and consider stars within a
 cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$ perpendicular to the
 fiducial disk.
 
