@@ -39,7 +39,8 @@ M_enclosed = float(mw.mass_enclosed(q).to_value(u.Msun))
 dJzJz_target = np.power(mc_list / M_enclosed, 1/3)
 
 # load in results
-name_list = ['thin', 'thick']
+fname_list = ['thin', 'thick']
+name_list = ['thin-disk', 'thick-disk']
 
 def zoffset_gen(offlist, dJzJz):
     interp = interp1d(offlist, dJzJz)
@@ -78,8 +79,8 @@ clist = [tb_c[7], tb_c[8], tb_c[0]]
 # set up figure
 fig, ax = plt.subplots(1, 1, figsize=(4, 3))
 
-for name, init_vel, c in zip(name_list, init_vel_list, clist):
-    offlist, dJzJz = load_orbit(name, init_pos, init_vel)
+for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist):
+    offlist, dJzJz = load_orbit(fname, init_pos, init_vel)
 
     offlist_target = zoffset_gen(offlist, dJzJz)
 
@@ -114,8 +115,8 @@ for ax, gal in zip(ax_list, glist):
     rng = dat[:,1]
     rng_sigma = dat[:,2]
     chord_length = chord(dphi/np.pi)
-    for name, init_vel, c in zip(name_list, init_vel_list, clist):
-        offlist, dJzJz = load_orbit(name, init_pos, init_vel)
+    for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist):
+        offlist, dJzJz = load_orbit(fname, init_pos, init_vel)
 
         offlist_target = zoffset_gen(offlist, dJzJz)
 
