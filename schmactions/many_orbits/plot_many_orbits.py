@@ -44,7 +44,8 @@ def sclip(a, s=4):
     k2 = np.where(a2bool)[0]
     return k0, k1, k2
 
-name_list = ['thin', 'thick', 'halo']
+name_list = ['thin-disk', 'thick-disk', 'halo']
+fname_list = ['thin', 'thick', 'halo']
 
 fig, ax = plt.subplots(2, 3, figsize=(7, 4))
 init_pos = [8, 0, 0] * u.kpc
@@ -54,10 +55,10 @@ init_vel_list = [[0, -190, 10] * u.km/u.s,
 
 clist = [tb_c[7], tb_c[8], tb_c[0]]
 
-for name, init_vel, c in zip(name_list, init_vel_list, clist):
-    zout = pickle.load(open('zout_'+name+'.p', 'rb'))
-    xout = pickle.load(open('xout_'+name+'.p', 'rb'))
-    res = pickle.load(open('true_res_'+name+'.p', 'rb'))
+for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist):
+    zout = pickle.load(open('zout_'+fname+'.p', 'rb'))
+    xout = pickle.load(open('xout_'+fname+'.p', 'rb'))
+    res = pickle.load(open('true_res_'+fname+'.p', 'rb'))
     J0, J1, J2 = res['actions'].to_value(u.kpc*u.km/u.s)
 
     print(name, J0, J1, J2)
