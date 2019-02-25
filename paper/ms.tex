@@ -564,17 +564,16 @@ respectively.\footnote{This is $2.8$ times the often-quoted
 Plummer-equivalent.} The gas softening length is adaptive, but at $z=0$ the
 median softening length for gas particles around roughly solar positions (with
 cylindrical radii within $500\,\pc$ of $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is
-$98\,\pc$. 
+$98\,\pc$. %***see Issue***
 
 The softening lengths used in the simulations can affect the ability to
 resolve the very thinnest planar structures, which in turn can affect how much
 the density-based midplane varies as a function of azimuth. The Milky Way's
-gas disk is thought to have a scale height of {\bf XXX} pc (XX times the
-median gas softening length) and the thin stellar disk a scale height of {\bf
-XXX} pc (XX times the stellar softening length). We therefore expect that
+dense, star-forming gas disk is thought to have a scale height of about 40 pc (XXX times the
+median gas softening length; \citealt{2019ApJ...871..145A}) and the thin stellar disk a scale height of about 300 pc (30 times the stellar softening length; \citealt{2008ApJ...673..864J}). We therefore expect that
 resolution effects may still be affecting the scale heights of these
 components in the simulations, and indeed the gas and stellar scale heights of
-the simulated galaxies are all somewhat larger than the MW's. However, in this
+the simulated galaxies are equal to or larger than the MW's. However, in this
 work we are considering azimuthal variations in the midplane \emph{as defined
 by the mass density}, which will subsequently be lower in the simulations than
 in the MW: within 200 pc of the Sun the measured gas and stellar volume
@@ -612,23 +611,20 @@ fiducial solar radius $R_{\odot} = 8.2\,\kpc$, such that the disk plane is the
 $x$--$y$ plane.
 
 \subsection{Local Midplane} \label{ssec:local_midplane}
-Using the three simulations, we determine the \emph{local} midplane that an
-observer might measure if they were situated in each of these galaxies. We
-place our imaginary observer at the solar radius of $8.2\,\kpc$ and azimuth
-$0<\phi<2\pi$\footnote{Our nearly immortal observer also has warp-drive.}, and
-consider stars within a cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$
-perpendicular to the fiducial disk.
-
-This median height is taken to be what our observer would measure as the local
-Galactic midplane at each $\phi$, and is reported for each galaxy in
-Figure~\ref{fig:midplane}. We find that only $10$ iterations of this procedure
-are necessary for convergence. We bootstrap resample $1000$ times and report
-the $95^{\text{th}}$ minus $5^{\text{th}}$ percentile as the dashed-line error
-bars. This bootstrap resampling is performed by first selecting all stars
+Using the three simulations, we determine the local midplane that an
+observer might measure if they were situated in each of these galaxies, as a function of azimuth at the solar circle. Starting from the coordinate system described in the previous section, which is approximately aligned so that the $z$ coordinate is perpendicular to the disk plane, we
+place our imaginary observer at $z=0$ and a solar radius of $8.2\,\kpc$ and vary the azimuth between 
+$0<\phi<2\pi$\footnote{Our very long-lived observer also has warp-drive.}. At each value of $\phi$ we then
+compute the median $z$ for stars within a cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$
+perpendicular to the fiducial disk. We then re-define this median $z$ as the new midplane of the cylinder, re-select stars, and iterate until the median $z$ value converges. We find that only $10$ iterations of this procedure
+are necessary for convergence. The resulting median $z$ is taken to be what our observer would measure as the local
+Galactic midplane at each $\phi$.
+To account for the effect of particle noise, we bootstrap-resample stars within the cylinder $1000$ times and determine
+the $95^{\text{th}}$ minus $5^{\text{th}}$ percentile range. This bootstrap resampling is performed by first selecting all stars
 within a height of $2\,\kpc$, resampling that selection, and then repeating
-the $10$ iterations.
+the $10$ iterations. 
 
-To allow for potential small inaccuracies in the fiducial coordinate systems,
+To allow for potential small inaccuracies in the determination of the original fiducial coordinate system,
 we also subtract the best fit $\text{A} \sin{\left(\phi + \text{B}\right)} +
 \text{C}$ curve from the midplane as a function of azimuth. For $\text{A}$ the
 values are $-174$, $62$, and $3.8\,\pc$, for $\text{B}$ the values are $0.3$,
@@ -641,7 +637,7 @@ given in \citet{2018arXiv180610564S} for the difference between the $z$-axis
 as defined by the gas and stars.
 
 Figure~\ref{fig:midplane} shows the inferred midplane our imaginary observer
-would make as a function of azimuth for each galaxy. The $90\%$ interquartile
+would make as a function of azimuth for each galaxy. The 5--95 percentile range from the bootstrap procedure is shown as the dashed-line error bars. The $90\%$ interquartile
 range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m. 
 
 \begin{figure*}
@@ -665,8 +661,8 @@ and 5\uth percentiles), which we report as dashed lines.}
 \subsection{LSR Variations} \label{ssec:lsr_var}
 For similar reasons to the midplane varying across the disk, we also expect
 that the local standard of rest (LSR) is a function of azimuth as well. We
-perform this calculation in Appendix~\ref{app:lsr}, but in order to perform a
-best-fit subtraction as in the previous section is more involved, which we
+perform this calculation in Appendix~\ref{app:lsr}, but performing a
+best-fit subtraction to correct for misalignment of the original coordinate system (as in the previous section) is more involved, and we
 delay to future work. We do note, however, that the variation in the LSR is
 less pronounced than for the midplane, at least for how we calculate the LSR.
 
