@@ -619,7 +619,7 @@ $0<\phi<2\pi$\footnote{Our very long-lived observer also has warp-drive.}. At ea
 compute the median $z$ for stars within a cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$
 perpendicular to the fiducial disk. We then re-define this median $z$ as the new midplane of the cylinder, re-select stars, and iterate until the median $z$ value converges. We find that only $10$ iterations of this procedure
 are necessary for convergence. The resulting median $z$ is taken to be what our observer would measure as the local
-Galactic midplane at each $\phi$.
+Galactic midplane at each $\phi$. This procedure assumes perfect density estimation, and therefore perfect corrections for extinction, within the cylinder defining the ``solar neighborhood.'' Imperfect extinction correction is likely to increase the amplitude of the estimated fluctuations in $z$.
 To account for the effect of particle noise, we bootstrap-resample stars within the cylinder $1000$ times and determine
 the $95^{\text{th}}$ minus $5^{\text{th}}$ percentile range. This bootstrap resampling is performed by first selecting all stars
 within a height of $2\,\kpc$, resampling that selection, and then repeating
@@ -627,7 +627,7 @@ the $10$ iterations.
 
 To allow for potential small inaccuracies in the determination of the original fiducial coordinate system,
 we also subtract the best fit $\text{A} \sin{\left(\phi + \text{B}\right)} +
-\text{C}$ curve from the midplane as a function of azimuth. For $\text{A}$ the
+\text{C}$ curve from the midplane as a function of azimuth to account for an overall tilt of the midplane (a simplified version of the strategy described in \citealt{2019ApJ...871..145A}). For $\text{A}$ the
 values are $-174$, $62$, and $3.8\,\pc$, for $\text{B}$ the values are $0.3$,
 $0.65$, and $0.021\,\text{rad}$ and for $\text{C}$ the values are $-47$, $18$,
 and $-15\,\pc$ for \mi , \mf , and \mm , respectively. For the assumed solar
@@ -637,9 +637,9 @@ for \mi , \mf , and \mm . These angle offsets are consistent with the values
 given in \citet{2018arXiv180610564S} for the difference between the $z$-axis
 as defined by the gas and stars.
 
-Figure~\ref{fig:midplane} shows the inferred midplane our imaginary observer
-would make as a function of azimuth for each galaxy. The 5--95 percentile range from the bootstrap procedure is shown as the dashed-line error bars. The $90\%$ interquartile
-range for each galaxy is $185$, $162$, $84\,\pc$ for \mi , \mf , and \mm . 
+Figure~\ref{fig:midplane} shows the relative $z$ location of the inferred midplane our imaginary observer
+would determine as a function of azimuth for each galaxy, using their local ``solar neighborhood'' (the cylinder defined above). The 5--95 percentile range from the bootstrap procedure is shown as the dashed-line error bars. The $90\%$ interquartile
+range for each galaxy is $185$, $162$, $84\,\pc$ for \mi , \mf , and \mm . In two of the three cases this varies by $\pm 100$pc depending on the azimuth along the Solar circle; in the third (\mm , which has the thinnest ``thin disk'' of stars, but the largest stellar mass) the variation is more like $\pm 50$ pc. 
 
 \begin{figure*}
 \plotone{fig/midplane_fit.pdf}
@@ -653,19 +653,19 @@ order to allow for the possibility that the fiducial Galactocentric coordinate
 system is incorrect, we subtract the best fit $A\sin{(\phi+B)}+C$ curve from
 each panel --- this figure is reproduced with the original midplane
 determination (i.e. before subtracting the best fit sine curve) in
-Appendix~\Gus{x}. We then bootstrap resample $1000$ times on all stars within
+Appendix~\ref{app:lsr}. We then bootstrap resample $1000$ times on all stars within
 a $2\,\kpc$ height of the fiducial midplane to determine error bars (95\uth
 and 5\uth percentiles), which we report as dashed lines.}
 \label{fig:midplane}
 \end{figure*}
 
 \subsection{LSR Variations} \label{ssec:lsr_var}
-For similar reasons to the midplane varying across the disk, we also expect
-that the local standard of rest (LSR) is a function of azimuth as well. We
-perform this calculation in Appendix~\ref{app:lsr}, but performing a
-best-fit subtraction to correct for misalignment of the original coordinate system (as in the previous section) is more involved, and we
-delay to future work. We do note, however, that the variation in the LSR is
-less pronounced than for the midplane, at least for how we calculate the LSR.
+We also expect
+that the local standard of rest (LSR) should vary as a function of azimuth. We
+perform this calculation in Appendix~\ref{app:lsr} to estimate , but performing a
+best-fit subtraction to correct for misalignment of the original coordinate system (as in the previous section) is more involved. Since the variation in the LSR is
+less pronounced than for the midplane, and since the dominant effect is limited to $J_r$ (Figure \ref{fig:many_orbit_wrong_ref}), we defer this calculation to future work. 
+
 
 \section{Discussion} \label{sec:discussion}
 We have shown that, in simulation, the ``local midplane'' can have strong
