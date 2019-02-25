@@ -659,7 +659,7 @@ as defined by the gas and stars.
 
 Figure~\ref{fig:midplane} shows the relative $z$ location of the inferred midplane our imaginary observer
 would determine as a function of azimuth for each galaxy, using their local ``solar neighborhood'' (the cylinder defined above). The 5--95 percentile range from the bootstrap procedure is shown as the dashed-line error bars. The $90\%$ interquartile
-range for each galaxy is $185$, $162$, $84\,\pc$ for \mi , \mf , and \mm . In two of the three cases this varies by $\pm 100$pc depending on the azimuth along the Solar circle; in the third (\mm , which has the thinnest ``thin disk'' of stars, but the largest stellar mass) the variation is more like $\pm 50$ pc. 
+range for each galaxy is $185$, $162$, $84\,\pc$ for \mi , \mf , and \mm . In two of the three cases the midplane therefore varies by more than $\pm 100$pc depending on the azimuth along the Solar circle; in the third (\mm , which has the thinnest ``thin disk'' of stars, but the largest stellar mass) the variation is more like $\pm 50$ pc. 
 
 \begin{figure*}
 \plotone{fig/midplane_fit.pdf}
@@ -688,11 +688,11 @@ less pronounced than for the midplane, and since the dominant effect is limited 
 
 
 \section{Discussion} \label{sec:discussion}
-We have used high-resolution cosmological simulations to illustrate that we expect the ``local midplane'' defined by stellar density to vary with azimuth by up to $\pm 100$ pc, as a natural consequence of the non-axisymmetry of the Galactic disk at small scales. While this is not in itself surprising or new, we also demonstrate that extending the coordinate system established by our local midplane to a global axisymmetric coordinate system spanning the entirety of the Galactic disk introduces systematic error in computations of the actions under this symmetry assumption, when starting from the present-day positions and velocities of stars as measured, for example, by \emph{Gaia}. These systematic errors are most important for stars on thin-disk-like orbits, where they can be large enough to yield actions representative of orbits in the thick disk. This effect is entirely due to the extension of a local to a global coordinate system, and is separate from real diffusion in stellar orbits caused by interactions with these same deviations from axisymmetry such as resonant perturbation by spiral arms or scattering from molecular clouds.
+We have used high-resolution cosmological simulations to illustrate that we expect the ``local midplane'' defined by stellar density to vary with azimuth by up to $\pm 100$ pc, as a natural consequence of the non-axisymmetry of the Galactic disk at small scales. While this is not in itself surprising or new, we also demonstrate that extending the coordinate system established by our local midplane to a global axisymmetric coordinate system spanning the entirety of the Galactic disk introduces systematic error in computations of the actions under this symmetry assumption, when starting from the present-day positions and velocities of stars as measured, for example, by \emph{Gaia}. These systematic errors are most important for stars on thin-disk-like orbits, where they can be large enough to yield actions representative of orbits in the thick disk. This effect is entirely due to the extension of a local to a global coordinate system, and is separate from real diffusion in stellar integrals of motion caused by interactions with these same deviations from axisymmetry, such as resonant perturbation by spiral arms or scattering from molecular clouds.
 
 This finding has many implications for the study of the dynamics of stars in what is normally considered the regime of the epicyclic approximation: quasi-harmonic oscillations around a circular ``guiding center orbit.'' Here we consider a few of those implications, starting with an estimate of the region around the Sun where we expect an extension of the local axisymmetric coordinate system, and therefore the epicyclic approximation, to still be valid. This region is also where it should be feasible to perform ``dynamical tagging'' in the thin disk; that is, using the computed orbits or integrals of motion of field stars to match them with known open clusters. 
 
-%%%move this later - decide where
+%%%move this later - decide where, probably conclusions
 %While we focus our discussion now solely on the midplane, there is an
 %additional complication in the measurement of the distance from the Sun to the
 %Galactic center that may also be important. When modelling stars at Galactic
@@ -729,16 +729,16 @@ This finding has many implications for the study of the dynamics of stars in wha
 %had a recenter merger with \Gus{something}. \Gus{Expand more here - how to
 %incorporate merger trees?}
 
-\subsection{Impact on Milky Way observations} \label{ssec:impact_on_mw}
-\subsubsection{The Solar neighborhood} \label{sssec:neighborhood}
-To gain further handle on the midplane behavior as a function of azimuth, we
-compute the range of midplane values for a given $\Delta \phi$ segment of the
-midplane in Figure~\ref{fig:range_deltaphi}. With the observer's azimuth set
+%\subsection{Impact on Milky Way observations} \label{ssec:impact_on_mw}
+\subsection{The size of the Solar neighborhood} \label{sssec:neighborhood}
+
+Given a local coordinate system, the amplitude and characteristic length scale of the density fluctuations in the Galactic disk will determine how far this system can be extended before introducing $\mathcal{O}(1)$ systematic errors in the computation of actions for thin-disk stars. We consider this a criterion for the region around the Sun where the analysis of the action-space distribution of stars on quasi-circular orbits, and therefore the epicyclic approximation, can be expected to be valid. This leads to a somewhat dynamically motivated definition of the ``solar neighborhood.''
+
+To illustrate this concept, we first
+compute the absolute range of midplane values for a given $\Delta \phi$ segment of the
+midplane. With the observer's azimuth set
 to zero, we consider a region extending from $-\Delta \phi/2$ to
-$\Delta\phi/2$. We also compute the chord length for the chord extending from
-the observer to $\pm \Delta\phi/2$. We repeat this for each of the $50$ bins
-in azimuth. Each bin is plotted as a gray line, with the mean value in solid
-blue and the $1\,\sigma$ dispersion as the dashed blue lines.
+$\Delta\phi/2$. To translate this angular scale into a physical scale, we also compute the chord length $\lambda$ for the chord extending from the observer to $\pm \Delta\phi/2$ (see Figure \ref{fig:fig_to_explain}). We repeat this for each of $50$ bins in azimuth. Each bin is plotted in Figure~\ref{fig:range_deltaphi} as a gray line, with the mean value in solid blue and the $1\,\sigma$ dispersion as the dashed blue lines.
 
 \begin{figure*}
 \plotone{fig/fig_to_explain.pdf}
@@ -768,13 +768,15 @@ Figure~\ref{fig:fig_to_explain}.}
 \label{fig:range_deltaphi}
 \end{figure*}
 
-\subsubsection{Consequences for disrupted cluster reconstruction}
+From Figure \ref{fig:range_deltaphi} it is clear that the range of midplane values spanned in a given $\Delta \phi$ quickly saturates at $\Delta \phi \gtrsim \pi/2$ radians (i.e. one quarter of the way around the Galactic disk from the Sun). At far smaller $\Delta \phi$ it reaches the level of deviation required for an $\mathcal{O}(1)$ systematic error in $J_z$ for our fiducial thin-disk-like orbit (*color1* horizontal line in Figure \ref{fig:range_deltaphi}). For the three simulations considered, the median range exceeds this value at $\Delta \phi >$ XX, YY, and ZZ radians, with corresponding physical scales of $\lambda \sim$ XX, YY, and ZZ parsecs. These can be considered estimates of the range of validity for an extension of the locally determined axisymmetric coordinate system, at least when it comes to the study of stars on quasi-circular orbits.
+
+The situation is more forgiving for the study of thick-disk-like orbits, where an $\mathcal{O}(1)$ systematic error in $J_z$ requires a larger midplane deviation (*color2* horizontal line in Figure \ref{fig:range_deltaphi}) corresponding to $\Delta \phi >$ XX, YY, and ZZ radians or $\lambda \sim$ XX, YY, and ZZ parsecs. For stars on halo-like orbits, extending the local coordinate system globally is not likely to cause serious problems, since the midplane deviations are relatively small compared to those needed to produce $\mathcal{O}(1)$ systematic errors in the actions (*color3* horizontal line in Figure \ref{fig:range_deltaphi}). However, we caution that the tendency of these midplane deviations is to \emph{inflate} the value of $J_z$ for thin disk stars in an extremely non-Gaussian way (Figure \ref{fig:Jz_hist}), scattering them into the region of action space normally associated with different stellar populations and possibly contributing to confusion there.
+
+
+\subsection{Consequences for disrupted cluster reconstruction}
 \label{sssec:reconstruction}
 
-A possible interpretation of our finding is that one should use a star's local
-midplane in order to compute dynamical quantities like the vertical action.
-Under the assumption that this interpretation is correct, we now consider the
-implications for attempts to reconstruct disrupting open clusters by selecting
+We now consider the implications for attempts to reconstruct disrupting open clusters by selecting
 ejected members based on their actions.
 
 Suppose an open cluster of mass $m_c$ on an orbit with actions $\bm{J}_c$ is
