@@ -544,7 +544,7 @@ work we focus on the three zoom-ins considered in \citet{2018arXiv180610564S},
 which show broad agreement of many of their global properties with
 observations of the Milky Way. The $\z=0$ snapshots\footnote{In this work, to
 avoid confusion with the vertical height $z$, we refer to cosmological
-redshift as $\z$.} of these three simulations, called m12i, m12f, and m12m for
+redshift as $\z$.} of these three simulations, called \mi , \mf , and \mm\ for
 shorthand, are publicly available alongside associated mock {\em Gaia} DR2
 catalogues generated from them.\footnote{available at
 \url{http://ananke.hub.yt}}
@@ -552,7 +552,7 @@ catalogues generated from them.\footnote{available at
 These simulations contain dark matter particles of mass $\sim35,000\,\Msun$,
 gas particles of mass $\sim 7000 \text{--} 20,000\,\Msun$, and star particles
 of mass $\sim 5000 \text{--} 7000\,
-\Msun$,\footnote{In fact, the simulation m12i contained a gas
+\Msun$,\footnote{In fact, the simulation \mi\ contained a gas
 splitting bug which causes a small number of gas and star particles to have
 larger than typical masses. These constitute only $\sim0.2\%$ of the star
 particles in the $\z=0$ snapshots, and are only a factor of a few more massive
@@ -564,14 +564,14 @@ respectively.\footnote{This is $2.8$ times the often-quoted
 Plummer-equivalent.} The gas softening length is adaptive, but at $z=0$ the
 median softening length for cold ($T < 10^4\,\text{K}$) gas particles around
 roughly solar positions (with cylindrical radii within $500\,\pc$ of
-$8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4, 12.5, 10.3\,\pc$ for m12i, m12f,
-and m12m, respectively.
+$8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4, 12.5, 10.3\,\pc$ for \mi , \mf ,
+and \mm , respectively.
 
 The softening lengths used in the simulations can affect the ability to
 resolve the very thinnest planar structures, which in turn can affect how much
 the density-based midplane varies as a function of azimuth. The Milky Way's
-dense, star-forming gas disk is thought to have a scale height of about 40 pc (XXX times the
-median gas softening length; \citealt{2019ApJ...871..145A}) and the thin stellar disk a scale height of about 300 pc (30 times the stellar softening length; \citealt{2008ApJ...673..864J}). We therefore expect that
+dense, star-forming gas disk is thought to have a scale height of about 40 pc (3--4 times the
+cold gas softening length; \citealt{2019ApJ...871..145A}) and the thin stellar disk a scale height of about 300 pc (30 times the stellar softening length; \citealt{2008ApJ...673..864J}). We therefore expect that
 resolution effects may still be affecting the scale heights of these
 components in the simulations, and indeed the gas and stellar scale heights of
 the simulated galaxies are equal to or larger than the MW's. However, in this
@@ -588,7 +588,7 @@ are \emph{smoother} than the real Galaxy.
 
 Cosmological simulations of Milky Way-mass galaxies are not perfect
 representations of the true Milky Way in other ways as well, as discussed in
-\citet{2018arXiv180610564S}. For instance, the velocity structure of m12i is
+\citet{2018arXiv180610564S}. For instance, the velocity structure of \mi\ is
 closer to M31's than the Milky Way's (Loebman et al. in prep). However, in
 this work we are most interested in the global properties of the potential,
 and specifically in deviations from axisymmetry. From this perspective, the
@@ -630,21 +630,21 @@ we also subtract the best fit $\text{A} \sin{\left(\phi + \text{B}\right)} +
 \text{C}$ curve from the midplane as a function of azimuth. For $\text{A}$ the
 values are $-174$, $62$, and $3.8\,\pc$, for $\text{B}$ the values are $0.3$,
 $0.65$, and $0.021\,\text{rad}$ and for $\text{C}$ the values are $-47$, $18$,
-and $-15\,\pc$ for m12i, m12f, and m12m, respectively. For the assumed solar
+and $-15\,\pc$ for \mi , \mf , and \mm , respectively. For the assumed solar
 radius of $8.2\,\kpc$, we can approximate the angle offset for the $z$-axis
 from the values of $\text{A}$ --- we compute $1.22$, $0.43$, and $0.03\,\deg$
-for m12i, m12f, and m12m. These angle offsets are consistent with the values
+for \mi , \mf , and \mm . These angle offsets are consistent with the values
 given in \citet{2018arXiv180610564S} for the difference between the $z$-axis
 as defined by the gas and stars.
 
 Figure~\ref{fig:midplane} shows the inferred midplane our imaginary observer
 would make as a function of azimuth for each galaxy. The 5--95 percentile range from the bootstrap procedure is shown as the dashed-line error bars. The $90\%$ interquartile
-range for each galaxy is $185$, $162$, $84\,\pc$ for m12i, m12f, and m12m. 
+range for each galaxy is $185$, $162$, $84\,\pc$ for \mi , \mf , and \mm . 
 
 \begin{figure*}
 \plotone{fig/midplane_fit.pdf}
 \caption{The local midplane determined at the fiducial Solar radius
-($8.2\,\kpc$) for the three FIRE galaxies m12i, m21f, and m12m ({\em left},
+($8.2\,\kpc$) for the three FIRE galaxies \mi , \mf , and \mm\ ({\em left},
 {\em center}, and {\em right} panels). The local midplane is determined at a
 position $\phi$ by taking the median height of all stars within $R=0.5\,\kpc$
 and $z=1\,\kpc$ (in cylindrical coordinates). The procedure is performed again
@@ -691,13 +691,13 @@ a precision capable of competing with the distance to Sgr~A\textsuperscript{*}
 As we briefly discussed in Section~\ref{ssec:cosmozoom}, cosmological zoom-in
 simulations of Milky Way-mass galaxies are not perfect representations of the
 Milky Way, and do not reproduce every available observation of the Milky Way.
-For instance, the velocity dispersion-age relation in m12i, m12f, and m12m is
+For instance, the velocity dispersion-age relation in \mi , \mf , and \mm\ is
 closer to that of M31 \citep{2018arXiv180610564S}.
 
 In order to assess the applicability of our work to the real Milky Way, we
 consider a subset of Table~3 from \citet{2018arXiv180610564S} --- our
-Table~\ref{tab:scale_height} shows the stellar scale heights of m12i, m12f,
-and m12m and the current best estimates for the Milky Way. One noticeable
+Table~\ref{tab:scale_height} shows the stellar scale heights of \mi , \mf ,
+and \mm\ and the current best estimates for the Milky Way. One noticeable
 feature is that the FIRE galaxies are more ``puffy'' than the Milky Way.
 \Gus{Maybe FIRE collaboration has some insight into the mechanism for this?}.
 This would seem to suggest that the midplane estimates from
@@ -710,9 +710,9 @@ simulated galaxies considered in this work.\label{tab:scale_height}}
 \colhead{} & \colhead{(pc)} & \colhead{(pc)} } 
 \startdata
 MW\tablenotemark{a} & 300 & 900 \\
-m12i\tablenotemark{b} & 480 & 2000 \\
-m12f\tablenotemark{b} & 440 & 1280 \\
-m12m\tablenotemark{b} & 290 & 1030 \\
+\mi\tablenotemark{b} & 480 & 2000 \\
+\mf\tablenotemark{b} & 440 & 1280 \\
+\mm\tablenotemark{b} & 290 & 1030 \\
 \enddata
 % \tablerefs{\citet{2016ARAA..54..529B,2018arXiv180610564S,2008ApJ...673..864J}}
 
@@ -721,8 +721,8 @@ m12m\tablenotemark{b} & 290 & 1030 \\
 \end{deluxetable}
 
 Another important aspect to consider when comparing the simulated galaxies to
-the Milky Way is the environment/merger history. For instance, m12i and m12m
-both lack a massive neighbor analogous to the LMC. On the other hand, m12f has
+the Milky Way is the environment/merger history. For instance, \mi\ and \mm\
+both lack a massive neighbor analogous to the LMC. On the other hand, \mf\ has
 had a recenter merger with \Gus{something}. \Gus{Expand more here - how to
 incorporate merger trees?}
 
@@ -865,27 +865,27 @@ $\phi$-dependence of the midplane effect.
 
 Figure~\ref{fig:Rn_mc} is most informative for the thin orbit (\thincolor).
 The neighborhood around $\sim100\Msun$ clusters can be as small as
-$\sim300\,\pc$ but up to $\sim1.2\,\kpc$ for m12i and m12f, though the
-situation is marginally better for m12m with values ranging from
+$\sim300\,\pc$ but up to $\sim1.2\,\kpc$ for \mi\ and \mf , though the
+situation is marginally better for \mm\ with values ranging from
 $\sim0.8\,\kpc$ to $\sim3\,\kpc$. The neighborhood values steadily increase
 with $m_c$, topping out at $\sim5\,\kpc$ for $\sim10^4\,\Msun$ clusters in
-m12i and m12f. In m12m, the neighborhood value reaches the maximum allowed of
+\mi\ and \mf . In \mm , the neighborhood value reaches the maximum allowed of
 $16.4\,\kpc$ for clusters of mass $\sim800\,\Msun$. The interpretation of this
 is that the expected action space dispersion is so high for such high mass
 clusters that the measured $z$~offset is not large enough throughout the
 entire galaxy to be important.
 
 For the thick-disk orbit (brown), the neighborhood is at the maximum value for
-nearly all masses, except at the very low-mass end in m12i.
+nearly all masses, except at the very low-mass end in \mi .
 
 We repeat this entire procedure for each of the orbits of the real open
 clusters in Table~\ref{tab:real_clusters} using the midplane variations from
-m12i. We use m12i as a conservative choice, since it provides the greatest
+\mi . We use \mi\ as a conservative choice, since it provides the greatest
 midplane variation (Figure~\ref{fig:midplane}). We report the neighborhood
 values for the mass of each cluster in the neighborhood column of
 Table~\ref{tab:real_clusters}. Except for alphaPer, we find that the
 neigbhorhood around each cluster is typically $\gtrsim 500\,\pc$. This
-analysis assumes that the midplane from m12i can be accurately applied to
+analysis assumes that the midplane from \mi\ can be accurately applied to
 Milky Way orbits, which is not necessarily true. However, our analysis is
 meant to be more illustrative than quantitative and these neighborhood numbers
 should be understood as such.
@@ -895,7 +895,7 @@ should be understood as such.
 \caption{The neighborhood around an open cluster of mass $m_c$ for the thin,
 and thick orbits (\thincolor and \thickcolor, respectively; see
 Table~\ref{tab:orbits}) and for each of the FIRE galaxies considered here ---
-m12i, m12f, and m12m ({\em left}, {\em center}, and {\em right} panels,
+\mi , \mf , and \mm\ ({\em left}, {\em center}, and {\em right} panels,
 respectively). Given the $z$ offset for a cluster of mass $m_c$ computed in
 Figure~\ref{fig:cluster_offset}, we convert this to a chord length using the
 result from Figure~\ref{fig:range_deltaphi}. We interpret this chord length as
@@ -948,7 +948,7 @@ Galactic midplane is the global Galactic midplane is not true {\em a priori}.
 midplane along the Solar circle in three different high-resolution, zoom-in
 simulations of Milky Way mass galaxies from the FIRE collaboration. We found
 that the midplane varies by $\sim185, 162, 84\,\pc$ (middle $90\%$) for the
-three galaxies we considered (m12i, m12f, and m12m, respectively).
+three galaxies we considered (\mi , \mf , and \mm , respectively).
 
 \end{itemize}
 
