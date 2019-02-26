@@ -660,10 +660,11 @@ perfect density estimation, and therefore perfect corrections for extinction,
 within the cylinder defining the ``solar neighborhood.'' Imperfect extinction
 correction is likely to increase the amplitude of the estimated fluctuations
 in $z$. To account for the effect of particle noise, we bootstrap-resample
-stars within the cylinder $1000$ times and determine the $95^{\text{th}}$
-minus $5^{\text{th}}$ percentile range. This bootstrap resampling is performed
-by first selecting all stars within a height of $2\,\kpc$, resampling that
-selection, and then repeating the $10$ iterations.
+stars within a cylinder of stars with height $2\,\kpc$ and the same radius
+$1000$ times and determine the $95^{\text{th}}$ minus $5^{\text{th}}$
+percentile range. This bootstrap resampling is performed by first selecting
+all stars within a height of $2\,\kpc$, resampling that selection, and then
+repeating the $10$ iterations.
 
 To allow for potential small inaccuracies in the determination of the original
 fiducial coordinate system, we also subtract the best fit $\text{A}
