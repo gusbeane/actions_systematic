@@ -836,11 +836,14 @@ coordinate system globally is not likely to cause serious problems, since the
 midplane deviations are relatively small compared to those needed to produce
 $\mathcal{O}(1)$ systematic errors in the actions (\halocolor horizontal line
 in Figure \ref{fig:range_deltaphi}). However, we caution that the tendency of
-these midplane deviations is to \emph{inflate} the value of $J_z$ for thin
-disk stars in an extremely non-Gaussian way (Figure \ref{fig:Jz_hist}),
-scattering them into the region of action space normally associated with
-different stellar populations and possibly contributing to confusion there.
-
+these midplane deviations is to \emph{inflate} the value of $J_z$ whenever the
+midplane deviation is $\gtrsim z_{\text{max}}$, scattering them into the
+region of action space normally associated with different stellar populations
+and possibly contributing to confusion there. This inflation is extremely
+non-Gaussian (as the induced error is for all orbits, e.g.
+Figure~\ref{fig:Jz_hist}), and is particularly troubling for the case of thin
+disk stars, where the necessary midplane deviation is
+$\sim50\textup{--}100\,\pc$.
 
 \subsection{Consequences for disrupted cluster reconstruction}
 \label{sssec:reconstruction}
