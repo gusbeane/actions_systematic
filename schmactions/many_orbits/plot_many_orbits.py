@@ -10,6 +10,9 @@ import matplotlib.pyplot as plt
 from scipy.stats import sigmaclip
 import numpy as np
 
+from scipy.interpolate import interp1d
+from scipy.optimize import minimize
+
 import matplotlib as mpl
 from matplotlib import rc
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
@@ -55,6 +58,13 @@ init_vel_list = [[0, -190, 10] * u.km/u.s,
 
 clist = [tb_c[7], tb_c[8], tb_c[0]]
 
+def print_100(zerr, dJz):
+    interp = interp1d(zerr, dJz, bounds_error=False, fill_value='extrapolate')
+    def to_min(z):
+        return np.abs(interp(z)-1)
+    res = minimize(to_min, 250)
+    print(res.x)
+
 for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist):
     zout = pickle.load(open('zout_'+fname+'.p', 'rb'))
     xout = pickle.load(open('xout_'+fname+'.p', 'rb'))
@@ -85,6 +95,10 @@ for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist)
     dx[:,0] /= J0
     dx[:,1] /= J1
     dx[:,2] /= J2
+
+    print_100(zoffset, dz[:,2])
+    print(zoffset, dz[:,2])
+
     
     for x,o,d in zip(ax, (zoffset, xoffset), (dz, dx)):
         # get keys corresponding to 4 sigmaclip
