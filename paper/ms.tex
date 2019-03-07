@@ -808,9 +808,11 @@ angular width of $\Delta \phi$ centered on $\phi$ and report the range of
 midplane heights within that width. We repeat the procedure for each $\phi$
 and plot the result as translucent gray lines. We also plot the mean range as
 a solid blue line and the $\pm1\sigma$ lines as dashed blue lines. The upper
-$x$-axis shows the chord length from the position $\phi$ to $\pm\Delta\phi/2$. The horizontal \thincolor{} and \thickcolor{} lines shows the midplane variation necessary to induce a $100\%$ error in $J_z$ for the thin-disk and thick-disk orbits, respectively.
-A cartoon explanation of this Figure is given in
-Figure~\ref{fig:fig_to_explain}.}
+$x$-axis shows the chord length from the position $\phi$ to $\pm\Delta\phi/2$.
+The horizontal \thincolor{} and \thickcolor{} lines shows the midplane
+variation necessary to induce a $100\%$ error in $J_z$ for the thin-disk and
+thick-disk orbits, respectively. A cartoon explanation of this Figure is given
+in Figure~\ref{fig:fig_to_explain}.}
 \label{fig:range_deltaphi}
 \end{figure*}
 
@@ -821,27 +823,30 @@ from the Sun). At far smaller $\Delta \phi$ it reaches the level of deviation
 required for an $\mathcal{O}(1)$ systematic error in $J_z$ for our fiducial
 thin-disk-like orbit (\thincolor horizontal line in Figure
 \ref{fig:range_deltaphi}). For the three simulations considered, the median
-range exceeds this value at $\Delta \phi/\pi > 0.036, 0.047, 0.10\,\text{rad}$, with
-corresponding physical scales of $\lambda \sim 465, 610, 1290\,\pc$ for m12i, m12f, and m12m, respectively. These
-can be considered estimates of the range of validity for an extension of the
-locally determined axisymmetric coordinate system, at least when it comes to
-the study of stars on quasi-circular orbits.
+range exceeds this value at $\Delta \phi/\pi > 0.036, 0.047,
+0.10\,\text{rad}$, with corresponding physical scales of $\lambda \sim 465,
+610, 1290\,\pc$ for m12i, m12f, and m12m, respectively. These can be
+considered estimates of the range of validity for an extension of the locally
+determined axisymmetric coordinate system, at least when it comes to the study
+of stars on quasi-circular orbits.
 
 The situation is more forgiving for the study of thick-disk-like orbits, where
 an $\mathcal{O}(1)$ systematic error in $J_z$ requires a larger midplane
-deviation (\thickcolor{} horizontal line in Figure~\ref{fig:range_deltaphi}). In fact, the range of midplane variation in m12i just barely saturates to cause such an error in $J_z$, with the midplane variation in m12f and m12m never reaching such a value.
-For stars on halo-like orbits, extending the local
-coordinate system globally is not likely to cause serious problems, since the
-midplane deviations are relatively small compared to those needed to produce
-$\mathcal{O}(1)$ systematic errors in the actions (\halocolor{} horizontal line
-in Figure \ref{fig:range_deltaphi}). However, we caution that the tendency of
-these midplane deviations is to \emph{inflate} the value of $J_z$ whenever the
-midplane deviation is $\gtrsim z_{\text{max}}$, scattering them into the
-region of action space normally associated with different stellar populations
-and possibly contributing to confusion there. This inflation is extremely
-non-Gaussian (as the induced error is for all orbits, e.g.
-Figure~\ref{fig:Jz_hist}), and is particularly troubling for the case of thin
-disk stars, where the necessary midplane deviation is
+deviation (\thickcolor{} horizontal line in Figure~\ref{fig:range_deltaphi}).
+In fact, the range of midplane variation in m12i just barely saturates to
+cause such an error in $J_z$, with the midplane variation in m12f and m12m
+never reaching such a value. For stars on halo-like orbits, extending the
+local coordinate system globally is not likely to cause serious problems,
+since the midplane deviations are relatively small compared to those needed to
+produce $\mathcal{O}(1)$ systematic errors in the actions (\halocolor{}
+horizontal line in Figure \ref{fig:range_deltaphi}). However, we caution that
+the tendency of these midplane deviations is to \emph{inflate} the value of
+$J_z$ whenever the midplane deviation is $\gtrsim z_{\text{max}}$, scattering
+them into the region of action space normally associated with different
+stellar populations and possibly contributing to confusion there. This
+inflation is extremely non-Gaussian (as the induced error is for all orbits,
+e.g. Figure~\ref{fig:Jz_hist}), and is particularly troubling for the case of
+thin disk stars, where the necessary midplane deviation is
 $\sim50\textup{--}100\,\pc$.
 
 \subsection{Consequences for disrupted cluster reconstruction}
@@ -851,48 +856,81 @@ We now consider the implications for attempts to reconstruct disrupting open
 clusters by selecting ejected members based on their actions.
 
 Suppose an open cluster of mass $m_c$ on an orbit with actions $\bm{J}_c$ is
-disrupted. We would like to determine which stars with complete 6D phase-space positions, for example in the {\em Gaia}
-dataset,\footnote{This is likely to be more successful with DR3/4 than DR2,
-since upcoming data releases will contain a far greater number of stars with
-radial velocities --- though targeted, follow-up radial velocity surveys may
-allow this program to be performed sooner.} are likely to be ejected
-members from that cluster. One could generate an initial catalogue of
-candidate members by integrating the cluster's orbit and selecting stars close
-to that orbit, accounting for the fact that the stream of ejected stars will not exactly follow
-the orbit of the cluster \citep[e.g.][]{2011MNRAS.413.1852E}.
+disrupted. We would like to determine which stars with complete 6D phase-space
+positions, for example in the {\em Gaia} dataset,\footnote{This is likely to
+be more successful with DR3/4 than DR2, since upcoming data releases will
+contain a far greater number of stars with radial velocities --- though
+targeted, follow-up radial velocity surveys may allow this program to be
+performed sooner.} are likely to be ejected members from that cluster. One
+could generate an initial catalogue of candidate members by integrating the
+cluster's orbit and selecting stars close to that orbit, accounting for the
+fact that the stream of ejected stars will not exactly follow the orbit of the
+cluster \citep[e.g.][]{2011MNRAS.413.1852E}.
 
 One could then make a further selection by requiring that the action of each
 field star $i$ be close to the cluster's actions to within some bound, i.e.
-$\bm{J}_i - \bm{J}_c \in V_e$, where $V_e$ is centered on $J_c$ and has size proportional to the intrinsic action-space dispersion of the disrupting cluster. This dispersion can be estimated as
-\citep[Section~8.3.3 of][]{2008gady.book.....B}
+$\bm{J}_i - \bm{J}_c \in V_e$, where $V_e$ is centered on $J_c$ and has size
+proportional to the intrinsic action-space dispersion of the disrupting
+cluster. This dispersion can be estimated as \citep[Section~8.3.3
+of][]{2008gady.book.....B}
 \beq \label{eq:action_disp}
 \frac{\Delta J_i}{J_i} \sim \left(\frac{m_c}{M}\right)^{1/3}\text{,}
 \eeq
 where $m_c$ is the mass of the cluster and $M$ is the mass enclosed by the
-cluster's orbit around the Galaxy, in this case assumed to be the mass inside the Solar circle ($\sim 10^{11}\Msun$). Stars with actions within $V_e$ would then be considered cluster members.
+cluster's orbit around the Galaxy, in this case assumed to be the mass inside
+the Solar circle ($\sim 10^{11}\Msun$). Stars with actions within $V_e$ would
+then be considered cluster members.
 
-%A more sophisticated treatment of the action-space dispersion
-%of disrupted clusters can be obtained by following
-%\citet{2011MNRAS.413.1852E}, but such a treatment is premature for this work.
+Two issues are immediately apparent with this approach. The first is that it
+neglects the overall smooth distribution \emph{in action space} which will
+contribute some stars to the selection by chance. For dissolving open clusters
+in the thin disk, this background is not likely to be negligible, but we will
+assume for the sake of argument that it can be modeled within the ``dynamical
+solar neighborhood'' where it is safe to extend the local coordinate system.
+Since the effect of extending the coordinate frame beyond this region is
+generally to inflate the actions computed for thin-disk stars, using too large
+a volume is likely to under-estimate the density of the smooth thin-disk-like
+component in action space, while scattering more thin-disk stars onto
+thick-disk-like orbits and over-estimating the density of the smooth
+thick-disk-like component.
 
-Two issues are immediately apparent with this approach. The first is that it neglects the overall smooth distribution \emph{in action space} which will contribute some stars to the selection by chance. For dissolving open clusters in the thin disk, this background is not likely to be negligible, but we will assume for the sake of argument that it can be modeled within the ``dynamical solar neighborhood'' where it is safe to extend the local coordinate system. Since the effect of extending the coordinate frame beyond this region is generally to inflate the actions computed for thin-disk stars, using too large a volume is likely to under-estimate the density of the smooth thin-disk-like component in action space, while scattering more thin-disk stars onto thick-disk-like orbits and over-estimating the density of the smooth thick-disk-like component.
+The second issue, which is related to the point of this paper, is that based
+on the results in our previous sections computing $\bm{J}_i$ for a field star
+and directly comparing it to  $\bm{J}_c$ will have significant systematic
+error if the cluster and field star are far enough apart to have significantly
+different local midplanes (see Figure \ref{fig:range_deltaphi}). Since our
+criterion for cluster membership (distance in action space) scales with the
+cluster mass, the region where the search will succeed varies with cluster
+mass as well. To illustrate this effect, we assume a cluster mass $m_c$ and
+estimate the expected action-space dispersion from
+Equation~\ref{eq:action_disp}. We then consult
+Figure~\ref{fig:many_orbit_wrong_ref} to determine the midplane $z$ offset
+necessary in order for the induced error in the vertical action to be the same
+as the expected action-space dispersion. We perform this analysis for the
+thin-disk-like and thick-disk-like orbits considered in
+Section~\ref{ssec:quant}, assuming that the halo-like orbit is unlikely for
+members of known open clusters (see Table~\ref{tab:real_clusters}). The result
+for the allowable midplane offset for these two orbits in shown in Figure
+\ref{fig:cluster_offset} as a function of cluster mass.
 
-The second issue, which is related to the point of this paper, is that based on the results in our previous sections computing $\bm{J}_i$ for a field star and directly comparing it to  $\bm{J}_c$ will have significant systematic error if the cluster and field star are far enough apart to have significantly different local midplanes (see Figure \ref{fig:range_deltaphi}). Since our criterion for cluster membership (distance in action space) scales with the cluster mass, the region where the search will succeed varies with cluster mass as well. To illustrate this effect, we assume a cluster mass $m_c$ and estimate the expected action-space
-dispersion from Equation~\ref{eq:action_disp}. We then consult
-Figure~\ref{fig:many_orbit_wrong_ref} to determine the midplane $z$ offset necessary in
-order for the induced error in the vertical action to be the same as the
-expected action-space dispersion. We perform this analysis for the thin-disk-like and thick-disk-like orbits considered in
-Section~\ref{ssec:quant}, assuming that the halo-like orbit is unlikely for members of known open
-clusters (see Table~\ref{tab:real_clusters}). The result for the allowable midplane offset for these two orbits in shown in Figure \ref{fig:cluster_offset} as a function of cluster mass. 
-
-With a characteristic midplane offset in hand, we use the relation in Figure~\ref{fig:range_deltaphi}, which shows the typical midplane offset at each $\Delta \phi$, to convert a given midplane offset into a
-typical $\Delta\phi$. As in this Figure we assume the cluster is at the Solar circle to obtain a physical scale, which we refer to as the ``neighborhood radius'' or $R_{\n}$. If the allowable midplane discrepancy is greater than the maximum excursions recorded in the simulated galaxy, we simply report the maximum chord length assuming an orbit on the Solar circle ($2\times8.2\,\kpc$). 
- If an observer is attempting to reconstruct a cluster with a given mass on a given orbit, $R_{\n}$ gives the characteristic search distance between a field star and the cluster within which an observer may not need to consider differences in their respective local midplanes when computing actions. 
-The result is shown in
-Figure~\ref{fig:Rn_mc}. The solid lines indicate the neighborhood values
-assuming the mean relation between midplane offset and $m_c$, and the dashed lines
-show the $+1\,\sigma$ and $-1\,\sigma$ relations based on the 50 fiducial Solar positions in each simulation (as discussed in Figure \ref{fig:range_deltaphi}). That this range is relatively wide illustrates the strong
-$\phi$-dependence of the midplane offsets.
+With a characteristic midplane offset in hand, we use the relation in
+Figure~\ref{fig:range_deltaphi}, which shows the typical midplane offset at
+each $\Delta \phi$, to convert a given midplane offset into a typical
+$\Delta\phi$. As in this Figure we assume the cluster is at the Solar circle
+to obtain a physical scale, which we refer to as the ``neighborhood radius''
+or $R_{\n}$. If the allowable midplane discrepancy is greater than the maximum
+excursions recorded in the simulated galaxy, we simply report the maximum
+chord length assuming an orbit on the Solar circle ($2\times8.2\,\kpc$). If an
+observer is attempting to reconstruct a cluster with a given mass on a given
+orbit, $R_{\n}$ gives the characteristic search distance between a field star
+and the cluster within which an observer may not need to consider differences
+in their respective local midplanes when computing actions. The result is
+shown in Figure~\ref{fig:Rn_mc}. The solid lines indicate the neighborhood
+values assuming the mean relation between midplane offset and $m_c$, and the
+dashed lines show the $+1\,\sigma$ and $-1\,\sigma$ relations based on the 50
+fiducial Solar positions in each simulation (as discussed in Figure
+\ref{fig:range_deltaphi}). That this range is relatively wide illustrates the
+strong $\phi$-dependence of the midplane offsets.
 
 
 \begin{figure}
@@ -922,24 +960,39 @@ for the thin and thick orbit (Table~\ref{tab:orbits}). Nearby open clusters
 %be required.
 
 
-Figure~\ref{fig:Rn_mc} shows that azimuthal midplane fluctuations will limit the volume over which actions can be used to match stars to open clusters on thin-disk-like orbits (\thincolor), depending on their mass. For thick-disk-like orbits (\thickcolor), the tolerances are much more forgiving: stars' actions can be compared over the entire Solar circle for nearly all cluster masses, except at the very low-mass end in \mi .
-The neighborhood around $\sim100\Msun$ clusters can be as small as
-$\sim300\,\pc$ but up to $\sim1.2\,\kpc$ for \mi{} and \mf{}, though the
-situation is marginally better for \mm{} with values ranging from
-$\sim0.8\,\kpc$ to $\sim3\,\kpc$. The neighborhood values steadily increase
-with $m_c$, topping out at $\sim5\,\kpc$ for $\sim10^4\,\Msun$ clusters in
+Figure~\ref{fig:Rn_mc} shows that azimuthal midplane fluctuations will limit
+the volume over which actions can be used to match stars to open clusters on
+thin-disk-like orbits (\thincolor), depending on their mass. For
+thick-disk-like orbits (\thickcolor), the tolerances are much more forgiving:
+stars' actions can be compared over the entire Solar circle for nearly all
+cluster masses, except at the very low-mass end in \mi . The neighborhood
+around $\sim100\Msun$ clusters can be as small as $\sim300\,\pc$ but up to
+$\sim1.2\,\kpc$ for \mi{} and \mf{}, though the situation is marginally better
+for \mm{} with values ranging from $\sim0.8\,\kpc$ to $\sim3\,\kpc$. The
+neighborhood values steadily increase with $m_c$, topping out at $\sim5\,\kpc$
+for $\sim10^4\,\Msun$ clusters in
 \mi{} and \mf{}. In \mm{}, the neighborhood size reaches the maximum allowed of
-$16.4\,\kpc$ for clusters of mass $\sim800\,\Msun$. This figure also underlines that the degree to which such an analysis will succeed depends crucially on the expected degree of midplane fluctuations in the real Galaxy. If the Milky Way is more like \mi , the range of action-space analysis techniques like this is far more limited than if it more closely resembles \mm .
+$16.4\,\kpc$ for clusters of mass $\sim800\,\Msun$. This figure also
+underlines that the degree to which such an analysis will succeed depends
+crucially on the expected degree of midplane fluctuations in the real Galaxy.
+If the Milky Way is more like \mi , the range of action-space analysis
+techniques like this is far more limited than if it more closely resembles \mm
+.
 
 
-We also compute $R_{\n}$ for each of the orbits of the real open
-clusters in Table~\ref{tab:real_clusters}, using the midplane variations from
+We also compute $R_{\n}$ for each of the orbits of the real open clusters in
+Table~\ref{tab:real_clusters}, using the midplane variations from
 \mi{} as a conservative choice, since it has the largest degree of
 midplane variation (Figure~\ref{fig:midplane}). We report the neighborhood
 values for the mass of each cluster in the neighborhood column of
 Table~\ref{tab:real_clusters}. Except for alphaPer, we find that the
 neigbhorhood around each cluster is typically $\gtrsim 500\,\pc$. This
-analysis assumes that the MW resembles \mi{}, which is not necessarily true. However, this step of our analysis is meant to be more illustrative than quantitative: this calculation should actually be performed using real measurements of variations in the MW's stellar midplane. Such measurements should be possible in the near future with Gaia, with quality distance estimates the crucial limiting factor.
+analysis assumes that the MW resembles \mi{}, which is not necessarily true.
+However, this step of our analysis is meant to be more illustrative than
+quantitative: this calculation should actually be performed using real
+measurements of variations in the MW's stellar midplane. Such measurements
+should be possible in the near future with Gaia, with quality distance
+estimates the crucial limiting factor.
 
 \begin{figure*}
 \plotone{fig/Rn_vs_mc.pdf}
