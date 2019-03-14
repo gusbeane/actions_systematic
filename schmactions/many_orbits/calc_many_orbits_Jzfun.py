@@ -24,7 +24,7 @@ voffset = [0, 0, 0] * u.km/u.s
 
 names = ['10', '50', '100']
 
-def _helper_(init_vel):
+def _helper_(init_vel, zoffset):
     try:
         s = schmactions(init_pos, init_vel)
         true_actions = s.res['actions'].to_value(u.kpc * u.km/u.s)
@@ -37,7 +37,7 @@ def _helper_(init_vel):
     return [true_actions, act]
 
 for zoffset, n in zip(zoffset_list, names):
-    out = Parallel(n_jobs=nproc) (delayed(_helper_)(init_vel) for init_vel in tqdm(init_vel_list))
+    out = Parallel(n_jobs=nproc) (delayed(_helper_)(init_vel, zoffset) for init_vel in tqdm(init_vel_list))
 
     pickle.dump(out, open('dJz_fun_of_Jz_'+n+'pc.p', 'wb'))
 
