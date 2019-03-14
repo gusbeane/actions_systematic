@@ -17,8 +17,12 @@ nproc = 40
 init_pos = [8, 0, 0] * u.kpc
 init_vel_list = [ [0, -190, v] * u.km/u.s for v in np.linspace(0, 150, 100) ]
 
-zoffset = [0, 0, 100] * u.pc
+zoffset_list = [[0, 0, 100] * u.pc,
+                [0, 0, 50] * u.pc,
+                [0, 0, 10] * u.pc]
 voffset = [0, 0, 0] * u.km/u.s
+
+names = ['10', '50', '100']
 
 def _helper_(init_vel):
     try:
@@ -32,7 +36,8 @@ def _helper_(init_vel):
 
     return [true_actions, act]
 
-out = Parallel(n_jobs=nproc) (delayed(_helper_)(init_vel) for init_vel in tqdm(init_vel_list))
+for zoffset, n in zip(zoffset_list, names):
+    out = Parallel(n_jobs=nproc) (delayed(_helper_)(init_vel) for init_vel in tqdm(init_vel_list))
 
-pickle.dump(out, open('dJz_fun_of_Jz.p', 'wb'))
+    pickle.dump(out, open('dJz_fun_of_Jz_'+n+'pc.p', 'wb'))
 
