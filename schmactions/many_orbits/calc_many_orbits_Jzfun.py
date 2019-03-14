@@ -10,21 +10,25 @@ import pickle
 
 from joblib import Parallel, delayed
 import multiprocessing
+from tqdm import tqdm
 
 nproc = 40
 
 init_pos = [8, 0, 0] * u.kpc
-init_vel_list = [ [0, -190, v] * u.km/u.s for v in np.linspace(0, 200, 100) ]
+init_vel_list = [ [0, -190, v] * u.km/u.s for v in np.linspace(0, 150, 100) ]
 
 zoffset = [0, 0, 100] * u.pc
 voffset = [0, 0, 0] * u.km/u.s
 
 def _helper_(init_vel):
-    s = schmactions(init_pos, init_vel)
-    r = s.compute_actions_offset(zoffset, voffset)
-    act = s.extract_actions(r)
-
-    true_actions = s.res['actions'].to_value(u.kpc * u.km/u.s)
+    try:
+        s = schmactions(init_pos, init_vel)
+        true_actions = s.res['actions'].to_value(u.kpc * u.km/u.s)
+    
+        r = s.compute_actions_offset(zoffset, voffset)
+        act = s.extract_actions(r)
+    except:
+        return [np.nan, np.nan]
 
     return [true_actions, act]
 
