@@ -22,8 +22,8 @@ mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
-xmin = 0
-xmax = 100
+xmin = 0.08
+xmax = 200
 
 ymin = 0
 ymax = 100
@@ -100,13 +100,13 @@ for n,c in zip(names, colors):
 
 ax.set_xscale('log')
 
-# ax.set_xlim([xmin, xmax])
+ax.set_xlim([xmin, xmax])
 ax.set_ylim([ymin, ymax])
 
 ax.set_xlabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 ax.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
 
-ax.legend()
+ax.legend(frameon=False, title=r'$z\,\text{offset}\,[\,\text{pc}\,]$')
 
 fig.tight_layout()
 plt.savefig('schmactions_many_orbits_Jz_fun.pdf')
