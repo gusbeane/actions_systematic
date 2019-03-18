@@ -425,8 +425,8 @@ these systematic errors in the coordinate system.
 
 For a systematic offset in $z$ ({\em upper} panels), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $2.2$ and
-$6.2 \actunit$ for $J_r$ and $J_z$, respectively. These are fractional errors
-of $5.7\%$ and $85.7\%$, respectively. The error induced in $L_z$ is
+$6.2\,\actunit$ for $J_r$ and $J_z$, respectively. These are fractional errors
+of $5.7\,\%$ and $85.7\,\%$, respectively. The error induced in $L_z$ is
 negligible, as expected since $L_z$ is independent of $z$. It is worth
 pointing out that a $100\,\pc$ error in an orbit with
 $z_{\text{max}}=850\,\pc$ --- a $12\%$ error
@@ -513,6 +513,17 @@ radius).}
 \end{figure*}
 
 \begin{figure}
+\plotone{fig/schmactions_many_orbits_Jz_fun.pdf}
+\caption{The fractional error in $J_z$ as a function of $J_z$ for a few
+different offsets in $z$. We show this for a $z$ offset of $10, 50, 100\,\pc$
+(red, cyan, green respectively). As before, the error ($\Delta J_z$) is the
+95\uth{} minus 5\uth{} percentile of the distribution of observed $J_z$ values
+over the course of the orbit. There are large errors for thin-disk like orbits
+($J_z \sim 0.5\,\actunit$), even for a small midplane offset of $10\,\pc$. }
+\label{fig:dJz_fun_Jz}
+\end{figure}
+
+\begin{figure}
 \plotone{fig/schmactions_Jz_hist.pdf}
 \caption{A histogram of the observed values in $J_z$ for the thick-disk orbit
 assuming a $z$ offset of $100\,\pc$. One can see that if the observed $z$
@@ -521,6 +532,14 @@ induced error distribution in $J_z$ is decidedly non-Gaussian. Therefore, any
 sort of error propagation must take this into account.}
 \label{fig:Jz_hist}
 \end{figure}
+
+To further understand the effect of the midplane error, we also plot the
+fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
+100\,\pc$ (red, cyan, green, respectively) in Figure~\ref{fig:dJz_fun_Jz}. For
+a thin disk-like orbit ($J_z\sim0.5\,\actunit$), even a $10\,\pc$ offset in
+$z$ is enough to induce a $\sim50\%$ error in $J_z$. For larger values of
+$J_z$, the fractional errors are suppressed, with the situation becoming worse
+the greater the $z$ offset is.
 
 In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
 $J_z$ for the thick-disk orbit assuming a $z$ offset of $100\,\pc$ (i.e. the
@@ -584,7 +603,7 @@ MW\tablenotemark{b} & 40 & 300 & 900 & \nodata & \nodata \\
 \tablenotetext{b}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
 \tablenotetext{c}{\citet{2018arXiv180610564S}}
 \tablenotetext{d}{The azimuthally averaged gas vertical density profile in
-m12i is nearly constant to this height, though individual regions show smaller
+\mi{} is nearly constant to this height, though individual regions show smaller
 scale heights and dense clouds.}
 \end{deluxetable*}
 
@@ -833,8 +852,8 @@ of stars on quasi-circular orbits.
 The situation is more forgiving for the study of thick-disk-like orbits, where
 an $\mathcal{O}(1)$ systematic error in $J_z$ requires a larger midplane
 deviation (\thickcolor{} horizontal line in Figure~\ref{fig:range_deltaphi}).
-In fact, the range of midplane variation in m12i just barely saturates to
-cause such an error in $J_z$, with the midplane variation in m12f and m12m
+In fact, the range of midplane variation in \mi{} just barely saturates to
+cause such an error in $J_z$, with the midplane variation in \mf{} and \mm{}
 never reaching such a value. For stars on halo-like orbits, extending the
 local coordinate system globally is not likely to cause serious problems,
 since the midplane deviations are relatively small compared to those needed to
@@ -932,7 +951,6 @@ fiducial Solar positions in each simulation (as discussed in Figure
 \ref{fig:range_deltaphi}). That this range is relatively wide illustrates the
 strong $\phi$-dependence of the midplane offsets.
 
-
 \begin{figure}
 \plotone{fig/cluster_offset.pdf}
 \caption{The $z$ offset necessary in order for the action error induced by our
@@ -959,7 +977,6 @@ for the thin and thick orbit (Table~\ref{tab:orbits}). Nearby open clusters
 %are at a distance greater than $R_{\n}$, a more sophisticated analysis would
 %be required.
 
-
 Figure~\ref{fig:Rn_mc} shows that azimuthal midplane fluctuations will limit
 the volume over which actions can be used to match stars to open clusters on
 thin-disk-like orbits (\thincolor), depending on their mass. For
@@ -976,9 +993,8 @@ $16.4\,\kpc$ for clusters of mass $\sim800\,\Msun$. This figure also
 underlines that the degree to which such an analysis will succeed depends
 crucially on the expected degree of midplane fluctuations in the real Galaxy.
 If the Milky Way is more like \mi , the range of action-space analysis
-techniques like this is far more limited than if it more closely resembles \mm
-.
-
+techniques like this is far more limited than if it more closely resembles
+\mm{}.
 
 We also compute $R_{\n}$ for each of the orbits of the real open clusters in
 Table~\ref{tab:real_clusters}, using the midplane variations from
