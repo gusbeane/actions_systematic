@@ -26,7 +26,7 @@ xmin = 0
 xmax = 100
 
 ymin = 0
-ymax = 300
+ymax = 100
 
 histmin = 15
 histmax = 30
@@ -49,40 +49,64 @@ init_vel = [0, -190, 10] * u.km/u.s
 
 s = schmactions(init_pos, init_vel)
 
-out = pickle.load(open('dJz_fun_of_Jz.p', 'rb'))
+names = ['10', '50', '100']
+colors = [tb_c[2], tb_c[3], tb_c[4]]
 
-to_plot = []
-for act, r in out:
-    try:
-        Jz = act[2]
-        up = np.percentile(r, 95, axis=1)[2]
-        low = np.percentile(r, 5, axis=1)[2]
-        to_plot.append([Jz, 100*(up-low)/Jz])
-    except:
-        to_plot.append([np.nan, np.nan])
-to_plot = np.array(to_plot)
+def delta(r): 
+    return (np.percentile(r[0][1][:,2], 95) - np.percentile(r[0][1][:,2], 5))/r[0][0][2] 
 
-nanbool1 = np.logical_not(np.isnan(to_plot[:,0]))
-nanbool2 = np.logical_not(np.isnan(to_plot[:,0]))
-nanbool = np.logical_or(nanbool1, nanbool2)
+for n,c in zip(names, colors):
 
-arbbool = to_plot[:,1] < 1E7
-totbool = np.logical_and(nanbool, arbbool)
+    out = pickle.load(open('dJz_fun_of_Jz_'+n+'pc.p', 'rb'))
 
-# ignore some numerical artifacts
-totbool[0] = False
-totbool[75] = False
-totbool[80] = False
-keys = np.where(totbool)[0]
+    to_plot = []
+    for act, r in out:
+        try:
+            Jz = act[2]
+            up = np.percentile(r, 95, axis=0)[2]
+            low = np.percentile(r, 5, axis=0)[2]
+            to_plot.append([Jz, 100*(up-low)/Jz])
+        except:
+            to_plot.append([np.nan, np.nan])
+    to_plot = np.array(to_plot)
 
-ax.plot(to_plot[:,0][keys], to_plot[:,1][keys], c=tb_c[-1])
-ax.set_yscale('log')
+    print(delta(out))
+    print(to_plot[0][1])
+
+    nanbool1 = np.logical_not(np.isnan(to_plot[:,0]))
+    nanbool2 = np.logical_not(np.isnan(to_plot[:,0]))
+    nanbool = np.logical_or(nanbool1, nanbool2)
+
+    arbbool = to_plot[:,1] < 500
+    totbool = np.logical_and(nanbool, arbbool)
+    
+    totbool[0] = False
+
+    for i in range(len(to_plot)-1):
+        if to_plot[i+1][1] > to_plot[i][1]:
+            totbool[i+1] = False
+
+    # if n == '100':
+    #     # ignore some numerical artifacts
+    #    totbool[0] = False
+    #    totbool[75] = False
+    #    totbool[80] = False
+
+    
+
+    keys = np.where(totbool)[0]
+
+    ax.plot(to_plot[:,0][keys], to_plot[:,1][keys], c=c, label=n)
+
+ax.set_xscale('log')
 
 # ax.set_xlim([xmin, xmax])
-# ax.set_ylim([ymin, ymax])
+ax.set_ylim([ymin, ymax])
 
 ax.set_xlabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-ax.set_ylabel(r'$\Delta J_z/J_z$')
+ax.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
+
+ax.legend()
 
 fig.tight_layout()
 plt.savefig('schmactions_many_orbits_Jz_fun.pdf')
