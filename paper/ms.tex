@@ -744,6 +744,24 @@ within a $2\,\kpc$ height of the fiducial midplane to determine error bars
 \label{fig:midplane}
 \end{figure*}
 
+\begin{figure*}
+\plotone{fig/midplane_fit_chervinsim.pdf}
+\caption{The local midplane determined at the fiducial Solar radius
+($8.2\,\kpc$) for 4 different time steps from previously run toy simulations
+of a Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
+before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
+for inaccuracies in the galactocentric coordinate system. Error bars are
+calculated as in Figure~\ref{fig:midplane}. (\Gus{Guessing here, need to
+figure out what the panels actually show:}) The left two panels show the
+midplane as a function of azimuth before the first encounter. As later
+encounters occur, we can see that stronger midplane variations result. In
+fact, one can see that an $m=2$ mode is excited in the third panel --- this is
+consistent with Figure~17 of \citet{2018MNRAS.481..286L}, which shows that an
+$m=2$ mode is excited (note that $m=0$ and $m=1$ modes are stronger, but these
+are removed in our sine-curve subtraction).}
+\label{fig:midplane_chervin}
+\end{figure*}
+
 \subsection{LSR Variations} \label{ssec:lsr_var}
 We also expect that the local standard of rest (LSR) should vary as a function
 of azimuth. We perform this calculation in Appendix~\ref{app:lsr} to estimate
@@ -753,7 +771,6 @@ Since the variation in the LSR is less pronounced than for the midplane, and
 since the dominant effect is limited to $J_r$
 (Figure~\ref{fig:many_orbit_wrong_ref}), we defer this calculation to future
 work.
-
 
 \section{Discussion} \label{sec:discussion}
 We have used high-resolution cosmological simulations to illustrate that we
