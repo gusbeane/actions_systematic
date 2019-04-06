@@ -125,61 +125,59 @@ pre-{\em Gaia} review of these measurements is given by
 \citet{2016ARAA..54..529B}.
 
 Once a Galactocentric coordinate system has been established and a 6D phase
-space measurement of a star has been made, it is often desirable to convert this
-measurement into action space to concisely summarize its projected orbit, model the stellar distribution function, or find stars with similar dynamical properties. Actions are conserved quantities which describe the orbit
-of a star under the assumption of regular, bound orbits in a system where the equations of motion are separable in a particular coordinate system. They are the typical integral of the Hamiltonian in cylindrical
-coordinates and are given by,
+space measurement of a star has been made, it is often desirable to calculate canonical invariants, such as actions, from that measurement. Actions are conserved quantities which describe the orbit of a star under the assumption of regular, bound orbits in a system where the equations of motion are separable in a coordinate system that reflects the system's underlying symmetries. In cylindrical coordinates, which correspond to the axisymmetry commonly assumed for the Galactic disk, the are given by
 \beq\label{eq:actions}
 J_i \equiv
 \frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
 \eeq
-where $i=R,z,\phi$.\footnote{We typically write $J_r$ instead of $J_R$ for
-aesthetic reasons.} Note that $J_{\phi} \equiv L_z$. In a slowly-evolving
-axisymmetric potential, the actions of stars' orbits are conserved quantities
-\citep{2008gady.book.....B,2014RvMP...86....1S}. The non-axisymmetries of a
-more realistic potential induce time evolution in the {\em measured} actions
---- the true orbital invariants (if they exist) are invariant by definition.
+where $i=R,z,\phi$ are the cylindrical radial, vertical, and azimuthal coordinates respectively and the $p_i$ are the conjugate momenta.\footnote{We typically write $J_r$ instead of $J_R$ for
+aesthetic reasons.} In a slowly-evolving
+axisymmetric potential, these actions are invariant and $J_{\phi} \equiv L_z$
+\citep{2008gady.book.....B,2014RvMP...86....1S}. 
 
-In a slowly-evolving, axisymmetric potential, the actions of each star are
-time-invariant \citep{2008gady.book.....B}. In the Milky Way, stellar actions
-are expected to evolve on short time scales due to scattering with gas clouds
-and on long time scales due to resonances with spiral arms, bar(s), and other
+With the advent of 6D phase-space measurements over a relatively large ($\gtrsim 2$ kpc) volume from the {\em Gaia} satellite, the study of stars' actions has gained new popularity. One reason is dimensionality reduction---an individual stellar orbit is concisely described by three actions, as opposed to six dimensions of phase space. Under the assumption of a phase-mixed system, the dynamical properties of a population of stars should be uniquely a function of their actions and independent of the conjugate angles, allowing investigation of the
+relationship between {\em orbital} properties of stars and other intrinsic, and at least partially invariant, properties such as age or metallicity. Actions also provide a convenient basis for constructing models of the stellar distribution function, or for associating stars with similar dynamical properties (e.g. to determine membership in moving groups).
+
+If the system being considered departs from axisymmetry in a significant and non-adiabatic way, the actions computed using an axisymmetric approximation to the true potential can exhibit cyclic dependence on the orbital phase (or time at which the star's position and velocity are observed), large-scale migration, or diffusion from their initial values.
+In the Milky Way, stellar actions are expected to diffuse on short time scales due to scattering with gas clouds
+and to evolve on longer time scales in the case of orbits near resonances with spiral arms, bar(s), and other
 large scale perturbations \citep{2014RvMP...86....1S}. For this reason, we and
 other authors have used actions to study stellar scattering in the Milky Way
 disk using the improved astrometry of {\em Gaia} DR2 and various age
 catalogues \citep{2018ApJ...867...31B,2018arXiv180803278T}. Actions have also
 been used to study different models of spiral structure in the Milky Way
-\citep{2019MNRAS.tmp..155S}. A summary of the disk in action space is given by
+\citep{2019MNRAS.tmp..155S}. Characteristics of the distribution of stars in the extended Solar neighborhood in action space are discussed in
 \citet{2018arXiv180503653T}.
 
-The transformation to action space is not trivial, and many of the assumptions
-of the transformation are potentially incorrect. For instance, the assumption
-that the Galactic potential is axisymmetric may be inadequate with current
-measurement errors. Even if this assumption is valid, the parameters used in
-our axisymmetric models may be inadequately tuned to observations. In
-addition, the necessity of 6D phase space measurements of a star limits the
-Galactic volume observable in action space.
+The transformation to action space is nonlinear in both the phase-space position and the potential, and requires relatively strong assumptions about the system's symmetry. For instance, the 
+Galactic potential is not strictly axisymmetric; with the vast improvement in the quality of phase-space measurements due to {\em Gaia}, this assumption appears increasingly inadequate \citep[e.g.][]{2018Natur.561..360A}. Even if this assumption is close enough for many purposes, the parameters used in axisymmetric models may be inadequately constrained by current observations. 
 
-With these limitations in mind, it is therefore natural to consider the reason
-to transform to action space. One reason is dimensionality reduction --- in
-the action space paradigm, a stellar orbit is completely described by three
-actions, as opposed to six dimensions of phase space. This means that the
-relationship between {\em orbital} properties of individual stars and stellar
-properties such as age or metallicity can be investigated.
+%In addition, the necessity of 6D phase space measurements of a star limits the Galactic volume observable in action space.
 
-We explore one science goal that relies on the conservation of actions --- the
-reconstruction of open clusters across large distances using dynamical
-tagging. The basic program is to match stars with roughly the same actions as
-their supposed natal cluster. To set the scene, we consider the orbits of the
+%With these limitations in mind, it is therefore natural to consider the reason to transform to action space. 
+
+
+In this work we discuss how the imposition of a global axisymmetric coordinate system based on a local measurement of the midplane location and Galactocentric distance introduces systematic error in the computation of actions, especially for stars in the thin disk. Our main point
+is that the ``local'' Galactic midplane is not the same as the ``global''
+Galactic midplane. For stars relatively far from the Sun,
+the local midplane location will not agree with
+our local midplane extrapolated onto their position, thanks to relatively small-scale variations in the density of the gas and stellar distribution, not necessarily even as large as spiral arms. Converting positions and velocities of more distant stars from a heliocentric to a
+Galactocentric coordinate system introduces a systematic bias in the $z$ coordinate relative to $z$ velocity, and hence the actions computed for these stars. The further from the solar neighborhood the target star, the more likely the mismatch will result in large systematic uncertainty, especially in the vertical action $J_z$. Depending on the type of orbit being studied, this sets a limit on the ``dynamical solar neighborhood'' over which the local coordinate frame can be usefully extended for action-space analysis. A similar argument applies to uncertainty in measurements of
+$R_{\odot}$ and variations in the local standard of rest (LSR). In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
+system errors have on the measured actions.
+
+
+Lacking an empirical, nonlocal definition of the global Galactic midplane or a measurement of the expected midplane variation in the Milky Way itself,  in Section~\ref{sec:local_fire} we attempt to quantify the azimuthal dependence of the
+local midplane, and hence the expected size of the dynamical solar neighborhood, using cosmological-hydrodynamical zoom-in simulations of Milky Way-mass galaxies from the Feedback in Realistic Environments (FIRE)
+collaboration\footnote{\url{https://fire.northwestern.edu}} \citep{2016ApJ...827L..23W,2017arXiv170206148H}.  In Section \ref{sssec:neighborhood} we use these estimates to consider, as an example, the feasibility of one science goal that relies on the invariance of actions --- the reconstruction of open clusters across large distances using ``dynamical tagging;'' that is, the association of stars to a birth cluster based on their similar actions. In light of our findings, we considered the orbits of the
 nine open clusters within $250\,\pc$ as reported by the {\em Gaia}
 collaboration \citep{2018AA...616A..10G}. In Table~\ref{tab:real_clusters}, we
 report the distance to each cluster, the three actions, and the maximum
-vertical extent of their orbits ($z_{\text{max}}$). The actions are computed
-using the technique described in Section~\ref{ssec:action_comp}. We also show
-the mass of each cluster and the ``neighborhood'' we compute for each cluster,
-which gives a rough sense of how far one can move away from the cluster before
-the issue which we discuss next becomes important. This neighborhood is
-discussed in more detail in Section~\ref{sssec:reconstruction}.
+vertical extent of their orbits ($z_{\text{max}}$). 
+%The actions are computed using the technique described in Section~\ref{ssec:action_comp}. 
+ In Section~\ref{sssec:reconstruction} we estimate and discuss the size of the dynamical solar neighborhood for each cluster based on its mass, to show that action-space tagging is likely still a viable method if background is unimportant. In Section~\ref{sec:discussion} we discuss further implications for action-space analyses beyond the dynamical solar neighborhood. We summarize and conclude in Section~\ref{sec:conclusion}.
+
+
 
 \begin{deluxetable*}{cCCCCCCC}
 \tablecaption{Relevant dynamical parameters for the $9$ open clusters within
@@ -215,48 +213,6 @@ NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
 \tablerefs{\citet{2018AA...616A..10G}}
 \end{deluxetable*}
 
-We propose a new type of error in the computation of actions which has
-implications for general dynamical modelling across the disk. Our main point
-is that the ``local'' Galactic midplane is not the same as the ``global''
-Galactic midplane. If we observe a group of stars that are
-non-local\footnote{i.e. a group of stars that is far enough away. The exact
-distance depends on the accuracy of the measurement being made and the goals
-of the particular problem.}, they will know of a different local midplane than
-our local midplane extrapolated onto their position. This means that when we
-convert those star's positions and velocities from a heliocentric to a
-Galactocentric coordinate system, we are inducing a systematic bias in those
-stars' $z$ values. The same applies to inaccuracies in measurements of
-$R_{\odot}$ and variations in the local standard of rest (LSR).
-
-We do not propose what a modeller should use for the ``true'' global midplane,
-since such a definition probably depends on the particular problem such a
-modeller is facing. Even without a high-precision definition and measurement
-of the global Galactic midplane, we can still assess how different we should
-expect the local midplane to be by measuring the azimuthal dependence of the
-local midplane. This procedure may be readily tractable over some of the disk
-with current datasets, using appropriate selection functions. However, we turn
-to simulation in this work because we can investigate the entire disk.
-Specifically, we use cosmological zoom-ins of Milky Way-mass galaxies from the
-Feedback in Realistic Environments (FIRE)
-collaboration\footnote{\url{https://fire.northwestern.edu}} (the {\em Latte}
-suite of simulations).
-
-Our main point is that the local midplane varies between different points in
-the Galaxy. This is a different statement than that our measurements of the
-local midplane are erroneous. Indeed, the local midplane has recently been
-measured to a claimed high level of precision, setting $z_{\odot} = 20.8 \pm
-0.3\,\pc$ \citep{2019MNRAS.482.1417B}. However, we also do not mean to say
-that determinations of the local midplane are perfect, since midplane
-measurements from H~\textsc{ii} regions place $z_{\odot} \sim 5-10\,\pc$. An
-additional complication is the fact that non-zero Solar heights induce a tilt
-in the Galactic midplane \citep{2014ApJ...797...53G,2016ARAA..54..529B}.
-
-In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
-system errors have on the measured actions. In Section~\ref{sec:local_fire},
-we measure the local midplane in cosmological zoom-in simulations from the
-FIRE collaboration. In Section~\ref{sec:discussion} we discuss and give some
-context for our results, and implications for the definition of the Solar
-neighborhood. We conclude in Section~\ref{sec:conclusion}.
 
 \section{Motivation} \label{sec:ref_frame}
 We first demonstrate the significance to action computations, especially for
@@ -1032,7 +988,7 @@ neighborhood is only a few hundred $\pc$ for low-mass clusters.}
 Actions have promise as excellent orbit labels. If the Galaxy can be
 approximated as axisymmetric and 6D phase space positions can be measured
 accurately and precisely enough, then the computed actions are invariant with
-orbital phase. However, we hvae shown that the fact that the Galactic midplane
+orbital phase. However, we have shown that the fact that the Galactic midplane
 is not constant across the disk presents a significant complication to
 computed actions actually being invariant. Our main conclusions are as
 follows:
@@ -1067,10 +1023,25 @@ three galaxies we considered (\mi{}, \mf{}, and \mm{}, respectively).
 
 \end{itemize}
 
+
 While in this work we have focused on errors in action computation, all of our
 conclusions also extend to studies of stars that simply rely on orbit
 integration, since the computation of actions and orbit integrations are
 essentially equivalent.
+
+Add sentences about distribution function modeling
+
+Our main point is that the local midplane varies between different points in
+the Galaxy. This is a different statement than that our measurements of the
+local midplane are erroneous. Indeed, the local midplane has recently been
+measured to a claimed high level of precision, setting $z_{\odot} = 20.8 \pm
+0.3\,\pc$ \citep{2019MNRAS.482.1417B}. However, we also do not mean to say
+that determinations of the local midplane are perfect, since midplane
+measurements from H~\textsc{ii} regions place $z_{\odot} \sim 5-10\,\pc$. An
+additional complication is the fact that non-zero Solar heights induce a tilt
+in the Galactic midplane \citep{2014ApJ...797...53G,2016ARAA..54..529B}. We do not propose here what a modeler should use for the ``true'' global midplane, since it depends on the particular problem being studied. Even without a high-precision definition of the global Galactic midplane, current observations from Gaia should soon permit a measurement of the real azimuthal dependence of the midplane location. 
+
+
 
 \acknowledgments
 We would like to thank Megan Bedell, Tobias Buck, David W. Hogg, and Kathryn
