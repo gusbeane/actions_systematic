@@ -3,7 +3,7 @@
 % \submitjournal{ApJ}
 
 \shortauthors{Beane et al.}
-\shorttitle{Our Galactic Midplane}
+\shorttitle{The Midplane is Not a Plane}
 
 \usepackage{graphicx}
 \usepackage{gensymb}
@@ -50,7 +50,7 @@ History, Central Park West at 79th St., New York, NY 10024, USA}
 
 \begin{document}
 
-\title{Issues with Dynamical Measurements Across the Disk}
+\title{The Midplane is Not a Plane: Implications for {\em Gaia}}
 
 % \correspondingauthor{Angus Beane}
 \email{abeane@sas.upenn.edu}
@@ -111,21 +111,36 @@ buckling \citep{2018arXiv181109205K}, and a gap suggestive of perturbation by a 
 subtructure in the tidal stream GD1 \citep{2018arXiv181103631B}.
 These discoveries all indicate that the Milky Way's stellar distribution, which demonstrably departs significantly from axisymmetry, is undergoing phase mixing and dynamical interactions across a range of spatial and temporal scales. 
 
-Underlying the quantitative analysis
-of many of the mechanisms at work that give rise to these signatures is the assumption of a global, axisymmetric Galactocentric coordinate system \citep{2008gady.book.....B} in which the Sun's position (and therefore the origin of the coordinate system) can be defined and measured both precisely and accurately. In this system,
-the center of the galaxy is usually taken to be the location of the central supermassive black hole,
-Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From stellar
-motions near Sgr~A\textsuperscript{*}, the distance from the Sun to the Galactic center is taken to
-be $\sim 8.1\text{--}8.3\,\kpc$
-\citep{2009ApJ...692.1075G,2018AA...615L..15G}. The Sun's vertical distance from the Galactic midplane, the other independent measurement that sets this coordinate system, can be determined by identifying where the stellar density and velocities reach a maximum
-(effectively the median height of all disk stars), and is usually taken to be
-$\sim 25\,\pc$ \citep{2001ApJ...553..184C}, with more recent measurements from
-{\em Gaia} DR2 placing it at $\sim 20\,\pc$ \citep{2019MNRAS.482.1417B}. Another strategy is to use the cold gas or HII regions in the disk to define the Galactic midplane, leading to slightly values ($\sim 5\,\pc$) for the Sun's relative height \citep[e.g.][]{2019ApJ...871..145A}. A
-pre-{\em Gaia} review of these measurements is given by
-\citet{2016ARAA..54..529B}.
+Underlying the quantitative analysis of many of the mechanisms at work that
+give rise to these signatures is the assumption of a global, axisymmetric
+Galactocentric coordinate system \citep{2008gady.book.....B} in which the
+Sun's position (and therefore the origin of the coordinate system) can be
+defined and measured both precisely and accurately. In this system, the center
+of the galaxy is usually taken to be the location of the central supermassive
+black hole, Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From
+stellar motions near Sgr~A\textsuperscript{*}, the distance from the Sun to
+the Galactic center is taken to be $\sim 8.1\text{--}8.3\,\kpc$
+\citep{2009ApJ...692.1075G,2018AA...615L..15G}. The Sun's vertical distance
+from the Galactic midplane, the other independent measurement that sets this
+coordinate system, can be determined by identifying where the stellar density
+and velocities reach a maximum (effectively the median height of all disk
+stars), and is usually taken to be $\sim 25\,\pc$ \citep{2001ApJ...553..184C},
+with more recent measurements from {\em Gaia} DR2 placing it at $\sim 20\,\pc$
+\citep{2019MNRAS.482.1417B}. Another strategy is to use the cold gas or HII
+regions in the disk to define the Galactic midplane, leading to slightly
+values ($\sim 5\,\pc$) for the Sun's relative height
+\citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review of these
+measurements is given by \citet{2016ARAA..54..529B}.
 
 Once a Galactocentric coordinate system has been established and a 6D phase
-space measurement of a star has been made, it is often desirable to calculate canonical invariants, such as actions, from that measurement. Actions are conserved quantities which describe the orbit of a star under the assumption of regular, bound orbits in a system where the equations of motion are separable in a coordinate system that reflects the system's underlying symmetries. In cylindrical coordinates, which correspond to the axisymmetry commonly assumed for the Galactic disk, the are given by
+space measurement of a star has been made, it is often desirable to convert
+this measurement into action space to concisely summarize its projected orbit,
+model the stellar distribution function, or find stars with similar dynamical
+properties. Actions are conserved quantities which describe the orbit of a
+star under the assumption of regular, bound orbits in a system where the
+equations of motion are separable in a particular coordinate system. They are
+the typical integral of the Hamiltonian in cylindrical coordinates and are
+given by,
 \beq\label{eq:actions}
 J_i \equiv
 \frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
@@ -503,7 +518,7 @@ Furthermore, neither of the modes lie at the true value of $J_z$.
 
 \section{Azimuthal midplane variations at the Solar Circle: estimates from
 FIRE} \label{sec:local_fire}
-\subsection{Description of Simulation} \label{ssec:cosmozoom}
+\subsection{Description of FIRE Simulation} \label{ssec:cosmozoom}
 We briefly describe the cosmological-hydrodynamical zoom-in simulations used
 in this work. Cosmological zoom-ins allow one to simulate a selected region at
 high resolution embedded in a low-resolution cosmological background
@@ -564,23 +579,24 @@ scale heights and dense clouds.}
 The softening lengths used in the simulations can affect the ability to
 resolve the very thinnest planar structures, which in turn can affect how much
 the density-based midplane varies as a function of azimuth. The Milky Way's
-dense, star-forming gas disk is thought to have a scale height of about $40\,\pc$
-($3\text{-}4$ times the cold gas softening length; \citealt{2019ApJ...871..145A}) and
-the thin stellar disk a scale height of about 300 pc (30 times the stellar
-softening length; \citealt{2008ApJ...673..864J}). We therefore expect that
-resolution effects may still be affecting the scale heights of these
-components in the simulations, especially the cold gas. Indeed, the stellar
-scale heights of the simulated galaxies are equal to or larger than the MW's
-while the gas scale heights are significantly larger (although the proper
-basis comparison is less clear in the case of the gas; the quoted value for
-the Milky Way comes from studies of high-mass star-forming regions). As noted
-above, the midplanes defined by gas and stars can be tilted with respect to
-one another as well, precluding extending the precision of the gas midplane
-definition to the stellar component. In this work we specifically consider
-azimuthal variations in the midplane \emph{as defined by the stellar mass
-density}, which will subsequently be lower in the simulations than in the MW:
-within 200 pc of the Sun the measured gas and stellar volume densities in the
-MW are roughly comparable at $\sim .04\ \Msun\
+dense, star-forming gas disk is thought to have a scale height of about
+$40\,\pc$ ($3\text{-}4$ times the cold gas softening length;
+\citealt{2019ApJ...871..145A}) and the thin stellar disk a scale height of
+about 300 pc (30 times the stellar softening length;
+\citealt{2008ApJ...673..864J}). We therefore expect that resolution effects
+may still be affecting the scale heights of these components in the
+simulations, especially the cold gas. Indeed, the stellar scale heights of the
+simulated galaxies are equal to or larger than the MW's while the gas scale
+heights are significantly larger (although the proper basis comparison is less
+clear in the case of the gas; the quoted value for the Milky Way comes from
+studies of high-mass star-forming regions). As noted above, the midplanes
+defined by gas and stars can be tilted with respect to one another as well,
+precluding extending the precision of the gas midplane definition to the
+stellar component. In this work we specifically consider azimuthal variations
+in the midplane \emph{as defined by the stellar mass density}, which will
+subsequently be lower in the simulations than in the MW: within 200 pc of the
+Sun the measured gas and stellar volume densities in the MW are roughly
+comparable at $\sim .04\ \Msun\
 \unit{pc}{-3}$, while in the simulations they are a factor of a few lower (see
 Table 3 of \citealt{2018arXiv180610564S}). We thus expect that the degree of
 midplane variation we find in the simulated systems is likely to be
@@ -612,6 +628,26 @@ $15\,\kpc$ of this center, and the galaxy is then rotated onto a
 principal-axis frame determined by stars younger than $1\,\Gyr$ inside of the
 fiducial solar radius $R_{\odot} = 8.2\,\kpc$, such that the disk plane is the
 $x$--$y$ plane.
+
+\subsection{Description of Sagittarius Simulaton} \label{ssec:sag_sim}
+In addition to the cosmological zoom-in, we will also briefly consider results
+from a toy Sagittarius encounter simulation. This simulation offers us the
+ability to see how the midplane varies in a more controlled environment. The
+details of the simulation are given in \citet{2018MNRAS.481..286L}, but we
+briefly summarize the most relevant details here. For the Milky Way, the dark
+halo is modelled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
+length of $52\,\kpc$, the disk modelled as an exponential disk with a scale
+radius of $3.5\,\kpc$, scale height $0.53\,\kpc$, and mass
+$6\times10^{10}\Msun$, a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
+length $0.7\,\kpc$ \citep{1990ApJ...356..359H}. Sagittarius is modelled as a
+dark matter Hernquist sphere of mass \Gus{something} and scale length
+\Gus{something}, along with a stellar component modelled as a Hernquist sphere
+of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$.
+
+For the disk and bulge components, a softening length of $30\,\pc$ is used
+whereas for the halo a softening length of $60\,\pc$ is used. For Sagittarius,
+the softening length for the dark matter and the stars is $60$ and $40\,\pc$,
+respectively.
 
 \subsection{Local Midplane} \label{ssec:local_midplane}
 Using the three simulations, we determine the local midplane that an observer
@@ -664,6 +700,17 @@ depending on the azimuth along the Solar circle; in the third (\mm{}, which
 has the thinnest ``thin disk'' of stars, but the largest stellar mass) the
 variation is more like $\pm 50\,\pc$.
 
+We compute the same midplane variation in Figure~\ref{fig:midplane_chervin},
+but for the toy simulation of a Sagittarius encounter
+\citep{2018MNRAS.481..286L}. Again we have subtracted a best fit curve of the
+form $\text{A} \sin{\left(\phi + \text{B}\right)} + \text{C}$, with the values
+for $\text{A}$, $\text{B}$, and $\text{C}$ being \Gus{something},
+\Gus{something}, and \Gus{something else}, respectively. In the first two
+panels, we see that the midplane is relatively flat in the inner galaxy. But
+additional encounters drive strong midplane variation. In the third panel, we
+see a strong $m=2$ mode develop, consistent with the $R=8\,\kpc$ panel of
+Figure~17 in \citet{2018MNRAS.481..286L}.
+
 \begin{figure*}
 \plotone{fig/midplane_fit.pdf}
 \caption{The local midplane determined at the fiducial Solar radius
@@ -672,7 +719,7 @@ variation is more like $\pm 50\,\pc$.
 position $\phi$ by taking the median height of all stars within $R=0.5\,\kpc$
 and $z=1\,\kpc$ (in cylindrical coordinates). The procedure is performed again
 using the new height $10$ times to converge on the local midplane height. In
-order to allow for the possibility that the fiducial Galactocentric coordinate
+order to allow for the possibility that the fiducial galactocentric coordinate
 system is incorrect, we subtract the best fit $A\sin{(\phi+B)}+C$ curve from
 each panel --- this figure is reproduced with the original midplane
 determination (i.e. before subtracting the best fit sine curve) in
@@ -680,6 +727,24 @@ Appendix~\ref{app:lsr}. We then bootstrap resample $1000$ times on all stars
 within a $2\,\kpc$ height of the fiducial midplane to determine error bars
 (95\uth and 5\uth percentiles), which we report as dashed lines.}
 \label{fig:midplane}
+\end{figure*}
+
+\begin{figure*}
+\plotone{fig/midplane_fit_chervinsim.pdf}
+\caption{The local midplane determined at the fiducial Solar radius
+($8.2\,\kpc$) for 4 different time steps from previously run toy simulations
+of a Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
+before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
+for inaccuracies in the galactocentric coordinate system. Error bars are
+calculated as in Figure~\ref{fig:midplane}. (\Gus{Guessing here, need to
+figure out what the panels actually show:}) The left two panels show the
+midplane as a function of azimuth before the first encounter. As later
+encounters occur, we can see that stronger midplane variations result. In
+fact, one can see that an $m=2$ mode is excited in the third panel --- this is
+consistent with Figure~17 of \citet{2018MNRAS.481..286L}, which shows that an
+$m=2$ mode is excited (note that $m=0$ and $m=1$ modes are stronger, but these
+are removed in our sine-curve subtraction).}
+\label{fig:midplane_chervin}
 \end{figure*}
 
 \subsection{LSR Variations} \label{ssec:lsr_var}
@@ -691,7 +756,6 @@ Since the variation in the LSR is less pronounced than for the midplane, and
 since the dominant effect is limited to $J_r$
 (Figure~\ref{fig:many_orbit_wrong_ref}), we defer this calculation to future
 work.
-
 
 \section{Discussion} \label{sec:discussion}
 We have used high-resolution cosmological simulations to illustrate that we
@@ -721,18 +785,18 @@ valid. This region is also where it should be feasible to perform ``dynamical
 tagging'' in the thin disk; that is, using the computed orbits or integrals of
 motion of field stars to match them with known open clusters.
 
-%%%move this later - decide where, probably conclusions
-%While we focus our discussion now solely on the midplane, there is an
-%additional complication in the measurement of the distance from the Sun to the
-%Galactic center that may also be important. When modelling stars at Galactic
-%radii close to the Sun's radius, it is in principle possible to determine what
-%point they are orbiting about: the ``dynamical Galactic
-%center.'' It is not guaranteed that this dynamical center will coincide
-%with the distance to Sgr~A\textsuperscript{*} \citep{2018AA...615L..15G}. In
-%fact, \citet{2015ApJ...803...80K} were able to measure the distance of the Sun
-%to the Galactic center using the dynamical information of Palomar 5. Other
-%dynamical measurements of the Solar distance have been made, though none with
-%a precision capable of competing with the distance to Sgr~A\textsuperscript{*}
+%%%move this later - decide where, probably conclusions While we focus our
+%discussion now solely on the midplane, there is an additional complication in
+%the measurement of the distance from the Sun to the Galactic center that may
+%also be important. When modelling stars at Galactic radii close to the Sun's
+%radius, it is in principle possible to determine what point they are orbiting
+%about: the ``dynamical Galactic center.'' It is not guaranteed that this
+%dynamical center will coincide with the distance to Sgr~A\textsuperscript{*}
+%\citep{2018AA...615L..15G}. In fact, \citet{2015ApJ...803...80K} were able to
+%measure the distance of the Sun to the Galactic center using the dynamical
+%information of Palomar 5. Other dynamical measurements of the Solar distance
+%have been made, though none with a precision capable of competing with the
+%distance to Sgr~A\textsuperscript{*}
 %\citep{1981gask.book.....M,2011PASJ...63..867S,2012MNRAS.427..274S,2013AstL...39...95B,2013IAUS..289..444Z}.
 
 \subsection{The size of the Solar neighborhood} \label{sssec:neighborhood}
