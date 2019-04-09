@@ -427,7 +427,41 @@ $\sim3\%$, respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
-We now repeat the same procedure for systematic offsets between $0$ and
+\begin{figure}
+\plotone{fig/schmactions_Jz_hist.pdf}
+\caption{A histogram of the observed values in $J_z$ for the thick-disk orbit
+assuming a $z$ offset of $100\,\pc$. One can see that if the observed $z$
+values have a bias (from e.g. an incorrectly computed midplane), then the
+induced error distribution in $J_z$ is decidedly non-Gaussian. Therefore, any
+sort of error propagation must take this into account.}
+\label{fig:Jz_hist}
+\end{figure}
+
+In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
+$J_z$ for the thick-disk orbit ({\em upper panel}) and thin-disk orbit ({\em
+lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. the {\em right} panel
+of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$ is plotted
+as a vertical dashed line. Here we see that the spread in $J_z$ induced by a
+systematic offset in $z$ is non-Gaussian and bimodal. Furthermore, neither of
+the modes lie at the true value of $J_z$. In the case of the thin-disk orbit
+({\em lower panel}), we see that, in addition to the prior complications, the
+error distribution is not even centered on the true value. This comes about
+when the midplane error is $\gtrsim z_{\text{max}}$, and can be understood by
+realizing that in such a case the midplane offset always acts to increase the
+value of $J_z$, resulting in a biased estimate of $J_z$.
+
+Empirically describing the error distribution shown in
+Figure~\ref{fig:Jz_hist} is difficult. Of course, Gaussian summary statistics
+are not adequate. We therefore elect to measure this error by computing the
+95\uth{} percentile minus the 5\uth{} percentile of the distribution of
+observed action values. We refer to this quantity as $\Delta J_i$ for each
+action value. Because of the bimodality of the error distribution, this
+quantity roughly measures the distance between the peaks of the two modes.
+Furthermore, this bimodality also implies that $\Delta J_i$ is not very
+sensitive to the exact percentiles used. This summary statistic does not
+reflect the bias induced when the midplane error is $\gtrsim z_{\text{max}}$.
+
+We now repeat the same procedure as in Figure~\ref{fig:one_orbit_wrong_ref} but for systematic offsets between $0$ and
 $500\,\pc$ in the $z$ and $x$ components. In
 Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth{} minus 5\uth{}
 percentile divided by the true action value for the three different fiducial
@@ -490,30 +524,13 @@ over the course of the orbit. There are large errors for thin-disk like orbits
 \label{fig:dJz_fun_Jz}
 \end{figure}
 
-\begin{figure}
-\plotone{fig/schmactions_Jz_hist.pdf}
-\caption{A histogram of the observed values in $J_z$ for the thick-disk orbit
-assuming a $z$ offset of $100\,\pc$. One can see that if the observed $z$
-values have a bias (from e.g. an incorrectly computed midplane), then the
-induced error distribution in $J_z$ is decidedly non-Gaussian. Therefore, any
-sort of error propagation must take this into account.}
-\label{fig:Jz_hist}
-\end{figure}
-
 To further understand the effect of the midplane error, we also plot the
 fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
 100\,\pc$ (red, cyan, green, respectively) in Figure~\ref{fig:dJz_fun_Jz}. For
 a thin disk-like orbit ($J_z\sim0.5\,\actunit$), even a $10\,\pc$ offset in
 $z$ is enough to induce a $\sim50\%$ error in $J_z$. For larger values of
-$J_z$, the fractional errors are suppressed, with the situation becoming worse
-the greater the $z$ offset is.
-
-In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
-$J_z$ for the thick-disk orbit assuming a $z$ offset of $100\,\pc$ (i.e. the
-{\em right} panel of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of
-$J_z$ is plotted as a vertical dashed line. Here we see that the spread in
-$J_z$ induced by a systematic offset in $z$ is non-Gaussian and bimodal.
-Furthermore, neither of the modes lie at the true value of $J_z$.
+$J_z$, the fractional errors are suppressed, but the induced error can still be large
+depending on how great the $z$ offset is.
 
 \section{Azimuthal midplane variations at the Solar Circle: estimates from
 FIRE} \label{sec:local_fire}
