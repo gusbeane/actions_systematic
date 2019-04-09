@@ -32,6 +32,9 @@ y2max = 30
 histmin = 15
 histmax = 30
 
+histmin_thin = 0
+histmax_thin = 5
+
 def sclip(a, s=4):
     _, low0, high0 = sigmaclip(a[:,0], low=s, high=s)
     _, low1, high1 = sigmaclip(a[:,1], low=s, high=s)
@@ -49,16 +52,26 @@ xout = pickle.load(open('xout.p', 'rb'))
 res = pickle.load(open('true_res.p', 'rb'))
 J0, J1, J2 = res['actions'].to_value(u.kpc*u.km/u.s)
 
+zout_thin = pickle.load(open('zout_thin.p', 'rb'))
+xout_thin = pickle.load(open('xout_thin.p', 'rb'))
+res_thin = pickle.load(open('true_res_thin.p', 'rb'))
+J0_thin, J1_thin, J2_thin = res_thin['actions'].to_value(u.kpc*u.km/u.s)
+
 init_pos = [8, 0, 0] * u.kpc
 init_vel = [0, -190, 50] * u.km/u.s
+init_vel_thin = [0, -190, 10] * u.km/u.s
 
 s = schmactions(init_pos, init_vel)
+sthin = schmactions(init_pos, init_vel_thin)
 
 zact = s.extract_actions(zout)
 xact = s.extract_actions(xout)
 
 ztime = s.extract_time(zout)
 xtime = s.extract_time(xout)
+
+zact_thin = sthin.extract_actions(zout_thin)
+ztime_thin = sthin.extract_time(zout_thin)
 
 fig, ax = plt.subplots(2, 3, figsize=(7, 4), sharex=True)
 
@@ -99,14 +112,22 @@ fig.tight_layout()
 plt.savefig('schmactions_one_orbit.pdf')
 plt.close()
 
-fig, ax = plt.subplots(1,1, figsize=(3,3))
+fig, ax = plt.subplots(2,1, figsize=(3,6))
 
 k0, k1, k2 = sclip(zact)
-ax.hist(zact[:,2][k2], bins=np.arange(histmin, histmax, 0.25), lw=2,
+ax[0].hist(zact[:,2][k2], bins=np.arange(histmin, histmax, 0.25), lw=2,
         edgecolor=tb_c[4], fc='none', histtype='stepfilled')
-ax.axvline(x=J2, color=tb_c[4], ls='dashed', lw=2)
-ax.set_xlabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
-ax.set_ylabel(r'$\text{count}$')
+ax[0].axvline(x=J2, color=tb_c[4], ls='dashed', lw=2)
+ax[0].set_ylabel(r'$\text{count}$')
+
+k0t, k1t, k2t = sclip(zact_thin)
+ax[1].hist(zact_thin[:,2][k2t], bins=np.arange(histmin_thin, histmax_thin, 0.25), lw=2,
+        edgecolor=tb_c[4], fc='none', histtype='stepfilled')
+ax[1].axvline(x=J2_thin, color=tb_c[4], ls='dashed', lw=2)
+ax[1].set_ylabel(r'$\text{count}$')
+
+ax[1].set_xlabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
 
 fig.tight_layout()
 plt.savefig('schmactions_Jz_hist.pdf')
