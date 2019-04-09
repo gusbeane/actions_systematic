@@ -533,7 +533,7 @@ $J_z$, the fractional errors are suppressed, but the induced error can still be 
 depending on how great the $z$ offset is.
 
 \section{Azimuthal midplane variations at the Solar Circle: estimates from
-FIRE} \label{sec:local_fire}
+simulation} \label{sec:local_fire}
 \subsection{Description of FIRE Simulation} \label{ssec:cosmozoom}
 We briefly describe the cosmological-hydrodynamical zoom-in simulations used
 in this work. Cosmological zoom-ins allow one to simulate a selected region at
@@ -549,7 +549,7 @@ observations of the Milky Way. The $\z=0$ snapshots\footnote{In this work, to
 avoid confusion with the vertical height $z$, we refer to cosmological
 redshift as $\z$.} of these three simulations, called \mi{}, \mf{}, and \mm{}
 for shorthand, are publicly available alongside associated mock {\em Gaia} DR2
-catalogues generated from them.\footnote{at \url{http://ananke.hub.yt}}
+catalogues generated from them.\footnote{\url{http://ananke.hub.yt}}
 
 These simulations contain dark matter particles of mass $\sim35,000\,\Msun$,
 gas particles of mass $\sim 7000$ to $20,000\,\Msun$, and star particles
@@ -612,7 +612,7 @@ stellar component. In this work we specifically consider azimuthal variations
 in the midplane \emph{as defined by the stellar mass density}, which will
 subsequently be lower in the simulations than in the MW: within 200 pc of the
 Sun the measured gas and stellar volume densities in the MW are roughly
-comparable at $\sim .04\ \Msun\
+comparable at $\sim 0.04\ \Msun\
 \unit{pc}{-3}$, while in the simulations they are a factor of a few lower (see
 Table 3 of \citealt{2018arXiv180610564S}). We thus expect that the degree of
 midplane variation we find in the simulated systems is likely to be
@@ -667,12 +667,11 @@ respectively.
 
 \subsection{Local Midplane} \label{ssec:local_midplane}
 Using the three simulations, we determine the local midplane that an observer
-might measure if they were situated in each of these galaxies, as a function
+might measure if they were situated in each of these galaxies as a function
 of azimuth at the solar circle. Starting from the coordinate system described
-in the previous section, which is approximately aligned so that the $z$
-coordinate is perpendicular to the disk plane, we place our imaginary observer
+in the previous section, which is approximately aligned so that the $z$-coordinate is perpendicular to the disk plane, we place our imaginary observer
 at $z=0$ and a solar radius of $8.2\,\kpc$ and vary the azimuth between
-$0<\phi<2\pi$\footnote{Our very long-lived observer also has warp-drive.}. At
+$0<\phi<2\pi$\footnote{Our very long-lived observer also has warp drive.}. At
 each value of $\phi$ we then compute the median $z$ for stars within a
 cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$ perpendicular to the
 fiducial disk. We then re-define this median $z$ as the new midplane of the
@@ -685,8 +684,7 @@ within the cylinder defining the ``solar neighborhood.'' Imperfect extinction
 correction is likely to increase the amplitude of the estimated fluctuations
 in $z$. To account for the effect of particle noise, we bootstrap-resample
 stars within a cylinder of stars with height $2\,\kpc$ and the same radius
-$1000$ times and determine the $95^{\text{th}}$ minus $5^{\text{th}}$
-percentile range. This bootstrap resampling is performed by first selecting
+$1000$ times and determine the $1\,\sigma$ error bars. This bootstrap resampling is performed by first selecting
 all stars within a height of $2\,\kpc$, resampling that selection, and then
 repeating the $10$ iterations.
 
@@ -709,8 +707,7 @@ Figure~\ref{fig:midplane} shows the relative $z$ location of the inferred
 midplane our imaginary observer would determine as a function of azimuth for
 each galaxy, using their local ``solar neighborhood'' (the cylinder defined
 above). The $5\textup{--}95$ percentile range from the bootstrap procedure is
-shown as the dashed-line error bars. The $90\%$ interquartile range for each
-galaxy is $185$, $162$, $84\,\pc$ for \mi{}, \mf{}, and \mm{}. In two of the
+shown as the dashed-line error bars. The middle $90\%$ of midplane values across the Solar circle spans $185$, $162$, $84\,\pc$ for \mi{}, \mf{}, and \mm{}. In two of the
 three cases the midplane therefore varies by more than $\pm 100\,\pc$
 depending on the azimuth along the Solar circle; in the third (\mm{}, which
 has the thinnest ``thin disk'' of stars, but the largest stellar mass) the
@@ -766,12 +763,12 @@ are removed in our sine-curve subtraction).}
 \subsection{LSR Variations} \label{ssec:lsr_var}
 We also expect that the local standard of rest (LSR) should vary as a function
 of azimuth. We perform this calculation in Appendix~\ref{app:lsr} to estimate
-, but performing a best-fit subtraction to correct for misalignment of the
-original coordinate system (as in the previous section) is more involved.
-Since the variation in the LSR is less pronounced than for the midplane, and
-since the dominant effect is limited to $J_r$
-(Figure~\ref{fig:many_orbit_wrong_ref}), we defer this calculation to future
-work.
+the components of the LSR as a function of azimuth, but performing a best-fit
+subtraction to correct for misalignment of the original coordinate system (as
+in the previous section) is more involved. Since we find that the variation in
+the LSR is less pronounced than for the midplane, and since the dominant
+effect is limited to $J_r$ (Figure~\ref{fig:many_orbit_wrong_ref}), we defer
+this calculation to future work.
 
 \section{Discussion} \label{sec:discussion}
 We have used high-resolution cosmological simulations to illustrate that we
@@ -782,8 +779,8 @@ we also demonstrate that extending the coordinate system established by our
 local midplane to a global axisymmetric coordinate system spanning the
 entirety of the Galactic disk introduces systematic error in computations of
 the actions under this symmetry assumption, when starting from the present-day
-positions and velocities of stars as measured, for example, by \emph{Gaia}.
-These systematic errors are most important for stars on thin-disk-like orbits,
+positions and velocities of stars as measured by, e.g., \emph{Gaia}.
+These systematic errors are most important for stars on thin disk-like orbits,
 where they can be large enough to yield actions representative of orbits in
 the thick disk. This effect is entirely due to the extension of a local to a
 global coordinate system, and is separate from real diffusion in stellar
@@ -824,7 +821,7 @@ criterion for the region around the Sun where the analysis of the action-space
 distribution of stars on quasi-circular orbits, and therefore the epicyclic
 approximation, can be expected to be valid. This leads to a somewhat
 dynamically motivated definition of the ``solar neighborhood.'' Since the
-motivation may be different for defining the solar neighborhood in e.g.
+motivation may be different for defining the solar neighborhood in, e.g.,
 studies of the chemical distribution of the Galaxy, we propose the phrase
 ``dynamical solar neighborhood.''
 
@@ -868,7 +865,7 @@ in Figure~\ref{fig:fig_to_explain}.}
 \label{fig:range_deltaphi}
 \end{figure*}
 
-From Figure \ref{fig:range_deltaphi} it is clear that the range of midplane
+From Figure~\ref{fig:range_deltaphi} it is clear that the range of midplane
 values spanned in a given $\Delta \phi$ quickly saturates at $\Delta \phi
 \gtrsim \pi/2$ radians (i.e. one quarter of the way around the Galactic disk
 from the Sun). At far smaller $\Delta \phi$ it reaches the level of deviation
@@ -895,7 +892,7 @@ horizontal line in Figure \ref{fig:range_deltaphi}). However, we caution that
 the tendency of these midplane deviations is to \emph{inflate} the value of
 $J_z$ whenever the midplane deviation is $\gtrsim z_{\text{max}}$, scattering
 them into the region of action space normally associated with different
-stellar populations and possibly contributing to confusion there. This
+stellar populations and possibly contributing to confusion there (see Figure~\ref{fig:Jz_hist} and discussion therein). This
 inflation is extremely non-Gaussian (as the induced error is for all orbits,
 e.g. Figure~\ref{fig:Jz_hist}), and is particularly troubling for the case of
 thin disk stars, where the necessary midplane deviation is
@@ -921,8 +918,8 @@ cluster \citep[e.g.][]{2011MNRAS.413.1852E}.
 
 One could then make a further selection by requiring that the action of each
 field star $i$ be close to the cluster's actions to within some bound, i.e.
-$\bm{J}_i - \bm{J}_c \in V_e$, where $V_e$ is centered on $J_c$ and has size
-proportional to the intrinsic action-space dispersion of the disrupting
+$\bm{J}_i \in V_e$, where $V_e$ is a volume centered on $\bm{J}_c$ and has size
+comparable to the intrinsic action-space dispersion of the disrupting
 cluster. This dispersion can be estimated as \citep[Section~8.3.3
 of][]{2008gady.book.....B}
 \beq \label{eq:action_disp}
@@ -936,8 +933,8 @@ then be considered cluster members.
 Two issues are immediately apparent with this approach. The first is that it
 neglects the overall smooth distribution \emph{in action space} which will
 contribute some stars to the selection by chance. For dissolving open clusters
-in the thin disk, this background is not likely to be negligible, but we will
-assume for the sake of argument that it can be modeled within the ``dynamical
+in the thin disk, this background is likely to be significant, but we will
+assume for the sake of argument that these foreground stars can be modeled within the ``dynamical
 solar neighborhood'' where it is safe to extend the local coordinate system.
 Since the effect of extending the coordinate frame beyond this region is
 generally to inflate the actions computed for thin-disk stars, using too large
@@ -956,14 +953,13 @@ cluster mass, the region where the search will succeed varies with cluster
 mass as well. To illustrate this effect, we assume a cluster mass $m_c$ and
 estimate the expected action-space dispersion from
 Equation~\ref{eq:action_disp}. We then consult
-Figure~\ref{fig:many_orbit_wrong_ref} to determine the midplane $z$ offset
+Figure~\ref{fig:many_orbit_wrong_ref} to determine the midplane offset
 necessary in order for the induced error in the vertical action to be the same
 as the expected action-space dispersion. We perform this analysis for the
 thin-disk-like and thick-disk-like orbits considered in
 Section~\ref{ssec:quant}, assuming that the halo-like orbit is unlikely for
 members of known open clusters (see Table~\ref{tab:real_clusters}). The result
-for the allowable midplane offset for these two orbits in shown in Figure
-\ref{fig:cluster_offset} as a function of cluster mass.
+for the allowable midplane offset for these two orbits in shown in Figure~\ref{fig:cluster_offset} as a function of cluster mass.
 
 With a characteristic midplane offset in hand, we use the relation in
 Figure~\ref{fig:range_deltaphi}, which shows the typical midplane offset at
@@ -1040,7 +1036,7 @@ analysis assumes that the MW resembles \mi{}, which is not necessarily true.
 However, this step of our analysis is meant to be more illustrative than
 quantitative: this calculation should actually be performed using real
 measurements of variations in the MW's stellar midplane. Such measurements
-should be possible in the near future with Gaia, with quality distance
+should be possible in the near future with {\em Gaia}, with quality distance
 estimates the crucial limiting factor.
 
 \begin{figure*}
