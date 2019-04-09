@@ -116,7 +116,7 @@ give rise to these signatures is the assumption of a global, axisymmetric
 Galactocentric coordinate system \citep{2008gady.book.....B} in which the
 Sun's position (and therefore the origin of the coordinate system) can be
 defined and measured both precisely and accurately. In this system, the center
-of the galaxy is usually taken to be the location of the central supermassive
+of the Galaxy is usually taken to be the location of the central supermassive
 black hole, Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From
 stellar motions near Sgr~A\textsuperscript{*}, the distance from the Sun to
 the Galactic center is taken to be $\sim 8.1\text{--}8.3\,\kpc$
@@ -128,7 +128,7 @@ stars), and is usually taken to be $\sim 25\,\pc$ \citep{2001ApJ...553..184C},
 with more recent measurements from {\em Gaia} DR2 placing it at $\sim 20\,\pc$
 \citep{2019MNRAS.482.1417B}. Another strategy is to use the cold gas or HII
 regions in the disk to define the Galactic midplane, leading to slightly
-values ($\sim 5\,\pc$) for the Sun's relative height
+different values ($\sim 5\,\pc$) for the Sun's relative height
 \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review of these
 measurements is given by \citet{2016ARAA..54..529B}.
 
@@ -145,12 +145,12 @@ given by,
 J_i \equiv
 \frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
 \eeq
-where $i=R,z,\phi$ are the cylindrical radial, vertical, and azimuthal coordinates respectively and the $p_i$ are the conjugate momenta.\footnote{We typically write $J_r$ instead of $J_R$ for
+where $i=R,z,\phi$ are the radial, vertical, and azimuthal coordinates respectively in a cylindrical coordinate system and the $p_i$ are the conjugate momenta.\footnote{We typically write $J_r$ instead of $J_R$ for
 aesthetic reasons.} In a slowly-evolving
 axisymmetric potential, these actions are invariant and $J_{\phi} \equiv L_z$
 \citep{2008gady.book.....B,2014RvMP...86....1S}. 
 
-With the advent of 6D phase-space measurements over a relatively large ($\gtrsim 2$ kpc) volume from the {\em Gaia} satellite, the study of stars' actions has gained new popularity. One reason is dimensionality reduction---an individual stellar orbit is concisely described by three actions, as opposed to six dimensions of phase space. Under the assumption of a phase-mixed system, the dynamical properties of a population of stars should be uniquely a function of their actions and independent of the conjugate angles, allowing investigation of the
+With the advent of 6D phase-space measurements over a relatively large ($\gtrsim 2$ kpc) volume from the {\em Gaia} satellite, the study of stars' actions has gained new popularity. One reason is dimensionality reduction---an individual stellar orbit is concisely described by three actions, as opposed to six dimensions of phase space. Second, under the assumption of a phase-mixed system, the dynamical properties of a population of stars should be uniquely a function of their actions and independent of the conjugate angles, allowing investigation of the
 relationship between {\em orbital} properties of stars and other intrinsic, and at least partially invariant, properties such as age or metallicity. Actions also provide a convenient basis for constructing models of the stellar distribution function, or for associating stars with similar dynamical properties (e.g. to determine membership in moving groups).
 
 If the system being considered departs from axisymmetry in a significant and/or non-adiabatic way, the actions computed using an axisymmetric approximation to the true potential can exhibit cyclic dependence on the orbital phase (or time at which the star's position and velocity are observed), large-scale migration, or diffusion from their initial values.
@@ -178,10 +178,10 @@ Galactic midplane. For stars relatively far from the Sun,
 the local midplane location will not agree with
 our local midplane extrapolated onto their position, thanks to relatively small-scale variations in the density of the gas and stellar distribution. Converting positions and velocities of more distant stars from a heliocentric to a
 Galactocentric coordinate system introduces a systematic bias in the $z$ coordinate, and hence the actions computed for these stars. The further from the solar neighborhood the target star, the more likely the mismatch will result in large systematic uncertainty, especially in the vertical action $J_z$. Depending on the type of orbit being studied, this sets a limit on the ``dynamical solar neighborhood'' over which the local coordinate frame can be usefully extended for action-space analysis. A similar argument applies to uncertainty in measurements of
-$R_{\odot}$ and variations in the local standard of rest (LSR). In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
+$R_{\odot}$\footnote{Here, and throughout, we use $R_{\odot}$ to mean the distance from the Sun to the Galactic center.} and variations in the local standard of rest (LSR).
+
+In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
 system errors have on the measured actions.
-
-
 Lacking an empirical, nonlocal definition of the global Galactic midplane or a measurement of the expected midplane variation in the Milky Way itself,  in Section~\ref{sec:local_fire} we attempt to quantify the azimuthal dependence of the
 local midplane, and hence the expected size of the dynamical solar neighborhood, using cosmological-hydrodynamical zoom-in simulations of Milky Way-mass galaxies from the Feedback in Realistic Environments (FIRE)
 collaboration\footnote{\url{https://fire.northwestern.edu}} \citep{2016ApJ...827L..23W,2017arXiv170206148H}. 
@@ -232,20 +232,19 @@ NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
 
 
 \section{Motivation} \label{sec:ref_frame}
-We first demonstrate the significance to action computations, especially for
-disk-like orbits, of systematic errors in the determination of the Galactic
-midplane and distance to the Galactic center. The consequences we explore here
+We first demonstrate the significance of systematic errors in the determination of the Galactic midplane and distance to the Galactic center to action computations. We will find that such errors are especially important for disk-like orbits.
+The consequences we explore here
 may also arise from various other systematic errors. For instance, the
 axisymmetric Galactic potential model used in many works to compute actions
 may not be a good description of the true potential --- or the parameters used
 may yield a potential that is systematically incorrect outside an original
-fitted region. In this section, we assume that the Galaxy is perfectly
+fitted region. In this work, we assume that the Galaxy is perfectly
 described by our model axisymmetric potential, and simply explore the
 consequences of systematic errors in the determination of the Galactocentric
 coordinate system.
 
-\subsection{The effect of midplane determination on orbit and action
-calculations} \label{ssec:cartoon} We present a cartoon in
+\subsection{Cartoon effect of midplane error} \label{ssec:cartoon}
+We present a cartoon in
 Figure~\ref{fig:cartoon} to show how an inaccurate determination of the
 midplane leads to a phase-dependence of the actions calculated from an orbit
 specified by a phase-space point and an assumed potential model. The $y$-axis
@@ -288,6 +287,7 @@ for a given star in that potential.}
 \end{figure*}
 
 \subsection{Numerical methods} \label{ssec:action_comp}
+We now move on to quantifying the argument made in Section~\ref{ssec:cartoon}.
 We compute actions as in our previous work \citep{2018ApJ...867...31B}, using
 the code \texttt{gala} v0.3 to perform orbit integrations and conversion to
 action space \citep{2017JOSS....2..388P,Price-Whelan:2018}. To compute actions
@@ -312,13 +312,12 @@ recent works exploring actions in the Galactic disk
 \citep[e.g.][]{2018arXiv180503653T,2018MNRAS.481.4093S,2018arXiv180803278T}.
 For disk-like orbits, existing implementations of the St\"ackel Fudge method
 are of acceptable accuracy, but since we also consider halo-like orbits in
-this work we choose to use orbit integration and torus mapping throughout
+this work (where the St\"ackel Fudge method is inaccurate) we choose to use orbit integration and torus mapping throughout
 \citep{2016MNRAS.457.2107S}.
 
-\subsection{Quantification of the effect of systematic coordinate-system
-errors} \label{ssec:quant}
-First, we illustrate the phase-dependence induced by an
-example systematic error in the Galactocentric coordinate system. We will
+\subsection{Quantification of the midplane effect} \label{ssec:quant}
+We quantify how a systematic error in the Galactocentric coordinate system induces phase-dependence in the {\em observed} actions.
+We will
 consider three orbits in the model potential described in
 Section~\ref{ssec:action_comp} that are typical of stars in the stellar thin
 disk, stellar thick disk, and the stellar halo. We summarize their initial
@@ -333,7 +332,7 @@ the thick-disk star's phase-space position at many different times (and hence
 different orbital phases), but used a coordinate system in which the midplane
 is systematically offset in height by $100\,\pc$ from its actual location ---
 i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each position in the
-orbit. This corresponds to an observer physically located at the position $(8,
+orbit. This corresponds to an observer physically located at e.g. the position $(8,
 0, 0)\,\kpc$ in the coordinate system of the true potential, but erroneously
 thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
@@ -357,8 +356,8 @@ halo & $(8, 0, 0)$ & $(0, -190, 190)$ & 32.8 & -1520 & 529.1 & 6.16
 Starting from each observation of the star's phase-space position that such an
 (extremely long-lived) observer makes every $\Myr$, we then compute the
 actions as outlined above using an integration from that starting point in
-phase space carried out using the true potential (but specifying the star's
-present-day position using the systematically offset coordinate system). The
+phase space carried out using the true potential but specifying the star's
+present-day position using the systematically offset coordinate system. Essentially we are shifting the integrated orbit and then reintegrating at each point along the shifted orbit, where the shifted orbit is the observed orbit. The
 erroneous computed actions for each phase-space starting point are shown for
 the first $\Gyr$ of the orbit in the {\em upper} panels
 Figure~\ref{fig:one_orbit_wrong_ref}.\footnote{Occasionally the numerical
@@ -398,11 +397,11 @@ of $5.7\,\%$ and $85.7\,\%$, respectively. The error induced in $L_z$ is
 negligible, as expected since $L_z$ is independent of $z$. It is worth
 pointing out that a $100\,\pc$ error in an orbit with
 $z_{\text{max}}=850\,\pc$ --- a $12\%$ error
---- induced a $43\%$ error in the computation of $J_z$.
+--- induced an $86\%$ error in the computation of $J_z$.
 
 For a systematic offset in $x$ (or Galactic center distance), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $6.9$,
-$47$, and $0.71 \actunit$ for $J_r$, $L_z$ and $J_z$, respectively. These are
+$47$, and $0.71\,\actunit$ for $J_r$, $L_z$ and $J_z$, respectively. These are
 fractional errors of $21\%$, $3.1\%$ and $3.1\%$, respectively.
 
 \begin{figure*}
@@ -430,7 +429,7 @@ $\sim3\%$, respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 
 We now repeat the same procedure for systematic offsets between $0$ and
 $500\,\pc$ in the $z$ and $x$ components. In
-Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth minus 5\uth
+Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth{} minus 5\uth{}
 percentile divided by the true action value for the three different fiducial
 orbits in Table \ref{tab:orbits}. The thick-disk (\thickcolor) orbit is the
 one from Figure~\ref{fig:one_orbit_wrong_ref}, but we also now consider the
@@ -438,16 +437,16 @@ effect on the action determined for the thin-disk (\thincolor) and halo
 (\halocolor) orbits.
 
 The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread induced
-in each action for an offset in the $z$ component (i.e. the Galactic
+in each action for an offset in the $z$-component (i.e. the Galactic
 midplane). In the {\em bottom row} we consider offsets in the $x$ component
 (i.e. the Solar radius). The {\em left}, {\em middle}, and {\em right} columns
 show the fractional spread in the values computed for $J_z$, $L_z$, and $J_r$,
-respectively. We compute the fractional spread $\Delta J_i/J_i$ as the 95\uth
-minus 5\uth percentile of the action computed using the offset coordinate
+respectively. We compute the fractional spread $\Delta J_i/J_i$ as the 95\uth{}
+minus 5\uth{} percentile of the action computed using the offset coordinate
 system over the course of the first $\Gyr$, divided by the true action
 (computed in the correct coordinate system).
 
-In the {\em upper middle} panel, there is essentially no spread in the
+In the {\em upper middle} panel of Figure~\ref{fig:many_orbit_wrong_ref}, there is essentially no spread in the
 determination of $L_z$. This is expected since, in principle, $L_z$ only
 depends on the $x$- and $y$-components of the position and velocity of the
 stars\footnote{In practice, however, $L_z$ is computed as part of the
@@ -455,7 +454,7 @@ torus-fitting method.}, and is thus unaffected by offsets in $z$. Indeed, the
 result we found in Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk
 orbit holds for all orbit types.
  
-The {\em upper right} panel shows that the fractional error in $J_z$ is more
+The {\em upper right} panel of Figure~\ref{fig:many_orbit_wrong_ref} shows that the fractional error in $J_z$ is more
 exaggerated for more planar (disk-like) orbits. For the thin-disk orbit, a
 systematic offset of $\sim30\,\pc$ in the $z$ coordinate already results in
 $100\%$ deviations in the actions. The required offset for $100\%$ deviation
@@ -463,14 +462,14 @@ is $\sim225\,\pc$ for the thick-disk orbit. The halo orbit is relatively
 resistant to errors in the midplane, with only $\sim25\%$ error in $J_z$ out
 to a midplane offset of $500\,\pc$.
 
-For the offset in the Solar radius {\em bottom panels}, the error is largest
+For the offset in the Solar radius ({\em bottom panels}), the error is largest
 for $J_r$, with some deviations resulting in $L_z$ and relatively small
 deviations in $J_z$. In the {\em bottom middle} and {\em bottom right} panels
 all three lines nearly overlap.
 
 \begin{figure*}
 \plotone{fig/schmactions_many_orbits.pdf}
-\caption{We report the 95\uth minus 5\uth percentile of the error in the
+\caption{We report the 95\uth{} minus 5\uth{} percentile of the error in the
 measured action ($\Delta J_i$) from coordinate system errors for the thin,
 thick, and halo orbits (Table~\ref{tab:orbits}). The {\em left}, {\em center},
 and {\em right} panels show the result for $J_r$, $L_z$, and $J_z$,
@@ -547,7 +546,7 @@ the three simulations, we ignore this minor complication.} with the lower end
 coming from stellar evolution \citep{2018arXiv180610564S}. Softening lengths
 for dark matter and star particles are fixed at $112\,\pc$ and $11.2\,\pc$,
 respectively.\footnote{This is $2.8$ times the often-quoted
-Plummer-equivalent.} The gas softening length is adaptive, but at $z=0$ the
+Plummer-equivalent.} The gas softening length is adaptive, but at $\z=0$ the
 median softening length for cold ($T < 10^4\,\text{K}$) gas particles around
 roughly solar positions (with cylindrical radii within $500\,\pc$ of
 $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4, 12.5, 10.3\,\pc$ for \mi{},
