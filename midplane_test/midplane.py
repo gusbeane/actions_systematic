@@ -125,12 +125,12 @@ def get_keys(p, part):
 
 def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
     def _midplane_med_(pos, init_pos, init_vel):
-    mid_pos = pos.copy()
-    for _ in range(10):
-        keys = get_keys(mid_pos, init_pos)
-        mid_pos[2] = np.median(init_pos[:,2][keys])
-    mid_vel = np.median(init_vel[:,2][keys])
-    return mid_pos[2], mid_vel
+        mid_pos = pos.copy()
+        for _ in range(10):
+            keys = get_keys(mid_pos, init_pos)
+            mid_pos[2] = np.median(init_pos[:,2][keys])
+        mid_vel = np.median(init_vel[:,2][keys])
+        return mid_pos[2], mid_vel
 
     class _midplane_force_(object):
         def __init__(self, tree):
