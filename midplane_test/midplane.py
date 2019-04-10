@@ -123,7 +123,8 @@ def get_keys(p, part):
     keys = np.where(np.logical_and(rbool, zbool))[0]
     return keys
 
-def _midplane_med_(pos, init_pos, init_vel):
+def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
+    def _midplane_med_(pos, init_pos, init_vel):
     mid_pos = pos.copy()
     for _ in range(10):
         keys = get_keys(mid_pos, init_pos)
@@ -131,25 +132,22 @@ def _midplane_med_(pos, init_pos, init_vel):
     mid_vel = np.median(init_vel[:,2][keys])
     return mid_pos[2], mid_vel
 
-class _midplane_force_(object):
-    def __init__(self, tree):
-        self.tree = tree
-
-    def _force_z_(self, z, xy):
-        r = np.append(xy, z)
-        r = np.reshape(r, (1, 3))
-        accel = GetAccelParallel(r, self.tree, G, theta)
-        return accel[0][2]
-
-    def __call__(self, pos, init_pos, init_vel):
-        zinit = pos[2]
-        xy = pos[0:2]
-        res = root_scalar(self._force_z_, args=(xy,), x0=zinit, bracket=(-1, 1))
-        return res.root, 0
-
+    class _midplane_force_(object):
+        def __init__(self, tree):
+            self.tree = tree
     
+        def _force_z_(self, z, xy):
+            r = np.append(xy, z)
+            r = np.reshape(r, (1, 3))
+            accel = GetAccelParallel(r, self.tree, G, theta)
+            return accel[0][2]
+    
+        def __call__(self, pos, init_pos, init_vel):
+            zinit = pos[2]
+            xy = pos[0:2]
+            res = root_scalar(self._force_z_, args=(xy,), x0=zinit, bracket=(-1, 1))
+            return res.root, 0
 
-def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
     if force:
         if tree is None:
             print('pass tree when using force!')
