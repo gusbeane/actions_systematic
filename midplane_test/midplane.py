@@ -203,7 +203,7 @@ def main(gal):
     
     theta, pos = gen_pos()
 
-    force=True
+    force=False
 
     if force:
         result = np.array([ get_midplane_with_error(p, star_pos, star_vel, force=force, tree=tree) for p in tqdm(pos) ])
