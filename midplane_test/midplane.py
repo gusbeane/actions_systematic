@@ -138,11 +138,8 @@ def main(gal):
     
     theta, pos = gen_pos()
 
-    if force:
-        result = np.array([ get_midplane_with_error(p, star_pos, star_vel) for p in tqdm(pos) ])
-    else:
-        result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p, star_pos, star_vel) for p in tqdm(pos))
-        result = np.array(result)
+    result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p, star_pos, star_vel) for p in tqdm(pos))
+    result = np.array(result)
 
     midplane_est = result[:,0]
 
