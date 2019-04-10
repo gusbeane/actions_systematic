@@ -115,16 +115,18 @@ plt.close()
 fig, ax = plt.subplots(2,1, figsize=(3,6))
 
 k0, k1, k2 = sclip(zact)
-ax[0].hist(zact[:,2][k2], bins=np.arange(histmin, histmax, 0.25), lw=2,
-        edgecolor=tb_c[4], fc='none', histtype='stepfilled')
-ax[0].axvline(x=J2, color=tb_c[4], ls='dashed', lw=2)
+ax[0].hist(zact[:,2][k2], bins=np.linspace(histmin, histmax, 60), lw=1.5,
+        edgecolor=tb_c[8], fc='none', histtype='stepfilled')
+ax[0].axvline(x=J2, color=tb_c[8], ls='dashed', lw=1.5)
 ax[0].set_ylabel(r'$\text{count}$')
+ax[0].text(14.5, 75, r'\textbf{thick-disk orbit}', color=tb_c[8])
 
 k0t, k1t, k2t = sclip(zact_thin)
-ax[1].hist(zact_thin[:,2][k2t], bins=np.arange(histmin_thin, histmax_thin, 0.25), lw=2,
-        edgecolor=tb_c[4], fc='none', histtype='stepfilled')
-ax[1].axvline(x=J2_thin, color=tb_c[4], ls='dashed', lw=2)
+ax[1].hist(zact_thin[:,2][k2t], bins=np.linspace(histmin_thin, histmax_thin, 60), lw=1.5,
+        edgecolor=tb_c[7], fc='none', histtype='stepfilled')
+ax[1].axvline(x=J2_thin, color=tb_c[7], ls='dashed', lw=1.5)
 ax[1].set_ylabel(r'$\text{count}$')
+ax[1].text(1.3, 100, r'\textbf{thin-disk orbit}', color=tb_c[7])
 
 ax[1].set_xlabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
