@@ -56,6 +56,8 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col[0].set_ylim(-200, 200)
     ax_col[1].set_ylim(-200, 200)
 
+    print(gal, '90 perc: ', np.percentile((midplane_est-fit)*1000, 95) - np.percentile((midplane_est-fit)*1000, 5))
+
     ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
     ax_col[1].plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     ax_col[1].plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
