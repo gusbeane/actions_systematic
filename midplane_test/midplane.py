@@ -181,10 +181,10 @@ def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
         med_rand = np.array([ midplane(pos, ipos, ivel) for ipos,ivel in zip(init_pos_rand,init_vel_rand) ])
         dist_pos = np.subtract(med_rand[:,0], midplane_central)
         dist_vel = np.subtract(med_rand[:,1], midplane_vel)
-        up_pos = np.percentile(dist_pos, 95)
-        low_pos = np.percentile(dist_pos, 5)
-        up_vel = np.percentile(dist_vel, 95)
-        low_vel = np.percentile(dist_vel, 5)
+        up_pos = np.percentile(dist_pos, 50+68/2)
+        low_pos = np.percentile(dist_pos, 50-68/2)
+        up_vel = np.percentile(dist_vel, 50+68/2)
+        low_vel = np.percentile(dist_vel, 50-68/2)
         l = midplane_central - up_pos
         h = midplane_central - low_pos
         l_v = midplane_vel - up_vel
