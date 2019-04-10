@@ -37,41 +37,6 @@ dR = 0.1
 
 nproc = int(sys.argv[1])
 
-# options for pykdgrav
-Rcut = 50.0 # kpc, max R (in fid.) to use particles
-theta = 0.5
-G = G_astropy.to_value(u.kpc**2 * u.km / (u.s * u.Myr * u.Msun))
-
-star_softening_in_kpc = 2.8 * 4 / 1000
-dark_softening_in_kpc = 2.8 * 40 / 1000
-
-def _setup_tree_(snap):
-    star_mass = snap['star'].prop('mass')
-    gas_mass = snap['gas'].prop('mass')
-    dark_mass = snap['dark'].prop('mass')
-    m = np.concatenate((star_mass, gas_mass, dark_mass))
-
-    star_pos = snap['star'].prop('host.distance.principal')
-    gas_pos = snap['gas'].prop('host.distance.principal')
-    dark_pos = snap['dark'].prop('host.distance.principal')
-    r = np.concatenate((star_pos, gas_pos, dark_pos))
-
-    star_softening = np.full(snap['star']['mass'].shape, star_softening_in_kpc)
-    dark_softening = np.full(snap['dark']['mass'].shape, star_softening_in_kpc)
-    gas_softening = 2.8 * snap['gas']['smooth.length']/(1000**2) # due to bug in gizmo analysis
-    soft = np.concatenate((star_softening, gas_softening, dark_softening))
-
-    rmag = np.linalg.norm(r, axis=1)
-    keys = np.where(rmag < Rcut)[0]
-    r = r[keys]
-    m = m[keys]
-    soft = soft[keys]
-
-    tree = ConstructKDTree( np.float64(r), np.float64(m), np.float64(soft))
-    
-    return tree
-
-
 def read_snap(gal):
     # takes in galaxy (string = m12i, m12f, m12m, etc.)
     # reads in and sets fiducial coordinates
@@ -94,9 +59,7 @@ def read_snap(gal):
                      'principal_axes_vectors']:
             setattr(snap[k], attr, getattr(snap, attr))
 
-    tree = _setup_tree_(snap)
-
-    return snap, tree
+    return snap
 
 def gen_pos():
     theta = np.linspace(0, 2.*np.pi, nspoke)
@@ -107,54 +70,31 @@ def gen_pos():
     pos = np.transpose([posx, posy, posz])
     return theta, pos
 
-def get_init_keys(p, star_pos):
-    pos_diff = np.subtract(star_pos, p)
-    rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
-    rbool = rmag < rcut
-    zbool = np.abs(pos_diff[:,2]) < 2.0 * zcut
-    keys = np.where(np.logical_and(rbool, zbool))[0]
-    return keys
-
-def get_keys(p, part):
-    pos_diff = np.subtract(part, p)
-    rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
-    rbool = rmag < rcut
-    zbool = np.abs(pos_diff[:,2]) < zcut
-    keys = np.where(np.logical_and(rbool, zbool))[0]
-    return keys
-
 def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
-    def _midplane_med_(pos, init_pos, init_vel):
+    
+    def get_init_keys(p, star_pos):
+        pos_diff = np.subtract(star_pos, p)
+        rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
+        rbool = rmag < rcut
+        zbool = np.abs(pos_diff[:,2]) < 2.0 * zcut
+        keys = np.where(np.logical_and(rbool, zbool))[0]
+        return keys
+
+    def get_keys(p, part):
+        pos_diff = np.subtract(part, p)
+        rmag = np.linalg.norm(pos_diff[:,:2], axis=1)
+        rbool = rmag < rcut
+        zbool = np.abs(pos_diff[:,2]) < zcut
+        keys = np.where(np.logical_and(rbool, zbool))[0]
+        return keys
+    
+    def midplane(pos, init_pos, init_vel):
         mid_pos = pos.copy()
         for _ in range(10):
             keys = get_keys(mid_pos, init_pos)
             mid_pos[2] = np.median(init_pos[:,2][keys])
         mid_vel = np.median(init_vel[:,2][keys])
         return mid_pos[2], mid_vel
-
-    class _midplane_force_(object):
-        def __init__(self, tree):
-            self.tree = tree
-    
-        def _force_z_(self, z, xy):
-            r = np.append(xy, z)
-            r = np.reshape(r, (1, 3))
-            accel = GetAccelParallel(r, self.tree, G, theta)
-            return accel[0][2]
-    
-        def __call__(self, pos, init_pos, init_vel):
-            zinit = pos[2]
-            xy = pos[0:2]
-            res = root_scalar(self._force_z_, args=(xy,), x0=zinit, bracket=(-1, 1))
-            return res.root, 0
-
-    if force:
-        if tree is None:
-            print('pass tree when using force!')
-            sys.exit(1)
-        midplane = _midplane_force_(tree)
-    else:
-        midplane = _midplane_med_
 
     # get all particles within 2x zheight
     init_keys = get_init_keys(pos, star_pos)
