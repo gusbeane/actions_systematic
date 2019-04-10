@@ -86,7 +86,7 @@ for gal,ax_col in zip(glist, ax.transpose()):
 
     ax_col.set_xlim(0, 2)
 
-    ax_col.set_ylim(0, 400)
+    ax_col.set_ylim(0, 300)
 
     for z, c in zip(zoff_100_list, clist):
         ax_col.axhline(z, color=c)
