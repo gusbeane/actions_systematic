@@ -70,7 +70,7 @@ def gen_pos():
     pos = np.transpose([posx, posy, posz])
     return theta, pos
 
-def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
+def get_midplane_with_error(pos, star_pos, star_vel):
     
     def get_init_keys(p, star_pos):
         pos_diff = np.subtract(star_pos, p)
@@ -105,28 +105,23 @@ def get_midplane_with_error(pos, star_pos, star_vel, force=False, tree=None):
     midplane_central, midplane_vel = midplane(pos, init_pos, init_vel)
     
     # prepare to bootstrap
-    if force:
-        l = 0.9*midplane_central
-        h = 1.1*midplane_central
-        l_v = 0.9*midplane_vel
-        h_v = 1.1*midplane_vel
-    else:
-        keys_to_choose = list(range(len(init_pos)))
-        rand_choice = np.random.choice(keys_to_choose, len(init_pos)*nbootstrap)
-        rand_choice = np.reshape(rand_choice, (nbootstrap, len(init_pos)))
-        init_pos_rand = init_pos[rand_choice]
-        init_vel_rand = init_vel[rand_choice]
-        med_rand = np.array([ midplane(pos, ipos, ivel) for ipos,ivel in zip(init_pos_rand,init_vel_rand) ])
-        dist_pos = np.subtract(med_rand[:,0], midplane_central)
-        dist_vel = np.subtract(med_rand[:,1], midplane_vel)
-        up_pos = np.percentile(dist_pos, 50+68/2)
-        low_pos = np.percentile(dist_pos, 50-68/2)
-        up_vel = np.percentile(dist_vel, 50+68/2)
-        low_vel = np.percentile(dist_vel, 50-68/2)
-        l = midplane_central - up_pos
-        h = midplane_central - low_pos
-        l_v = midplane_vel - up_vel
-        h_v = midplane_vel - low_vel
+    keys_to_choose = list(range(len(init_pos)))
+    rand_choice = np.random.choice(keys_to_choose, len(init_pos)*nbootstrap)
+    rand_choice = np.reshape(rand_choice, (nbootstrap, len(init_pos)))
+    init_pos_rand = init_pos[rand_choice]
+    init_vel_rand = init_vel[rand_choice]
+    med_rand = np.array([ midplane(pos, ipos, ivel) for ipos,ivel in zip(init_pos_rand,init_vel_rand) ])
+    dist_pos = np.subtract(med_rand[:,0], midplane_central)
+    dist_vel = np.subtract(med_rand[:,1], midplane_vel)
+    up_pos = np.percentile(dist_pos, 50+68/2)
+    low_pos = np.percentile(dist_pos, 50-68/2)
+    up_vel = np.percentile(dist_vel, 50+68/2)
+    low_vel = np.percentile(dist_vel, 50-68/2)
+    l = midplane_central - up_pos
+    h = midplane_central - low_pos
+    l_v = midplane_vel - up_vel
+    h_v = midplane_vel - low_vel
+    
     return midplane_central, l, h, midplane_vel, l_v, h_v
 
 def fit(x, theta):
@@ -136,19 +131,17 @@ def chisq(x, theta, midplane_est):
     return np.sum(np.square(np.subtract(fit(x, theta), midplane_est)))
 
 def main(gal):
-    snap, tree = read_snap(gal)
+    snap = read_snap(gal)
     
     star_pos = snap['star'].prop('host.distance.principal')
     star_vel = snap['star'].prop('host.velocity.principal')
     
     theta, pos = gen_pos()
 
-    force=False
-
     if force:
-        result = np.array([ get_midplane_with_error(p, star_pos, star_vel, force=force, tree=tree) for p in tqdm(pos) ])
+        result = np.array([ get_midplane_with_error(p, star_pos, star_vel) for p in tqdm(pos) ])
     else:
-        result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p, star_pos, star_vel, force=force, tree=tree) for p in tqdm(pos))
+        result = Parallel(n_jobs=nproc) (delayed(get_midplane_with_error)(p, star_pos, star_vel) for p in tqdm(pos))
         result = np.array(result)
 
     midplane_est = result[:,0]
@@ -162,10 +155,7 @@ def main(gal):
 
     out = np.concatenate((theta.reshape(nspoke, 1), result, fit.reshape(nspoke,1)), axis=1)
 
-    if force:
-        np.save('output/out_force_'+gal+'.npy', out)
-    else:
-        np.save('output/out_'+gal+'.npy', out)
+    np.save('output/out_'+gal+'.npy', out)
 
 if __name__ == '__main__':
     glist = ['m12i', 'm12f', 'm12m']
