@@ -64,9 +64,9 @@ clist = [tb_c[7], tb_c[8], tb_c[0]]
 def print_100(zerr, dJz):
     interp = interp1d(zerr, dJz, bounds_error=False, fill_value='extrapolate')
     def to_min(z):
-        return np.abs(interp(z)-1)
+        return np.abs(interp(z)-0.1)
     res = minimize(to_min, 250)
-    print(res.x)
+    print('zerr needed for 10perc:', res.x)
 
 for fname, name, Az, AR, Rg, init_vel, c in zip(fname_list, name_list, Az_list, AR_list, Rg_list, init_vel_list, clist):
     zout = pickle.load(open('zout_'+fname+'.p', 'rb'))
