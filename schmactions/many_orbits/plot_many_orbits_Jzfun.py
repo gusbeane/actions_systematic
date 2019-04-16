@@ -65,7 +65,7 @@ for n,c in zip(names, colors):
             Jz = act[2]
             up = np.percentile(r, 95, axis=0)[2]
             low = np.percentile(r, 5, axis=0)[2]
-            to_plot.append([Jz, 100*(up-low)/Jz])
+            to_plot.append([Jz, 100*(up-low)/(2*Jz)])
         except:
             to_plot.append([np.nan, np.nan])
     to_plot = np.array(to_plot)
