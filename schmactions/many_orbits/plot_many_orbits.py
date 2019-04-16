@@ -61,12 +61,12 @@ init_vel_list = [[0, -190, 10] * u.km/u.s,
 
 clist = [tb_c[7], tb_c[8], tb_c[0]]
 
-def print_100(zerr, dJz):
+def print_100(zerr, dJz, f):
     interp = interp1d(zerr, dJz, bounds_error=False, fill_value='extrapolate')
     def to_min(z):
-        return np.abs(interp(z)-0.1)
+        return np.abs(interp(z)-f)
     res = minimize(to_min, 250)
-    print('zerr needed for 10perc:', res.x)
+    print('zerr needed for ', str(100*f), 'perc:', res.x)
 
 for fname, name, Az, AR, Rg, init_vel, c in zip(fname_list, name_list, Az_list, AR_list, Rg_list, init_vel_list, clist):
     zout = pickle.load(open('zout_'+fname+'.p', 'rb'))
@@ -102,7 +102,8 @@ for fname, name, Az, AR, Rg, init_vel, c in zip(fname_list, name_list, Az_list, 
     dx[:,1] /= J1
     dx[:,2] /= J2
 
-    print_100(zoffset, dz[:,2])
+    print_100(zoffset, dz[:,2], 1)
+    print_100(zoffset, dz[:,2], 0.1)
     print(zoffset, dz[:,2])
     
     for x,o,d in zip(ax, (zoffset, xoffset), (dz, dx)):
