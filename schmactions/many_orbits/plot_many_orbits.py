@@ -26,11 +26,11 @@ xmin = 0
 xmax = 500
 
 y0min = 0
-y0max = 100
+y0max = 50
 y1min = 0
-y1max = 100
+y1max = 25
 y2min = 0
-y2max = 200
+y2max = 150
 
 histmin = 15
 histmax = 30
@@ -49,6 +49,9 @@ def sclip(a, s=4):
 
 name_list = ['thin-disk', 'thick-disk', 'halo']
 fname_list = ['thin', 'thick', 'halo']
+Az_list = np.array([120, 850, 6160]) # pc
+AR_list = np.array([1290, 1190, 2340]) # pc
+Rg_list = np.array([5420, 5610, 6200]) # pc
 
 fig, ax = plt.subplots(2, 3, figsize=(7, 4))
 init_pos = [8, 0, 0] * u.kpc
@@ -65,7 +68,7 @@ def print_100(zerr, dJz):
     res = minimize(to_min, 250)
     print(res.x)
 
-for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist):
+for fname, name, Az, AR, Rg, init_vel, c in zip(fname_list, name_list, Az_list, AR_list, Rg_list, init_vel_list, clist):
     zout = pickle.load(open('zout_'+fname+'.p', 'rb'))
     xout = pickle.load(open('xout_'+fname+'.p', 'rb'))
     res = pickle.load(open('true_res_'+fname+'.p', 'rb'))
@@ -73,7 +76,10 @@ for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist)
 
     print(name, J0, J1, J2)
 
-    s = schmactions(init_pos, init_vel)
+    s = schmactions(init_pos, init_vel, save_orbit=True)
+
+    Rcomp = np.sqrt(s.orbit.x**2 + s.orbit.y**2)
+    print(name, 'Rmin=', np.min(Rcomp), 'Rmax=', np.max(Rcomp), 'AR=', 0.5*(np.max(Rcomp) - np.min(Rcomp)))
 
     zact = np.array([ s.extract_actions(r) for r in zout['act_result'] ]) 
     xact = np.array([ s.extract_actions(r) for r in xout['act_result'] ]) 
@@ -86,19 +92,18 @@ for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist)
     xup = np.percentile(xact, 95, axis=1)
     xlow = np.percentile(xact, 5, axis=1)
 
-    dz = (zup - zlow)
+    dz = (zup - zlow)/2
     dz[:,0] /= J0
     dz[:,1] /= J1
     dz[:,2] /= J2
 
-    dx = (xup - xlow)
+    dx = (xup - xlow)/2
     dx[:,0] /= J0
     dx[:,1] /= J1
     dx[:,2] /= J2
 
     print_100(zoffset, dz[:,2])
     print(zoffset, dz[:,2])
-
     
     for x,o,d in zip(ax, (zoffset, xoffset), (dz, dx)):
         # get keys corresponding to 4 sigmaclip
@@ -118,6 +123,15 @@ for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist)
         for xx in x:
             xx.set_xlim(xmin, xmax)
 
+    # analytic stuf
+    dJz_epi = 2 * zoffset / Az
+    dJr_epi = (4/np.pi) * xoffset / AR
+    dLz_epi = (2/np.pi) * xoffset / Rg
+
+    ax[0][2].plot(zoffset, 100*dJz_epi, c=c, ls='dashed')
+    ax[1][0].plot(xoffset, 100*dJr_epi, c=c, ls='dashed')
+    ax[1][1].plot(xoffset, 100*dLz_epi, c=c, ls='dashed')
+
 for x in ax[0]:
     x.set_xlabel(r'$z\,\text{offset}\,[\,\text{pc}\,]$')
     x.set_xticks(np.arange(xmin,xmax,100), minor=True)
@@ -128,8 +142,10 @@ for x in ax[1]:
 
 for x in ax[:,0]:
     x.set_ylabel(r'$\Delta J_r/J_r\,[\,\%\,]$')
+    x.locator_params(axis='y', nbins=6)
 for x in ax[:,1]:
     x.set_ylabel(r'$\Delta L_z/L_z\,[\,\%\,]$')
+    x.locator_params(axis='y', nbins=6)
 for x in ax[:,2]:
     x.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
 
