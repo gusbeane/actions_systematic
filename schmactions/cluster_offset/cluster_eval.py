@@ -64,7 +64,7 @@ def load_orbit(name, init_pos, init_vel):
     zact = np.array([ s.extract_actions(r) for r in zout['act_result'] ]) 
     zup = np.percentile(zact, 95, axis=1)
     zlow = np.percentile(zact, 5, axis=1)
-    dz = (zup - zlow)
+    dz = (zup - zlow)/2.0
 
     offlist = np.array(zout['offset_list'])[:,2]
     dJzJz = dz[:,2]/J2
