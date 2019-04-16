@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{gensymb}
 \usepackage{bm}
+\usepackage{mathtools}
 
 \newcommand{\Gus}[1]{\textcolor{red}{#1}}
 
@@ -340,6 +341,53 @@ potential model assumed will induce phase-dependence in the actions estimated
 for a given star in that potential.}
 \label{fig:cartoon}
 \end{figure*}
+
+\subsection{Epicyclic Approximation} \label{ssec:epi_action}
+Before turning to numerical methods, we first write down analytically the
+induced action error from either a midplane offset or a Galactocentric radius
+offset. We make the epicyclic approximation, which assumes that the motion in
+the $z$ and $R$ components of the orbit are decoupled and follow a simple
+harmonic oscillator. This approximation should be an excellent description of
+thin disk-like orbits and a good description of thick disk-like orbits. We
+also make the assumption of a perfectly flat circular velocity curve with
+velocity $v_c$.
+
+Under this approximation, we can write down the vertical and radial components
+of the orbits as,
+\beq\label{eq:orbits_epi}
+\begin{split}
+z(t) &= A_z \sin{(\kappa t + \alpha)}\\
+R(t) &= A_R \sin{(\nu t + \beta)}\text{,}
+\end{split}
+\eeq
+where $\kappa$ and $\nu$ are the vertical and radial (or epicyclic)
+frequencies, $A_z$ and $A_R$ are the amplitudes of the stellar motion in the
+vertical and radial coordinates, and $\alpha$ and $\beta$ are arbitrary
+constants. We can write down the actions in this approximation as
+\citep[Section~3.5.3b][]{2008gady.book.....B},
+\beq\label{eq:actions_epi}
+\begin{split}
+L_z &= R_g v_c \\
+J_r &= \kappa A_R^2 \\
+J_z &= \nu A_z^2\text{,}
+\end{split}
+\eeq
+where $R_g$ is the guiding radius of the orbit.
+
+An induced error in $z$ of $\Delta z$ will cause $\Delta A_z \sim \Delta z$.
+Similarly, an induced error in $R$ will cause $\Delta A_R \sim \Delta R$. If
+we assume that $\kappa$ and $\nu$ are constant (\Gus{justify?}), then we have
+that
+\beq\label{eq:actions_epi_error}
+\begin{split}
+\Delta L_z = \Delta R v_c &\implies \frac{\Delta L_z}{L_z} = \frac{\Delta R}{R} \\
+\Delta J_r = 2 \kappa \Delta A_R &\implies \frac{\Delta J_r}{J_r} = \frac{2\Delta R}{A_R} \\
+\Delta J_z = 2 \nu \Delta A_z &\implies \frac{\Delta J_z}{J_z} = \frac{2\Delta z}{A_z}\text{.}
+\end{split}
+\eeq
+Therefore, errors in each action are linearly proportional to the errors in
+either the midplane or cylindrical radius. We will check these formulae
+against numerical tests next.
 
 \subsection{Numerical methods} \label{ssec:action_comp}
 We now move on to quantifying the argument made in Section~\ref{ssec:cartoon}.
