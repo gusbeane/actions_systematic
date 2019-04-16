@@ -565,7 +565,13 @@ $\sim3\%$, respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 assuming a $z$ offset of $100\,\pc$. One can see that if the observed $z$
 values have a bias (from e.g. an incorrectly computed midplane), then the
 induced error distribution in $J_z$ is decidedly non-Gaussian. Therefore, any
-sort of error propagation must take this into account.}
+sort of error propagation must take this into account. We also plot one half
+the 95\uth{} percentile minus the 5\uth{} percentile of each distribution as a
+horizontal arrow anchored on the true $J_z$ value. We call this $\Delta J_z$
+and will use it (along with the similarly defined $\Delta J_r$ and $\Delta
+L_z$) to empirically describe the error distribution. We see that $\Delta J_z$
+roughly corresponds to the distance from the true $J_z$ value to one of the
+modes of the error distribution.}
 \label{fig:Jz_hist}
 \end{figure}
 
@@ -584,19 +590,19 @@ value of $J_z$, resulting in a biased estimate of $J_z$.
 
 Empirically describing the error distribution shown in
 Figure~\ref{fig:Jz_hist} is difficult. Of course, Gaussian summary statistics
-are not adequate. We therefore elect to measure this error by computing the
+are not adequate. We therefore elect to measure this error by computing one half the
 95\uth{} percentile minus the 5\uth{} percentile of the distribution of
 observed action values. We refer to this quantity as $\Delta J_i$ for each
-action value. Because of the bimodality of the error distribution, this
-quantity roughly measures the distance between the peaks of the two modes.
+action value. We plot this quantity in Figure~\ref{fig:Jz_hist} as a horizontal arrow anchored on the true action value. Because of the bimodality of the error distribution, this
+quantity roughly measures the distance from the true action value to the peak of one of the modes.
 Furthermore, this bimodality also implies that $\Delta J_i$ is not very
 sensitive to the exact percentiles used. This summary statistic does not
 reflect the bias induced when the midplane error is $\gtrsim z_{\text{max}}$.
 
 We now repeat the same procedure as in Figure~\ref{fig:one_orbit_wrong_ref}
 but for systematic offsets between $0$ and $500\,\pc$ in the $z$ and $x$
-components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report the 95\uth{}
-minus 5\uth{} percentile divided by the true action value for the three
+components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report one half the 95\uth{}
+minus 5\uth{} percentile divided by the true action value ($\Delta J_i/J_i$) for the three
 different fiducial orbits in Table \ref{tab:orbits}. The thick-disk
 (\thickcolor) orbit is the one from Figure~\ref{fig:one_orbit_wrong_ref}, but
 we also now consider the effect on the action determined for the thin-disk
@@ -607,7 +613,7 @@ in each action for an offset in the $z$-component (i.e. the Galactic
 midplane). In the {\em bottom row} we consider offsets in the $x$ component
 (i.e. the Solar radius). The {\em left}, {\em middle}, and {\em right} columns
 show the fractional spread in the values computed for $J_z$, $L_z$, and $J_r$,
-respectively. We compute the fractional spread $\Delta J_i/J_i$ as the 95\uth{}
+respectively. We compute the fractional spread $\Delta J_i/J_i$ as one half the 95\uth{}
 minus 5\uth{} percentile of the action computed using the offset coordinate
 system over the course of the first $\Gyr$, divided by the true action
 (computed in the correct coordinate system).
@@ -637,9 +643,9 @@ all three lines nearly overlap.
 
 \begin{figure*}
 \plotone{fig/schmactions_many_orbits.pdf}
-\caption{We report the 95\uth{} minus 5\uth{} percentile of the error in the
+\caption{We report one half the 95\uth{} minus 5\uth{} percentile of the error in the
 measured action ($\Delta J_i$) from coordinate system errors for the thin,
-thick, and halo orbits (Table~\ref{tab:orbits}). The {\em left}, {\em center},
+thick, and halo orbits (Table~\ref{tab:orbits}). See discussion in the text for the justification in using this to measure the magnitude of the induced error. The {\em left}, {\em center},
 and {\em right} panels show the result for $J_r$, $L_z$, and $J_z$,
 respectively. The {\em upper} panels consider an offset in $z$ and the {\em
 lower} panels consider an offset in $x$ (equivalently, an offset in the Solar
@@ -651,7 +657,7 @@ radius).}
 \plotone{fig/schmactions_many_orbits_Jz_fun.pdf}
 \caption{The fractional error in $J_z$ as a function of $J_z$ for a few
 different offsets in $z$. We show this for a $z$ offset of $10, 50, 100\,\pc$
-(red, cyan, green respectively). As before, the error ($\Delta J_z$) is the
+(red, cyan, green respectively). As before, the error ($\Delta J_z$) is one half the
 95\uth{} minus 5\uth{} percentile of the distribution of observed $J_z$ values
 over the course of the orbit. There are large errors for thin-disk like orbits
 ($J_z \sim 0.5\,\actunit$), even for a small midplane offset of $10\,\pc$. }
