@@ -389,7 +389,7 @@ that
 Therefore, errors in each action are linearly proportional to the errors in
 either the midplane or cylindrical radius.
 
-There is a slight complication in the formula for computing $\Delta J_r/J_r$.
+There is a slight complication in the formula for computing $\Delta J_r/J_r$ and $\Delta L_z/L_z$.
 In a moment we will consider the effect of an inaccuracy in the distance from
 the Sun to the Galactic center on actions. However, this inaccuracy induces an
 error in $x$, or $\Delta x$. This is not the same as an inaccuracy in $\Delta
@@ -409,9 +409,12 @@ Averaging over the circle, we therefore have that
 \beq
 \avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
 \eeq
-Therefore, the error in $J_r$ is related to $\Delta x$ by,
+Therefore, the error in $J_r$ and $L_z$ are related to $\Delta x$ by,
 \beq\label{eq:Jr_epi_dx}
-\frac{\Delta J_r}{J_r} = \frac{4 \Delta x}{\pi A_R}\text{.}
+\begin{split}
+\frac{\Delta J_r}{J_r} &= \frac{4 \Delta x}{\pi A_R} \\
+\frac{\Delta L_z}{L_z} &= \frac{2 \Delta x}{\pi R}\text{.}
+\end{split}
 \eeq
 
 We will check these formulae against numerical tests next.
