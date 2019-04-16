@@ -24,7 +24,8 @@ Rsolar = 8.2
 
 glist = ['m12i', 'm12f', 'm12m']
 
-zoff_100_list = [30.7101346, 237.79862443]
+zoff_100_list = [61.47799653, 925.58008488]
+zoff_10_list = [6.19967419, 47.17989471]
 clist = [tb_c[7], tb_c[8]]
 
 theta = np.load('output/theta.npy')
@@ -34,7 +35,8 @@ def print_dphi(dphi, rng):
     def to_min(p):
         return np.abs(interp(p)-zoff_100_list[0]/1000)
     res = minimize(to_min, 0, bounds=[[0, 2.*np.pi]])
-    print(res.x)
+    print('dphi/pi:', res.x/np.pi)
+    return res.x
 
 def rotate(l, n):
     return np.append(l[n:], l[:n])
@@ -107,14 +109,15 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col.plot(dphi_mean/np.pi, r_up*1000, alpha=0.75, ls='dashed', c=tb_c[0])
     ax_col.plot(dphi_mean/np.pi, r_low*1000, alpha=0.75, ls='dashed', c=tb_c[0])
 
-    print_dphi(dphi_mean, r_mean)
-
     out = np.transpose([dphi_mean, r_mean, r_sigma])
     np.save('output/r_vs_dphi_'+gal+'.npy', out)
 
     # chord length
     def tick_function(l):
         return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
+
+    t = print_dphi(dphi_mean, r_mean)
+    print(tick_function(t/np.pi))
 
     ax2 = ax_col.twiny()
     #ax2.invert_xaxis()
