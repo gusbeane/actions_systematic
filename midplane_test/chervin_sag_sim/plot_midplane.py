@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[4]:
-
-
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt
@@ -22,10 +16,6 @@ rcut = 0.5
 zcut = 1.0
 nspoke = 50
 
-
-# In[5]:
-
-
 out = np.load('out_Disk_200.npy')
 theta = np.array(out[:,0])
 result = np.array(out[:,1:7])
@@ -40,10 +30,6 @@ err_vel_low = np.array(result[:,4])
 err_vel_high = np.array(result[:,5])
 import matplotlib.pyplot as plt
 plt.plot(theta/np.pi, midplane_est*1000)
-
-
-# In[16]:
-
 
 glist = ['Disk_200', 'Disk_400', 'Disk_600', 'Disk_690']
 column = [0,1,2,3]
@@ -91,10 +77,6 @@ axs[1,0].set_ylabel("midplane (pc)")
 axs[0,0].set_title("Chervin's Simulation")
 
 fig.tight_layout()
-
-
-# In[17]:
-
 plt.savefig('midplane.pdf')
 
 fig, ax = plt.subplots(1, 4, sharex=True, figsize=(11,2))
