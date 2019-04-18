@@ -79,9 +79,9 @@ axs[0,0].set_title("Chervin's Simulation")
 fig.tight_layout()
 plt.savefig('midplane.pdf')
 
-fig, ax = plt.subplots(1, 4, sharex=True, figsize=(11,2))
+fig, ax = plt.subplots(2, 2, sharex=True, figsize=(5.5,4))
 # now make paper plot, with just fit
-for gal,x,tm in zip(glist,ax,time):
+for gal,x,tm in zip(glist,ax.flatten(),time):
     out = np.load('out_'+gal+'.npy')
     theta = out[:,0]
     result = out[:,1:7]
@@ -113,8 +113,9 @@ for gal,x,tm in zip(glist,ax,time):
     x.plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     x.fill_between(theta/np.pi, (err_high-fit)*1000, (err_low-fit)*1000, color=tb_c[0], alpha=0.25)
 
-ax[0].set_ylabel('midplane (pc)')
-ax[0].set_title("Chervin's Simulation")
+ax[0][0].set_ylabel('midplane (pc)')
+ax[1][0].set_ylabel('midplane (pc)')
+# ax[0].set_title("Chervin's Simulation")
 
 fig.tight_layout()
 plt.savefig('midplane_fit.pdf')
