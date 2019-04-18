@@ -123,5 +123,5 @@ ax[1][0].set_ylabel(r'$\text{midplane}\,[\,\text{pc}\,]$')
 # ax[0].set_title("Chervin's Simulation")
 
 fig.tight_layout()
-plt.savefig('midplane_fit.pdf')
+plt.savefig('midplane_fit_chervinsim.pdf')
 
