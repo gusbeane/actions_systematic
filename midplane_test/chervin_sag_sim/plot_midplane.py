@@ -95,8 +95,6 @@ for gal,x,tm in zip(glist,ax.flatten(),time):
     err_vel_low = result[:,4]
     err_vel_high = result[:,5]
 
-    x.set_xlabel('$\phi/\pi$')
-
     x.text(0.05, 0.88, tm, 
                horizontalalignment='left', 
                verticalalignment='center', 
@@ -113,6 +111,8 @@ for gal,x,tm in zip(glist,ax.flatten(),time):
     x.plot(theta/np.pi, (err_high-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)
     x.fill_between(theta/np.pi, (err_high-fit)*1000, (err_low-fit)*1000, color=tb_c[0], alpha=0.25)
 
+ax[1][0].set_xlabel('\phi/\pi')
+ax[1][1].set_xlabel('\phi/\pi')
 ax[0][0].set_ylabel('midplane (pc)')
 ax[1][0].set_ylabel('midplane (pc)')
 # ax[0].set_title("Chervin's Simulation")
