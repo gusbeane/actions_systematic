@@ -26,7 +26,7 @@ nspoke = 50
 # In[5]:
 
 
-out = np.load('/home/douglas/Chervin/out_Disk_200.npy')
+out = np.load('out_Disk_200.npy')
 theta = np.array(out[:,0])
 result = np.array(out[:,1:7])
 fit = np.array(out[:,7])
@@ -50,7 +50,7 @@ column = [0,1,2,3]
 time = ['2.0 Gyrs', '4.0 Gyrs', '6.0 Gyrs', '6.9 Gyrs']
 fig,axs = plt.subplots(2,4,figsize=(11,3.5))
 for gal,col,tm in zip(glist,column,time):
-    out = np.load('/home/douglas/Chervin/out_'+gal+'.npy')
+    out = np.load('out_'+gal+'.npy')
     theta = out[:,0]
     result = out[:,1:7]
     fit = out[:,7]
@@ -91,16 +91,16 @@ axs[1,0].set_ylabel("midplane (pc)")
 axs[0,0].set_title("Chervin's Simulation")
 
 fig.tight_layout()
-plt.savefig('/home/douglas/Chervin/midplane.pdf')
 
 
 # In[17]:
 
+plt.savefig('midplane.pdf')
 
 fig, ax = plt.subplots(1, 4, sharex=True, figsize=(11,2))
 # now make paper plot, with just fit
 for gal,x,tm in zip(glist,ax,time):
-    out = np.load('/home/douglas/Chervin/out_'+gal+'.npy')
+    out = np.load('out_'+gal+'.npy')
     theta = out[:,0]
     result = out[:,1:7]
     fit = out[:,7]
@@ -135,5 +135,5 @@ ax[0].set_ylabel('midplane (pc)')
 ax[0].set_title("Chervin's Simulation")
 
 fig.tight_layout()
-plt.savefig('/home/douglas/Chervin/midplane_fit.pdf')
+plt.savefig('midplane_fit.pdf')
 
