@@ -965,15 +965,15 @@ motion of field stars to match them with known open clusters.
 \subsection{The size of the solar neighborhood} \label{sssec:neighborhood}
 Given a local coordinate system, the amplitude and characteristic length scale
 of the density fluctuations in the Galactic disk will determine how far this
-system can be extended before introducing $\mathcal{O}(1)$ systematic errors
-in the computation of actions for thin-disk stars. We consider this a
+coordinate system can be extended before introducing relevant systematic errors
+in the computation of actions for thin-disk stars. We consider a $10\%$ error to be a
 criterion for the region around the Sun where the analysis of the action-space
 distribution of stars on quasi-circular orbits, and therefore the epicyclic
 approximation, can be expected to be valid. This leads to a somewhat
 dynamically motivated definition of the ``solar neighborhood.'' Since the
 motivation may be different for defining the solar neighborhood in, e.g.,
 studies of the chemical distribution of the Galaxy, we propose the phrase
-``dynamical solar neighborhood.''
+``dynamical solar neighborhood.'' We also point out that our use of a $10\%$ error is arbitrary.
 
 To illustrate this concept, we first compute the absolute range of midplane
 values for a given $\Delta \phi$ segment of the midplane. With the observer's
@@ -1016,7 +1016,7 @@ and plot the result as translucent gray lines. We also plot the mean range as
 a solid blue line and the $\pm1\sigma$ lines as dashed blue lines. The upper
 $x$-axis shows the chord length from the position $\phi$ to $\pm\Delta\phi/2$.
 The horizontal \thincolor{} and \thickcolor{} lines shows the midplane
-variation necessary to induce a $100\%$ error in $J_z$ for the thin-disk and
+variation necessary to induce a $10\%$ error in $J_z$ for the thin-disk and
 thick-disk orbits, respectively. A cartoon explanation of this Figure is given
 in Figure~\ref{fig:fig_to_explain}. We only consider the Solar circle to
 explore the impact of azimuthal midplane variations, but similar effects are
@@ -1028,25 +1028,25 @@ From Figure~\ref{fig:range_deltaphi} it is clear that the range of midplane
 values spanned in a given $\Delta \phi$ quickly saturates at $\Delta \phi
 \gtrsim \pi/2$ radians (i.e. one quarter of the way around the Galactic disk
 from the Sun). At far smaller $\Delta \phi$ it reaches the level of deviation
-required for an $\mathcal{O}(1)$ systematic error in $J_z$ for our fiducial
+required for a $10\%$ systematic error in $J_z$ for our fiducial
 thin-disk-like orbit (\thincolor{} horizontal line in Figure
 \ref{fig:range_deltaphi}). For the three simulations considered, the median
-range exceeds this value at $\Delta \phi/\pi > 0.072, 0.11,
-0.34\,\text{rad}$, with corresponding physical scales of $\lambda \sim 900,
-1400, 4300\,\pc$ for \mi{}, \mf{}, and \mm{}, respectively. These can be
+range exceeds this value at $\Delta \phi/\pi > x, y,
+z\,\text{rad}$, with corresponding physical scales of $\lambda \sim a,
+b, c\,\pc$ for \mi{}, \mf{}, and \mm{}, respectively. These can be
 considered estimates of the range of validity for an extension of the locally
 determined axisymmetric coordinate system, at least when it comes to the study
 of stars on quasi-circular orbits.
 
 The situation is more forgiving for the study of thick-disk-like orbits, where
-an $\mathcal{O}(1)$ systematic error in $J_z$ requires a larger midplane
+a $10\%$ systematic error in $J_z$ requires a larger midplane
 deviation (\thickcolor{} horizontal line in Figure~\ref{fig:range_deltaphi}).
 In fact, the range of midplane variation in \mi{} just barely saturates to
 cause such an error in $J_z$, with the midplane variation in \mf{} and \mm{}
 never reaching such a value. For stars on halo-like orbits, extending the
 local coordinate system globally is not likely to cause serious problems,
 since the midplane deviations are relatively small compared to those needed to
-produce $\mathcal{O}(1)$ systematic errors in the actions (\halocolor{}
+produce $10\%$ systematic errors in the actions (\halocolor{}
 horizontal line in Figure \ref{fig:range_deltaphi}). However, we caution that
 the tendency of these midplane deviations is to \emph{inflate} the value of
 $J_z$ whenever the midplane deviation is $\gtrsim z_{\text{max}}$, scattering
@@ -1056,7 +1056,7 @@ Figure~\ref{fig:Jz_hist} and discussion therein). This inflation is extremely
 non-Gaussian (as the induced error is for all orbits, e.g.
 Figure~\ref{fig:Jz_hist}), and is particularly troubling for the case of thin
 disk stars, where the necessary midplane deviation is
-$\sim50\textup{--}100\,\pc$.
+$\sim5\textup{--}10\,\pc$.
 
 \subsection{Consequences for disrupted cluster reconstruction}
 \label{sssec:reconstruction}
@@ -1159,13 +1159,13 @@ thin-disk-like orbits (\thincolor), depending on their mass. For
 thick-disk-like orbits (\thickcolor), the tolerances are much more forgiving:
 stars' actions can be compared over the entire Solar circle for nearly all
 cluster masses, except at the very low-mass end in \mi . The neighborhood
-around $\sim100\Msun$ clusters can be as small as $\sim300\,\pc$ but up to
-$\sim1.2\,\kpc$ for \mi{} and \mf{}, though the situation is marginally better
-for \mm{} with values ranging from $\sim0.8\,\kpc$ to $\sim3\,\kpc$. The
-neighborhood values steadily increase with $m_c$, topping out at $\sim5\,\kpc$
+around $\sim100\Msun$ clusters can be as small as $\sim x\,\pc$ but up to
+$\sim y\,\kpc$ for \mi{} and \mf{}, though the situation is marginally better
+for \mm{} with values ranging from $\sim a\,\kpc$ to $\sim b\,\kpc$. The
+neighborhood values steadily increase with $m_c$, topping out at $\sim c\,\kpc$
 for $\sim10^4\,\Msun$ clusters in
 \mi{} and \mf{}. In \mm{}, the neighborhood size reaches the maximum allowed of
-$16.4\,\kpc$ for clusters of mass $\sim800\,\Msun$. This figure also
+$16.4\,\kpc$ for clusters of mass $\sim m\,\Msun$. This figure also
 underlines that the degree to which such an analysis will succeed depends
 crucially on the expected degree of midplane fluctuations in the real Galaxy.
 If the Milky Way is more like \mi , the range of action-space analysis
@@ -1178,13 +1178,13 @@ Table~\ref{tab:real_clusters}, using the midplane variations from
 midplane variation (Figure~\ref{fig:midplane}). We report the neighborhood
 values for the mass of each cluster in the neighborhood column of
 Table~\ref{tab:real_clusters}. Except for alphaPer, we find that the
-neigbhorhood around each cluster is typically $\gtrsim 500\,\pc$. This
+neigbhorhood around each cluster is typically $\gtrsim x\,\pc$. This
 analysis assumes that the MW resembles \mi{}, which is not necessarily true.
 However, this step of our analysis is meant to be more illustrative than
 quantitative: this calculation should actually be performed using real
 measurements of variations in the MW's stellar midplane. Such measurements
 should be possible in the near future with {\em Gaia}, with quality distance
-estimates the crucial limiting factor.
+estimates the crucial limiting factor, along with careful selction function modelling.
 
 \begin{figure*}
 \plotone{fig/Rn_vs_mc.pdf}
@@ -1228,9 +1228,9 @@ system induces time evolution in the {\em observed} actions
 \item We interpret this time evolution as an error in the computed action
 (Figure~\ref{fig:many_orbit_wrong_ref}). We focused on the effect that an
 inaccuracy in the midplane has on the vertical action $J_z$. We found that in
-order for there to be a $100\%$ error in $J_z$ (as defined by the middle
-$90\uth$ percentile) one needs a midplane error of $\sim30\,\pc$ and
-$\sim225\,\pc$ for a typical thin and thick disk orbit, respectively. The
+order for there to be a $10\%$ error in $J_z$ (as defined by one half the middle
+$90\uth$ percentile) one needs a midplane error of $\sim6\,\pc$ and
+$\sim50\,\pc$ for a typical thin and thick disk orbit, respectively. The
 fractional error is significantly less for halo orbits.
 
 \item We pointed out that the error distribution of the actions induced by a
