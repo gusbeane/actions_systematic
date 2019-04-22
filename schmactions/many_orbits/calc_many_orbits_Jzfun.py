@@ -28,13 +28,14 @@ def _helper_(init_vel, zoffset):
     try:
         s = schmactions(init_pos, init_vel)
         true_actions = s.res['actions'].to_value(u.kpc * u.km/u.s)
+        zmax = s.res['zmax'].to_value(u.kpc)
     
         r = s.compute_actions_offset(zoffset, voffset)
         act = s.extract_actions(r)
     except:
-        return [np.nan, np.nan]
+        return [np.nan, np.nan, np.nan]
 
-    return [true_actions, act]
+    return [true_actions, act, zmax]
 
 for zoffset, n in zip(zoffset_list, names):
     out = Parallel(n_jobs=nproc) (delayed(_helper_)(init_vel, zoffset) for init_vel in tqdm(init_vel_list))
