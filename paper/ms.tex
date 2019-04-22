@@ -495,6 +495,13 @@ observations. We use the Dormand-Prince 8(5,3) integration scheme
 \citep{Dormand80:integrator} with a timestep of $1\,\Myr$ and integrate for
 $5\,\Gyr$, corresponding to $\sim 20$ orbits for a Sun-like star.
 
+We assume the Sun is located at $(8.2, 0, 0)\,\kpc$. None of our orbit
+calculations depend on the value of the LSR in this toy potential (though this
+is important when using real data, since the conversion from heliocentric to
+Galactocentric coordinates depends on the LSR). In this potential, we have
+that the circular velocity $v_{\text{circ}}$ is $231\,\kms$ on the Solar
+circle.
+
 Other methods for computing actions are used in the literature. For example,
 the St\"ackel Fudge method \citep{2016MNRAS.457.2107S}, which uses a single
 St\"ackel potential (with analytic actions) to approximate the Galactic
@@ -659,13 +666,13 @@ The intuition behind the shape of Figure~\ref{fig:Jz_hist} is relatively
 simple. Consider first the thick-disk orbit ({\em top} panel), where the
 offset in $z$ is much less than $z_{\text{max}}$ of the orbit. The peaks in
 the distribution correspond to the turning points of the orbit (or points of
-maximum vertical amplitude), where $\v_z \sim 0$ and where the star spends
+maximum vertical amplitude), where $v_z \sim 0$ and where the star spends
 most of it orbit. This is why the distribution is peaked on these values. For
 the thin-disk orbit ({\em bottom} panel), the offset in $z$ is comparable to
 $z_{\text{max}}$. Now, there will be some points in the orbit where $v_z = 0$
 and $z=0$ (in the observed, erroneous coordinate system). At these points, the
 computed $J_z$ will vanish. The asymmetry and systematic offset then comes
-about because of the constraint that $J_z \geg 0$.\footnote{This is similar to
+about because of the constraint that $J_z \geq 0$.\footnote{This is similar to
 arguments in cosmology for why gravity produces non-Gaussianity in the density
 field, since the density cannot become negative but it can grow arbitrarily
 large.}
