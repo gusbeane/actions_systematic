@@ -28,7 +28,7 @@ def _helper_(init_vel, zoffset):
     try:
         s = schmactions(init_pos, init_vel)
         true_actions = s.res['actions'].to_value(u.kpc * u.km/u.s)
-        zmax = s.res['zmax'].to_value(u.kpc)
+        zmax = s.zmax.to_value(u.kpc)
     
         r = s.compute_actions_offset(zoffset, voffset)
         act = s.extract_actions(r)
