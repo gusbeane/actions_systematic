@@ -30,7 +30,7 @@ xmax = 500
 y0min = 0
 y0max = 50
 y1min = 0
-y1max = 25
+y1max = 10
 y2min = 0
 y2max = 150
 
