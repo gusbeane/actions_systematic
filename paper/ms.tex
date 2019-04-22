@@ -642,7 +642,7 @@ $\sim3\%$, respectively. A $\sim3\%$ error in $J_z$ is also induced.}
 assuming a $z$ offset of $100\,\pc$. One can see that if the observed $z$
 values have a bias (from e.g. an incorrectly computed midplane), then the
 induced error distribution in $J_z$ is decidedly non-Gaussian. Therefore, any
-sort of error propagation must take this into account. We also plot one half
+sort of error propagation must take this into account. Intuition for the shape of each panel is given in the text. We also plot one half
 the 95\uth{} percentile minus the 5\uth{} percentile of each distribution as a
 horizontal arrow anchored on the true $J_z$ value. We call this $\Delta J_z$
 and will use it (along with the similarly defined $\Delta J_r$ and $\Delta
@@ -670,6 +670,21 @@ This comes about
 when the midplane error is $\gtrsim z_{\text{max}}$, and can be understood by
 realizing that in such a case the midplane offset always acts to increase the
 value of $J_z$, resulting in a biased estimate of $J_z$.
+
+The intuition behind the shape of Figure~\ref{fig:Jz_hist} is relatively
+simple. Consider first the thick-disk orbit ({\em top} panel), where the
+offset in $z$ is much less than $z_{\text{max}}$ of the orbit. The peaks in
+the distribution correspond to the turning points of the orbit (or points of
+maximum vertical amplitude), where $\v_z \sim 0$ and where the star spends
+most of it orbit. This is why the distribution is peaked on these values. For
+the thin-disk orbit ({\em bottom} panel), the offset in $z$ is comparable to
+$z_{\text{max}}$. Now, there will be some points in the orbit where $v_z = 0$
+and $z=0$ (in the observed, erroneous coordinate system). At these points, the
+computed $J_z$ will vanish. The asymmetry and systematic offset then comes
+about because of the constraint that $J_z \geg 0$.\footnote{This is similar to
+arguments in cosmology for why gravity produces non-Gaussianity in the density
+field, since the density cannot become negative but it can grow arbitrarily
+large.}
 
 Empirically describing the error distribution shown in
 Figure~\ref{fig:Jz_hist} is difficult. Of course, Gaussian summary statistics
