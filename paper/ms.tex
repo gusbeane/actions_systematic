@@ -159,23 +159,7 @@ Underlying the quantitative analysis of many of the mechanisms at work that
 give rise to these signatures is the assumption of a global, axisymmetric
 Galactocentric coordinate system \citep{2008gady.book.....B} in which the
 Sun's position (and therefore the origin of the coordinate system) can be
-defined and measured both precisely and accurately. In this system, the center
-of the Galaxy is usually taken to be the location of the central supermassive
-black hole, Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From
-stellar motions near Sgr~A\textsuperscript{*}, the distance from the Sun to
-the Galactic center can be measured \citep{2009ApJ...692.1075G,
-2018AA...615L..15G}, with a recent measurement using near-infrared
-interferometry of $8.178 \pm 0.035$~kpc \citep{2019arXiv190405721A}. The Sun's
-vertical distance from the Galactic midplane, the other independent
-measurement that sets this coordinate system, can be determined by identifying
-where the stellar density and velocities reach a maximum (effectively the
-median height of all disk stars), and is usually taken to be $\sim 25\,\pc$
-\citep{2001ApJ...553..184C}, with more recent measurements from {\em Gaia} DR2
-placing it at $\sim 20\,\pc$ \citep{2019MNRAS.482.1417B}. Another strategy is
-to use the cold gas or HII regions in the disk to define the Galactic
-midplane, leading to slightly different values ($\sim 5\,\pc$) for the Sun's
-relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review
-of these measurements is given by \citet{2016ARAA..54..529B}.
+defined and measured both precisely and accurately. 
 
 Once a Galactocentric coordinate system has been established and a
 six-dimensional (6D) phase space measurement of a star has been made, it is
@@ -774,8 +758,76 @@ $z$ is enough to induce a $\sim50\%$ error in $J_z$. For larger values of
 $J_z$, the fractional errors are suppressed, but the induced error can still
 be large depending on how great the $z$ offset is.
 
-\section{Azimuthal midplane variations at the Solar Circle: estimates from
-simulation} \label{sec:local_fire}
+\section{Coordinate System Offsets I. Measurement Errors} \label{sec:mes_err}
+
+\subsection{Galactic Center}
+First, one must define the center of the Galaxy. This is usually taken to be
+the location of the central supermassive black hole, Sgr~A\textsuperscript{*}
+\citep[e.g.][]{2004ApJ...616..872R}. From stellar motions near
+Sgr~A\textsuperscript{*}, the distance from the Sun to the Galactic center can
+be measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a recent
+measurement using near-infrared interferometry of $8.178 \pm 0.035$~kpc
+\citep{2019arXiv190405721A}.
+
+We take the ``dynamical Galactic center'' to be the point in three-dimensional
+space about which the stars in the solar neighborhood are orbiting. An
+important point to make about the Galactic center is that while many authors
+assume Sgr~A\textsuperscript{*} is colocated with the dynamical Galactic
+center, this assumption has not yet been justified. One potential test is to
+perform some sort of dynamical modelling where the distance from the Sun to
+the Galactic center is a free parameter and can be constrained with real data.
+For example, \citet{2015ApJ...803...80K} were able to make this measurement by
+modelling the dynamics of the stream Palomar 5. Other dynamical measurements
+of the Solar distance have been made, though none with a precision capable of
+competing with the distance to Sgr~A\textsuperscript{*}
+\citep{1981gask.book.....M, 2011PASJ...63..867S, 2012MNRAS.427..274S,
+2013AstL...39...95B, 2013IAUS..289..444Z}.
+
+\subsection{Galactic Orientation}
+Second, one must define the orientation of the Galaxy about the center. This
+was defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
+defining the location of the Galactic center and the north Galactic pole.
+However, there is growing evidence that the true midplane is tilted when
+considering stars \citep{2014ApJ...797...53G, 2016ARAA..54..529B}, though not
+with H~\textsc{ii} \citep{2019ApJ...871..145A}.
+
+\subsection{Solar Height}
+Thirdly, one must define The Sun's vertical distance from the Galactic
+midplane, which can be determined by identifying where the stellar density
+and velocities reach a maximum (effectively the median height of all disk
+stars) The Solar height is usually taken to be $\sim 25\,\pc$
+\citep{2001ApJ...553..184C}, with a more recent measurement from {\em Gaia} DR2
+placing it at $20.8 \pm 0.3\,\pc$ \citep{2019MNRAS.482.1417B}. Another strategy is
+to use the cold gas or H~\textsc{ii} regions in the disk to define the Galactic
+midplane, leading to slightly different values ($\sim 5\,\pc$) for the Sun's
+relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review
+of these measurements is given by \citet{2016ARAA..54..529B}.
+
+\subsection{Local Standard of Rest}
+Finally, one must define the local standard of rest (LSR). The radial
+($U_{\odot}$) and vertical ($W_{\odot}$)components are easily computed by
+taking the mean motions of different stellar groups. The azimuthal component
+($V_{\odot}$) is more difficult to measure, but can be modelled using the
+asymmetric drift relation \citep{2008gady.book.....B}. The values of the
+components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. The
+value of the circular velocity is taken to be $\sim 220\kms$
+\citep[e.g.][]{2012ApJ...759..131B}.
+
+In order to convert a star's position and velocity from heliocentric to
+Galactocentric coordinates, a number of parameters must be measured. Given the
+great interest in each parameter, considerable effort has been placed on these
+measurements. However, uncertainties remain, and detailed dynamical modelling
+across the disk --- particularly for dynamically cold stars --- may have to
+take them into account. For instance, the discrepancy of $\sim 5\,\pc$ between
+the midplane defined by stars and by gas will induce a $\sim10\%$ error in
+$J_z$ for an orbit with $z_{\text{max}}\sim100\,\pc$ (see
+Section~\ref{sec:ref_frame}).
+
+% \section{Azimuthal midplane variations at the Solar Circle: estimates from
+% simulation} 
+\section{Coordinate System Offsets II. Azimuthal Midplane Variations in
+Simulations}
+\label{sec:local_fire}
 \subsection{Description of FIRE Simulation} \label{ssec:cosmozoom}
 We briefly describe the cosmological-hydrodynamical zoom-in simulations used
 in this work. Cosmological zoom-ins allow one to simulate a selected region at
@@ -1350,14 +1402,7 @@ essentially equivalent.
 {\bf Add sentences about distribution function modeling}
 
 Our main point is that the local midplane varies between different points in
-the Galaxy. This is a different statement than that our measurements of the
-local midplane are erroneous. Indeed, the local midplane has recently been
-measured to a claimed high level of precision, setting $z_{\odot} = 20.8 \pm
-0.3\,\pc$ \citep{2019MNRAS.482.1417B}. However, we also do not mean to say
-that determinations of the local midplane are perfect, since midplane
-measurements from H~\textsc{ii} regions place $z_{\odot} \sim 5-10\,\pc$. An
-additional complication is the fact that non-zero Solar heights induce a tilt
-in the Galactic midplane \citep{2014ApJ...797...53G,2016ARAA..54..529B}. We do
+the Galaxy. We do
 not propose here what a modeler should use for the ``true'' global midplane,
 since it depends on the particular problem being studied. Even without a
 high-precision definition of the global Galactic midplane, current
