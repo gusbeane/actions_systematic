@@ -474,7 +474,21 @@ Therefore, the error in $J_r$ and $L_z$ are related to $\Delta x$ by,
 \end{split}
 \eeq
 
-We will check these formulae against numerical tests next.
+A similarly rough argument can be made to arrive at the following formulae for
+the impact of velocity offsets on the actions,
+\beq\label{eq:actions_epi_error}
+\begin{split}
+\frac{\Delta L_z}{L_z} &= \frac{\Delta v_{\phi}}{v_c} \\
+\frac{\Delta J_r}{J_r} &= \frac{\Delta v_R}{v_{R,\text{max}}} \\
+\frac{\Delta J_z}{J_z} &= \frac{\Delta v_z}{v_{z,\text{max}}}\text{,}
+\end{split}
+\eeq
+where $v_{R,\text{max}}$ and $v_{z,\text{max}}$ are the maximum radial and
+vertical velocities of the orbit, respectively.
+
+We will check the formulae for the midplane offset against numerical tests
+next. The effect of velocity offsets on actions is deferred to future work, as
+we discuss in Section~\ref{ssec:lsr_var}.
 
 \subsection{Numerical methods} \label{ssec:action_comp}
 We now move on to quantifying the argument made in Section~\ref{ssec:cartoon}.
