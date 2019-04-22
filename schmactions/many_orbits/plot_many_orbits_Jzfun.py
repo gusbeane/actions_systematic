@@ -55,20 +55,31 @@ colors = [tb_c[2], tb_c[3], tb_c[4]]
 def delta(r): 
     return (np.percentile(r[0][1][:,2], 95) - np.percentile(r[0][1][:,2], 5))/r[0][0][2] 
 
+epi_save ={}
+
 for n,c in zip(names, colors):
+
+    zerr = float(n)/1000
 
     out = pickle.load(open('dJz_fun_of_Jz_'+n+'pc.p', 'rb'))
 
     to_plot = []
-    for act, r in out:
+    to_plot_epi = []
+    for act, r, zmax in out:
         try:
             Jz = act[2]
             up = np.percentile(r, 95, axis=0)[2]
             low = np.percentile(r, 5, axis=0)[2]
             to_plot.append([Jz, 100*(up-low)/(2*Jz)])
+
+            epi = 2*zerr/zmax
+            to_plot_epi.append([Jz, 100*epi])
+
         except:
             to_plot.append([np.nan, np.nan])
+            to_plot_epi.append([np.nan, np.nan])
     to_plot = np.array(to_plot)
+    to_plot_epi = np.array(to_plot_epi)
 
     print(delta(out))
     print(to_plot[0][1])
@@ -86,17 +97,28 @@ for n,c in zip(names, colors):
         if to_plot[i+1][1] > to_plot[i][1]:
             totbool[i+1] = False
 
+    keys = np.where(totbool)[0]
+
+    epibool1 = np.logical_not(np.isnan(to_plot_epi[:,0]))
+    epibool2 = np.logical_not(np.isnan(to_plot_epi[:,1]))
+    totbool = np.logical_and(epibool1, epibool2)
+
+    for i in range(len(to_plot_epi)-1):
+        if to_plot_epi[i+1][0] < to_plot[i][0]:
+            totbool[i+1] = False
+
+    epikeys = np.where(totbool)[0]
+
     # if n == '100':
     #     # ignore some numerical artifacts
     #    totbool[0] = False
     #    totbool[75] = False
     #    totbool[80] = False
 
-    
-
-    keys = np.where(totbool)[0]
-
     ax.plot(to_plot[:,0][keys], to_plot[:,1][keys], c=c, label=n)
+    ax.plot(to_plot_epi[:,0][epikeys], to_plot_epi[:,1][epikeys], c=c, ls='dashed')
+
+    epi_save[n] = to_plot_epi
 
 ax.set_xscale('log')
 
