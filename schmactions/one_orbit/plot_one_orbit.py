@@ -118,25 +118,25 @@ k0, k1, k2 = sclip(zact)
 dJzJz = 0.5*(np.percentile(zact[:,2][k2], 95) - np.percentile(zact[:,2][k2], 5))
 
 ax[0].hist(zact[:,2][k2], bins=np.linspace(histmin, histmax, 60), lw=1.5,
-        edgecolor=tb_c[8], fc='none', histtype='stepfilled')
-ax[0].arrow(J2, 60, dJzJz, 0, head_width=1, head_length=0.4, length_includes_head=True, color=tb_c[8])
-ax[0].text(J2+dJzJz/3.5, 61, r'$\bm{\Delta J_z}$', color=tb_c[8])
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[0].arrow(J2, 60, dJzJz, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
+ax[0].text(J2+dJzJz/3.5, 61, r'$\bm{\Delta J_z}$', color='k')
 
-ax[0].axvline(x=J2, color=tb_c[8], ls='dashed', lw=1.5)
+ax[0].axvline(x=J2, color='k', ls='dashed', lw=1.5)
 ax[0].set_ylabel(r'$\text{count}$')
-ax[0].text(14.5, 75, r'\textbf{thick-disk orbit}', color=tb_c[8])
+ax[0].text(14.5, 75, r'\textbf{thick-disk orbit}', color='k')
 
 k0t, k1t, k2t = sclip(zact_thin)
 dJzJz_thin = 0.5*(np.percentile(zact_thin[:,2][k2t], 95) - np.percentile(zact_thin[:,2][k2t], 5))
 
 ax[1].hist(zact_thin[:,2][k2t], bins=np.linspace(histmin_thin, histmax_thin, 60), lw=1.5,
-        edgecolor=tb_c[7], fc='none', histtype='stepfilled')
-ax[1].arrow(J2_thin, 60, dJzJz_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color=tb_c[7])
-ax[1].text(J2_thin+dJzJz_thin/3.5, 61.5, r'$\bm{\Delta J_z}$', color=tb_c[7])
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[1].arrow(J2_thin, 60, dJzJz_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
+ax[1].text(J2_thin+dJzJz_thin/3.5, 61.5, r'$\bm{\Delta J_z}$', color='k')
 
-ax[1].axvline(x=J2_thin, color=tb_c[7], ls='dashed', lw=1.5)
+ax[1].axvline(x=J2_thin, color='k', ls='dashed', lw=1.5)
 ax[1].set_ylabel(r'$\text{count}$')
-ax[1].text(1.3, 100, r'\textbf{thin-disk orbit}', color=tb_c[7])
+ax[1].text(1.3, 100, r'\textbf{thin-disk orbit}', color='k')
 
 ax[1].set_xlabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
