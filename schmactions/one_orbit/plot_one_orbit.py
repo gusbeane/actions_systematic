@@ -99,9 +99,9 @@ for x in ax[1]:
     x.set_xticks(np.arange(0,1000,100), minor=True)
 
 for x in ax[:,0]:
-    x.set_ylabel(r'$J_{r,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$J_{R,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 for x in ax[:,1]:
-    x.set_ylabel(r'$L_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$J_{\phi,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 for x in ax[:,2]:
     x.set_ylabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 

@@ -144,10 +144,10 @@ for x in ax[1]:
     x.set_xticks(np.arange(xmin,xmax,100), minor=True)
 
 for x in ax[:,0]:
-    x.set_ylabel(r'$\Delta J_r/J_r\,[\,\%\,]$')
+    x.set_ylabel(r'$\Delta J_R/J_R\,[\,\%\,]$')
     x.locator_params(axis='y', nbins=6)
 for x in ax[:,1]:
-    x.set_ylabel(r'$\Delta L_z/L_z\,[\,\%\,]$')
+    x.set_ylabel(r'$\Delta J_{\phi}/J_{\phi}\,[\,\%\,]$')
     x.locator_params(axis='y', nbins=6)
 for x in ax[:,2]:
     x.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
