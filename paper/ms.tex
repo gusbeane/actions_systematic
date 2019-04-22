@@ -1,3 +1,5 @@
+%mm substantive Mac Low changes marked so.  Minor changes done silently.
+
 \documentclass[twocolumn]{aastex62}
 
 % \submitjournal{ApJ}
@@ -60,9 +62,11 @@ Ave., New York, NY 10011, USA}
 
 \begin{document}
 
-\title{The Galactic Midplane is Not a Plane: Implications for {\em Gaia}}
+\title{The Galactic Midplane is Not a Plane: Implications for dynamical analysis with {\em Gaia} data and beyond}
 
 % \correspondingauthor{Angus Beane}
+%mm [will this address go away during the review process?.  Do you
+%want to give a "current address" as a second footnote?]
 \email{abeane@sas.upenn.edu}
 
 \author{Angus Beane}
@@ -91,24 +95,45 @@ Ave., New York, NY 10011, USA}
 Stellar actions, computed for stars from their six-dimensional phase space measurement and
 an assumed Galactic potential, are used to label and distinguish orbits. In
 principle, actions have the attractive quality of being invariant and thus
-good labels of a star's orbit. Of course, inaccurate measurements of the 
-phase space position and uncertainities in the assumed Galactic potential
+good labels of a star's orbit. 
+%mm Of course,
+    Such analyses are often used to interpret data from the {\em Gaia}
+    mission. However, 
+inaccurate measurements of the 
+phase space position and uncertainties in the assumed Galactic potential
 induce an error in the computed action. We show that, in addition to these
 complications, a systematic bias in the phase space position induces a
-phase-dependence in the actions, which we interpret as an error. The induced error distribution is
+phase-dependence in the actions, which we interpret as 
+%mm an 
+    a systematic
+error. The induced error distribution is
 non-Gaussian and bimodal, 
-with neither of the modes peaking on the true action value. 
-A midplane error of $\sim6\,\pc$ for a thin disk orbit or
-$\sim50\,\pc$ for a thick disk orbit is all that is necessary to
-induce a $10\,\%$ error in the vertical action $J_z$.
+with neither of the modes peaking on
+%mm  the true action value. [the error in a Gaussian peaks on zero] 
+    the null value.
+A variation in the vertical position midplane of $\sim30\,\pc$ for a thin disk orbit or
+$\sim225\,\pc$ for a thick disk orbit is 
+%mm all that is necessary 
+      sufficient
+to induce a $100\,\%$ systematic error in the vertical action $J_z$ computed under the assumption of an axisymmetric potential.
+%mm [fragment?] orbits, respectively. 
 Furthermore, we show that the local midplane varies by
 $\sim100\,\pc$ at the Solar circle in Milky Way-mass cosmological zoom-in
 simulations from the FIRE collaboration. Thus, current state-of-the-art action
 calculations --- which assume the global and local midplanes are the same ---
-include a systematic offset in $z$. Variation in the local standard of rest
-will induce similar issues. The variation of the midplane must be taken into
-account when performing dynamical modelling across large regions of the disk
-accessible with the {\em Gaia} mission.
+include a systematic 
+%mm offset in $z$.
+   vertical offset variation. 
+Variation in the local standard of rest
+%mm will induce 
+     induces
+similar issues. The variation of the midplane must be taken into
+account when performing dynamical modelling across
+the large regions of the disk
+accessible 
+%mm with the {\em Gaia} mission. [moved first mention up to top of
+%abstract, given that this is in the title.]
+    to {\em Gaia}.
 
 \end{abstract}
 
@@ -117,8 +142,9 @@ open~clusters~and~associations:~general -- Galaxy:~structure --
 Galaxy:~evolution}
 
 \section{Introduction} \label{sec:intro}
-Our understanding of the Milky Way is currently undergoing a revolution in the
-era of {\em Gaia} DR2. Recent major discoveries include the remnants of a
+Our understanding of the Milky Way is currently undergoing a
+revolution 
+     as a result of {\em Gaia} Data Release 2 (DR2).  Recent major discoveries include the remnants of a
 major merger \citep{2018ApJ...860L..11K, 2018Natur.563...85H,
 2018arXiv180704290L, 2019MNRAS.482.3426M}, a phase-space ``spiral'' in the
 solar neighborhood \citep{2018Natur.561..360A} possibly indicating either
@@ -138,8 +164,12 @@ defined and measured both precisely and accurately. In this system, the center
 of the Galaxy is usually taken to be the location of the central supermassive
 black hole, Sgr~A\textsuperscript{*} \citep[e.g.][]{2004ApJ...616..872R}. From
 stellar motions near Sgr~A\textsuperscript{*}, the distance from the Sun to
-the Galactic center is taken to be $\sim 8.1\text{--}8.3\,\kpc$
-\citep{2009ApJ...692.1075G,2018AA...615L..15G}, with a recent $\sim0.3\%$ measurement from the GRAVITY collaboration \citep{2019arXiv190405721A}. The Sun's vertical distance
+the Galactic center
+    can be measured
+\citep{2009ApJ...692.1075G,2018AA...615L..15G}, with a recent 
+    measurement using near-infrared interferometry of $8.178 \pm
+    0.035$~kpc 
+\citep{2019arXiv190405721A}. The Sun's vertical distance
 from the Galactic midplane, the other independent measurement that sets this
 coordinate system, can be determined by identifying where the stellar density
 and velocities reach a maximum (effectively the median height of all disk
@@ -151,22 +181,24 @@ different values ($\sim 5\,\pc$) for the Sun's relative height
 \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review of these
 measurements is given by \citet{2016ARAA..54..529B}.
 
-Once a Galactocentric coordinate system has been established and a 6D phase
+Once a Galactocentric coordinate system has been established and a
+six-dimensional (6D) phase
 space measurement of a star has been made, it is often desirable to convert
 this measurement into action space to concisely summarize its projected orbit,
 model the stellar distribution function, or find stars with similar dynamical
-properties. Actions are conserved quantities which describe the orbit of a
+properties. Actions are conserved quantities that describe the orbit of a
 star under the assumption of regular, bound orbits in a system where the
 equations of motion are separable in a particular coordinate system. They are
-the typical integral of the Hamiltonian in cylindrical coordinates and are
-given by,
+the 
+cyclical integral of the canonical momentum  over its conjugate position,
 \beq\label{eq:actions}
 J_i \equiv
-\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
+\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,.}
 \eeq
-where $i=R,z,\phi$ are the radial, vertical, and azimuthal coordinates
+Under the assumption of axisymmetry, $i=R,z,\phi$ are the radial, vertical, and azimuthal coordinates
 respectively in a cylindrical coordinate system and the $p_i$ are the
-conjugate momenta.\footnote{We typically write $J_r$ instead of $J_R$ for
+conjugate momenta.\footnote{We 
+write $J_r$ instead of $J_R$ for
 aesthetic reasons.} In a slowly-evolving axisymmetric potential, these actions
 are invariant and $J_{\phi} \equiv L_z$
 \citep{2008gady.book.....B,2014RvMP...86....1S}.
@@ -175,7 +207,7 @@ With the advent of 6D phase-space measurements over a relatively large
 ($\gtrsim 2$ kpc) volume from the {\em Gaia} satellite, the study of stars'
 actions has gained new popularity. One reason is dimensionality reduction---an
 individual stellar orbit is concisely described by three actions, as opposed
-to six dimensions of phase space. Second, under the assumption of a
+to six phase space coordinates. Second, under the assumption of a
 phase-mixed system, the dynamical properties of a population of stars should
 be uniquely a function of their actions and independent of the conjugate
 angles, allowing investigation of the relationship between {\em orbital}
@@ -204,10 +236,14 @@ the extended solar neighborhood in action space are discussed in
 
 The transformation to action space is nonlinear in both the phase-space
 position and the potential, and requires relatively strong assumptions about
-the system's symmetry. For instance, the Galactic potential is not strictly
+the system's symmetry. 
+    However, 
+the Galactic potential is not strictly
 axisymmetric; with the vast improvement in the quality of phase-space
 measurements due to {\em Gaia}, this assumption appears increasingly
-inadequate \citep[e.g.][]{2018Natur.561..360A}. Even if this assumption is
+inadequate \citep[e.g.][]{2018Natur.561..360A}. Even if this
+assumption 
+     were
 close enough for many purposes, the parameters used in axisymmetric models may
 be inadequately constrained by current observations.
 
@@ -227,17 +263,22 @@ likely the mismatch will result in large systematic uncertainty, especially in
 the vertical action $J_z$. Depending on the type of orbit being studied, this
 sets a limit on the ``dynamical solar neighborhood'' over which the local
 coordinate frame can be usefully extended for action-space analysis. A similar
-argument applies to uncertainty in measurements of $R_{\odot}$\footnote{Here,
-and throughout, we use $R_{\odot}$ to mean the distance from the Sun to the
-Galactic center.} and variations in the local standard of rest (LSR).
+argument applies to 
+%mm [given that this is down to 0.3% error, seems a bit academic]
+   any remaining 
+uncertainty in measurements of 
+     the Galactocentric radius of the Sun $R_{\odot}$
+and to variations in the local standard of rest (LSR).
 
 In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
 system errors have on the measured actions. Lacking an empirical, nonlocal
 definition of the global Galactic midplane or a measurement of the expected
 midplane variation in the Milky Way itself,  in Section~\ref{sec:local_fire}
-we attempt to quantify the azimuthal dependence of the local midplane, and
+we 
+    examine the expected 
+azimuthal dependence of the local midplane, and
 hence the expected size of the dynamical solar neighborhood, using
-cosmological-hydrodynamical zoom-in simulations of Milky Way-mass galaxies
+cosmological, hydrodynamical, zoom-in simulations of Milky Way-mass galaxies
 from the Feedback in Realistic Environments (FIRE)
 collaboration\footnote{\url{https://fire.northwestern.edu}}
 \citep{2016ApJ...827L..23W,2017arXiv170206148H}.
@@ -247,7 +288,7 @@ variations, and the resulting systematic uncertainty in the vertical action,
 for action-space analyses beyond the dynamical solar neighborhood. As an
 illustration, in Section \ref{sssec:neighborhood} we use these estimates to
 consider the feasibility of one science goal that relies on the invariance of
-actions --- the reconstruction of open clusters across large distances using
+actions---the reconstruction of open clusters across large distances using
 ``dynamical tagging;'' that is, the association of stars to a birth cluster
 based on their similar actions. In light of our findings, we considered the
 orbits of the nine open clusters within $250\,\pc$ as reported by the {\em
@@ -594,11 +635,17 @@ In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
 $J_z$ for the thick-disk orbit ({\em upper panel}) and thin-disk orbit ({\em
 lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. the {\em right} panel
 of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$ is plotted
-as a vertical dashed line. Here we see that the spread in $J_z$ induced by a
-systematic offset in $z$ is non-Gaussian and bimodal. Furthermore, neither of
-the modes lie at the true value of $J_z$. In the case of the thin-disk orbit
+as a vertical dashed line. Here we see that the 
+    errors 
+in $J_z$ induced by a
+systematic offset in $z$ are non-Gaussian and bimodal. Furthermore, neither of
+the modes lie
+   at zero. In other words, neither of the modes of the distribution of observed $J_z$ values are centered on the true $J_z$ (i.e. the $J_z$ computed with no offset in $z$).
+In the case of the thin-disk orbit
 ({\em lower panel}), we see that, in addition to the prior complications, the
-error distribution is not even centered on the true value. This comes about
+error distribution is not even centered on 
+    null. 
+This comes about
 when the midplane error is $\gtrsim z_{\text{max}}$, and can be understood by
 realizing that in such a case the midplane offset always acts to increase the
 value of $J_z$, resulting in a biased estimate of $J_z$.
@@ -1235,8 +1282,12 @@ fractional error is significantly less for halo orbits.
 
 \item We pointed out that the error distribution of the actions induced by a
 coordinate system error is very non-Gaussian. The distribution is bimodal with
-{\em neither of the modes peaking at the true value}. As a result, error
-propagation is very involved when considering actions.
+{\em neither of the modes peaking at 
+     null}. 
+As a result, error
+propagation is 
+     complex
+when considering actions.
 
 \item We proposed that dynamical modelling across large regions of the disk is
 susceptible to this type of error, since the assumption that our local
@@ -1255,7 +1306,7 @@ conclusions also extend to studies of stars that simply rely on orbit
 integration, since the computation of actions and orbit integrations are
 essentially equivalent.
 
-Add sentences about distribution function modeling
+{\bf Add sentences about distribution function modeling}
 
 Our main point is that the local midplane varies between different points in
 the Galaxy. This is a different statement than that our measurements of the
@@ -1273,12 +1324,14 @@ observations from {\em Gaia} should soon permit a measurement of the real
 azimuthal dependence of the midplane location.
 
 \acknowledgments
-We would like to thank Megan Bedell, Tobias Buck, David W. Hogg, and Kathryn
-Johnston for many useful discussions. A.B. would like to thank Todd Phillips
+We would like to thank Megan Bedell, Tobias Buck, and Todd Phillips
+A.B. would like to thank Todd Phillips
 for helpful discussions. A.B. was supported in part by the Roy \& Diana
 Vagelos Program in the Molecular Life Sciences and the Roy \& Diana Vagelos
-Challenge Award. The work of \Gus{everyone} is supported by the Simons
-Foundation. \Gus{remove last sentence if everyone CCA affiliated}
+Challenge Award. 
+%mm The work of \Gus{everyone} is supported by the Simons
+%Foundation. \Gus{remove last sentence if everyone CCA affiliated}
+M.-M.M.L. was partly supported by NSF grant AST18-15461.
 
 \appendix
 \section{Orbits} \label{app:orbits}
