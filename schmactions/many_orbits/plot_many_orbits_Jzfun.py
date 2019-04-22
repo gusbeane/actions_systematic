@@ -13,6 +13,8 @@ import numpy as np
 from scipy.interpolate import interp1d
 from scipy.optimize import minimize
 
+from matplotlib.lines import Line2D
+
 import matplotlib as mpl
 from matplotlib import rc
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
@@ -128,7 +130,13 @@ ax.set_ylim([ymin, ymax])
 ax.set_xlabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 ax.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
 
-ax.legend(frameon=False, title=r'$z\,\text{offset}\,[\,\text{pc}\,]$')
+myh = Line2D([0], [0], color='k', linestyle='dashed')
+myl = 'epicyclic'
+h, l = ax.get_legend_handles_labels()
+h.append(myh)
+l.append(myl)
+
+ax.legend(h, l, frameon=False, title=r'$z\,\text{offset}\,[\,\text{pc}\,]$')
 
 fig.tight_layout()
 plt.savefig('schmactions_many_orbits_Jz_fun.pdf')
