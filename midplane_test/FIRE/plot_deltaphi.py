@@ -33,7 +33,7 @@ theta = np.load('output/theta.npy')
 def print_dphi(dphi, rng):
     interp = interp1d(dphi, rng)
     def to_min(p):
-        return np.abs(interp(p)-zoff_100_list[0]/1000)
+        return np.abs(interp(p)-zoff_10_list[0]/1000)
     res = minimize(to_min, 0, bounds=[[0, 2.*np.pi]])
     print('dphi/pi:', res.x/np.pi)
     return res.x
@@ -90,7 +90,7 @@ for gal,ax_col in zip(glist, ax.transpose()):
 
     ax_col.set_ylim(0, 300)
 
-    for z, c in zip(zoff_100_list, clist):
+    for z, c in zip(zoff_10_list, clist):
         ax_col.axhline(z, color=c)
 
 
@@ -113,11 +113,14 @@ for gal,ax_col in zip(glist, ax.transpose()):
     np.save('output/r_vs_dphi_'+gal+'.npy', out)
 
     # chord length
-    def tick_function(l):
-        return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
+    def tick_function(l, round=True):
+        a = 2*Rsolar*np.sin(0.5*(l/2)*np.pi)
+        if round:
+            a = np.round(a, 1)
+        return a
 
     t = print_dphi(dphi_mean, r_mean)
-    print(tick_function(t/np.pi))
+    print(tick_function(t/np.pi, round=False))
 
     ax2 = ax_col.twiny()
     #ax2.invert_xaxis()
