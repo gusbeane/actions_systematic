@@ -103,7 +103,7 @@ for fname, name, Az, AR, Rg, init_vel, c in zip(fname_list, name_list, Az_list, 
     dx[:,2] /= J2
 
     print_100(zoffset, dz[:,2], 1)
-    print_100(zoffset, dz[:,2], 0.1)
+    print_100(zoffset, dz[:,2], 0.25)
     print(zoffset, dz[:,2])
     
     for x,o,d in zip(ax, (zoffset, xoffset), (dz, dx)):
