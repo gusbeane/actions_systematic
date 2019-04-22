@@ -52,7 +52,7 @@ init_vel = [0, -190, 10] * u.km/u.s
 s = schmactions(init_pos, init_vel)
 
 names = ['10', '50', '100']
-colors = [tb_c[2], tb_c[3], tb_c[4]]
+colors = [tb_c[1], tb_c[3], tb_c[4]]
 
 def delta(r): 
     return (np.percentile(r[0][1][:,2], 95) - np.percentile(r[0][1][:,2], 5))/r[0][0][2] 
