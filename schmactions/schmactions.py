@@ -33,6 +33,8 @@ class schmactions(object):
                                                  t1=self.t1, t2=self.t2)
             self.res = gd.find_actions(orbit, N_max=self.N_max)
         
+        self.zmax = self.orbit.zmax()
+
         if save_orbit:
             #optional since orbit breaks pickling
             self.orbit = orbit
