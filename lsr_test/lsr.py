@@ -51,8 +51,8 @@ def get_lsr_error(star_select, nbootstrap):
     
     dist_vel = np.subtract(med_rand, lsr)
 
-    up_vel = np.percentile(dist_vel, 95, axis=0)
-    low_vel = np.percentile(dist_vel, 5, axis=0)
+    up_vel = np.percentile(dist_vel, 50+68/2, axis=0)
+    low_vel = np.percentile(dist_vel, 50-68/2, axis=0)
 
     l_v = lsr - up_vel
     h_v = lsr - low_vel
