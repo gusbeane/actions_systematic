@@ -27,16 +27,16 @@ for gal, x in zip(gal_list, ax.transpose()):
     x[1].plot(lsr[:,0]/np.pi, lsr[:,2], c=tb_c[0])
     x[2].plot(lsr[:,0]/np.pi, lsr[:,3], c=tb_c[0])
 
-    x[0].plot(lsr[:,0]/np.pi, lsr[:,4], c=tb_c[0], alpha=0.5)
-    x[0].plot(lsr[:,0]/np.pi, lsr[:,7], c=tb_c[0], alpha=0.5)
+    x[0].plot(lsr[:,0]/np.pi, lsr[:,4], c=tb_c[0], alpha=0.5, ls='dashed')
+    x[0].plot(lsr[:,0]/np.pi, lsr[:,7], c=tb_c[0], alpha=0.5, ls='dashed')
     x[0].fill_between(lsr[:,0]/np.pi, lsr[:,7], lsr[:,4], color=tb_c[0], alpha=0.25)
 
-    x[1].plot(lsr[:,0]/np.pi, lsr[:,5], c=tb_c[0], alpha=0.5)
-    x[1].plot(lsr[:,0]/np.pi, lsr[:,8], c=tb_c[0], alpha=0.5)
+    x[1].plot(lsr[:,0]/np.pi, lsr[:,5], c=tb_c[0], alpha=0.5, ls='dashed')
+    x[1].plot(lsr[:,0]/np.pi, lsr[:,8], c=tb_c[0], alpha=0.5, ls='dashed')
     x[1].fill_between(lsr[:,0]/np.pi, lsr[:,8], lsr[:,5], color=tb_c[0], alpha=0.25)
 
-    x[2].plot(lsr[:,0]/np.pi, lsr[:,6], c=tb_c[0], alpha=0.5)
-    x[2].plot(lsr[:,0]/np.pi, lsr[:,9], c=tb_c[0], alpha=0.5)
+    x[2].plot(lsr[:,0]/np.pi, lsr[:,6], c=tb_c[0], alpha=0.5, ls='dashed')
+    x[2].plot(lsr[:,0]/np.pi, lsr[:,9], c=tb_c[0], alpha=0.5, ls='dashed')
     x[2].fill_between(lsr[:,0]/np.pi, lsr[:,9], lsr[:,6], color=tb_c[0], alpha=0.25)
 
 ax[0][0].set_ylabel(r'$v_{R,\text{LSR}}\,[\,\text{km}/\text{s}\,]$')
