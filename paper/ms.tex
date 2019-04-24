@@ -370,14 +370,13 @@ in the actions estimated for a given star in that potential.}
 \end{figure*}
 
 \subsection{Epicyclic Approximation} \label{ssec:epi_action}
-Before turning to numerical methods, we first write down analytically the
-induced action error from either a midplane offset or a Galactocentric radius
-offset. We make the epicyclic approximation, which assumes that the motion in
-the $z$ and $R$ components of the orbit are decoupled and follow a simple
-harmonic oscillator. This approximation should be an excellent description of
-thin disk-like orbits and a good description of thick disk-like orbits. We
+Before turning to numerical methods, we first write down analytically the systematic error in the actions induced from either a midplane offset or a Galactocentric radius
+offset. We use the epicyclic approximation, which assumes that the motion in
+the $z$ and $R$ components of the orbit are decoupled and follow simple
+harmonic motion \citep[][section 3.2 and references therein]{2008gady.book.....B}. This approximation is an excellent description of
+thin disk-like orbits, and a good description of thick disk-like orbits, in an axisymmetric potential (i.e. ignoring the influence of the Galactic bar and spiral arms). We
 also make the assumption of a perfectly flat circular velocity curve with
-velocity $v_c$.
+velocity $v_c$ \citep[decent near the Solar circle, e.g.][]{2017MNRAS.465...76M}. 
 
 Under this approximation, we can write down the vertical and radial components
 of the orbits as,
@@ -390,7 +389,7 @@ R(t) &= A_R \sin{(\nu t + \beta)}\text{,}
 where $\kappa$ and $\nu$ are the vertical and radial (or epicyclic)
 frequencies, $A_z$ and $A_R$ are the amplitudes of the stellar motion in the
 vertical and radial coordinates, and $\alpha$ and $\beta$ are arbitrary
-constants. Similarly, the velocities of the orbit are given by,
+constants. Similarly, the velocities of the orbit are given by
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
 v_z(t) &= A_z \kappa \cos{(\kappa t + \alpha)}\\
@@ -399,7 +398,7 @@ v_R(t) &= A_R \nu \cos{(\nu t + \beta)}\text{.}
 \eeq
 
 We can write down the actions in this approximation as
-\citep[Section~3.5.3b][]{2008gady.book.....B},
+\citep[][Section~3.5.3b]{2008gady.book.....B},
 \beq\label{eq:actions_epi}
 \begin{split}
 J_{\phi} &= R_g v_c \\
@@ -409,9 +408,9 @@ J_z &= \nu A_z^2\text{,}
 \eeq
 where $R_g$ is the guiding radius of the orbit.
 
-An induced error in $z$ of $\Delta z$ will cause $\Delta A_z \sim \Delta z$.
-Similarly, an induced error in $R$ will cause $\Delta A_R \sim \Delta R$.
-Making the assumption that $\kappa$ and $\nu$ are constant, we have that
+An offset $\Delta z$ will induce $\Delta A_z \sim \Delta z$.
+Similarly, an offset $\Delta R$ will induce $\Delta A_R \sim \Delta R$.
+Assuming $\kappa$ and $\nu$ are constant, 
 \beq\label{eq:actions_epi_error}
 \begin{split}
 \Delta J_{\phi} = \Delta R v_c &\implies \frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R} \\
@@ -419,17 +418,12 @@ Making the assumption that $\kappa$ and $\nu$ are constant, we have that
 \Delta J_z = 2 \nu \Delta A_z &\implies \frac{\Delta J_z}{J_z} = \frac{2\Delta z}{A_z}\text{.}
 \end{split}
 \eeq
-Therefore, errors in each action are linearly proportional to the errors in
-either the midplane or cylindrical radius. While in detail $\kappa$ and $\nu$
-are not constant, we will find that this order of magnitude estimate matches
-the numerical estimates quite well.
+Therefore, systematic errors in each action are linearly proportional to offsets in
+either the midplane ($z$ coordinate) or cylindrical radius ($R$ coordinate). While in general $\kappa$ and $\nu$ are not constant, we find that this order of magnitude estimate matches our numerical calculations quite well.
 
-There is a slight complication in the formula for computing $\Delta J_R/J_R$
-and $\Delta J_{\phi}/J_{\phi}$. In a moment we will consider the effect of an inaccuracy
-in the distance from the Sun to the Galactic center on actions. However, this
-inaccuracy induces an error in $x$, or $\Delta x$. This is not the same as an
-inaccuracy in $\Delta R$, but they are related by the following argument. An
-error $\Delta x$ will induce an erroneous radius $R_{\text{err}}$ related by
+%There is a slight complication in the formula for computing $\Delta J_R/J_R$
+%and $\Delta J_{\phi}/J_{\phi}$. 
+We will later consider the effect on actions of an inaccuracy in the distance from the Sun to the Galactic center, which introduces an offset in the $x$ coordinate, $\Delta x$, of each star when converting to a Galactocentric coordinate system. An offset $\Delta x$ results in an erroneous radius $R_{\text{err}}$ related by
 the formula,
 \beq
 (x+\Delta x)^2 + y^2 = R_{\text{err}}^2\text{.}
@@ -453,8 +447,8 @@ Therefore, the error in $J_R$ and $J_{\phi}$ are related to $\Delta x$ by,
 \end{split}
 \eeq
 
-A similarly rough argument can be made to arrive at the following formulae for
-the impact of velocity offsets on the actions,
+A similar derivation results in formulae for
+the impact of velocity offsets on the actions:
 \beq\label{eq:actions_epi_error}
 \begin{split}
 \frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta v_{\phi}}{v_c} \\
