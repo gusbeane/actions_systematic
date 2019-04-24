@@ -772,7 +772,7 @@ estimate quite well.
 \section{Coordinate System Offsets I. Measurement Errors} \label{sec:mes_err}
 We consider the first potential source of coordinate system offsets which
 would generate the action errors described in Section~\ref{sec:ref_frame}:
-errors in the determination of the Galactocentric parameters. Converting from
+uncertainties in measurements of the position and velocity of the Sun relative to the Galactic center. Converting from
 heliocentric to Galactocentric coordinates relies on these measurements.
 Therefore, errors in their values will induce a systematic offset in the
 Galactocentric phase-space position of any observed star.
@@ -781,36 +781,29 @@ Galactocentric phase-space position of any observed star.
 First, one must define the center of the Galaxy. This is usually taken to be
 the location of the central supermassive black hole, Sgr~A\textsuperscript{*}
 \citep[e.g.][]{2004ApJ...616..872R}. From stellar motions near
-Sgr~A\textsuperscript{*}, the distance from the Sun to the Galactic center can
-be measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a recent
+Sgr~A\textsuperscript{*}, the distance from the Sun to Sgr~A\textsuperscript{*} can
+be precisely measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a recent
 measurement using near-infrared interferometry of $8.178 \pm 0.035$~kpc
 \citep{2019arXiv190405721A}.
 
-We take the ``dynamical Galactic center'' to be the point in three-dimensional
-space about which the stars in the solar neighborhood are orbiting. An
-important point to make about the Galactic center is that while many authors
-assume Sgr~A\textsuperscript{*} is colocated with the dynamical Galactic
-center, this assumption has not yet been justified. One potential test is to
-perform some sort of dynamical modelling where the distance from the Sun to
-the Galactic center is a free parameter and can be constrained with real data.
-For example, \citet{2015ApJ...803...80K} were able to make this measurement by
-modelling the dynamics of the stream Palomar 5. Other dynamical measurements
-of the Solar distance have been made, though none with a precision capable of
-competing with the distance to Sgr~A\textsuperscript{*}
-\citep{1981gask.book.....M, 2011PASJ...63..867S, 2012MNRAS.427..274S,
-2013AstL...39...95B, 2013IAUS..289..444Z}.
+Importantly, the location of Sgr~A\textsuperscript{*} may not be equivalent to the location of the ``dynamical Galactic center:'' the point in three-dimensional
+space about which the stars in the solar neighborhood are orbiting. This assumption, although frequently made, has not yet been justified. It is tested in any construction of a  dynamical model where the distance from the Sun to
+the Galactic center, $R_0$, is a free parameter.
+For example, \citet{2015ApJ...803...80K} measured $R_0$ while
+modelling the dynamics of the stream Palomar 5. Many other dynamical measurements
+of $R_0$ have been made (\citealt{2016ARAA..54..529B} summarize many pre-{\em Gaia} results) but none have yet achieved a precision comparable to that of the distance to Sgr~A\textsuperscript{*}.
+% \citep{1981gask.book.....M, 2011PASJ...63..867S, 2012MNRAS.427..274S,2013AstL...39...95B, 2013IAUS..289..444Z}.
 
 \subsection{Galactic Orientation}
-Second, one must define the orientation of the Galaxy about the center. This
+Second, one must define the angular orientation of the Galaxy. This
 was defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
 defining the coordinates of the Galactic center in B1950 coordinates as
-(17:42:26.6, -28:55:00) and the north Galactic pole as (12:49:00, +27:24:00).
-However, there is growing evidence that the true midplane is tilted when
-considering stars \citep{2014ApJ...797...53G, 2016ARAA..54..529B}, though not
-with H~\textsc{ii} \citep{2019ApJ...871..145A}.
+(17:42:26.6, -28:55:00) and the north Galactic pole as (12:49:00, +27:24:00). These two quantities, together with $R_0$, define the orientation of the Galactic plane.
+However, there is growing evidence that the stellar midplane is tilted relative to this coordinate system \citep{2014ApJ...797...53G, 2016ARAA..54..529B}, though not
+the H~\textsc{ii} midplane \citep{2019ApJ...871..145A}.
 
 \subsection{Solar Height}
-Thirdly, one must define the Sun's vertical distance from the Galactic
+Third, one must define the Sun's vertical distance from the Galactic
 midplane, which can be determined by identifying where the stellar density
 and velocities reach a maximum (effectively the median height of all disk
 stars). The Solar height is usually taken to be $\sim 25\,\pc$
@@ -822,19 +815,19 @@ relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review
 of these measurements is given by \citet{2016ARAA..54..529B}.
 
 \subsection{Local Standard of Rest}
-Finally, one must define the local standard of rest (LSR). The radial
-($U_{\odot}$) and vertical ($W_{\odot}$)components are easily computed by
-taking the mean motions of different stellar groups. The azimuthal component
+Finally, one must define the local standard of rest (LSR), or mean velocity of stars near the Sun relative to the Galactic center (which is defined to have zero velocity), and the velocity of the Sun relative to the LSR. The radial
+($U_{\odot}$) and vertical ($W_{\odot}$) components are computed by
+taking the mean motions of different stellar groups \citep[e.g.][]{2012MNRAS.427..274S}. The azimuthal component
 ($V_{\odot}$) is more difficult to measure, but can be modelled using the
 asymmetric drift relation \citep{2008gady.book.....B}. The values of the
 components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. The
 value of the circular velocity is taken to be $\sim 220\kms$
 \citep[e.g.][]{2012ApJ...759..131B}.
 
-In order to convert a star's position and velocity from heliocentric to
-Galactocentric coordinates, a number of parameters must be measured. Given the
-great interest in each parameter, considerable effort has been placed on these
-measurements. However, uncertainties remain, and detailed dynamical modelling
+\vspace{6pt}
+
+Considerable effort has been placed on each of these
+measurements, but uncertainties remain, and detailed dynamical modelling
 across the disk --- particularly for dynamically cold stars --- may have to
 take them into account. For instance, the discrepancy of $\sim 5\,\pc$ between
 the midplane defined by stars and by gas will induce a $\sim10\%$ error in
@@ -846,8 +839,8 @@ Simulations}
 \label{sec:local_fire}
 
 We now consider a second source of systematic offsets in the Galactocentric
-coordinate system --- intrinsic variations of the midplane across the disk. We
-study this in two sets of simulations of Milky Way-mass galaxies. We will also
+coordinate system: intrinsic variations of the midplane across the disk. We
+use two sets of simulations of Milky Way-mass galaxies to estimate the size of this effect. We will also
 briefly discuss a rough estimate of the midplane variation derived from the
 observed velocity distribution of the Milky Way, but defer a detailed
 treatment to future work.
@@ -964,20 +957,20 @@ principal-axis frame determined by stars younger than $1\,\Gyr$ inside of the
 fiducial solar radius $R_{\odot} = 8.2\,\kpc$, such that the disk plane is the
 $x$--$y$ plane.
 
-\subsection{Description of Sagittarius Simulaton} \label{ssec:sag_sim}
+\subsection{Description of MW-Sagittarius Interaction Simulation} \label{ssec:sag_sim}
 In addition to the cosmological zoom-in, we will also briefly consider results
 from a toy Sagittarius encounter simulation. This simulation offers us the
 ability to see how the midplane varies in a more controlled environment. The
 details of the simulation are given in \citet{2018MNRAS.481..286L}, but we
 briefly summarize the most relevant details here. For the Milky Way, the dark
-halo is modelled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
-length of $52\,\kpc$, the disk modelled as an exponential disk with a scale
+halo is modeled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
+length of $52\,\kpc$, the disk modeled as an exponential disk with a scale
 radius of $3.5\,\kpc$, scale height $0.53\,\kpc$, and mass
 $6\times10^{10}\,\Msun$, a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
 length $0.7\,\kpc$ \citep{1990ApJ...356..359H}. Sagittarius is modelled as a
 dark matter Hernquist sphere of mass \Gus{something} and scale length
-\Gus{something}, along with a stellar component modelled as a Hernquist sphere
-of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$.
+\Gus{something}, along with a stellar component modeled as a Hernquist sphere
+of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$. All components are realized with live distributions of N-body particles; the MW and Sgr are each initialized to be in equilibrium in isolation \Gus{check!}.
 
 The mass resolution of the simulation is $2.6\times10^4$, $1.2\times10^4$, and
 $1.0\times10^4$ for the dark matter, disk, and bulge components, respectively.
