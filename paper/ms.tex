@@ -332,7 +332,7 @@ We present a cartoon approximation in Figure~\ref{fig:cartoon} to show how an
 inaccurate determination of the midplane leads to a phase-dependence of the
 actions calculated from an orbit specified by a phase-space point and an
 assumed potential model. The $y$-axis corresponds to the vertical height of
-the orbit and the $x$-axis orbital phase. The solid gray line indicates the
+the orbit and the $x$-axis orbital phase. The solid gray curve indicates the
 ``true'' orbit of the star; that is, its orbit as it oscillates around the
 true midplane. The dashed gray line is an erroneous midplane assigned to the
 potential model which an observer uses to integrate the orbit of the star and
@@ -341,10 +341,10 @@ one in which the star is actually moving.
 
 Now suppose this observer makes a measurement of the true orbit at the purple
 point or the green point (i.e. at two different orbital phases). Then the
-purple and green lines correspond to the orbits that the observer would
+purple and green curves correspond to the orbits that the observer would
 compute for each point based on the potential model with the erroneous
 midplane. In action space, this would correspond to a different value of $J_z$
-for the blue and pink points. In this way, assuming the wrong coordinate
+for the purple and green points. In this way, assuming the wrong coordinate
 system induces a phase-dependence in the actions estimated for the star, which
 in the correct potential (in this example, the one with the correct midplane)
 should be phase-independent.
@@ -441,7 +441,7 @@ R_{\text{err}}^2 &= R^2 - 2 R \cos{\theta} \Delta x \\
 \implies \Delta R &\equiv \abs{R_{\text{err}} - R} = \abs{\cos{\theta}} \Delta x\text{.}
 \end{split}
 \eeq
-Averaging over the circle, we therefore have that
+Averaging over the circle, we therefore have that,
 \beq
 \avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
 \eeq
@@ -516,12 +516,12 @@ Table~\ref{tab:orbits}. Each orbit, integrated without systematic coordinate
 errors, is plotted in Appendix~\ref{app:orbits}. We will refer to these orbits
 by their names (thin-disk, thick-disk, halo) henceforth.
 
-We begin by considering the thick-disk orbit. Suppose that we could observe
+We begin by considering the thick-disk orbit. Suppose an immortal observer who can observe
 the thick-disk star's phase-space position at many different times (and hence
 different orbital phases), but used a coordinate system in which the midplane
 is systematically offset in height by $100\,\pc$ from its actual location ---
 i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each position in the
-orbit. This corresponds to an observer physically located at e.g. the position
+orbit. This corresponds to the immortal observer physically located at e.g. the position
 $(8, 0, 0)\,\kpc$ in the coordinate system of the true potential, but
 erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
@@ -547,7 +547,7 @@ halo & $(8, 0, 0)$ & $(0, -190, 190)$ & 32.8 & -1520 & 529.1 & 6.16 & 2.34
 \end{deluxetable*}
 
 Starting from each observation of the star's phase-space position that such an
-(extremely long-lived) observer makes every $\Myr$, we then compute the
+immortal observer makes every $\Myr$, we then compute the
 actions as outlined above using an integration from that starting point in
 phase space carried out using the true potential but specifying the star's
 present-day position using the systematically offset coordinate system.
@@ -569,7 +569,7 @@ distance from the Sun to the Galactic center.
 
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the
 offset coordinate systems depend on the time (i.e. orbital phase) at which the
-star's phase-space position is observed. To our extremely long-lived observer
+star's phase-space position is observed. To the immortal observer
 this would appear as time-dependence in the actions, which appear to oscillate
 around their value using the correct coordinate system even though in this
 example the observer is using the correctly constructed best-fit static,
@@ -596,8 +596,9 @@ $z_{\text{max}}=850\,\pc$ --- a $12\%$ error
 
 For a systematic offset in $x$ (or Galactic center distance), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $6.9$,
-$47$, and $0.71\,\actunit$ for $J_R$, $J_{\phi}$ and $J_z$, respectively. These are
-fractional errors of $21\%$, $3.1\%$ and $3.1\%$, respectively.
+$47$, and $0.71\,\actunit$ for $J_R$, $J_{\phi}$ and $J_z$, respectively.
+These are fractional errors of $21\%$, $3.1\%$ and $3.1\%$, respectively ---
+despite only a $1.2\%$ error in the distance to the Galactic center.
 
 \begin{figure*}
 \plotone{fig/schmactions_one_orbit.pdf}
@@ -641,7 +642,7 @@ the error distribution.}
 
 In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
 $J_z$ for the thick-disk orbit ({\em upper panel}) and thin-disk orbit ({\em
-lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. the {\em right} panel
+lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. the {\em upper right} panel
 of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$ is plotted
 as a vertical dashed line. Here we see that the errors in $J_z$ induced by a
 systematic offset in $z$ are non-Gaussian and bimodal. Furthermore, neither of
@@ -650,12 +651,10 @@ distribution of observed $J_z$ values are centered on the true $J_z$ (i.e. the
 $J_z$ computed with no offset in $z$). In the case of the thin-disk orbit
 ({\em lower panel}), we see that, in addition to the prior complications, the
 error distribution is not even centered on null. This comes about when the
-midplane error is $\gtrsim z_{\text{max}}$, and can be understood by realizing
-that in such a case the midplane offset always acts to increase the value of
-$J_z$, resulting in a biased estimate of $J_z$.
+midplane error is $\gtrsim z_{\text{max}}$.
 
-The intuition behind the shape of Figure~\ref{fig:Jz_hist} is relatively
-simple. Consider first the thick-disk orbit ({\em top} panel), where the
+We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
+Consider first the thick-disk orbit ({\em top} panel), where the
 offset in $z$ is much less than $z_{\text{max}}$ of the orbit. The peaks in
 the distribution correspond to the turning points of the orbit (or points of
 maximum vertical amplitude), where $v_z \sim 0$ and where the star spends
@@ -686,7 +685,7 @@ We now repeat the same procedure as in Figure~\ref{fig:one_orbit_wrong_ref}
 but for systematic offsets between $0$ and $500\,\pc$ in the $z$ and $x$
 components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report one half the
 95\uth{} minus 5\uth{} percentile divided by the true action value ($\Delta
-J_i/J_i$) for the three different fiducial orbits in Table \ref{tab:orbits}.
+J_i/J_i$) for the three different fiducial orbits in Table~\ref{tab:orbits}.
 The thick-disk (\thickcolor) orbit is the one from
 Figure~\ref{fig:one_orbit_wrong_ref}, but we also now consider the effect on
 the action determined for the thin-disk (\thincolor) and halo (\halocolor)
@@ -714,10 +713,10 @@ orbit types.
 The {\em upper right} panel of Figure~\ref{fig:many_orbit_wrong_ref} shows
 that the fractional error in $J_z$ is more exaggerated for more planar
 (disk-like) orbits. For the thin-disk orbit, a systematic offset of
-$\sim30\,\pc$ in the $z$ coordinate already results in $100\%$ deviations in
-the actions. The required offset for $100\%$ deviation is $\sim225\,\pc$ for
+$\sim15\,\pc$ in the $z$ coordinate already results in $25\%$ deviations in
+the actions. The required offset for $25\%$ deviation is $\sim120\,\pc$ for
 the thick-disk orbit. The halo orbit is relatively resistant to errors in the
-midplane, with only $\sim25\%$ error in $J_z$ out to a midplane offset of
+midplane, with only $\sim15\%$ error in $J_z$ out to a midplane offset of
 $500\,\pc$.
 
 For the offset in the Solar radius ({\em bottom panels}), the error is largest
@@ -760,11 +759,15 @@ offset of $10\,\pc$. }
 
 To further understand the effect of the midplane error, we also plot the
 fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
-100\,\pc$ (red, cyan, green, respectively) in Figure~\ref{fig:dJz_fun_Jz}. For
-a thin disk-like orbit ($J_z\sim0.5\,\actunit$), even a $10\,\pc$ offset in
-$z$ is enough to induce a $\sim50\%$ error in $J_z$. For larger values of
-$J_z$, the fractional errors are suppressed, but the induced error can still
-be large depending on how great the $z$ offset is.
+100\,\pc$ (orange, cyan, and green, respectively) in
+Figure~\ref{fig:dJz_fun_Jz}. For a thin disk-like orbit
+($J_z\sim0.5\,\actunit$), even a $10\,\pc$ offset in $z$ is enough to induce a
+$\sim25\%$ error in $J_z$. For larger values of $J_z$, the fractional errors
+are suppressed, but the induced error can still be large depending on how
+great the $z$ offset is. We also plot the epicylic prediction for $\Delta J_z
+/ J_z$ from Equation~\ref{eq:actions_epi_error} as dashed lines for each $z$
+offset. We find that the epicyclic approximation matches the numerical
+estimate quite well.
 
 \section{Coordinate System Offsets I. Measurement Errors} \label{sec:mes_err}
 We consider the first potential source of coordinate system offsets which
@@ -800,16 +803,17 @@ competing with the distance to Sgr~A\textsuperscript{*}
 \subsection{Galactic Orientation}
 Second, one must define the orientation of the Galaxy about the center. This
 was defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
-defining the location of the Galactic center and the north Galactic pole.
+defining the coordinates of the Galactic center in B1950 coordinates as
+(17:42:26.6, -28:55:00) and the north Galactic pole as (12:49:00, +27:24:00).
 However, there is growing evidence that the true midplane is tilted when
 considering stars \citep{2014ApJ...797...53G, 2016ARAA..54..529B}, though not
 with H~\textsc{ii} \citep{2019ApJ...871..145A}.
 
 \subsection{Solar Height}
-Thirdly, one must define The Sun's vertical distance from the Galactic
+Thirdly, one must define the Sun's vertical distance from the Galactic
 midplane, which can be determined by identifying where the stellar density
 and velocities reach a maximum (effectively the median height of all disk
-stars) The Solar height is usually taken to be $\sim 25\,\pc$
+stars). The Solar height is usually taken to be $\sim 25\,\pc$
 \citep{2001ApJ...553..184C}, with a more recent measurement from {\em Gaia} DR2
 placing it at $20.8 \pm 0.3\,\pc$ \citep{2019MNRAS.482.1417B}. Another strategy is
 to use the cold gas or H~\textsc{ii} regions in the disk to define the Galactic
@@ -841,8 +845,9 @@ Section~\ref{sec:ref_frame}).
 Simulations}
 \label{sec:local_fire}
 
-We now focus our attention on understanding the intrinsic variations of the
-midplane across the disk in two sets of complementary simulations. We will
+We now consider a second source of systematic offsets in the Galactocentric
+coordinate system --- intrinsic variations of the midplane across the disk. We
+study this in two sets of simulations of Milky Way-mass galaxies. We will also
 briefly discuss a rough estimate of the midplane variation derived from the
 observed velocity distribution of the Milky Way, but defer a detailed
 treatment to future work.
@@ -969,29 +974,30 @@ briefly summarize the most relevant details here. For the Milky Way, the dark
 halo is modelled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
 length of $52\,\kpc$, the disk modelled as an exponential disk with a scale
 radius of $3.5\,\kpc$, scale height $0.53\,\kpc$, and mass
-$6\times10^{10}\Msun$, a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
+$6\times10^{10}\,\Msun$, a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
 length $0.7\,\kpc$ \citep{1990ApJ...356..359H}. Sagittarius is modelled as a
 dark matter Hernquist sphere of mass \Gus{something} and scale length
 \Gus{something}, along with a stellar component modelled as a Hernquist sphere
 of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$.
 
+The mass resolution of the simulation is $2.6\times10^4$, $1.2\times10^4$, and
+$1.0\times10^4$ for the dark matter, disk, and bulge components, respectively.
 For the disk and bulge components, a softening length of $30\,\pc$ is used
 whereas for the halo a softening length of $60\,\pc$ is used. For Sagittarius,
 the softening length for the dark matter and the stars is $60$ and $40\,\pc$,
 respectively.
 
 \subsection{The Local Midplane} \label{ssec:local_midplane}
-Using the three simulations, we determine the local midplane that an observer
+Using the two sets of simulations, we determine the local midplane that an observer
 might measure if they were situated in each of these galaxies as a function of
 azimuth at the solar circle. Starting from the coordinate system described in
 the previous section, which is approximately aligned so that the
 $z$-coordinate is perpendicular to the disk plane, we place our imaginary
 observer at $z=0$ and a solar radius of $8.2\,\kpc$ and vary the azimuth
-between $0<\phi<2\pi$\footnote{Our very long-lived observer also has warp
-drive.}. At each value of $\phi$ we then compute the median $z$ for stars
+between $0<\phi<2\pi$.\footnote{The immortal observer also has warp
+drive.} At each value of $\phi$ we then compute the median $z$ for stars
 within a cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$ perpendicular to
-the fiducial disk. We then re-define this median $z$ as the new midplane of
-the cylinder, re-select stars, and iterate until the median $z$ value
+the fiducial disk. We then re-define the new midplane of the cylinder to be the median $z$, re-select stars, and iterate until the median $z$ value
 converges. We find that only $10$ iterations of this procedure are necessary
 for convergence. The resulting median $z$ is taken to be what our observer
 would measure as the local Galactic midplane at each $\phi$. This procedure
@@ -1000,10 +1006,7 @@ extinction, within the cylinder defining the ``solar neighborhood.'' Imperfect
 extinction correction is likely to increase the amplitude of the estimated
 fluctuations in $z$. To account for the effect of particle noise, we
 bootstrap-resample stars within a cylinder of stars with height $2\,\kpc$ and
-the same radius $1000$ times and determine the $1\,\sigma$ error bars. This
-bootstrap resampling is performed by first selecting all stars within a height
-of $2\,\kpc$, resampling that selection, and then repeating the $10$
-iterations.
+the same radius $1000$ times and determine the $1\,\sigma$ error bars by repeating the midplane determination with those reselection of stars.
 
 To allow for potential small inaccuracies in the determination of the original
 fiducial coordinate system, we also subtract the best fit $\text{A}
@@ -1035,9 +1038,9 @@ We compute the same midplane variation in Figure~\ref{fig:midplane_chervin},
 but for the toy simulation of a Sagittarius encounter
 \citep{2018MNRAS.481..286L}. Again we have subtracted a best fit curve of the
 form $\text{A} \sin{\left(\phi + \text{B}\right)} + \text{C}$, with the values
-for $\text{A}$ being $9.5, 2.5, -212, -394\,\pc$, for $\text{B}$ being
-$0.0013, 0.0007, -0.63, -1.00\,\text{rad}$ and $\text{C}$ being $2.6, -7.8,
--65, -53\,\pc$. Each of these values are for each successive timestep. In the
+for $\text{A}$ being $9.5$, $2.5$, $-212$, and $-394\,\pc$, for $\text{B}$ being
+$0.0013$, $0.0007$, $-0.63$, and $-1.00\,\text{rad}$ and $\text{C}$ being $2.6$, $-7.8$,
+$-65$, and $-53\,\pc$. Each of these values are for each successive timestep. In the
 first two panels, we see that the midplane is relatively flat in the inner
 galaxy. But additional encounters drive strong midplane variation. In the
 third panel, we see a strong $m=2$ mode develop, consistent with the
@@ -1049,7 +1052,7 @@ $R=8\,\kpc$ panel of Figure~17 in \citet{2018MNRAS.481..286L}.
 \end{center}
 \caption{The local midplane determined at the fiducial Solar radius
 ($8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} ({\em left},
-{\em center}, and {\em right} panels). The local midplane is determined at a
+{\em center}, and {\em right} panels). All calculations are done at cosmological redshift $\z =0$. The local midplane is determined at a
 position $\phi$ by taking the median height of all stars within $R=0.5\,\kpc$
 and $z=1\,\kpc$ (in cylindrical coordinates). The procedure is performed again
 using the new height $10$ times to converge on the local midplane height. In
@@ -1097,7 +1100,7 @@ An interesting, qualitative calculation can be made based on the velocity
 variations seen in e.g. \citet{2019arXiv190209569F}. The velocity variations
 in this work (admittedly found with respect to $J_{\phi}$ or radius) are
 $\sim5\text{--}10\,\kms$. The vertical frequency of the thin-disk and
-thick-disk orbits are $\sim 0.09\,1/\Myr$ and $\sim0.06\,1/\Myr$,
+thick-disk orbits are $\sim 0.09\,\Myr^{-1}$ and $\sim0.06\,\Myr^{-1}$,
 respectively. By dimensional analysis, we therefore expect the midplane
 offsets to be of order $\sim 57\text{--}170\,\pc$. We stress that this is a
 rough calculation, but it shows that already we see evidence in the data from
@@ -1245,11 +1248,11 @@ clusters by selecting ejected members based on their actions.
 
 Suppose an open cluster of mass $m_c$ on an orbit with actions $\bm{J}_c$ is
 disrupted. We would like to determine which stars with complete 6D phase-space
-positions, for example in the {\em Gaia} dataset,\footnote{This is likely to
+positions, for example in the {\em Gaia} dataset, are likely to be ejected members from that cluster.\footnote{This is likely to
 be more successful with DR3/4 than DR2, since upcoming data releases will
 contain a far greater number of stars with radial velocities --- though
 targeted, follow-up radial velocity surveys may allow this program to be
-performed sooner.} are likely to be ejected members from that cluster. One
+performed sooner.} One
 could generate an initial catalogue of candidate members by integrating the
 cluster's orbit and selecting stars close to that orbit, accounting for the
 fact that the stream of ejected stars will not exactly follow the orbit of the
@@ -1259,8 +1262,7 @@ One could then make a further selection by requiring that the action of each
 field star $i$ be close to the cluster's actions to within some bound, i.e.
 $\bm{J}_i \in V_e$, where $V_e$ is a volume centered on $\bm{J}_c$ and has size
 comparable to the intrinsic action-space dispersion of the disrupting
-cluster. This dispersion can be estimated as \citep[Section~8.3.3
-of][]{2008gady.book.....B}
+cluster. This dispersion can be estimated as \citep[Section~8.3.3][]{2008gady.book.....B},
 \beq \label{eq:action_disp}
 \frac{\Delta J_i}{J_i} \sim \left(\frac{m_c}{M}\right)^{1/3}\text{,}
 \eeq
@@ -1402,10 +1404,11 @@ follows:
 \begin{itemize}
 \item We demonstrated that an inaccuracy in the Galactocentric coordinate
 system induces time evolution in the {\em observed} actions
-(Figures~\ref{fig:cartoon}\&\ref{fig:one_orbit_wrong_ref}). 
+(Figures~\ref{fig:cartoon}~and~\ref{fig:one_orbit_wrong_ref}). We interpret
+this time evolution as an error in the computed action
+(Figure~\ref{fig:many_orbit_wrong_ref}).
 
-\item We interpret this time evolution as an error in the computed action
-(Figure~\ref{fig:many_orbit_wrong_ref}). We focused on the effect that an
+\item  We focused on the effect that an
 inaccuracy in the midplane has on the vertical action $J_z$. We found that in
 order for there to be a $10\%$ error in $J_z$ (as defined by one half the middle
 $90\uth$ percentile) one needs a midplane error of $\sim6\,\pc$ and
@@ -1417,7 +1420,7 @@ coordinate system error is very non-Gaussian. The distribution is bimodal with
 {\em neither of the modes peaking at 
      null}. 
 As a result, error
-propagation is 
+propagation of systematic coordinate system errors is 
      complex
 when considering actions.
 
@@ -1425,7 +1428,7 @@ when considering actions.
 susceptible to this type of error, since the assumption that our local
 Galactic midplane is the global Galactic midplane is not true {\em a priori}.
 
-\item To demonstrate the previous point, we measured the local Galactic
+\item To demonstrate the previous point, we measured the local galactic
 midplane along the Solar circle in three different high-resolution, zoom-in
 simulations of Milky Way mass galaxies from the FIRE collaboration. We found
 that the midplane varies by $\sim185, 162, 84\,\pc$ (middle $90\%$) for the
