@@ -249,7 +249,7 @@ standard of rest (LSR).
 In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
 system errors have on the measured actions. We then discuss two potential
 sources of these coordinate system offsets in
-Sections~\ref{sec:mes_err}~and~\ref{sec:local_file}. In
+Sections~\ref{sec:mes_err}~and~\ref{sec:local_fire}. In
 Section~\ref{sec:mes_err} we discuss the potential errors in measuring the
 parameters of the Galactocentric coordinate system. In
 Section~\ref{sec:local_fire} we examine the azimuthal variations of the
@@ -315,34 +315,32 @@ NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
 
 
 \section{Motivation} \label{sec:ref_frame}
-We first demonstrate the significance of systematic errors in the
-determination of the Galactic midplane and distance to the Galactic center to
-action computations. We will find that such errors are especially important
+We first demonstrate the significance  to
+action computations of a systematic offset in the
+determination of the Galactic midplane or distance to the Galactic center. We will find that such offsets are especially important
 for disk-like orbits. The consequences we explore here may also arise from
 various other systematic errors. For instance, the axisymmetric Galactic
 potential model used in many works to compute actions may not be a good
 description of the true potential --- or the parameters used may yield a
 potential that is systematically incorrect outside an original fitted region.
 In this work, we assume that the Galaxy is perfectly described by our model
-axisymmetric potential, and simply explore the consequences of systematic
-errors in the determination of the Galactocentric coordinate system.
+axisymmetric potential, and simply explore the consequences of offsets in the determination of the Galactocentric coordinate system.
 
-\subsection{Cartoon Effect of Midplane Error} \label{ssec:cartoon}
+\subsection{Effect of Midplane Offset} \label{ssec:cartoon}
 We present a cartoon approximation in Figure~\ref{fig:cartoon} to show how an
-inaccurate determination of the midplane leads to a phase-dependence of the
+inaccurate or erroneous determination of the midplane (and hence the zero-point of the $z$ coordinate) leads to a phase-dependence of the
 actions calculated from an orbit specified by a phase-space point and an
 assumed potential model. The $y$-axis corresponds to the vertical height of
-the orbit and the $x$-axis orbital phase. The solid gray curve indicates the
+the orbit and the $x$-axis shows orbital phase. The solid gray curve indicates the
 ``true'' orbit of the star; that is, its orbit as it oscillates around the
-true midplane. The dashed gray line is an erroneous midplane assigned to the
-potential model which an observer uses to integrate the orbit of the star and
-hence estimate its actions. The model potential is otherwise identical to the
-one in which the star is actually moving.
+true midplane. The dashed gray line is the midplane location in the
+potential model used to integrate the orbit of the star and
+hence estimate its actions, which is offset from the true midplane of the star's orbit. The model potential is otherwise identical to the one in which the star is actually moving.
 
-Now suppose this observer makes a measurement of the true orbit at the purple
+Now suppose this observer makes a measurement of the star's position and velocity at the purple
 point or the green point (i.e. at two different orbital phases). Then the
 purple and green curves correspond to the orbits that the observer would
-compute for each point based on the potential model with the erroneous
+compute for each point based on the potential model with the offset
 midplane. In action space, this would correspond to a different value of $J_z$
 for the purple and green points. In this way, assuming the wrong coordinate
 system induces a phase-dependence in the actions estimated for the star, which
