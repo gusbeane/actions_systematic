@@ -9,6 +9,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -22,7 +25,7 @@ nspoke = 50
 
 glist = ['m12i', 'm12f', 'm12m']
 
-fig, ax = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(8,3.5))
+fig, ax = plt.subplots(2, 3, sharex=True, sharey=True, figsize=(textwidth,3.2))
 # first make midplane comparison plot
 for gal,ax_col in zip(glist, ax.transpose()):
     out = np.load('output/out_'+gal+'.npy')
@@ -56,6 +59,9 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax_col[0].set_ylim(-200, 200)
     ax_col[1].set_ylim(-200, 200)
 
+    ax_col[0].locator_params('x', nbins=5)
+    ax_col[1].locator_params('y', nbins=5)
+
     print(gal, '90 perc: ', np.percentile((midplane_est-fit)*1000, 95) - np.percentile((midplane_est-fit)*1000, 5))
 
     ax_col[1].plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
@@ -77,7 +83,7 @@ plt.savefig('midplane.pdf')
 
 
 
-fig, ax = plt.subplots(1, 3, sharex=True, figsize=(8,2))
+fig, ax = plt.subplots(1, 3, sharex=True, figsize=(textwidth,1.8))
 # now make paper plot, with just fit
 for gal,x in zip(glist,ax):
     out = np.load('output/out_'+gal+'.npy')
@@ -108,6 +114,9 @@ for gal,x in zip(glist,ax):
                horizontalalignment='left', 
                verticalalignment='center', 
                transform = x.transAxes)
+
+    x.locator_params('x', nbins=5)
+    x.locator_params('y', nbins=5)
 
     x.set_xlim(0, 2)
     x.set_xlim(0, 2)

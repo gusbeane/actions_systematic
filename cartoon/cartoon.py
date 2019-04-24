@@ -10,7 +10,10 @@ mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
-fig, ax = plt.subplots(1, figsize=(7, 3))
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
+fig, ax = plt.subplots(1, figsize=(textwidth, 3))
 
 x = np.linspace(0, 7*np.pi, 5000)
 y = np.cos(x)

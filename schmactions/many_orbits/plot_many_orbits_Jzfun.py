@@ -21,6 +21,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -45,7 +48,7 @@ def sclip(a, s=4):
     k2 = np.where(a2bool)[0]
     return k0, k1, k2
 
-fig, ax = plt.subplots(1, 1, figsize=(3.5, 3.5))
+fig, ax = plt.subplots(1, 1, figsize=(columnwidth, columnwidth))
 init_pos = [8, 0, 0] * u.kpc
 init_vel = [0, -190, 10] * u.km/u.s
 

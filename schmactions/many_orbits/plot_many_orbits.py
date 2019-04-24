@@ -21,6 +21,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -55,7 +58,7 @@ Az_list = np.array([120, 850, 6160]) # pc
 AR_list = np.array([1290, 1190, 2340]) # pc
 Rg_list = np.array([5420, 5610, 6200]) # pc
 
-fig, ax = plt.subplots(2, 3, figsize=(7, 4))
+fig, ax = plt.subplots(2, 3, figsize=(textwidth, 4))
 init_pos = [8, 0, 0] * u.kpc
 init_vel_list = [[0, -190, 10] * u.km/u.s,
                  [0, -190, 50] * u.km/u.s,

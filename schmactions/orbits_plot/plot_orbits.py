@@ -12,6 +12,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -21,7 +24,7 @@ init_vel_list = [[0, -190, 10] * u.km/u.s,
                  [0, -190, 50] * u.km/u.s,
                  [0, -190, 190] * u.km/u.s]
 
-fig, ax = plt.subplots(2, 3, sharey='row', figsize=(7,5.5))
+fig, ax = plt.subplots(2, 3, sharey='row', figsize=(textwidth,5.5))
 
 for init_vel, x in zip(init_vel_list, np.transpose(ax)):
     s = schmactions(init_pos, init_vel, save_orbit=True)

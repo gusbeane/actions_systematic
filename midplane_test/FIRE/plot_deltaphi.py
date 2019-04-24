@@ -11,6 +11,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -63,7 +66,7 @@ def get_range_vs_dphi(theta, midplane):
     return np.array(dphi_list_list), np.array(r_list_list)
 
 
-fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(8,2.25))
+fig, ax = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(textwidth,2))
 # now make paper plot, with just fit
 for gal,ax_col in zip(glist, ax.transpose()):
     out = np.load('output/out_'+gal+'.npy')
@@ -122,6 +125,8 @@ for gal,ax_col in zip(glist, ax.transpose()):
     t = print_dphi(dphi_mean, r_mean)
     print(tick_function(t/np.pi, round=False))
 
+    ax_col.locator_params('x', nbins=5)
+
     ax2 = ax_col.twiny()
     #ax2.invert_xaxis()
     ax2.set_xticks(ax_col.get_xticks())
@@ -129,6 +134,7 @@ for gal,ax_col in zip(glist, ax.transpose()):
     ax2.set_xticklabels(tick_function(ax_col.get_xticks()))
     #ax2.set_xlabel(r'$\nu\,[\,\text{MHz}\,]$')
     ax2.set_xlabel(r'$\text{chord length}\,[\,\text{kpc}\,]$')
+
 
 
 ax[0].set_ylabel(r'$\text{range}\,[\,\text{pc}\,]$')

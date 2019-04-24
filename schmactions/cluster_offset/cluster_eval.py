@@ -21,6 +21,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -77,7 +80,7 @@ init_vel_list = [[0, -190, 10] * u.km/u.s,
 clist = [tb_c[7], tb_c[8], tb_c[0]]
 
 # set up figure
-fig, ax = plt.subplots(1, 1, figsize=(4, 3))
+fig, ax = plt.subplots(1, 1, figsize=(columnwidth, 2.5))
 
 for fname, name, init_vel, c in zip(fname_list, name_list, init_vel_list, clist):
     offlist, dJzJz = load_orbit(fname, init_pos, init_vel)
@@ -104,7 +107,7 @@ plt.close()
 # now begin making Rn vs mc plot
 
 glist = ['m12i', 'm12f', 'm12m']
-fig, ax_list = plt.subplots(1, 3, figsize=(8, 3))
+fig, ax_list = plt.subplots(1, 3, figsize=(textwidth, 2.7))
 
 def chord(l):
         return np.round(2*Rsolar*np.sin(0.5*(l/2)*np.pi), 1)
@@ -162,10 +165,10 @@ for ax, gal in zip(ax_list, glist):
         if gal=='m12f':
             l = 0.05
         elif gal=='m12m':
-            l = 0.15
+            l = 0.4
         elif gal=='m12i':
             l = 0.12
-        ax.text(l, 0.88, gal, 
+        ax.text(l, 0.88, r'\texttt{'+gal+r'}', 
                horizontalalignment='left', 
                verticalalignment='center', 
                transform = ax.transAxes)

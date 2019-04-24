@@ -10,6 +10,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
 '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -39,7 +42,7 @@ glist = ['Disk_200', 'Disk_400', 'Disk_600', 'Disk_690']
 column = [0,1,2,3]
 time = [r'$t=2.0\,\text{Gyr}$', r'$t=4.0\,\text{Gyr}$', 
         r'$t=6.0\,\text{Gyr}$', r'$t=6.9\,\text{Gyr}$']
-fig,axs = plt.subplots(2,4,figsize=(11,3.5))
+fig,axs = plt.subplots(2,4,figsize=((2/3)*textwidth,4))
 for gal,col,tm in zip(glist,column,time):
     out = np.load('out_'+gal+'.npy')
     theta = out[:,0]
@@ -84,7 +87,7 @@ axs[0,0].set_title("Chervin's Simulation")
 fig.tight_layout()
 plt.savefig('midplane.pdf')
 
-fig, ax = plt.subplots(2, 2, sharex=True, figsize=(5.5,3.5))
+fig, ax = plt.subplots(2, 2, sharex=True, figsize=((2/3)*textwidth,3.5))
 # now make paper plot, with just fit
 for gal,x,tm in zip(glist,ax.flatten(),time):
     out = np.load('out_'+gal+'.npy')
@@ -110,6 +113,8 @@ for gal,x,tm in zip(glist,ax.flatten(),time):
 
     x.set_ylim(-200, 200)
     x.set_ylim(-200, 200)
+
+    x.locator_params('x', nbins=5)
 
     x.plot(theta/np.pi, (midplane_est-fit)*1000, c=tb_c[0])
     x.plot(theta/np.pi, (err_low-fit)*1000, c=tb_c[0], ls='dashed', alpha=0.5)

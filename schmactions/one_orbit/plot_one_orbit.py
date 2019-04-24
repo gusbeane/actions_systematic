@@ -16,6 +16,9 @@ rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath} \usepackage{bm}']
 
+textwidth = 7.10000594991
+columnwidth = 3.35224200913
+
 tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
         '#edc948', '#b07aa1', '#ff9da7', '#9c755f', '#bab0ac']
 
@@ -73,7 +76,7 @@ xtime = s.extract_time(xout)
 zact_thin = sthin.extract_actions(zout_thin)
 ztime_thin = sthin.extract_time(zout_thin)
 
-fig, ax = plt.subplots(2, 3, figsize=(7, 4), sharex=True)
+fig, ax = plt.subplots(2, 3, figsize=(textwidth, 4), sharex=True)
 
 for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
     # get keys corresponding to 4 sigmaclip
@@ -112,7 +115,7 @@ fig.tight_layout()
 plt.savefig('schmactions_one_orbit.pdf')
 plt.close()
 
-fig, ax = plt.subplots(2,1, figsize=(3,6))
+fig, ax = plt.subplots(2,1, figsize=(columnwidth,6.5))
 
 k0, k1, k2 = sclip(zact)
 dJzJz = 0.5*(np.percentile(zact[:,2][k2], 95) - np.percentile(zact[:,2][k2], 5))
