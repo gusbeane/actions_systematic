@@ -45,7 +45,7 @@ for gal,ax_col in zip(glist, ax.transpose()):
 
     ax_col[1].set_xlabel(r'$\phi/\pi$')
 
-    ax_col[0].text(0.05, 0.88, gal, 
+    ax_col[0].text(0.05, 0.88, r'\texttt{'+gal+r'}', 
                horizontalalignment='left', 
                verticalalignment='center', 
                transform = ax_col[0].transAxes)
@@ -104,7 +104,7 @@ for gal,x in zip(glist,ax):
 
     x.set_xlabel(r'$\phi/\pi$')
 
-    x.text(0.05, 0.88, gal, 
+    x.text(0.05, 0.88, r'\texttt{'+gal+r'}', 
                horizontalalignment='left', 
                verticalalignment='center', 
                transform = x.transAxes)

@@ -18,7 +18,7 @@ for gal, x in zip(gal_list, ax.transpose()):
     fname = 'output/lsr_'+gal+'.npy'
     lsr = np.load(fname)
 
-    x[0].text(0.05, 0.88, gal, 
+    x[0].text(0.05, 0.88, r'\texttt{'+gal+r'}', 
                horizontalalignment='left', 
                verticalalignment='center', 
                transform = x[0].transAxes)

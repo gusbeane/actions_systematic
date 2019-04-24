@@ -81,7 +81,7 @@ for gal,ax_col in zip(glist, ax.transpose()):
 
     ax_col.set_xlabel(r'$\Delta \phi/\pi$')
 
-    ax_col.text(0.05, 0.88, gal, 
+    ax_col.text(0.05, 0.88, r'\texttt{'+gal+r'}', 
                horizontalalignment='left', 
                verticalalignment='center', 
                transform = ax_col.transAxes)
