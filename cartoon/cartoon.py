@@ -19,11 +19,11 @@ y3 = 2.25*np.cos(x) - 1.25
 
 ax.plot(x, y, c=tb_c[-1])
 
-ax.plot(x, y2, c=tb_c[4])
-ax.scatter(3.*np.pi, -1, c=tb_c[4])
+ax.plot(x, y2, c=tb_c[4], zorder=4)
+ax.scatter(3.*np.pi, -1, c=tb_c[4], zorder=4)
 
-ax.plot(x, y3, c=tb_c[6])
-ax.scatter(4.*np.pi, 1, c=tb_c[6])
+ax.plot(x, y3, c=tb_c[6], zorder=5)
+ax.scatter(4.*np.pi, 1, c=tb_c[6], zorder=5)
 
 ax.plot(x, np.full(len(x), 0), c=tb_c[-1])
 ax.plot(x, np.full(len(x), -1.25), c=tb_c[-1], ls='dashed')
