@@ -392,12 +392,14 @@ thin disk-like orbits and a good description of thick disk-like orbits in an axi
 also make the assumption of a perfectly flat circular velocity curve with
 velocity $v_c$ \citep[decent near the Solar circle, e.g.][]{2017MNRAS.465...76M}. 
 
-Under this approximation, we can write down the vertical and radial components
+Under this approximation, we can write down the cylindrical components
 of the orbits as,
 \beq\label{eq:orbits_epi}
 \begin{split}
-z(t) &= A_z \sin{(\kappa t + \alpha)}\\
-R(t) &= A_R \sin{(\nu t + \beta)}\text{,}
+\phi(t) &= \Omega t\\
+R(t) &= R_g + A_R \sin{(\nu t + \beta)} \\
+z(t) &= A_z \sin{(\kappa t + \alpha)}
+\text{,}
 \end{split}
 \eeq
 where $\kappa$ and $\nu$ are the vertical and radial (or epicyclic)
@@ -406,48 +408,87 @@ vertical and radial coordinates, and $\alpha$ and $\beta$ are arbitrary
 constants. Similarly, the velocities of the orbit are given by
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
-v_z(t) &= A_z \kappa \cos{(\kappa t + \alpha)}\\
-v_R(t) &= A_R \nu \cos{(\nu t + \beta)}\text{.}
+v_{\phi}(t) &= \Omega \\
+v_R(t) &= A_R \nu \cos{(\nu t + \beta)} \\
+v_z(t) &= A_z \kappa \cos{(\kappa t + \alpha)}
+\text{.}
 \end{split}
 \eeq
 
-We can write down the actions in this approximation as
-\citep[][Section~3.5.3b]{2008gady.book.....B},
-\beq\label{eq:actions_epi}
+In this case, we have that for $J_{\phi}$ \citep[][Section~3.5.3b]{2008gady.book.....B}, 
+\beq\label{eq:Jphi_epi}
+J_{\phi} = R_g v_c\text{,}
+\eeq
+and for $J_R$ and $J_z$,
+\beq\label{eq:JR_Jz_epi}
 \begin{split}
-J_{\phi} &= R_g v_c \\
-J_R &= \kappa A_R^2 \\
-J_z &= \nu A_z^2\text{.}
+J_R &= \frac{E_R}{\kappa} \\
+J_z &= \frac{E_z}{\nu} \text{,}
 \end{split}
 \eeq
-
-An offset $\Delta z$ will induce $\Delta A_z \sim \Delta z$.
-Similarly, an offset $\Delta R$ will induce $\Delta A_R \sim \Delta R$.
-Assuming $\kappa$ and $\nu$ are constant, 
-\beq\label{eq:actions_epi_error}
+where $E_R$ and $E_z$ are the energy per unit mass in the radial and vertical
+coordinates, respectively. Since $a_R = -\kappa^2(R-R_g)$, and $a_z = - \nu^2
+z$, we have that,
+\beq\label{eq:JR_Jz_epi_energy}
 \begin{split}
-\Delta J_{\phi} = \Delta R v_c &\implies \frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R} \\
-\Delta J_R = 2 \kappa \Delta A_R &\implies \frac{\Delta J_R}{J_R} = \frac{2\Delta R}{A_R} \\
-\Delta J_z = 2 \nu \Delta A_z &\implies \frac{\Delta J_z}{J_z} = \frac{2\Delta z}{A_z}\text{.}
+J_R &= \frac{\frac{1}{2}v_R^2 + \kappa^2 (R-R_g)^2}{\kappa} \\
+J_z &= \frac{\frac{1}{2}v_z^2 + \nu^2 z^2}{\nu}
 \end{split}
 \eeq
-Therefore, systematic errors in each action are linearly proportional to offsets in
-either the midplane ($z$ coordinate) or cylindrical radius ($R$ coordinate). While in general $\kappa$ and $\nu$ are not constant, we find that this order of magnitude estimate matches our numerical calculations quite well.
 
-%There is a slight complication in the formula for computing $\Delta J_R/J_R$
-%and $\Delta J_{\phi}/J_{\phi}$. 
+While the formula for $J_{\phi}$ is phase independent, $J_R$ and $J_z$ are
+both phase dependent. We consider two cases. First, at the point of maximum
+amplitude or when $(v_R, v_z) = (0, 0)$ and second, at the point of maximum
+velocity $(R, z) = (R_g, 0)$. For $J_R$ we have that,
+\beq\label{eq:JR_epi_final}
+    \begin{aligned}
+        J_R &= \kappa A_R^2 && \text{if $v_R = 0$} \\
+    J_R &= \frac{v_{R,\text{max}}^2}{2\kappa^2} && \text{if $R=R_g$} \text{.}
+    \end{aligned}
+\eeq
+For $J_z$, we have that,
+\beq\label{eq:Jz_epi_final}
+    \begin{aligned}
+        J_z &= \kappa A_z^2 && \text{if $v_z = 0$} \\
+        J_z &= \frac{v_{z,\text{max}}^2}{2\kappa^2} && \text{if $z=0$} \text{.}
+    \end{aligned}
+\eeq
 
-A similar derivation results in formulae for
-the impact of velocity offsets on the actions:
-\beq\label{eq:actions_epi_error}
+Now assume that the coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by
+$(\Delta R, \Delta z, \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. Then, the
+induced error in $J_{\phi}$ is,
+\beq\label{eq:induced_Jphi}
+\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}\text{.}
+\eeq
+For $J_R$, the induced error is,
+\beq\label{eq:induced_JR}
+\begin{aligned}
+    \frac{\Delta J_R}{J_R} &= \frac{2\Delta R}{A_R} + 
+        \left(\frac{\Delta v_R}{v_{R,\text{max}}}\right)^2 && \text{if $v_R = 0$} \\
+    \frac{\Delta J_R}{J_R} &= \frac{2\Delta v_R}{v_{R,\text{max}}} + 
+        \left(\frac{\Delta R}{A_R}\right)^2  && \text{if $R=R_g$} \text{.}
+\end{aligned}
+\eeq
+For $J_{z}$, the induced error is,
+\beq\label{eq:induced_Jz}
+\begin{aligned}
+    \frac{\Delta J_z}{J_z} &= \frac{2\Delta z}{A_z} + 
+        \left(\frac{\Delta v_z}{v_{z,\text{max}}}\right)^2 && \text{if $v_z = 0$} \\
+    \frac{\Delta J_z}{J_z} &= \frac{2\Delta v_z}{v_{z,\text{max}}} + 
+        \left(\frac{\Delta z}{A_z}\right)^2  && \text{if $z=0$} \text{.}
+\end{aligned}
+\eeq
+
+Since most of the time stars will be at maximum amplitude in both the $R$ and
+$z$ components, we can assume for most stars that
+\beq\label{eq:Ji_err_mosttime}
 \begin{split}
-\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta v_{\phi}}{v_c} \\
-\frac{\Delta J_R}{J_R} &= \frac{\Delta v_R}{v_{R,\text{max}}} \\
-\frac{\Delta J_z}{J_z} &= \frac{\Delta v_z}{v_{z,\text{max}}}\text{,}
+\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta R}{R_g} \\
+\frac{\Delta J_{R}}{J_{R}} &= \frac{2\Delta R}{A_R} \\
+\frac{\Delta J_{z}}{J_{z}} &= \frac{2\Delta z}{A_z} \text{,}
 \end{split}
 \eeq
-where $v_{R,\text{max}}$ and $v_{z,\text{max}}$ are the maximum radial and
-vertical velocities of the orbit, respectively.
+where we have also ignored second order terms.
 
 In the remainder of this section, we compare our analytic estimates of the effect on actions of a midplane offset against numerical calculations. The effect of velocity offsets on actions is deferred to future work, as we discuss in Section~\ref{ssec:lsr_var}.
 
