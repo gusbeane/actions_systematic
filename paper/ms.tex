@@ -76,18 +76,32 @@ Analysis with {\em Gaia} Data and Beyond}
 \affil{\cca}
 \affil{\penn}
 
-\author{Mordecai-Mark Mac Low}
-\affil{\cca}
-\affil{\amnh}
-
 \author{Melissa K. Ness}
 \affil{\cca}
 \affil{\columbia}
 
+\author{Kathryn V. Johnston}
+\affil{\columbia}
+
+\author{Mordecai-Mark Mac Low}
+\affil{\cca}
+\affil{\amnh}
+
 \author{Daniel Angl\'es-Alc\'azar}
 \affil{\cca}
 
-\author{others}
+\author{Douglas Filho}
+\affil{\columbia}
+
+\author{David W. Hogg}
+\affil{\nyuphys}
+\affil{\nyucds}
+\affil{\cca}
+\affil{\mpia}
+
+\author{Chervin F. P. Laporte}
+\altaffiliation{Simons Fellow}
+\affil{\victoria}
 
 \begin{abstract}
 
@@ -249,7 +263,7 @@ standard of rest (LSR).
 In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
 system errors have on the measured actions. We then discuss two potential
 sources of these coordinate system offsets in
-Sections~\ref{sec:mes_err}~and~\ref{sec:local_file}. In
+Sections~\ref{sec:mes_err}~and~\ref{sec:local_fire}. In
 Section~\ref{sec:mes_err} we discuss the potential errors in measuring the
 parameters of the Galactocentric coordinate system. In
 Section~\ref{sec:local_fire} we examine the azimuthal variations of the
@@ -277,7 +291,7 @@ and conclude in Section~\ref{sec:conclusion}.
 \begin{deluxetable*}{cCCCCCCCC}
 \tablecaption{Relevant dynamical parameters for the $9$ open clusters within
 $250\,\pc$ of the Sun, using the relevant initial positions and velocities
-from \citet{2018AA...616A..10G}. The neighborhood column is explained in more
+from \citet{2018AA...616A..10G}. Actions are computed using the method outlined in Section~\ref{ssec:action_comp}, with typical values for the Galactocentric coordinate system parameters. These are only shown to illustrate the general types of orbits open clusters are on. The neighborhood column is explained in more
 detail in Section~\ref{sssec:reconstruction}.\label{tab:real_clusters}}
 \tablehead{\colhead{cluster} & \colhead{$N_{\text{memb}}$} & \colhead{distance} & \colhead{$J_R$} &
 \colhead{$J_{\phi}$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$} & \colhead{mass} & \colhead{neighborhood} \\ 
@@ -286,15 +300,15 @@ detail in Section~\ref{sssec:reconstruction}.\label{tab:real_clusters}}
 \colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
 \colhead{$\mathrm{pc}$} & \colhead{$M_{\odot}$} & \colhead{$\mathrm{pc}$}}
 \startdata
-alphaPer & 740 & 174.9 & \sim20 & \sim -1700 & \sim0.005 & \sim11 & 352\tablenotemark{b} & 57 \\
-Blanco1 & 489 & 237.2 & \sim2 & \sim-1800 & \sim2 & \sim210 & 410\tablenotemark{c} & 1460 \\
-ComaBer & 153 & 85.9 & \sim2 & \sim-1900 & \sim0.7 & \sim140 & 112\tablenotemark{d} & 522\\
-Hyades & 515 & 47.5 & \sim20 & \sim-1800 & \sim0.3 & \sim80 & 400\tablenotemark{e} & 462 \\
-IC2391 & 325 & 151.6 & \sim6 & \sim-1800 & \sim0.02 & \sim20 & \nodata & \nodata \\
-IC2602 & 492 & 152.2 & \sim10 & \sim-1700 & \sim0.3 & \sim89 & \nodata & \nodata \\
-NGC2451A\tablenotemark{a} & 400 & 193.7 & \sim6 & \sim-1800 & \sim0.2 & \sim73 & \nodata & \nodata \\
-Pleiades & 1326 & 135.8 & \sim20 & \sim-1700 & \sim0.4 & \sim96 & 800\tablenotemark{f} & 685 \\
-Praesepe & 938 & 186.2 & \sim20 & \sim-1800 & \sim0.6 & \sim120 & 550\tablenotemark{d} & 781
+alphaPer & 740 & 174.9 & 20 & -1700 & 0.005 & 11 & 352\tablenotemark{b} & 57 \\
+Blanco1 & 489 & 237.2 & 2 & -1800 & 2 & 210 & 410\tablenotemark{c} & 1460 \\
+ComaBer & 153 & 85.9 & 2 & -1900 & 0.7 & 140 & 112\tablenotemark{d} & 522\\
+Hyades & 515 & 47.5 & 20 & -1800 & 0.3 & 80 & 400\tablenotemark{e} & 462 \\
+IC2391 & 325 & 151.6 & 6 & -1800 & 0.02 & 20 & \nodata & \nodata \\
+IC2602 & 492 & 152.2 & 10 & -1700 & 0.3 & 89 & \nodata & \nodata \\
+NGC2451A\tablenotemark{a} & 400 & 193.7 & 6 & -1800 & 0.2 & 73 & \nodata & \nodata \\
+Pleiades & 1326 & 135.8 & 20 & -1700 & 0.4 & 96 & 800\tablenotemark{f} & 685 \\
+Praesepe & 938 & 186.2 & 20 & -1800 & 0.6 & 120 & 550\tablenotemark{d} & 781
 \enddata
 
 \tablenotetext{a}{This cluster is labeled NGC2451, which we interpret as
@@ -310,34 +324,32 @@ NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
 
 
 \section{Motivation} \label{sec:ref_frame}
-We first demonstrate the significance of systematic errors in the
-determination of the Galactic midplane and distance to the Galactic center to
-action computations. We will find that such errors are especially important
+We first demonstrate the significance  to
+action computations of a systematic offset in the
+determination of the Galactic midplane or distance to the Galactic center. We will find that such offsets are especially important
 for disk-like orbits. The consequences we explore here may also arise from
 various other systematic errors. For instance, the axisymmetric Galactic
 potential model used in many works to compute actions may not be a good
 description of the true potential --- or the parameters used may yield a
 potential that is systematically incorrect outside an original fitted region.
 In this work, we assume that the Galaxy is perfectly described by our model
-axisymmetric potential, and simply explore the consequences of systematic
-errors in the determination of the Galactocentric coordinate system.
+axisymmetric potential, and simply explore the consequences of offsets in the determination of the Galactocentric coordinate system.
 
-\subsection{Cartoon Effect of Midplane Error} \label{ssec:cartoon}
+\subsection{Effect of Midplane Offset} \label{ssec:cartoon}
 We present a cartoon approximation in Figure~\ref{fig:cartoon} to show how an
-inaccurate determination of the midplane leads to a phase-dependence of the
+inaccurate or erroneous determination of the midplane (and hence the zero-point of the $z$ coordinate) leads to a phase-dependence of the
 actions calculated from an orbit specified by a phase-space point and an
 assumed potential model. The $y$-axis corresponds to the vertical height of
-the orbit and the $x$-axis orbital phase. The solid gray curve indicates the
+the orbit and the $x$-axis shows orbital phase. The solid gray curve indicates the
 ``true'' orbit of the star; that is, its orbit as it oscillates around the
-true midplane. The dashed gray line is an erroneous midplane assigned to the
-potential model which an observer uses to integrate the orbit of the star and
-hence estimate its actions. The model potential is otherwise identical to the
-one in which the star is actually moving.
+true midplane. The dashed gray line is the midplane location in the
+potential model used to integrate the orbit of the star and
+hence estimate its actions, which is offset from the true midplane of the star's orbit. The model potential is otherwise identical to the one in which the star is actually moving.
 
-Now suppose this observer makes a measurement of the true orbit at the purple
+Now suppose this observer makes a measurement of the star's position and velocity at the purple
 point or the green point (i.e. at two different orbital phases). Then the
 purple and green curves correspond to the orbits that the observer would
-compute for each point based on the potential model with the erroneous
+compute for each point based on the potential model with the offset
 midplane. In action space, this would correspond to a different value of $J_z$
 for the purple and green points. In this way, assuming the wrong coordinate
 system induces a phase-dependence in the actions estimated for the star, which
@@ -367,107 +379,116 @@ in the actions estimated for a given star in that potential.}
 \end{figure*}
 
 \subsection{Epicyclic Approximation} \label{ssec:epi_action}
-Before turning to numerical methods, we first write down analytically the
-induced action error from either a midplane offset or a Galactocentric radius
-offset. We make the epicyclic approximation, which assumes that the motion in
-the $z$ and $R$ components of the orbit are decoupled and follow a simple
-harmonic oscillator. This approximation should be an excellent description of
-thin disk-like orbits and a good description of thick disk-like orbits. We
+Before turning to numerical methods, we first write down analytically the systematic error in the actions induced from either a midplane offset or a Galactocentric radius
+offset. We use the epicyclic approximation, which assumes that the motion in
+the $z$ and $R$ components of the orbit are decoupled and follow simple
+harmonic motion about a circular and planar ``guiding orbit'' \citep[][Section 3.2 and references therein]{2008gady.book.....B}. We refer to the radius of this orbit (the ``guiding radius'') as $R_g$. This approximation is an excellent description of
+thin disk-like orbits and a good description of thick disk-like orbits in an axisymmetric potential (i.e. ignoring the influence of the Galactic bar and spiral arms). We
 also make the assumption of a perfectly flat circular velocity curve with
-velocity $v_c$.
+velocity $v_c$ \citep[decent near the Solar circle, e.g.][]{2017MNRAS.465...76M}. 
 
-Under this approximation, we can write down the vertical and radial components
+Under this approximation, we can write down the cylindrical components
 of the orbits as,
 \beq\label{eq:orbits_epi}
 \begin{split}
-z(t) &= A_z \sin{(\kappa t + \alpha)}\\
-R(t) &= A_R \sin{(\nu t + \beta)}\text{,}
+\phi(t) &= \Omega t\\
+R(t) &= R_g + A_R \sin{(\nu t + \beta)} \\
+z(t) &= A_z \sin{(\kappa t + \alpha)}
+\text{,}
 \end{split}
 \eeq
 where $\kappa$ and $\nu$ are the vertical and radial (or epicyclic)
 frequencies, $A_z$ and $A_R$ are the amplitudes of the stellar motion in the
 vertical and radial coordinates, and $\alpha$ and $\beta$ are arbitrary
-constants. Similarly, the velocities of the orbit are given by,
+constants. Similarly, the velocities of the orbit are given by
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
-v_z(t) &= A_z \kappa \cos{(\kappa t + \alpha)}\\
-v_R(t) &= A_R \nu \cos{(\nu t + \beta)}\text{.}
+v_{\phi}(t) &= \Omega \\
+v_R(t) &= A_R \nu \cos{(\nu t + \beta)} \\
+v_z(t) &= A_z \kappa \cos{(\kappa t + \alpha)}
+\text{.}
 \end{split}
 \eeq
 
-We can write down the actions in this approximation as
-\citep[Section~3.5.3b][]{2008gady.book.....B},
-\beq\label{eq:actions_epi}
+In this case, we have that for $J_{\phi}$ \citep[][Section~3.5.3b]{2008gady.book.....B}, 
+\beq\label{eq:Jphi_epi}
+J_{\phi} = R_g v_c\text{,}
+\eeq
+and for $J_R$ and $J_z$,
+\beq\label{eq:JR_Jz_epi}
 \begin{split}
-J_{\phi} &= R_g v_c \\
-J_R &= \kappa A_R^2 \\
-J_z &= \nu A_z^2\text{,}
+J_R &= \frac{E_R}{\kappa} \\
+J_z &= \frac{E_z}{\nu} \text{,}
 \end{split}
 \eeq
-where $R_g$ is the guiding radius of the orbit.
-
-An induced error in $z$ of $\Delta z$ will cause $\Delta A_z \sim \Delta z$.
-Similarly, an induced error in $R$ will cause $\Delta A_R \sim \Delta R$.
-Making the assumption that $\kappa$ and $\nu$ are constant, we have that
-\beq\label{eq:actions_epi_error}
+where $E_R$ and $E_z$ are the energy per unit mass in the radial and vertical
+coordinates, respectively. Since $a_R = -\kappa^2(R-R_g)$, and $a_z = - \nu^2
+z$, we have that,
+\beq\label{eq:JR_Jz_epi_energy}
 \begin{split}
-\Delta J_{\phi} = \Delta R v_c &\implies \frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R} \\
-\Delta J_R = 2 \kappa \Delta A_R &\implies \frac{\Delta J_R}{J_R} = \frac{2\Delta R}{A_R} \\
-\Delta J_z = 2 \nu \Delta A_z &\implies \frac{\Delta J_z}{J_z} = \frac{2\Delta z}{A_z}\text{.}
-\end{split}
-\eeq
-Therefore, errors in each action are linearly proportional to the errors in
-either the midplane or cylindrical radius. While in detail $\kappa$ and $\nu$
-are not constant, we will find that this order of magnitude estimate matches
-the numerical estimates quite well.
-
-There is a slight complication in the formula for computing $\Delta J_R/J_R$
-and $\Delta J_{\phi}/J_{\phi}$. In a moment we will consider the effect of an inaccuracy
-in the distance from the Sun to the Galactic center on actions. However, this
-inaccuracy induces an error in $x$, or $\Delta x$. This is not the same as an
-inaccuracy in $\Delta R$, but they are related by the following argument. An
-error $\Delta x$ will induce an erroneous radius $R_{\text{err}}$ related by
-the formula,
-\beq
-(x+\Delta x)^2 + y^2 = R_{\text{err}}^2\text{.}
-\eeq
-Keeping only terms to first order in $\Delta x$, we have that,
-\beq
-\begin{split}
-R_{\text{err}}^2 &= R^2 - 2 R \cos{\theta} \Delta x \\
-\implies \Delta R &\equiv \abs{R_{\text{err}} - R} = \abs{\cos{\theta}} \Delta x\text{.}
-\end{split}
-\eeq
-Averaging over the circle, we therefore have that,
-\beq
-\avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
-\eeq
-Therefore, the error in $J_R$ and $J_{\phi}$ are related to $\Delta x$ by,
-\beq\label{eq:Jr_epi_dx}
-\begin{split}
-\frac{\Delta J_R}{J_R} &= \frac{4 \Delta x}{\pi A_R} \\
-\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{2 \Delta x}{\pi R}\text{.}
+J_R &= \frac{\frac{1}{2}v_R^2 + \kappa^2 (R-R_g)^2}{\kappa} \\
+J_z &= \frac{\frac{1}{2}v_z^2 + \nu^2 z^2}{\nu}
 \end{split}
 \eeq
 
-A similarly rough argument can be made to arrive at the following formulae for
-the impact of velocity offsets on the actions,
-\beq\label{eq:actions_epi_error}
+While the formula for $J_{\phi}$ is phase independent, $J_R$ and $J_z$ are
+both phase dependent. We consider two cases. First, at the point of maximum
+amplitude or when $(v_R, v_z) = (0, 0)$ and second, at the point of maximum
+velocity $(R, z) = (R_g, 0)$. For $J_R$ we have that,
+\beq\label{eq:JR_epi_final}
+    \begin{aligned}
+        J_R &= \kappa A_R^2 && \text{if $v_R = 0$} \\
+    J_R &= \frac{v_{R,\text{max}}^2}{2\kappa^2} && \text{if $R=R_g$} \text{.}
+    \end{aligned}
+\eeq
+For $J_z$, we have that,
+\beq\label{eq:Jz_epi_final}
+    \begin{aligned}
+        J_z &= \kappa A_z^2 && \text{if $v_z = 0$} \\
+        J_z &= \frac{v_{z,\text{max}}^2}{2\kappa^2} && \text{if $z=0$} \text{.}
+    \end{aligned}
+\eeq
+
+Now assume that the coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by
+$(\Delta R, \Delta z, \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. Then, the
+induced error in $J_{\phi}$ is,
+\beq\label{eq:induced_Jphi}
+\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}\text{.}
+\eeq
+For $J_R$, the induced error is,
+\beq\label{eq:induced_JR}
+\begin{aligned}
+    \frac{\Delta J_R}{J_R} &= \frac{2\Delta R}{A_R} + 
+        \left(\frac{\Delta v_R}{v_{R,\text{max}}}\right)^2 && \text{if $v_R = 0$} \\
+    \frac{\Delta J_R}{J_R} &= \frac{2\Delta v_R}{v_{R,\text{max}}} + 
+        \left(\frac{\Delta R}{A_R}\right)^2  && \text{if $R=R_g$} \text{.}
+\end{aligned}
+\eeq
+For $J_{z}$, the induced error is,
+\beq\label{eq:induced_Jz}
+\begin{aligned}
+    \frac{\Delta J_z}{J_z} &= \frac{2\Delta z}{A_z} + 
+        \left(\frac{\Delta v_z}{v_{z,\text{max}}}\right)^2 && \text{if $v_z = 0$} \\
+    \frac{\Delta J_z}{J_z} &= \frac{2\Delta v_z}{v_{z,\text{max}}} + 
+        \left(\frac{\Delta z}{A_z}\right)^2  && \text{if $z=0$} \text{.}
+\end{aligned}
+\eeq
+
+Since most of the time stars will be at maximum amplitude in both the $R$ and
+$z$ components, we can assume for most stars that
+\beq\label{eq:Ji_err_mosttime}
 \begin{split}
-\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta v_{\phi}}{v_c} \\
-\frac{\Delta J_R}{J_R} &= \frac{\Delta v_R}{v_{R,\text{max}}} \\
-\frac{\Delta J_z}{J_z} &= \frac{\Delta v_z}{v_{z,\text{max}}}\text{,}
+\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta R}{R_g} \\
+\frac{\Delta J_{R}}{J_{R}} &= \frac{2\Delta R}{A_R} \\
+\frac{\Delta J_{z}}{J_{z}} &= \frac{2\Delta z}{A_z} \text{,}
 \end{split}
 \eeq
-where $v_{R,\text{max}}$ and $v_{z,\text{max}}$ are the maximum radial and
-vertical velocities of the orbit, respectively.
+where we have also ignored second order terms.
 
-We will check the formulae for the midplane offset against numerical tests
-next. The effect of velocity offsets on actions is deferred to future work, as
-we discuss in Section~\ref{ssec:lsr_var}.
+In the remainder of this section, we compare our analytic estimates of the effect on actions of a midplane offset against numerical calculations. Detailed worked on the effect of velocity offsets on actions is deferred to future work, as we discuss in Section~\ref{ssec:lsr_var}.
 
 \subsection{Numerical Methods} \label{ssec:action_comp}
-We now move on to quantifying the argument made in Section~\ref{ssec:cartoon}.
+We now quantify the argument made in Section~\ref{ssec:cartoon} using numerical computations of the actions for a range of orbits in a model Galactic potential.
 We compute actions as in our previous work \citep{2018ApJ...867...31B}, using
 the code \texttt{gala} v0.3 to perform orbit integrations and conversion to
 action space \citep{2017JOSS....2..388P,Price-Whelan:2018}. To compute actions
@@ -725,6 +746,24 @@ for $J_R$, with some deviations resulting in $J_{\phi}$ and relatively small
 deviations in $J_z$. In the {\em bottom middle} and {\em bottom right} panels
 all three lines nearly overlap.
 
+In each panel of Figure~\ref{fig:many_orbit_wrong_ref}, where relevant, we
+include the estimation of the action errors derived under the epicyclic
+approximation from Equation~\ref{eq:Ji_err_mosttime}. This Equation is relevant since during most of the orbit the star will be at maximum radial and vertical amplitude and we do not consider velocity offsets. Note that we consider an error
+in the $x$-coordinate $\Delta x$, which is not quite the same as $\Delta R$.
+For observations of stars close to us, we have that $\Delta x \sim \Delta R$,
+but for the experiment performed in this Section we consider observations of
+the star throughout its entire orbit. This introduces a factor of $2/\pi$ when
+converting from $\Delta R$ to $\Delta x$, which we derive in
+Appendix~\ref{app:deltax}.
+
+The epicyclic approximation is a good predictor of $J_z$, even for halo
+orbits. It performs similarly for $J_R$, now underpredicting for halo orbits
+and slightly overpredicting for thin-disk orbits. Note that for the particular
+orbits we chose, the thin-disk orbit has slightly larger $A_R$ than the
+thick-disk orbit, and so we expect the epicyclic approximation to perform
+slightly worse. The epicyclic approximation underpredicts $J_{\phi}$ for all
+orbits.
+
 \begin{figure*}
 \begin{center}
 \includegraphics[width=\textwidth]{fig/schmactions_many_orbits.pdf}
@@ -777,7 +816,7 @@ estimate quite well.
 \section{Coordinate System Offsets I. Measurement Errors} \label{sec:mes_err}
 We consider the first potential source of coordinate system offsets which
 would generate the action errors described in Section~\ref{sec:ref_frame}:
-errors in the determination of the Galactocentric parameters. Converting from
+uncertainties in measurements of the position and velocity of the Sun relative to the Galactic center. Converting from
 heliocentric to Galactocentric coordinates relies on these measurements.
 Therefore, errors in their values will induce a systematic offset in the
 Galactocentric phase-space position of any observed star.
@@ -786,36 +825,29 @@ Galactocentric phase-space position of any observed star.
 First, one must define the center of the Galaxy. This is usually taken to be
 the location of the central supermassive black hole, Sgr~A\textsuperscript{*}
 \citep[e.g.][]{2004ApJ...616..872R}. From stellar motions near
-Sgr~A\textsuperscript{*}, the distance from the Sun to the Galactic center can
-be measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a recent
+Sgr~A\textsuperscript{*}, the distance from the Sun to Sgr~A\textsuperscript{*} can
+be precisely measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a recent
 measurement using near-infrared interferometry of $8.178 \pm 0.035$~kpc
 \citep{2019arXiv190405721A}.
 
-We take the ``dynamical Galactic center'' to be the point in three-dimensional
-space about which the stars in the solar neighborhood are orbiting. An
-important point to make about the Galactic center is that while many authors
-assume Sgr~A\textsuperscript{*} is colocated with the dynamical Galactic
-center, this assumption has not yet been justified. One potential test is to
-perform some sort of dynamical modelling where the distance from the Sun to
-the Galactic center is a free parameter and can be constrained with real data.
-For example, \citet{2015ApJ...803...80K} were able to make this measurement by
-modelling the dynamics of the stream Palomar 5. Other dynamical measurements
-of the Solar distance have been made, though none with a precision capable of
-competing with the distance to Sgr~A\textsuperscript{*}
-\citep{1981gask.book.....M, 2011PASJ...63..867S, 2012MNRAS.427..274S,
-2013AstL...39...95B, 2013IAUS..289..444Z}.
+Importantly, the location of Sgr~A\textsuperscript{*} may not be equivalent to the location of the ``dynamical Galactic center:'' the point in three-dimensional
+space about which the stars in the solar neighborhood are orbiting. This assumption, although frequently made, has not yet been justified. It is tested in any construction of a  dynamical model where the distance from the Sun to
+the Galactic center, $R_0$, is a free parameter.
+For example, \citet{2015ApJ...803...80K} measured $R_0$ while
+modelling the dynamics of the stream Palomar 5. Many other dynamical measurements
+of $R_0$ have been made (\citealt{2016ARAA..54..529B} summarize many pre-{\em Gaia} results) but none have yet achieved a precision comparable to that of the distance to Sgr~A\textsuperscript{*}.
+% \citep{1981gask.book.....M, 2011PASJ...63..867S, 2012MNRAS.427..274S,2013AstL...39...95B, 2013IAUS..289..444Z}.
 
 \subsection{Galactic Orientation}
-Second, one must define the orientation of the Galaxy about the center. This
+Second, one must define the angular orientation of the Galaxy. This
 was defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
 defining the coordinates of the Galactic center in B1950 coordinates as
-(17:42:26.6, -28:55:00) and the north Galactic pole as (12:49:00, +27:24:00).
-However, there is growing evidence that the true midplane is tilted when
-considering stars \citep{2014ApJ...797...53G, 2016ARAA..54..529B}, though not
-with H~\textsc{ii} \citep{2019ApJ...871..145A}.
+(17:42:26.6, -28:55:00) and the north Galactic pole as (12:49:00, +27:24:00). These two quantities, together with $R_0$, define the orientation of the Galactic plane.
+However, there is growing evidence that the stellar midplane is tilted relative to this coordinate system \citep{2014ApJ...797...53G, 2016ARAA..54..529B}, though not
+the H~\textsc{ii} midplane \citep{2019ApJ...871..145A}.
 
 \subsection{Solar Height}
-Thirdly, one must define the Sun's vertical distance from the Galactic
+Third, one must define the Sun's vertical distance from the Galactic
 midplane, which can be determined by identifying where the stellar density
 and velocities reach a maximum (effectively the median height of all disk
 stars). The Solar height is usually taken to be $\sim 25\,\pc$
@@ -827,19 +859,19 @@ relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em Gaia} review
 of these measurements is given by \citet{2016ARAA..54..529B}.
 
 \subsection{Local Standard of Rest}
-Finally, one must define the local standard of rest (LSR). The radial
-($U_{\odot}$) and vertical ($W_{\odot}$)components are easily computed by
-taking the mean motions of different stellar groups. The azimuthal component
+Finally, one must define the local standard of rest (LSR), or mean velocity of stars near the Sun relative to the Galactic center (which is defined to have zero velocity), and the velocity of the Sun relative to the LSR. The radial
+($U_{\odot}$) and vertical ($W_{\odot}$) components are computed by
+taking the mean motions of different stellar groups \citep[e.g.][]{2012MNRAS.427..274S}. The azimuthal component
 ($V_{\odot}$) is more difficult to measure, but can be modelled using the
 asymmetric drift relation \citep{2008gady.book.....B}. The values of the
 components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. The
 value of the circular velocity is taken to be $\sim 220\kms$
 \citep[e.g.][]{2012ApJ...759..131B}.
 
-In order to convert a star's position and velocity from heliocentric to
-Galactocentric coordinates, a number of parameters must be measured. Given the
-great interest in each parameter, considerable effort has been placed on these
-measurements. However, uncertainties remain, and detailed dynamical modelling
+\vspace{6pt}
+
+Considerable effort has been placed on each of these
+measurements, but uncertainties remain, and detailed dynamical modelling
 across the disk --- particularly for dynamically cold stars --- may have to
 take them into account. For instance, the discrepancy of $\sim 5\,\pc$ between
 the midplane defined by stars and by gas will induce a $\sim10\%$ error in
@@ -851,8 +883,8 @@ Simulations}
 \label{sec:local_fire}
 
 We now consider a second source of systematic offsets in the Galactocentric
-coordinate system --- intrinsic variations of the midplane across the disk. We
-study this in two sets of simulations of Milky Way-mass galaxies. We will also
+coordinate system: intrinsic variations of the midplane across the disk. We
+use two sets of simulations of Milky Way-mass galaxies to estimate the size of this effect. We will also
 briefly discuss a rough estimate of the midplane variation derived from the
 observed velocity distribution of the Milky Way, but defer a detailed
 treatment to future work.
@@ -969,20 +1001,20 @@ principal-axis frame determined by stars younger than $1\,\Gyr$ inside of the
 fiducial solar radius $R_{\odot} = 8.2\,\kpc$, such that the disk plane is the
 $x$--$y$ plane.
 
-\subsection{Description of Sagittarius Simulaton} \label{ssec:sag_sim}
+\subsection{Description of MW-Sagittarius Interaction Simulation} \label{ssec:sag_sim}
 In addition to the cosmological zoom-in, we will also briefly consider results
 from a toy Sagittarius encounter simulation. This simulation offers us the
 ability to see how the midplane varies in a more controlled environment. The
 details of the simulation are given in \citet{2018MNRAS.481..286L}, but we
 briefly summarize the most relevant details here. For the Milky Way, the dark
-halo is modelled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
-length of $52\,\kpc$, the disk modelled as an exponential disk with a scale
+halo is modeled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
+length of $52\,\kpc$, the disk modeled as an exponential disk with a scale
 radius of $3.5\,\kpc$, scale height $0.53\,\kpc$, and mass
 $6\times10^{10}\,\Msun$, a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
 length $0.7\,\kpc$ \citep{1990ApJ...356..359H}. Sagittarius is modelled as a
 dark matter Hernquist sphere of mass \Gus{something} and scale length
-\Gus{something}, along with a stellar component modelled as a Hernquist sphere
-of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$.
+\Gus{something}, along with a stellar component modeled as a Hernquist sphere
+of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$. All components are realized with live distributions of N-body particles; the MW and Sgr are each initialized to be in equilibrium in isolation \Gus{check!}.
 
 The mass resolution of the simulation is $2.6\times10^4$, $1.2\times10^4$, and
 $1.0\times10^4$ for the dark matter, disk, and bulge components, respectively.
@@ -1292,12 +1324,38 @@ We would like to thank Megan Bedell, Tobias Buck, Elena D'Onghia, Benoit
 Famaey, and Adrian Price-Whelan for helpful discussions. A.B. would like to
 thank Todd Phillips for helpful discussions. A.B. was supported in part by the
 Roy \& Diana Vagelos Program in the Molecular Life Sciences and the Roy \&
-Diana Vagelos Challenge Award.
-%mm The work of \Gus{everyone} is supported by the Simons
-%Foundation. \Gus{remove last sentence if everyone CCA affiliated}
-M.-M.M.L. was partly supported by NSF grant AST18-15461.
+Diana Vagelos Challenge Award. M.-M.M.L. was partly supported by NSF grant
+AST18-15461. The work of D.A.-A., A.B., D.W.H., C.F.P.L., R.S., K.V.J.,
+M.-M.M.L., and M.K.N. is supported by the Simons Foundation.
 
 \appendix
+\section{$\Delta R$-$\Delta x$ Relation} \label{app:deltax}
+We considered the effect on actions of an inaccuracy in the distance from the
+Sun to the Galactic center, which introduces an offset in the $x$ coordinate,
+$\Delta x$, of each star when converting to a Galactocentric coordinate
+system. In observations of nearby stars, we have that $\Delta x \sim \Delta
+R$. However, for the experiment we performed in Section~\ref{ssec:quant} we
+considered observations of a star throughout its entire orbit. Therefore, we
+must average $\Delta R$ over the course of the orbit. We derive this relation
+now.
+
+An offset $\Delta x$ results in an erroneous radius $R_{\text{err}}$ related by
+the formula,
+\beq
+(x+\Delta x)^2 + y^2 = R_{\text{err}}^2\text{.}
+\eeq
+Keeping only terms to first order in $\Delta x$, we have that,
+\beq
+\begin{split}
+R_{\text{err}}^2 &= R^2 - 2 R \cos{\phi} \Delta x \\
+\implies \Delta R &\equiv \abs{R_{\text{err}} - R} = \abs{\cos{\phi}} \Delta x\text{.}
+\end{split}
+\eeq
+Averaging over the circle, we therefore have that,
+\beq
+\avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
+\eeq
+
 \section{Orbits} \label{app:orbits}
 We plot the three orbits considered throughout the work
 (Table~\ref{tab:orbits}) in Figure~\ref{fig:plot_orbits}.

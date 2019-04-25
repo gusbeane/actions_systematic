@@ -56,7 +56,7 @@ name_list = ['thin-disk', 'thick-disk', 'halo']
 fname_list = ['thin', 'thick', 'halo']
 Az_list = np.array([120, 850, 6160]) # pc
 AR_list = np.array([1290, 1190, 2340]) # pc
-Rg_list = np.array([5420, 5610, 6200]) # pc
+Rg_list = np.array([6996, 7069, 8693]) # pc
 
 fig, ax = plt.subplots(2, 3, figsize=(textwidth, 4))
 init_pos = [8, 0, 0] * u.kpc
