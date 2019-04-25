@@ -436,29 +436,6 @@ either the midplane ($z$ coordinate) or cylindrical radius ($R$ coordinate). Whi
 
 %There is a slight complication in the formula for computing $\Delta J_R/J_R$
 %and $\Delta J_{\phi}/J_{\phi}$. 
-We will later consider the effect on actions of an inaccuracy in the distance from the Sun to the Galactic center, which introduces an offset in the $x$ coordinate, $\Delta x$, of each star when converting to a Galactocentric coordinate system. An offset $\Delta x$ results in an erroneous radius $R_{\text{err}}$ related by
-the formula,
-\beq
-(x+\Delta x)^2 + y^2 = R_{\text{err}}^2\text{.}
-\eeq
-Keeping only terms to first order in $\Delta x$, we have that,
-\beq
-\begin{split}
-R_{\text{err}}^2 &= R^2 - 2 R \cos{\theta} \Delta x \\
-\implies \Delta R &\equiv \abs{R_{\text{err}} - R} = \abs{\cos{\theta}} \Delta x\text{.}
-\end{split}
-\eeq
-Averaging over the circle, we therefore have that,
-\beq
-\avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
-\eeq
-Therefore, the error in $J_R$ and $J_{\phi}$ are related to $\Delta x$ by,
-\beq\label{eq:Jr_epi_dx}
-\begin{split}
-\frac{\Delta J_R}{J_R} &= \frac{4 \Delta x}{\pi A_R} \\
-\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{2 \Delta x}{\pi R}\text{.}
-\end{split}
-\eeq
 
 A similar derivation results in formulae for
 the impact of velocity offsets on the actions:
@@ -732,6 +709,24 @@ For the offset in the Solar radius ({\em bottom panels}), the error is largest
 for $J_R$, with some deviations resulting in $J_{\phi}$ and relatively small
 deviations in $J_z$. In the {\em bottom middle} and {\em bottom right} panels
 all three lines nearly overlap.
+
+In each panel of Figure~\ref{fig:many_orbit_wrong_ref}, where relevant, we
+include the estimation of the action errors derived under the epicyclic
+approximation in Section~\ref{ssec:epi_action}. Note that we consider an error
+in the $x$-coordinate $\Delta x$, which is not quite the same as $\Delta R$.
+For observations of stars close to us, we have that $\Delta x \sim \Delta R$,
+but for the experiment performed in this Section we consider observations of
+the star throughout its entire orbit. This introduces a factor of $2/\pi$ when
+converting from $\Delta R$ to $\Delta x$, which we derive in
+Appendix~\ref{app:deltax}.
+
+The epicyclic approximation is a good predictor of $J_z$, even for halo
+orbits. It performs similarly for $J_R$, now underpredicting for halo orbits
+and slightly overpredicting for thin-disk orbits. Note that for the particular
+orbits we chose, the thin-disk orbit has slightly larger $A_R$ than the
+thick-disk orbit, and so we expect the epicyclic approximation to perform
+slightly worse. The epicyclic approximation underpredicts $J_{\phi}$ for all
+orbits.
 
 \begin{figure*}
 \begin{center}
@@ -1476,6 +1471,33 @@ AST18-15461. The work of D.A.-A., A.B., D.W.H., C.F.P.L., R.S., K.V.J.,
 M.-M.M.L., and M.K.N. is supported by the Simons Foundation.
 
 \appendix
+\section{$\Delta R$-$\Delta x$ Relation} \label{app:deltax}
+We considered the effect on actions of an inaccuracy in the distance from the
+Sun to the Galactic center, which introduces an offset in the $x$ coordinate,
+$\Delta x$, of each star when converting to a Galactocentric coordinate
+system. In observations of nearby stars, we have that $\Delta x \sim \Delta
+R$. However, for the experiment we performed in Section~\ref{ssec:quant} we
+considered observations of a star throughout its entire orbit. Therefore, we
+must average $\Delta R$ over the course of the orbit. We derive this relation
+now.
+
+An offset $\Delta x$ results in an erroneous radius $R_{\text{err}}$ related by
+the formula,
+\beq
+(x+\Delta x)^2 + y^2 = R_{\text{err}}^2\text{.}
+\eeq
+Keeping only terms to first order in $\Delta x$, we have that,
+\beq
+\begin{split}
+R_{\text{err}}^2 &= R^2 - 2 R \cos{\theta} \Delta x \\
+\implies \Delta R &\equiv \abs{R_{\text{err}} - R} = \abs{\cos{\theta}} \Delta x\text{.}
+\end{split}
+\eeq
+Averaging over the circle, we therefore have that,
+\beq
+\avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
+\eeq
+
 \section{Orbits} \label{app:orbits}
 We plot the three orbits considered throughout the work
 (Table~\ref{tab:orbits}) in Figure~\ref{fig:plot_orbits}.
