@@ -806,7 +806,7 @@ Figure~\ref{fig:dJz_fun_Jz}. For a thin disk-like orbit
 $\sim25\%$ error in $J_z$. For larger values of $J_z$, the fractional errors
 are suppressed, but the induced error can still be large depending on how
 great the $z$ offset is. We also plot the epicylic prediction for $\Delta J_z
-/ J_z$ from Equation~\ref{eq:actions_epi_error} as dashed lines for each $z$
+/ J_z$ from Equation~\ref{eq:Ji_err_mosttime} as dashed lines for each $z$
 offset. We find that the epicyclic approximation matches the numerical
 estimate quite well.
 
@@ -1222,8 +1222,7 @@ The second issue, which is related to the point of this paper, is that based
 on the results in our previous sections computing $\bm{J}_i$ for a field star
 and directly comparing it to  $\bm{J}_c$ will have significant systematic
 error if the cluster and field star are far enough apart to have significantly
-different local midplanes (see Figure \ref{fig:range_deltaphi}). Since our
-criterion for cluster membership (distance in action space) scales with the
+different local midplanes (see Figures \ref{fig:midplane} and \ref{fig:midplane_chervin}). Since our criterion for cluster membership (distance in action space) scales with the
 cluster mass, the region where the search will succeed varies with cluster
 mass as well. To illustrate this effect, we assume a cluster mass $m_c$ and
 estimate the expected action-space dispersion from
@@ -1261,36 +1260,27 @@ computed actions actually being invariant. Our main conclusions are as
 follows:
 
 \begin{itemize}
-\item We demonstrated that an inaccuracy in the Galactocentric coordinate
-system induces time evolution in the {\em observed} actions
-(Figures~\ref{fig:cartoon}~and~\ref{fig:one_orbit_wrong_ref}). We interpret
-this time evolution as an error in the computed action
+\item Inaccuracy in the Galactocentric coordinate
+system induces phase-dependence in the actions calculated from the observed positions and velocities of stars
+(Figures~\ref{fig:cartoon}~and~\ref{fig:one_orbit_wrong_ref}). Since stars' instantaneous phase-space positions are measured without prior knowledge of their orbital phases, this results in systematic error in the computed actions
 (Figure~\ref{fig:many_orbit_wrong_ref}).
 
-\item  We focused on the effect that an
-inaccuracy in the midplane has on the vertical action $J_z$. We found that in
-order for there to be a $10\%$ error in $J_z$ (as defined by one half the middle
-$90\uth$ percentile) one needs a midplane error of $\sim6\,\pc$ and
-$\sim50\,\pc$ for a typical thin and thick disk orbit, respectively. The
-fractional error is significantly less for halo orbits.
+\item Inaccuracy in the midplane location most severely affects computation of the vertical action $J_z$.  A midplane offset of $\sim6\,\pc$ ($\sim50\,\pc$) for a typical thin (thick) disk orbit results in a  $10\%$ error in $J_z$ (as defined by one half the middle
+$90\uth$ percentile). The fractional error is significantly less for halo orbits.
 
-\item We pointed out that the error distribution of the actions induced by a
-coordinate system error is very non-Gaussian. The distribution is bimodal with
-{\em neither of the modes peaking at 
-     null}. 
-As a result, error
-propagation of systematic coordinate system errors is 
-     complex
-when considering actions.
+\item The distribution of systematic errors in the actions induced by a
+coordinate system offset is very non-Gaussian. The distribution is bimodal with
+{\em neither mode at null}. 
+As a result, error propagation of coordinate system offsets is complex when considering actions, and is likely to significantly deform the action-space distribution function.
 
-\item We proposed that dynamical modelling across large regions of the disk is
-susceptible to this type of error, since the assumption that our local
+\item Dynamical modelling across large regions of the disk, over which the midplane location varies by more than the limits discussed above, is
+susceptible to this type of systematic error, since the assumption that our local
 Galactic midplane is the global Galactic midplane is not true {\em a priori}.
 
 \item To demonstrate the previous point, we measured the local galactic
 midplane along the Solar circle in three different high-resolution, zoom-in
 simulations of Milky Way mass galaxies from the FIRE collaboration. We found
-that the midplane varies by $\sim185, 162, 84\,\pc$ (middle $90\%$) for the
+that the midplane varies as a function of azimuth by $\sim185, 162, 84\,\pc$ (middle $90\%$) for the
 three galaxies we considered (\mi{}, \mf{}, and \mm{}, respectively).
 
 \item This work emphasizes the importance of combining chemistry and dynamics.
@@ -1299,22 +1289,19 @@ complement and confirm each other. The importance of combining chemistry and
 dynamics for Galactic archaeology was recently pointed out by
 \citet{2019arXiv190210719K}.
 
+\item While in this work we have focused on systematic errors in action computation, all of our conclusions also extend to studies of stars that simply rely on orbit
+integration, since the computation of actions and orbit integrations are
+mathematically equivalent.
+
 \end{itemize}
 
-While in this work we have focused on errors in action computation, all of our
-conclusions also extend to studies of stars that simply rely on orbit
-integration, since the computation of actions and orbit integrations are
-essentially equivalent.
-
-{\bf Add sentences about distribution function modeling}
-
 Our main point is that the local midplane varies between different points in
-the Galaxy. We do
+the Galaxy, and that this variation can lead to significant systematic errors in the computation of actions under the assumption of a global axisymmetric potential. We do
 not propose here what a modeler should use for the ``true'' global midplane,
 since it depends on the particular problem being studied. Even without a
 high-precision definition of the global Galactic midplane, current
 observations from {\em Gaia} should soon permit a measurement of the real
-azimuthal dependence of the midplane location.
+azimuthal dependence of the midplane location. For some applications, such as those using actions as labels to group stars on similar orbits, using such a measurement to shift stars to a consistent midplane height as a function of azimuth before using a global axisymmetric approximation to the potential may be sufficient, although this ignores the \emph{dynamical} implications of shifts in the midplane height (which result from fluctuations in the local density). However, for other applications, such as the study of action diffusion which motivated this paper in the first place, a more extensive perturbative approach is likely to be needed. We plan to explore the mitigation of these effects in future work.
 
 \acknowledgments
 We would like to thank Megan Bedell, Tobias Buck, Elena D'Onghia, Benoit
