@@ -389,20 +389,20 @@ of the orbits as,
 \beq\label{eq:orbits_epi}
 \begin{split}
 \phi(t) &= \Omega_c t \\
-R(t) &= R_g + A_R \sin{(\nu t + \beta)} \\
-z(t) &= A_z \sin{(\kappa t + \alpha)}
+R(t) &= R_g + A_R \sin{(\kappa t + \alpha)} \\
+z(t) &= A_z \sin{(\nu t + \beta)}
 \text{,}
 \end{split}
 \eeq
-where $\kappa$ and $\nu$ are the vertical and radial (or epicyclic)
+where $\kappa$ and $\nu$ are the radial and vertical
 frequencies, $\Omega_c \equiv v_c/R_g$ the rotation frequency, $A_z$ and $A_R$ are the amplitudes of the stellar motion in the
 vertical and radial coordinates, and $\alpha$ and $\beta$ are arbitrary
 constants. Similarly, the velocities of the orbit are given by
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
 v_{\phi}(t) &= v_c \\
-v_R(t) &= A_R \nu \cos{(\nu t + \beta)} \\
-v_z(t) &= A_z \kappa \cos{(\kappa t + \alpha)}
+v_R(t) &= \kappa A_R \cos{(\kappa t + \alpha)} \\
+v_z(t) &= \nu A_z \cos{(\nu t + \beta)}
 \text{.}
 \end{split}
 \eeq
@@ -419,57 +419,44 @@ J_z &= \frac{E_z}{\nu} \text{,}
 \end{split}
 \eeq
 where $E_R$ and $E_z$ are the energy per unit mass in the radial and vertical
-coordinates, respectively. Since $a_R = -\kappa^2(R-R_g)$, and $a_z = - \nu^2
-z$, we have that,
+coordinates, respectively. Therefore,
 \beq\label{eq:JR_Jz_epi_energy}
 \begin{split}
-J_R &= \frac{\frac{1}{2}v_R^2 + \kappa^2 (R-R_g)^2}{\kappa} \\
-J_z &= \frac{\frac{1}{2}v_z^2 + \nu^2 z^2}{\nu}
+J_R &= \frac{v_R^2 + \kappa^2 (R-R_g)^2}{2\kappa} \\
+J_z &= \frac{v_z^2 + \nu^2 z^2}{2\nu}\text{.}
 \end{split}
 \eeq
-
-While the formula for $J_{\phi}$ is phase independent, $J_R$ and $J_z$ are
-both phase dependent via Equation~\eqref{eq:orbits_epi}. We consider two cases. First, at the point of maximum
-amplitude or when $(v_R, v_z) = (0, 0)$ and second, at the point of maximum
-velocity $(R, z) = (R_g, 0)$. For $J_R$ we have that,
-\beq\label{eq:JR_epi_final}
-    \begin{aligned}
-        J_R &= \kappa A_R^2 && \text{if $v_R = 0$} \\
-    J_R &= \frac{v_{R,\text{max}}^2}{2\kappa^2} && \text{if $R=R_g$} \text{.}
-    \end{aligned}
+We can simplify this and write,
+\beq\label{eq:JR_Jz_epi_final}
+\begin{split}
+J_R &= \frac{\kappa A_R^2}{2} = \frac{v_{R,\text{max}}^2}{2\kappa} \\
+J_z &= \frac{\nu A_z^2}{2} = \frac{v_{z,\text{max}}^2}{2\nu}\text{,}
+\end{split}
 \eeq
-For $J_z$, we have that,
-\beq\label{eq:Jz_epi_final}
-    \begin{aligned}
-        J_z &= \kappa A_z^2 && \text{if $v_z = 0$} \\
-        J_z &= \frac{v_{z,\text{max}}^2}{2\kappa^2} && \text{if $z=0$} \text{.}
-    \end{aligned}
-\eeq
+where the last equality comes from the fact that $v_{R,\text{max}} = \kappa
+A_R$ and similarly for $z$.
 
-Now assume that the coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by
-$(\Delta R, \Delta z, \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. Then, the
-induced error in $J_{\phi}$ is, regardless of phase,
+Notice that while the value for each of $J_{\phi}$, $J_R$, and $J_z$ is phase
+independent, the contribution from the kinetic and potential terms in
+Equation~\eqref{eq:JR_Jz_epi_energy} is phase dependent. Now assume that the
+coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by $(\Delta R, \Delta z,
+\Delta v_{\phi}, \Delta v_R, \Delta v_z)$. We can then apply the standard
+propagation of errors formula to Equation~\eqref{eq:JR_Jz_epi_energy}
+determine the error in each of the actions. For $J_{\phi}$ we have that,
 \beq\label{eq:induced_Jphi}
-\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}\text{.}
+\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g} + \frac{\Delta v_{\phi}}{v_c}\text{.}
 \eeq
 For $J_R$, the induced error is,
 \beq\label{eq:induced_JR}
-\begin{aligned}
-    \frac{\Delta J_R}{J_R} &= \frac{2\Delta R}{A_R} + 
-        \left(\frac{\Delta v_R}{v_{R,\text{max}}}\right)^2 && \text{if $v_R = 0$} \\
-    \frac{\Delta J_R}{J_R} &= \frac{2\Delta v_R}{v_{R,\text{max}}} + 
-        \left(\frac{\Delta R}{A_R}\right)^2  && \text{if $R=R_g$} \text{.}
-\end{aligned}
+\frac{\Delta J_R}{J_R} = \frac{2(R-R_g)}{A_R^2}\Delta R
+                         + \frac{2v_R}{v_{R,\text{max}}^2} \Delta v_R \text{.}
 \eeq
-For $J_{z}$, the induced error is,
+For $J_z$, the induced error is,
 \beq\label{eq:induced_Jz}
-\begin{aligned}
-    \frac{\Delta J_z}{J_z} &= \frac{2\Delta z}{A_z} + 
-        \left(\frac{\Delta v_z}{v_{z,\text{max}}}\right)^2 && \text{if $v_z = 0$} \\
-    \frac{\Delta J_z}{J_z} &= \frac{2\Delta v_z}{v_{z,\text{max}}} + 
-        \left(\frac{\Delta z}{A_z}\right)^2  && \text{if $z=0$} \text{.}
-\end{aligned}
+\frac{\Delta J_z}{J_z} = \frac{2z}{A_z^2}\Delta z
+                         + \frac{2v_z}{v_{z,\text{max}}^2} \Delta v_z \text{.}
 \eeq
+We have ignored second order contributions.
 
 Since most of the time stars will be at maximum amplitude (i.e. turnaround) in both $R$ and $z$, we can approximate the order of magnitude of the systematic error in the actions by
 \beq\label{eq:Ji_err_mosttime}
