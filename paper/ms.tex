@@ -430,7 +430,7 @@ J_z &= \frac{\frac{1}{2}v_z^2 + \nu^2 z^2}{\nu}
 \eeq
 
 While the formula for $J_{\phi}$ is phase independent, $J_R$ and $J_z$ are
-both phase dependent. We consider two cases. First, at the point of maximum
+both phase dependent via Eq. \eqref{eq:orbits_epi}. We consider two cases. First, at the point of maximum
 amplitude or when $(v_R, v_z) = (0, 0)$ and second, at the point of maximum
 velocity $(R, z) = (R_g, 0)$. For $J_R$ we have that,
 \beq\label{eq:JR_epi_final}
@@ -449,7 +449,7 @@ For $J_z$, we have that,
 
 Now assume that the coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by
 $(\Delta R, \Delta z, \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. Then, the
-induced error in $J_{\phi}$ is,
+induced error in $J_{\phi}$ is, regardless of phase,
 \beq\label{eq:induced_Jphi}
 \frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}\text{.}
 \eeq
@@ -472,8 +472,7 @@ For $J_{z}$, the induced error is,
 \end{aligned}
 \eeq
 
-Since most of the time stars will be at maximum amplitude in both the $R$ and
-$z$ components, we can assume for most stars that
+Since most of the time stars will be at maximum amplitude (i.e. turnaround) in both $R$ and $z$, we can approximate the order of magnitude of the systematic error in the actions by
 \beq\label{eq:Ji_err_mosttime}
 \begin{split}
 \frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta R}{R_g} \\
@@ -483,7 +482,7 @@ $z$ components, we can assume for most stars that
 \eeq
 where we have also ignored second order terms.
 
-In the remainder of this section, we compare our analytic estimates of the effect on actions of a midplane offset against numerical calculations. Detailed worked on the effect of velocity offsets on actions is deferred to future work, as we discuss in Section~\ref{ssec:lsr_var}.
+In the remainder of this section, we compare our analytic estimates of the effect on actions of a midplane offset against numerical calculations. A numerical evaluation of the effect of velocity offsets on actions is deferred to future work, as we discuss in Section~\ref{ssec:lsr_var}.
 
 \subsection{Numerical Methods} \label{ssec:action_comp}
 We now quantify the argument made in Section~\ref{ssec:cartoon} using numerical computations of the actions for a range of orbits in a model Galactic potential.
