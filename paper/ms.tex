@@ -130,8 +130,7 @@ regions of the disk accessible to {\em Gaia}.
 
 \end{abstract}
 
-\keywords{Galaxy:~disk -- solar~neighborhood --
-open~clusters~and~associations:~general -- Galaxy:~structure --
+\keywords{Galaxy:~disk -- solar~neighborhood -- Galaxy:~structure --
 Galaxy:~evolution}
 
 \section{Introduction} \label{sec:intro}
@@ -258,56 +257,9 @@ stellar mass, scale length, and scale height of the Milky Way
 
 In Section~\ref{sec:discussion} we discuss the implications of midplane
 variations, and the resulting systematic uncertainty in the vertical action,
-for action-space analyses beyond the dynamical solar neighborhood. In light of
-our findings, we considered the orbits of the nine open clusters within
-$250\,\pc$ as reported by the {\em Gaia} collaboration
-\citep{2018AA...616A..10G}. In Table~\ref{tab:real_clusters}, we report the
-distance to each cluster, the three actions, and the maximum vertical extent
-of their orbits ($z_{\text{max}}$). In Section~\ref{sssec:reconstruction} we
-estimate and discuss the size of the dynamical solar neighborhood for each
-cluster based on its mass, to show that action-space tagging is likely still a
-viable method if contamination from foreground or background stars is
-unimportant. We summarize and conclude in Section~\ref{sec:conclusion}.
-
-\begin{deluxetable*}{cCCCCCCCC}
-\tablecaption{Relevant dynamical parameters for the $9$ open clusters within
-$250\,\pc$ of the Sun, using the relevant initial positions and velocities
-from \citet{2018AA...616A..10G}. Actions are computed using the method
-outlined in Section~\ref{ssec:action_comp}, with typical values for the
-Galactocentric coordinate system parameters. These are only shown to
-illustrate the general types of orbits open clusters are
-on.\label{tab:real_clusters}}
-\tablehead{\colhead{cluster} & \colhead{$N_{\text{memb}}$} &
-\colhead{distance} & \colhead{$J_R$} &
-\colhead{$J_{\phi}$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$} &
-\colhead{mass} \\
-\colhead{ } & \colhead{ } &
-\colhead{$\mathrm{pc}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
-\colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
-\colhead{$\mathrm{pc}$} & \colhead{$M_{\odot}$}}
-\startdata
-alphaPer & 740 & 170 & 20 & -1700 & 0.005 & 11 & 352\tablenotemark{b} \\
-Blanco1 & 489 & 240 & 2 & -1800 & 2 & 210 & 410\tablenotemark{c} \\
-ComaBer & 153 & 90 & 2 & -1900 & 0.7 & 140 & 112\tablenotemark{d} \\
-Hyades & 515 & 50 & 20 & -1800 & 0.3 & 80 & 400\tablenotemark{e} \\
-IC2391 & 325 & 150 & 6 & -1800 & 0.02 & 20 & \nodata \\
-IC2602 & 492 & 150 & 10 & -1700 & 0.3 & 89 & \nodata \\
-NGC2451A\tablenotemark{a} & 400 & 190 & 6 & -1800 & 0.2 & 73 & \nodata \\
-Pleiades & 1326 & 140 & 20 & -1700 & 0.4 & 96 & 800\tablenotemark{f} \\
-Praesepe & 938 & 190 & 20 & -1800 & 0.6 & 120 & 550\tablenotemark{d}
-\enddata
-
-\tablenotetext{a}{This cluster is labeled NGC2451, which we interpret as
-NGC2451A since NGC2451B lies further than $250\,\pc$ away.}
-\tablenotetext{b}{\citet{2016MNRAS.457.1028S}}
-\tablenotetext{c}{\citet{2007AA...471..499M}}
-\tablenotetext{d}{\citet{2007AJ....134.2340K}}
-\tablenotetext{e}{\citet{1998AA...331...81P}}
-\tablenotetext{f}{\citet{2001AJ....121.2053A}}
-
-\tablerefs{\citet{2018AA...616A..10G}}
-\end{deluxetable*}
-
+for action-space analyses. In particular, we consider the impact on modelling
+the distribution function of the Milky Way in Section~\ref{ssec:df}. We
+summarize and conclude in Section~\ref{sec:conclusion}.
 
 \section{Motivation} \label{sec:ref_frame}
 We first demonstrate the significance  to action computations of a systematic
@@ -588,12 +540,10 @@ the direction of the systematic offset as well as the true values of the
 actions (i.e. the type of orbit). In reality we will have one measurement of
 the phase-space position to work with, in which case the determination of the
 orbital phase in $z$ or $R$ is degenerate with the degree of systematic offset
-in that coordinate (see Figure~\ref{fig:cartoon}). Additionally, in searching
-for migrated members of known open clusters, we would compute actions for
-stars with a wide range of orbital phases and locations in the Galaxy. In the
-following we therefore quote percentile ranges for the possible values
-computed for each action as a proxy for the effect of these systematic errors
-in the coordinate system.
+in that coordinate (see Figure~\ref{fig:cartoon}).  In the following we
+therefore quote percentile ranges for the possible values computed for each
+action as a proxy for the effect of these systematic errors in the coordinate
+system.
 
 For a systematic offset in $z$ ({\em upper} panels), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $2.2$ and
@@ -1186,91 +1136,12 @@ On shorter scales, they are likely the dominant source of error.
 This finding has many implications for the study of the dynamics of stars in
 what is normally considered the regime of the epicyclic approximation:
 quasi-harmonic oscillations around a circular ``guiding center orbit.'' Here
-we consider a few of those implications, starting with an estimate of the
-region around the Sun where we expect an extension of the local axisymmetric
-coordinate system, and therefore the epicyclic approximation, to still be
-valid. This region is also where it should be feasible to perform ``dynamical
-tagging'' in the thin disk; that is, using the computed orbits or integrals of
-motion of field stars to match them with known open clusters.
+we consider those implications for the prospect of distribution function
+fitting.
 
-\subsection{Disrupted Cluster Reconstruction}
-\label{sssec:reconstruction}
+\subsection{Distribution Function Fitting}
+\label{ssec:df}
 
-We now consider the implications for attempts to reconstruct disrupting open
-clusters by selecting ejected members based on their actions.
-
-Suppose an open cluster of mass $m_c$ on an orbit with actions $\bm{J}_c$ is
-disrupted. We would like to determine which stars with complete 6D phase-space
-positions, for example in the {\em Gaia} dataset, are likely to be ejected
-members from that cluster.\footnote{This is likely to be more successful with
-DR3/4 than DR2, since upcoming data releases will contain a far greater number
-of stars with radial velocities --- though targeted, follow-up radial velocity
-surveys may allow this program to be performed sooner.} One could generate an
-initial catalogue of candidate members by integrating the cluster's orbit and
-selecting stars close to that orbit, accounting for the fact that the stream
-of ejected stars will not exactly follow the orbit of the cluster
-\citep[e.g.][]{2011MNRAS.413.1852E}.
-
-One could then make a further selection by requiring that the action of each
-field star $i$ be close to the cluster's actions to within some bound, i.e.
-$\bm{J}_i \in V_e$, where $V_e$ is a volume centered on $\bm{J}_c$ and has
-size comparable to the intrinsic action-space dispersion of the disrupting
-cluster. This dispersion can be estimated as
-\citep[Section~8.3.3][]{2008gady.book.....B},
-\beq \label{eq:action_disp}
-\frac{\Delta J_i}{J_i} \sim \left(\frac{m_c}{M}\right)^{1/3}\text{,}
-\eeq
-where $m_c$ is the mass of the cluster and $M$ is the mass enclosed by the
-cluster's orbit around the Galaxy, in this case assumed to be the mass inside
-the Solar circle ($\sim 10^{11}\Msun$). Stars with actions within $V_e$ would
-then be considered cluster members.
-
-Two issues are immediately apparent with this approach. The first is that it
-neglects the overall smooth distribution \emph{in action space} which will
-contribute some stars to the selection by chance. For dissolving open clusters
-in the thin disk, this background is likely to be significant, but we will
-assume for the sake of argument that these foreground stars can be modeled
-within the ``dynamical solar neighborhood'' where it is safe to extend the
-local coordinate system. Since the effect of extending the coordinate frame
-beyond this region is generally to inflate the actions computed for thin-disk
-stars, using too large a volume is likely to under-estimate the density of the
-smooth thin-disk-like component in action space, while scattering more
-thin-disk stars onto thick-disk-like orbits and over-estimating the density of
-the smooth thick-disk-like component.
-
-The second issue, which is related to the point of this paper, is that based
-on the results in our previous sections computing $\bm{J}_i$ for a field star
-and directly comparing it to  $\bm{J}_c$ will have significant systematic
-error if the cluster and field star are far enough apart to have significantly
-different local midplanes (see
-Figures~\ref{fig:midplane}~and~\ref{fig:midplane_chervin}). Since our
-criterion for cluster membership (distance in action space) scales with the
-cluster mass, the region where the search will succeed varies with cluster
-mass as well. To illustrate this effect, we assume a cluster mass $m_c$ and
-estimate the expected action-space dispersion from
-Equation~\eqref{eq:action_disp}. We then consult
-Figure~\ref{fig:many_orbit_wrong_ref} to determine the midplane offset
-necessary in order for the induced error in the vertical action to be the same
-as the expected action-space dispersion. We perform this analysis for the
-thin-disk-like and thick-disk-like orbits considered in
-Section~\ref{ssec:quant}, assuming that the halo-like orbit is unlikely for
-members of known open clusters (see Table~\ref{tab:real_clusters}). The result
-for the allowable midplane offset for these two orbits in shown in
-Figure~\ref{fig:cluster_offset} as a function of cluster mass.
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=\columnwidth]{fig/cluster_offset.pdf}
-\end{center}
-\caption{The $z$ offset necessary in order for the action error induced by our
-midplane effect to be comparable to the intrinsic action dispersion from a
-cluster of mass $m_c$. We compute the intrinsic dispersion from
-Equation~\eqref{eq:action_disp} and convert the dispersion to a $z$ offset using
-the result from Figure~\ref{fig:many_orbit_wrong_ref}. We consider the result
-for the thin and thick orbit (Table~\ref{tab:orbits}). Nearby open clusters
-(Table~\ref{tab:real_clusters}) have orbits closest to the thin orbit.}
-\label{fig:cluster_offset}
-\end{figure}
 
 \section{Conclusions}\label{sec:conclusion}
 Actions have promise as excellent orbit labels. If the Galaxy can be
