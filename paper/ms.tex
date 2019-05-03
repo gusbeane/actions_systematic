@@ -619,7 +619,7 @@ We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
 Consider first the thick-disk orbit ({\em top} panel), where the offset in $z$
 is much less than $z_{\text{max}}$ of the orbit. The peaks in the distribution
 correspond to the turning points of the orbit (or points of maximum vertical
-amplitude), where $v_z \sim 0$ and where the star spends most of it orbit.
+amplitude), where $v_z \sim 0$ and where the star is on most of it orbit.
 This is why the distribution is peaked on these values. For the thin-disk
 orbit ({\em bottom} panel), the offset in $z$ is comparable to
 $z_{\text{max}}$. Now, there will be some points in the orbit where $v_z = 0$
@@ -670,7 +670,8 @@ $y$-components of the position and velocity of the stars\footnote{In practice,
 however, $J_{\phi}$ is computed as part of the torus-fitting method.}, and is
 thus unaffected by offsets in $z$. Indeed, the result we found in
 Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk orbit holds for all
-orbit types.
+orbit types. This is also a demonstration of the robustness of the orbit
+integration and action calculation methods we use.
  
 The {\em upper right} panel of Figure~\ref{fig:many_orbit_wrong_ref} shows
 that the fractional error in $J_z$ is more exaggerated for more planar
@@ -880,7 +881,7 @@ disk scale heights.
 
 
 \begin{deluxetable*}{cccccc}
-\tablecaption{Stellar disk scale heights of the real Milky Way and the
+\tablecaption{Stellar and gas disk scale heights of the real Milky Way and the
 simulated galaxies considered in this work.\label{tab:scale_height}}
 \tablehead{\colhead{galaxy} & \colhead{cold\tablenotemark{a} gas disk} &
 \colhead{stellar thin disk} & \colhead{stellar thick disk} & \colhead{cold gas
@@ -955,9 +956,9 @@ principal-axis frame determined by stars younger than $1\,\Gyr$ inside of the
 fiducial solar radius $R_{\odot} = 8.2\,\kpc$, such that the disk plane is the
 $x$--$y$ plane.
 
-\subsection{Description of MW-Sagittarius Interaction Simulation} 
+\subsection{Description of Milky Way-Sagittarius Interaction Simulation} 
 \label{ssec:sag_sim}
-In addition to the cosmological zoom-in, we will also briefly consider results
+In addition to the cosmological zoom-ins, we will also briefly consider results
 from a toy Sagittarius encounter simulation. This simulation offers us the
 ability to see how the midplane varies in a more controlled environment. The
 details of the simulation are given in \citet{2018MNRAS.481..286L}, but we
@@ -974,11 +975,14 @@ are realized with live distributions of N-body particles; the MW and Sgr are
 each initialized to be in equilibrium in isolation \Gus{check!}.
 
 The mass resolution of the simulation is $2.6\times10^4$, $1.2\times10^4$, and
-$1.0\times10^4$ for the dark matter, disk, and bulge components, respectively.
+$1.0\times10^4\,\Msun$ for the dark matter, disk, and bulge components, respectively.
 For the disk and bulge components, a softening length of $30\,\pc$ is used
 whereas for the halo a softening length of $60\,\pc$ is used. For Sagittarius,
 the softening length for the dark matter and the stars is $60$ and $40\,\pc$,
 respectively.
+
+The fiducial coordinate system for these toy simulations is the rest frame of
+the aligned toy galaxy at the beginning of the simulation.
 
 \subsection{The Local Midplane} \label{ssec:local_midplane}
 Using the two sets of simulations, we determine the local midplane that an
@@ -1035,10 +1039,9 @@ but for the toy simulation of a Sagittarius encounter
 form $\text{A} \sin{\left(\phi + \text{B}\right)} + \text{C}$, with the values
 for $\text{A}$ being $9.5$, $2.5$, $-212$, and $-394\,\pc$, for $\text{B}$
 being $0.0013$, $0.0007$, $-0.63$, and $-1.00\,\text{rad}$ and $\text{C}$
-being $2.6$, $-7.8$, $-65$, and $-53\,\pc$. Each of these values are for each
-successive timestep. In the first two panels, we see that the midplane is
-relatively flat in the inner galaxy. But additional encounters drive strong
-midplane variation. In the third panel, we see a strong $m=2$ mode develop,
+being $2.6$, $-7.8$, $-65$, and $-53\,\pc$ chronologically for each of the four timesteps shown. In the {\em upper} two panels, we see that the midplane is
+relatively flat in the inner galaxy, but additional encounters drive strong
+midplane variation. In the {\em lower left} panel, we see a strong $m=2$ mode develop,
 consistent with the $R=8\,\kpc$ panel of Figure~17 in
 \citet{2018MNRAS.481..286L}.
 
@@ -1048,7 +1051,7 @@ consistent with the $R=8\,\kpc$ panel of Figure~17 in
 \end{center}
 \caption{The local midplane determined at the fiducial Solar radius
 ($8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} ({\em left},
-{\em center}, and {\em right} panels). All calculations are done at
+{\em center}, and {\em right} panels) as a function of azimuthal angle. All calculations are done at
 cosmological redshift $\z =0$. The local midplane is determined at a position
 $\phi$ by taking the median height of all stars within $R=0.5\,\kpc$ and
 $z=1\,\kpc$ (in cylindrical coordinates). The procedure is performed again
@@ -1068,7 +1071,7 @@ error bars, which we report as dashed lines.}
 \includegraphics[width=342.078286667pt]{fig/midplane_fit_chervinsim.pdf}
 \end{center}
 \caption{The local midplane determined at the fiducial Solar radius
-($8.2\,\kpc$) for 4 different time steps from previously run toy simulations
+($8.2\,\kpc$) for 4 different time steps from toy simulations
 of a Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
 before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
 for inaccuracies in the galactocentric coordinate system. Error bars are
@@ -1077,7 +1080,7 @@ panels show the midplane as a function of azimuth before the first encounter
 near the Solar circle. As later encounters occur which bring the
 Sagittarius-like object closer to the Solar circle, we can see that stronger
 midplane variations result. In fact, one can see that an $m=2$ mode is excited
-in the third panel --- this is consistent with Figure~17 of
+in the {\em lower left} panel --- this is consistent with Figure~17 of
 \citet{2018MNRAS.481..286L}, which shows that an $m=2$ mode is excited (note
 that $m=0$ and $m=1$ modes are stronger, but these are removed in our
 sine-curve subtraction). The fact that the $t=6.9\,\Gyr$ panel looks
@@ -1277,10 +1280,11 @@ row shows a plot of $x$ vs. $y$ while the {\em lower} row shows $R$ vs. $z$.}
 
 \section{LSR Variations} \label{app:lsr}
 We consider the variations of the LSR as a function of azimuth at the fiducial
-solar circle ($R_{\odot} = 8.2\,\kpc$). At each azimuth, $\phi$, we take the
-median velocity in cylindrical coordinates of all stars within $200\,\pc$ of
-the position, following \citet{2018arXiv180610564S}. No best-fit subtraction
-was performed as in Figure~\ref{fig:midplane}.
+solar circle ($R_{\odot} = 8.2\,\kpc$) in Figure~\ref{fig:lsr_variations}. At
+each azimuth, $\phi$, we take the median velocity in cylindrical coordinates
+of all stars within $200\,\pc$ of the position, following
+\citet{2018arXiv180610564S}. No best-fit subtraction was performed as in
+Figure~\ref{fig:midplane}.
 
 \begin{figure*}
 \begin{center}
@@ -1290,6 +1294,7 @@ was performed as in Figure~\ref{fig:midplane}.
 fiducial Solar circle ($R_{\odot} = 8.2\,\kpc$). No best-fit subtraction is
 performed here as we did in the case of the midplane
 (Section~\ref{ssec:local_midplane}).}
+\label{fig:lsr_variations}
 \end{figure*}
 
 \bibliography{references}
