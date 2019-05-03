@@ -76,6 +76,9 @@ xtime = s.extract_time(xout)
 zact_thin = sthin.extract_actions(zout_thin)
 ztime_thin = sthin.extract_time(zout_thin)
 
+xact_thin = sthin.extract_actions(xout_thin)
+xtime_thin = sthin.extract_time(xout_thin)
+
 fig, ax = plt.subplots(2, 3, figsize=(textwidth, 4), sharex=True)
 
 for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
@@ -115,6 +118,115 @@ fig.tight_layout()
 plt.savefig('schmactions_one_orbit.pdf')
 plt.close()
 
+# # #
+# JR (x error) histogram
+# # #
+
+fig, ax = plt.subplots(2,1, figsize=(columnwidth,6.5))
+
+k0, k1, k2 = sclip(zact)
+dJRJR = 0.5*(np.percentile(xact[:,0][k0], 95) - np.percentile(xact[:,0][k0], 5))
+
+ax[0].hist(xact[:,0][k0], bins=np.linspace(J0 - 5, J0 + 5, 60),
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[0].arrow(J0, 38, dJRJR, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
+ax[0].text(J0+dJRJR/3.5, 38.5, r'$\Delta J_R$', color='k')
+
+ax[0].axvline(x=J0, color='k', ls='dashed', lw=1)
+ax[0].set_ylabel(r'$\text{count}$')
+ax[0].text(27.25, 40, r'\text{thick-disk orbit}', color='k')
+
+k0t, k1t, k2t = sclip(xact_thin)
+dJRJR_thin = 0.5*(np.percentile(xact_thin[:,0][k0t], 95) - np.percentile(xact_thin[:,0][k0t], 5))
+
+ax[1].hist(xact_thin[:,0][k0t], bins=np.linspace(J0_thin-5, J0_thin+5, 60),
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[1].arrow(J0_thin, 30, dJRJR_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
+ax[1].text(J0_thin+dJRJR_thin/3.5, 30.5, r'$\Delta J_R$', color='k')
+
+ax[1].axvline(x=J0_thin, color='k', ls='dashed', lw=1)
+ax[1].set_ylabel(r'$\text{count}$')
+ax[1].text(35.1, 32, r'\text{thin-disk orbit}', color='k')
+
+ax[1].set_xlabel(r'$J_{R,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
+fig.tight_layout()
+plt.savefig('schmactions_JR_xerr_hist.pdf')
+
+# # #
+# JR (z error) histogram
+# # #
+
+fig, ax = plt.subplots(2,1, figsize=(columnwidth,6.5))
+
+k0, k1, k2 = sclip(zact)
+dJRJR = 0.5*(np.percentile(zact[:,0][k0], 95) - np.percentile(zact[:,0][k0], 5))
+
+ax[0].hist(zact[:,0][k0], bins=np.linspace(J0 - 3, J0 + 3, 60),
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[0].arrow(J0, 55, dJRJR, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
+ax[0].text(J0+dJRJR/3.5, 55.25, r'$\Delta J_R$', color='k')
+
+ax[0].axvline(x=J0, color='k', ls='dashed', lw=1)
+ax[0].set_ylabel(r'$\text{count}$')
+ax[0].text(29.5, 60, r'\text{thick-disk orbit}', color='k')
+
+k0t, k1t, k2t = sclip(zact_thin)
+dJRJR_thin = 0.5*(np.percentile(zact_thin[:,0][k0t], 95) - np.percentile(zact_thin[:,0][k0t], 5))
+
+ax[1].hist(zact_thin[:,0][k0t], bins=np.linspace(J0_thin-2, J0_thin+2, 60),
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[1].arrow(J0_thin, 70, dJRJR_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
+ax[1].text(J0_thin+dJRJR_thin/3.5, 70.25, r'$\Delta J_R$', color='k')
+
+ax[1].axvline(x=J0_thin, color='k', ls='dashed', lw=1)
+ax[1].set_ylabel(r'$\text{count}$')
+ax[1].text(38.25, 110, r'\text{thin-disk orbit}', color='k')
+
+ax[1].set_xlabel(r'$J_{R,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
+fig.tight_layout()
+plt.savefig('schmactions_JR_zerr_hist.pdf')
+
+# # #
+# Jphi (x error) histogram
+# # #
+
+fig, ax = plt.subplots(2,1, figsize=(columnwidth,6.5))
+
+k0, k1, k2 = sclip(xact)
+dJphiJphi = 0.5*(np.percentile(xact[:,1][k1], 95) - np.percentile(xact[:,1][k1], 5))
+
+ax[0].hist(xact[:,1][k1], bins=np.linspace(J1 - 30, J1 + 30, 60),
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[0].arrow(J1, 35, dJphiJphi, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
+ax[0].text(J1+dJphiJphi/3.5, 35.75, r'$\Delta J_{\phi}$', color='k')
+
+ax[0].axvline(x=J1, color='k', ls='dashed', lw=1)
+ax[0].set_ylabel(r'$\text{count}$')
+ax[0].text(-1550, 41, r'\text{thick-disk orbit}', color='k')
+
+k0t, k1t, k2t = sclip(xact_thin)
+dJphiJphi_thin = 0.5*(np.percentile(xact_thin[:,1][k1t], 95) - np.percentile(xact_thin[:,1][k1t], 5))
+
+ax[1].hist(xact_thin[:,1][k1t], bins=np.linspace(J1_thin-30, J1_thin+30, 60),
+        edgecolor='k', fc='none', histtype='stepfilled')
+ax[1].arrow(J1_thin, 35, dJphiJphi_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
+ax[1].text(J1_thin+dJphiJphi_thin/3.5, 35.75, r'$\Delta J_{\phi}$', color='k')
+
+ax[1].axvline(x=J1_thin, color='k', ls='dashed', lw=1)
+ax[1].set_ylabel(r'$\text{count}$')
+ax[1].text(-1550, 38, r'\text{thin-disk orbit}', color='k')
+
+ax[1].set_xlabel(r'$J_{\phi,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+
+fig.tight_layout()
+plt.savefig('schmactions_Jphi_xerr_hist.pdf')
+
+# # # 
+# Jz (z error) histogram
+# # #
+
 fig, ax = plt.subplots(2,1, figsize=(columnwidth,6.5))
 
 k0, k1, k2 = sclip(zact)
@@ -145,5 +257,5 @@ ax[1].set_xlabel(r'$J_{z,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
 
 fig.tight_layout()
-plt.savefig('schmactions_Jz_hist.pdf')
+plt.savefig('schmactions_Jz_zerr_hist.pdf')
 
