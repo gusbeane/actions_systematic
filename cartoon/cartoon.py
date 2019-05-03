@@ -38,23 +38,23 @@ ax.set_xlim((-1.0995574287564276, 23.09070600388498))
 ax.set_ylim((-3.726564988290398, 1.2578647540983607))
 
 # plot orbit, midplane, erroneous midplane
-ax.plot(x, y, c=tb_c[-1])
-ax.plot(x, np.full(len(x), 0), c=tb_c[-1])
-ax.plot(x, np.full(len(x), -1.25), c=tb_c[-1], ls='dashed')
+ax.plot(x, y, c=tb_c['gray'])
+ax.plot(x, np.full(len(x), 0), c=tb_c['gray'])
+ax.plot(x, np.full(len(x), -1.25), c=tb_c['gray'], ls='dashed')
 
 fig.tight_layout()
 fig.savefig('cartoon_0.pdf', bbox_inches='tight', pad_inches=0)
 
 #plot measurements
-ax.scatter(3.*np.pi, -1, c=tb_c[4], zorder=4)
-ax.scatter(4.*np.pi, 1, c=tb_c[6], zorder=5)
+ax.scatter(3.*np.pi, -1, c=tb_c['orange'], zorder=4)
+ax.scatter(4.*np.pi, 1, c=tb_c['cyan'], zorder=5)
 
 fig.tight_layout()
 fig.savefig('cartoon_1.pdf', bbox_inches='tight', pad_inches=0)
 
 # plot "integrated" orbits
-ax.plot(x, y2, c=tb_c[4], zorder=4)
-ax.plot(x, y3, c=tb_c[6], zorder=5)
+ax.plot(x, y2, c=tb_c['orange'], zorder=4)
+ax.plot(x, y3, c=tb_c['cyan'], zorder=5)
 
 fig.tight_layout()
 fig.savefig('cartoon.pdf', bbox_inches='tight', pad_inches=0)
