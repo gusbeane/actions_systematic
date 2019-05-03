@@ -168,12 +168,12 @@ coordinate system. They are the cyclical integral of the canonical momentum
 over its conjugate position,
 \beq\label{eq:actions}
 J_i \equiv
-\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,.}
+\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{.}
 \eeq
 Under the assumption of axisymmetry, $i=R,z,\phi$ are the radial, vertical,
 and azimuthal coordinates respectively in a cylindrical coordinate system and
 the $p_i$ are the conjugate momenta. In a slowly-evolving axisymmetric
-potential, these actions are invariant and $J_{\phi} \equiv L_z$
+potential, these actions are invariant and $J_{\phi} \equiv L_z$, where $L_z$ is the $z$-component of the angular momentum
 \citep{2008gady.book.....B,2014RvMP...86....1S}.
 
 With the advent of 6D phase-space measurements over a relatively large
@@ -232,9 +232,7 @@ heliocentric to a Galactocentric coordinate system introduces a systematic
 bias in the $z$ coordinate, and hence the actions computed for these stars.
 The further from the solar neighborhood the target star, the more likely the
 mismatch will result in large systematic uncertainty, especially in the
-vertical action $J_z$. Depending on the type of orbit being studied, this sets
-a limit on the ``dynamical solar neighborhood'' over which the local
-coordinate frame can be usefully extended for action-space analysis. A similar
+vertical action $J_z$. A similar
 argument applies to any remaining uncertainty in measurements of the
 Galactocentric radius of the Sun and to variations in the local standard of
 rest (LSR).
@@ -250,7 +248,7 @@ midplane itself in two sets of simulations: cosmological, hydrodynamical,
 zoom-in simulations of Milky Way-mass galaxies from the Feedback in Realistic
 Environments (FIRE)
 collaboration\footnote{\url{https://fire.northwestern.edu}}
-\citep{2016ApJ...827L..23W, 2017arXiv170206148H}, and a controlled N-body
+\citep{2014MNRAS.445..581H, 2016ApJ...827L..23W, 2018MNRAS.480..800H}, and a controlled N-body
 simulation of a Sagittarius encounter with a galaxy otherwise tailored to the
 stellar mass, scale length, and scale height of the Milky Way
 \citep{2018MNRAS.481..286L}.
@@ -259,7 +257,7 @@ In Section~\ref{sec:discussion} we discuss the implications of midplane
 variations, and the resulting systematic uncertainty in the vertical action,
 for action-space analyses. In particular, we consider the impact on modelling
 the distribution function of the Milky Way in Section~\ref{ssec:df}. We
-summarize and conclude in Section~\ref{sec:conclusion}.
+summarize our main results and conclude in Section~\ref{sec:conclusion}.
 
 \section{Motivation} \label{sec:ref_frame}
 We first demonstrate the significance  to action computations of a systematic
@@ -283,7 +281,7 @@ potential model. The $y$-axis corresponds to the vertical height of the orbit
 and the $x$-axis shows orbital phase. The solid gray curve indicates the
 ``true'' orbit of the star; that is, its orbit as it oscillates around the
 true midplane. The dashed gray line is the midplane location in the potential
-model used to integrate the orbit of the star and hence estimate its actions,
+model used by an observer to integrate the orbit of the star and hence estimate its actions,
 which is offset from the true midplane of the star's orbit. The model
 potential is otherwise identical to the one in which the star is actually
 moving.
@@ -346,7 +344,7 @@ z(t) &= A_z \sin{(\nu t + \beta)}
 \end{split}
 \eeq
 where $\kappa$ and $\nu$ are the radial and vertical frequencies, $\Omega_c
-\equiv v_c/R_g$ the rotation frequency, $A_z$ and $A_R$ are the amplitudes of
+\equiv v_c/R_g$ is the rotation frequency, $A_z$ and $A_R$ are the amplitudes of
 the stellar motion in the vertical and radial coordinates, and $\alpha$ and
 $\beta$ are arbitrary constants. Similarly, the velocities of the orbit are
 given by
@@ -395,7 +393,7 @@ Equation~\eqref{eq:JR_Jz_epi_energy} is phase dependent. Now assume that the
 coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by $(\Delta R, \Delta z,
 \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. We can then apply the standard
 propagation of errors formula to Equation~\eqref{eq:JR_Jz_epi_energy}
-determine the error in each of the actions. For $J_{\phi}$ we have that,
+to determine the error in each of the actions. For $J_{\phi}$ we have that,
 \beq\label{eq:induced_Jphi}
 \frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g} 
                                     + \frac{\Delta v_{\phi}}{v_c}\text{.}
@@ -432,8 +430,8 @@ to future work, as we discuss in Section~\ref{ssec:lsr_var}.
 \subsection{Numerical Methods} \label{ssec:action_comp}
 We now quantify the argument made in Section~\ref{ssec:cartoon} using
 numerical computations of the actions for a range of orbits in a model
-Galactic potential. We compute actions as in our previous work
-\citep{2018ApJ...867...31B}, using the code \texttt{gala} v0.3 to perform
+Galactic potential. We compute actions as in
+\citet{2018ApJ...867...31B}, using the code \texttt{gala} v0.3 to perform
 orbit integrations and conversion to action space
 \citep{2017JOSS....2..388P,Price-Whelan:2018}. To compute actions we use the
 torus-mapping technique first presented by \citet{1990MNRAS.244..634M} and
@@ -479,7 +477,7 @@ errors, is plotted in Appendix~\ref{app:orbits}. We will refer to these orbits
 by their names (thin-disk, thick-disk, halo) henceforth.
 
 We begin by considering the thick-disk orbit. Suppose an immortal observer who
-can observe the thick-disk star's phase-space position at many different times
+can measure the thick-disk star's phase-space position at many different times
 (and hence different orbital phases), but used a coordinate system in which
 the midplane is systematically offset in height by $100\,\pc$ from its actual
 location --- i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each position
@@ -489,7 +487,7 @@ potential, but erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
 
 \begin{deluxetable*}{cccccccc}
 \tablecaption{Description and names of the three orbits considered in this
-work. For the last two columns: $z_{\text{max}}$ the maximum height of the
+work. For the last two columns: $z_{\text{max}}$ is the maximum height of the
 orbit while $A_R$ is the magnitude of the radial excursions of the orbit,
 computed as one half the maximum radius minus the minimum
 radius.\label{tab:orbits}}
@@ -508,11 +506,8 @@ halo & $(8, 0, 0)$ & $(0, -190, 190)$ & 32.8 & -1520 & 529.1 & 6.16 & 2.34
 \enddata
 \end{deluxetable*}
 
-Starting from each observation of the star's phase-space position that such an
-immortal observer makes every $\Myr$, we then compute the actions as outlined
-above using an integration from that starting point in phase space carried out
-using the true potential but specifying the star's present-day position using
-the systematically offset coordinate system. Essentially we are shifting the
+We consider that the immortal observer makes a measurement every $\Myr$. At each measurement, we compute the actions as outlined above using the true potential but by specifiying the star's starting position using the systematically offset coordinate system.
+Essentially we are shifting the
 integrated orbit and then reintegrating at each point along the shifted orbit,
 where the shifted orbit is the observed orbit. The erroneous computed actions
 for each phase-space starting point are shown for the first $\Gyr$ of the
@@ -548,7 +543,7 @@ system.
 For a systematic offset in $z$ ({\em upper} panels), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $2.2$ and
 $6.2\,\actunit$ for $J_R$ and $J_z$, respectively. These are fractional errors
-of $5.7\,\%$ and $85.7\,\%$, respectively. The error induced in $J_{\phi}$ is
+of $5.7\,\%$ and $86\,\%$, respectively. The error induced in $J_{\phi}$ is
 negligible, as expected since $J_{\phi}$ is independent of $z$. It is worth
 pointing out that a $100\,\pc$ error in an orbit with
 $z_{\text{max}}=850\,\pc$ --- a $12\%$ error
@@ -607,16 +602,18 @@ the error distribution.}
 
 In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
 $J_z$ for the thick-disk orbit ({\em upper panel}) and thin-disk orbit ({\em
-lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. the {\em upper right}
-panel of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$ is
-plotted as a vertical dashed line. Here we see that the errors in $J_z$
+lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. as in the {\em upper
+right} panel of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$
+is plotted as a vertical dashed line. Here we see that the errors in $J_z$
 induced by a systematic offset in $z$ are non-Gaussian and bimodal.
 Furthermore, neither of the modes lie at zero. In other words, neither of the
 modes of the distribution of observed $J_z$ values are centered on the true
 $J_z$ (i.e. the $J_z$ computed with no offset in $z$). In the case of the
 thin-disk orbit ({\em lower panel}), we see that, in addition to the prior
 complications, the error distribution is not even centered on null. This comes
-about when the midplane error is $\gtrsim z_{\text{max}}$.
+about when the midplane error is $\gtrsim z_{\text{max}}$, where
+$z_{\text{max}}$ is the maximum height of the orbit (equivalent to $A_z$ in
+Section~\ref{ssec:epi_action}).
 
 We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
 Consider first the thick-disk orbit ({\em top} panel), where the offset in $z$
@@ -661,10 +658,10 @@ in each action for an offset in the $z$-component (i.e. the Galactic
 midplane). In the {\em bottom row} we consider offsets in the $x$ component
 (i.e. the Solar radius). The {\em left}, {\em middle}, and {\em right} columns
 show the fractional spread in the values computed for $J_z$, $J_{\phi}$, and
-$J_R$, respectively. We compute the fractional spread $\Delta J_i/J_i$ as one
-half the 95\uth{} minus 5\uth{} percentile of the action computed using the
-offset coordinate system over the course of the first $\Gyr$, divided by the
-true action (computed in the correct coordinate system).
+$J_R$, respectively. We compute the fractional spread $\Delta J_i/J_i$, where
+$\Delta J_i$ is defined in the previous paragraph and $J_i$ is the action
+value computed in the true coordinate system, over the course of the first
+$\Gyr$.
 
 In the {\em upper middle} panel of Figure~\ref{fig:many_orbit_wrong_ref},
 there is essentially no spread in the determination of $J_{\phi}$. This is
@@ -701,12 +698,12 @@ consider observations of the star throughout its entire orbit. This introduces
 a factor of $2/\pi$ when converting from $\Delta R$ to $\Delta x$, which we
 derive in Appendix~\ref{app:deltax}.
 
-The epicyclic approximation is a good predictor of $J_z$, even for halo
-orbits. It performs similarly for $J_R$, now underpredicting for halo orbits
+The epicyclic approximation is a good predictor of $\Delta J_z$, even for halo
+orbits. It performs similarly for $\Delta J_R$, now underpredicting for halo orbits
 and slightly overpredicting for thin-disk orbits. Note that for the particular
 orbits we chose, the thin-disk orbit has slightly larger $A_R$ than the
 thick-disk orbit, and so we expect the epicyclic approximation to perform
-slightly worse. The epicyclic approximation underpredicts $J_{\phi}$ for all
+slightly worse. The epicyclic approximation underpredicts $\Delta J_{\phi}$ for all
 orbits.
 
 \begin{figure*}
@@ -807,7 +804,7 @@ The Solar height is usually taken to be $\sim 25\,\pc$
 \citep{2001ApJ...553..184C}, with a more recent measurement from {\em Gaia}
 DR2 placing it at $20.8 \pm 0.3\,\pc$ \citep{2019MNRAS.482.1417B}. Another
 strategy is to use the cold gas or H~\textsc{ii} regions in the disk to define
-the Galactic midplane, leading to slightly different values ($\sim 5\,\pc$)
+the Galactic midplane, leading to slightly different values (by $\sim 5\,\pc$)
 for the Sun's relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em
 Gaia} review of these measurements is given by \citet{2016ARAA..54..529B}.
 
@@ -877,7 +874,8 @@ median softening length for cold ($T < 10^4\,\text{K}$) gas particles around
 roughly solar positions (with cylindrical radii within $500\,\pc$ of
 $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4, 12.5, 10.3\,\pc$ for \mi{},
 \mf{}, and \mm{}, respectively. These values are summarized in
-Table~\ref{tab:scale_height}.
+Table~\ref{tab:scale_height}, along with measurements of the stellar and gas
+disk scale heights.
 
 
 \begin{deluxetable*}{cccccc}
