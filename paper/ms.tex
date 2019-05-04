@@ -544,7 +544,9 @@ For a systematic offset in $z$ ({\em upper} panels), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $2.2$ and
 $6.2\,\actunit$ for $J_R$ and $J_z$, respectively. These are fractional errors
 of $5.7\,\%$ and $86\,\%$, respectively. The error induced in $J_{\phi}$ is
-negligible, as expected since $J_{\phi}$ is independent of $z$. It is worth
+negligible, as expected since $J_{\phi}$ only depends on the $x$- and
+$y$-components of the position and velocity of the stars.\footnote{In practice,
+however, $J_{\phi}$ is computed as part of the torus-fitting method.} It is worth
 pointing out that a $100\,\pc$ error in an orbit with
 $z_{\text{max}}=850\,\pc$ --- a $12\%$ error
 --- induced an $86\%$ error in the computation of $J_z$.
@@ -665,10 +667,8 @@ $\Gyr$.
 
 In the {\em upper middle} panel of Figure~\ref{fig:many_orbit_wrong_ref},
 there is essentially no spread in the determination of $J_{\phi}$. This is
-expected since, in principle, $J_{\phi}$ only depends on the $x$- and
-$y$-components of the position and velocity of the stars\footnote{In practice,
-however, $J_{\phi}$ is computed as part of the torus-fitting method.}, and is
-thus unaffected by offsets in $z$. Indeed, the result we found in
+expected since $J_{\phi}$ is independent of $z$ and is
+thus unaffected by offsets in $z$, as discussed earlier. Indeed, the result we found in
 Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk orbit holds for all
 orbit types. This is also a demonstration of the robustness of the orbit
 integration and action calculation methods we use.
