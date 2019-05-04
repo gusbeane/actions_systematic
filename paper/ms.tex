@@ -166,7 +166,7 @@ find stars with similar dynamical properties. Actions are conserved quantities
 that describe the orbit of a star under the assumption of regular, bound
 orbits in a system where the equations of motion are separable in a particular
 coordinate system. They are the cyclical integral of the canonical momentum
-over its conjugate position,
+over its conjugate position:
 \beq\label{eq:actions}
 J_i \equiv
 \frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{.}
@@ -334,7 +334,7 @@ velocity curve with velocity $v_c$ \citep[decent near the Solar circle,
 e.g.][]{2017MNRAS.465...76M}.
 
 Under this approximation, we can write down the cylindrical components
-of the orbits as,
+of the orbits as
 \beq\label{eq:orbits_epi}
 \begin{split}
 \phi(t) &= \Omega_c t \\
@@ -347,7 +347,7 @@ where $\kappa$ and $\nu$ are the radial and vertical frequencies, $\Omega_c
 \equiv v_c/R_g$ is the rotation frequency, $A_z$ and $A_R$ are the amplitudes of
 the stellar motion in the vertical and radial coordinates, and $\alpha$ and
 $\beta$ are arbitrary constants. Similarly, the velocities of the orbit are
-given by
+given by:
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
 v_{\phi}(t) &= v_c \\
@@ -358,11 +358,11 @@ v_z(t) &= \nu A_z \cos{(\nu t + \beta)}
 \eeq
 
 In this case, we have that for $J_{\phi}$
-\citep[][Section~3.5.3b]{2008gady.book.....B},
+\citep[][Section~3.5.3b]{2008gady.book.....B}:
 \beq\label{eq:Jphi_epi}
 J_{\phi} = R_g v_c\text{,}
 \eeq
-and for $J_R$ and $J_z$,
+and for $J_R$ and $J_z$:
 \beq\label{eq:JR_Jz_epi}
 \begin{split}
 J_R &= \frac{E_R}{\kappa} \\
@@ -377,7 +377,7 @@ J_R &= \frac{v_R^2 + \kappa^2 (R-R_g)^2}{2\kappa} \\
 J_z &= \frac{v_z^2 + \nu^2 z^2}{2\nu}\text{.}
 \end{split}
 \eeq
-We can simplify this and write,
+We can simplify this and write
 \beq\label{eq:JR_Jz_epi_final}
 \begin{split}
 J_R &= \frac{\kappa A_R^2}{2} = \frac{v_{R,\text{max}}^2}{2\kappa} \\
@@ -393,17 +393,17 @@ Equation~\eqref{eq:JR_Jz_epi_energy} is phase dependent. Now assume that the
 coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by $(\Delta R, \Delta z,
 \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. We can then apply the standard
 propagation of errors formula to Equation~\eqref{eq:JR_Jz_epi_energy}
-to determine the error in each of the actions. For $J_{\phi}$ we have that,
+to determine the error in each of the actions. For $J_{\phi}$, the induced error is:
 \beq\label{eq:induced_Jphi}
 \frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g} 
                                     + \frac{\Delta v_{\phi}}{v_c}\text{.}
 \eeq
-For $J_R$, the induced error is,
+For $J_R$, the induced error is:
 \beq\label{eq:induced_JR}
 \frac{\Delta J_R}{J_R} = \frac{2(R-R_g)}{A_R^2}\Delta R
                          + \frac{2v_R}{v_{R,\text{max}}^2} \Delta v_R \text{.}
 \eeq
-For $J_z$, the induced error is,
+For $J_z$, the induced error is:
 \beq\label{eq:induced_Jz}
 \frac{\Delta J_z}{J_z} = \frac{2z}{A_z^2}\Delta z
                          + \frac{2v_z}{v_{z,\text{max}}^2} \Delta v_z \text{.}
