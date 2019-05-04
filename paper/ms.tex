@@ -511,7 +511,7 @@ Essentially we are shifting the
 integrated orbit and then reintegrating at each point along the shifted orbit,
 where the shifted orbit is the observed orbit. The erroneous computed actions
 for each phase-space starting point are shown for the first $\Gyr$ of the
-orbit in the {\em upper} panels
+orbit in the upper panels
 Figure~\ref{fig:one_orbit_wrong_ref}.\footnote{Occasionally the numerical
 scheme fails and very large actions are reported by \texttt{gala}---we perform
 a $5\sigma$ clip on each action to exclude such orbits, but this only excludes
@@ -540,7 +540,7 @@ therefore quote percentile ranges for the possible values computed for each
 action as a proxy for the effect of these systematic errors in the coordinate
 system.
 
-For a systematic offset in $z$ ({\em upper} panels), the
+For a systematic offset in $z$ (upper panels), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $2.2$ and
 $6.2\,\actunit$ for $J_R$ and $J_z$, respectively. These are fractional errors
 of $5.7\,\%$ and $86\,\%$, respectively. The error induced in $J_{\phi}$ is
@@ -566,11 +566,11 @@ error in the Galactocentric coordinate system. We consider here the thick-disk
 orbit, which has actions of $(J_R, J_{\phi}, J_z) = (37.9, -1520,
 7.0)\,\actunit$ and $z_{\text{max}}=850\,\pc$ (see Table~\ref{tab:orbits}). We
 integrate the orbit according to the procedure laid out in
-Section~\ref{ssec:action_comp}. Then, we subtract $100\,\pc$ from the $z$
-value ({\em upper panels}) or the $x$ value ({\em lower panels}) of each
+Section~\ref{ssec:action_comp}, and which we plot in Appendix~\ref{app:orbits}. Then, we subtract $100\,\pc$ from the $z$
+value (upper panels) or the $x$ value (lower panels) of each
 position in the orbit, corresponding to an erroneous observer assuming a
-midplane ({\em upper}) or solar radius ({\em lower}) that is off by
-$100\,\pc$. We then allow our (immortal) observer to observe the orbit over
+midplane (upper) or solar radius (lower) that is off by
+$100\,\pc$. We then allow an immortal observer to observe the orbit over
 $1\,\Gyr$ and perform the same orbit integration procedure at each timestep,
 and report the values of the actions. The computation of $J_{\phi}$ is
 pristine to errors in $z$, with only numerical artifacts remaining. Only small
@@ -603,27 +603,26 @@ the error distribution.}
 \end{figure}
 
 In Figure~\ref{fig:Jz_hist} we plot a histogram of the observed values of
-$J_z$ for the thick-disk orbit ({\em upper panel}) and thin-disk orbit ({\em
-lower panel}) assuming a $z$ offset of $100\,\pc$ (i.e. as in the {\em upper
-right} panel of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$
+$J_z$ for the thick-disk orbit (top panel) and thin-disk orbit (bottom panel) assuming a $z$ offset of $100\,\pc$ (i.e. as in the upper
+right panel of Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$
 is plotted as a vertical dashed line. Here we see that the errors in $J_z$
 induced by a systematic offset in $z$ are non-Gaussian and bimodal.
 Furthermore, neither of the modes lie at zero. In other words, neither of the
 modes of the distribution of observed $J_z$ values are centered on the true
 $J_z$ (i.e. the $J_z$ computed with no offset in $z$). In the case of the
-thin-disk orbit ({\em lower panel}), we see that, in addition to the prior
+thin-disk orbit (bottom panel), we see that, in addition to the prior
 complications, the error distribution is not even centered on null. This comes
 about when the midplane error is $\gtrsim z_{\text{max}}$, where
 $z_{\text{max}}$ is the maximum height of the orbit (equivalent to $A_z$ in
 Section~\ref{ssec:epi_action}).
 
 We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
-Consider first the thick-disk orbit ({\em top} panel), where the offset in $z$
+Consider first the thick-disk orbit (top panel), where the offset in $z$
 is much less than $z_{\text{max}}$ of the orbit. The peaks in the distribution
 correspond to the turning points of the orbit (or points of maximum vertical
 amplitude), where $v_z \sim 0$ and where the star is on most of it orbit.
 This is why the distribution is peaked on these values. For the thin-disk
-orbit ({\em bottom} panel), the offset in $z$ is comparable to
+orbit (bottom panel), the offset in $z$ is comparable to
 $z_{\text{max}}$. Now, there will be some points in the orbit where $v_z = 0$
 and $z=0$ (in the observed, erroneous coordinate system). At these points, the
 computed $J_z$ will vanish. The asymmetry and systematic offset then comes
@@ -655,17 +654,17 @@ Figure~\ref{fig:one_orbit_wrong_ref}, but we also now consider the effect on
 the action determined for the thin-disk (\thincolor) and halo (\halocolor)
 orbits.
 
-The top row of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread induced
+The upper row of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread induced
 in each action for an offset in the $z$-component (i.e. the Galactic
-midplane). In the {\em bottom row} we consider offsets in the $x$ component
-(i.e. the Solar radius). The {\em left}, {\em middle}, and {\em right} columns
+midplane). In the lower row we consider offsets in the $x$ component
+(i.e. the Solar radius). The left, center, and right columns
 show the fractional spread in the values computed for $J_z$, $J_{\phi}$, and
 $J_R$, respectively. We compute the fractional spread $\Delta J_i/J_i$, where
 $\Delta J_i$ is defined in the previous paragraph and $J_i$ is the action
 value computed in the true coordinate system, over the course of the first
 $\Gyr$.
 
-In the {\em upper middle} panel of Figure~\ref{fig:many_orbit_wrong_ref},
+In the upper middle panel of Figure~\ref{fig:many_orbit_wrong_ref},
 there is essentially no spread in the determination of $J_{\phi}$. This is
 expected since $J_{\phi}$ is independent of $z$ and is
 thus unaffected by offsets in $z$, as discussed earlier. Indeed, the result we found in
@@ -673,7 +672,7 @@ Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk orbit holds for all
 orbit types. This is also a demonstration of the robustness of the orbit
 integration and action calculation methods we use.
  
-The {\em upper right} panel of Figure~\ref{fig:many_orbit_wrong_ref} shows
+The upper right panel of Figure~\ref{fig:many_orbit_wrong_ref} shows
 that the fractional error in $J_z$ is more exaggerated for more planar
 (disk-like) orbits. For the thin-disk orbit, a systematic offset of
 $\sim15\,\pc$ in the $z$ coordinate already results in $25\%$ deviations in
@@ -682,9 +681,9 @@ the thick-disk orbit. The halo orbit is relatively resistant to errors in the
 midplane, with only $\sim15\%$ error in $J_z$ out to a midplane offset of
 $500\,\pc$.
 
-For the offset in the Solar radius ({\em bottom panels}), the error is largest
+For the offset in the Solar radius (lower panels), the error is largest
 for $J_R$, with some deviations resulting in $J_{\phi}$ and relatively small
-deviations in $J_z$. In the {\em bottom middle} and {\em bottom right} panels
+deviations in $J_z$. In the lower middle and lower right panels
 all three lines nearly overlap.
 
 In each panel of Figure~\ref{fig:many_orbit_wrong_ref}, where relevant, we
@@ -715,9 +714,9 @@ orbits.
 in the measured action ($\Delta J_i$) from coordinate system errors for the
 thin, thick, and halo orbits (Table~\ref{tab:orbits}). See discussion in the
 text for the justification in using this to measure the magnitude of the
-induced error. The {\em left}, {\em center}, and {\em right} panels show the
-result for $J_R$, $J_{\phi}$, and $J_z$, respectively. The {\em upper} panels
-consider an offset in $z$ and the {\em lower} panels consider an offset in $x$
+induced error. The left, center, and right panels show the
+result for $J_R$, $J_{\phi}$, and $J_z$, respectively. The upper panels
+consider an offset in $z$ and the lower panels consider an offset in $x$
 (equivalently, an offset in the Solar radius). In some panels we also plot as
 dashed lines the epicyclic prediction of the induced action error
 (Equation~\eqref{eq:Ji_err_mosttime}). In the epicyclic approximation, a $z$
@@ -1031,7 +1030,7 @@ for $\text{A}$ being $9.5$, $2.5$, $-212$, and $-394\,\pc$, for $\text{B}$
 being $0.0013$, $0.0007$, $-0.63$, and $-1.00\,\text{rad}$ and $\text{C}$
 being $2.6$, $-7.8$, $-65$, and $-53\,\pc$ chronologically for each of the four timesteps shown. In the {\em upper} two panels, we see that the midplane is
 relatively flat in the inner galaxy, but additional encounters drive strong
-midplane variation. In the {\em lower left} panel, we see a strong $m=2$ mode develop,
+midplane variation. In the lower left panel, we see a strong $m=2$ mode develop,
 consistent with the $R=8\,\kpc$ panel of Figure~17 in
 \citet{2018MNRAS.481..286L}.
 
@@ -1040,8 +1039,8 @@ consistent with the $R=8\,\kpc$ panel of Figure~17 in
 \includegraphics[width=\textwidth]{fig/midplane_fit.pdf}
 \end{center}
 \caption{The local midplane determined at the fiducial Solar radius
-($8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} ({\em left},
-{\em center}, and {\em right} panels) as a function of azimuthal angle. All calculations are done at
+($8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} (left,
+center, and right panels) as a function of azimuthal angle. All calculations are done at
 cosmological redshift $\z =0$. The local midplane is determined at a position
 $\phi$ by taking the median height of all stars within $R=0.5\,\kpc$ and
 $z=1\,\kpc$ (in cylindrical coordinates). The procedure is performed again
@@ -1065,12 +1064,12 @@ error bars, which we report as dashed lines.}
 of a Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
 before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
 for inaccuracies in the galactocentric coordinate system. Error bars are
-calculated as in Figure~\ref{fig:midplane}. (\Gus{Check:}) The {\em upper}
+calculated as in Figure~\ref{fig:midplane}. (\Gus{Check:}) The upper
 panels show the midplane as a function of azimuth before the first encounter
 near the Solar circle. As later encounters occur which bring the
 Sagittarius-like object closer to the Solar circle, we can see that stronger
 midplane variations result. In fact, one can see that an $m=2$ mode is excited
-in the {\em lower left} panel --- this is consistent with Figure~17 of
+in the lower left panel at $t=6.0\,\Gyr$ --- this is consistent with Figure~17 of
 \citet{2018MNRAS.481..286L}, which shows that an $m=2$ mode is excited (note
 that $m=0$ and $m=1$ modes are stronger, but these are removed in our
 sine-curve subtraction). The fact that the $t=6.9\,\Gyr$ panel looks
@@ -1253,9 +1252,8 @@ We plot the three orbits considered throughout the work
 \includegraphics[width=\textwidth]{fig/orbits.pdf}
 \end{center}
 \caption{The three orbits presented in Table~\ref{tab:orbits} and considered
-throughout the work. We plot the thin, thick, and halo orbits in the {\em
-left}, {\em center}, and {\em right} columns, respectively. The {\em upper}
-row shows a plot of $x$ vs. $y$ while the {\em lower} row shows $R$ vs. $z$.}
+throughout the work. We plot the thin-disk, thick-disk, and halo orbits in the left, center, and right columns, respectively. The upper
+row shows a plot of $x$ vs. $y$ while the lower row shows $R$ vs. $z$.}
 \label{fig:plot_orbits}
 \end{figure*}
 
