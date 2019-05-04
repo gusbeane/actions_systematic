@@ -225,8 +225,8 @@ system based on a local measurement of the midplane location and
 Galactocentric distance introduces systematic error in the computation of
 actions, especially for stars in the thin disk. Our main point is that the
 ``local'' Galactic midplane is not the same as the ``global'' Galactic
-midplane. For stars relatively far from the Sun, the local midplane location
-will not agree with our local midplane extrapolated onto their position, due
+midplane. For stars relatively far from the Sun, their local midplane location
+will not agree with our local midplane extrapolated onto their position due
 to relatively small-scale variations in the density of the gas and stellar
 distribution. Converting positions and velocities of more distant stars from a
 heliocentric to a Galactocentric coordinate system introduces a systematic
@@ -253,10 +253,9 @@ simulation of a Sagittarius encounter with a galaxy otherwise tailored to the
 stellar mass, scale length, and scale height of the Milky Way
 \citep{2018MNRAS.481..286L}.
 
-In Section~\ref{sec:discussion} we discuss the implications of midplane
+In Section~\ref{sec:discussion}, we discuss the implications of midplane
 variations, and the resulting systematic uncertainty in the vertical action,
-for action-space analyses. In particular, we consider the impact on modelling
-the distribution function of the Milky Way in Section~\ref{ssec:df}. We
+for action-space analyses. We also estimate the expected midplane variations of the Milky Way based on the observed velocity variations. We
 summarize our main results and conclude in Section~\ref{sec:conclusion}.
 
 \section{Motivation} \label{sec:ref_frame}
@@ -287,11 +286,11 @@ potential is otherwise identical to the one in which the star is actually
 moving.
 
 Now suppose this observer makes a measurement of the star's position and
-velocity at the purple point or the green point (i.e. at two different orbital
-phases). Then the purple and green curves correspond to the orbits that the
+velocity at the teal point or the orange point (i.e. at two different orbital
+phases). Then the teal and orange curves correspond to the orbits that the
 observer would compute for each point based on the potential model with the
 offset midplane. In action space, this would correspond to a different value
-of $J_z$ for the purple and green points. In this way, assuming the wrong
+of $J_z$ for the teal and orange points. In this way, assuming the wrong
 coordinate system induces a phase-dependence in the actions estimated for the
 star, which in the correct potential (in this example, the one with the
 correct midplane) should be phase-independent.
@@ -307,9 +306,9 @@ vertical height. The top gray curve depicts an example ``true'' orbit
 oscillating about the true midplane (horizontal solid gray line). Consider an
 observer who erroneously assumes the midplane is located at the horizontal
 dashed line. Suppose this observer measures the phase-space position of the
-star at two different orbital phases (purple and green points). If the
+star at two different orbital phases (teal and orange points). If the
 observer were then to integrate the star's orbit using a model potential with
-the erroneous midplane, they would obtain the purple and green curves for the
+the erroneous midplane, they would obtain the teal and orange curves for the
 star's orbit, respectively. The actions estimated from these two  erroneous
 orbits would subsequently differ, both from each other and from the actions
 estimated for the true orbit (in the potential with the correct midplane).
@@ -324,14 +323,13 @@ systematic error in the actions induced from either a midplane offset or a
 Galactocentric radius offset. We use the epicyclic approximation, which
 assumes that the motion in the $z$ and $R$ components of the orbit are
 decoupled and follow simple harmonic motion about a circular and planar
-``guiding orbit'' \citep[][Section 3.2 and references
+``guiding orbit'' \citep[][Section~3.2 and references
 therein]{2008gady.book.....B}. We refer to the radius of this orbit (the
 ``guiding radius'') as $R_g$. This approximation is an excellent description
 of thin disk-like orbits and a good description of thick disk-like orbits in
 an axisymmetric potential (i.e. ignoring the influence of the Galactic bar and
 spiral arms). We also make the assumption of a perfectly flat circular
-velocity curve with velocity $v_c$ \citep[decent near the Solar circle,
-e.g.][]{2017MNRAS.465...76M}.
+velocity curve with velocity $v_c$, a good approximation near the Solar circle \citep[e.g.][]{2017MNRAS.465...76M}.
 
 Under this approximation, we can write down the cylindrical components
 of the orbits as
@@ -377,15 +375,16 @@ J_R &= \frac{v_R^2 + \kappa^2 (R-R_g)^2}{2\kappa} \\
 J_z &= \frac{v_z^2 + \nu^2 z^2}{2\nu}\text{.}
 \end{split}
 \eeq
-We can simplify this and write
+Using Equations~\eqref{eq:orbits_epi} and \eqref{eq:orbits_vel_epi}, we can
+simplify this and write
 \beq\label{eq:JR_Jz_epi_final}
 \begin{split}
 J_R &= \frac{\kappa A_R^2}{2} = \frac{v_{R,\text{max}}^2}{2\kappa} \\
 J_z &= \frac{\nu A_z^2}{2} = \frac{v_{z,\text{max}}^2}{2\nu}\text{,}
 \end{split}
 \eeq
-where the last equality comes from the fact that $v_{R,\text{max}} = \kappa
-A_R$ and similarly for $z$.
+where the last equality in each line comes from the fact that $v_{R,\text{max}} = \kappa
+A_R$ and $v_{z,\text{max}} = \nu A_z$.
 
 Notice that while the value for each of $J_{\phi}$, $J_R$, and $J_z$ is phase
 independent, the contribution from the kinetic and potential terms in
@@ -423,7 +422,7 @@ error in the actions by
 where we have also ignored second order terms.
 
 In the remainder of this section, we compare our analytic estimates of the
-effect on actions of a midplane offset against numerical calculations. A
+effect of a midplane offset on actions against numerical calculations. A
 numerical evaluation of the effect of velocity offsets on actions is deferred
 to future work, as we discuss in Section~\ref{ssec:lsr_var}.
 
@@ -440,7 +439,7 @@ time-series starting from a phase-space position $(x, v)$ and integrated in a
 potential $\Phi$. We use the default \texttt{MWPotential} as our potential,
 which is based on the Milky Way potential available in \texttt{galpy}
 \citep{2015ApJS..216...29B}. This potential includes a Hernquist bulge and
-nucleus \citep{1990ApJ...356..359H}, a Miyamoto-Nagai disk
+nucleus \citep{1990ApJ...356..359H}, a Miyamoto--Nagai disk
 \citep{1975PASJ...27..533M}, and an NFW halo \citep{1997ApJ...490..493N}, and
 is fit to empirically match some observations. We use the Dormand-Prince
 8(5,3) integration scheme \citep{Dormand80:integrator} with a timestep of
@@ -451,7 +450,7 @@ We assume the Sun is located at $(8.2, 0, 0)\,\kpc$. None of our orbit
 calculations depend on the value of the LSR in this toy potential (though this
 is important when using real data, since the conversion from heliocentric to
 Galactocentric coordinates depends on the LSR). In this potential, we have
-that the circular velocity $v_{\text{circ}}$ is $231\,\kms$ on the Solar
+that the circular velocity $v_{\text{circ}}$ is $231\,\kms$ at the Solar
 circle.
 
 Other methods for computing actions are used in the literature. For example,
@@ -476,9 +475,9 @@ Table~\ref{tab:orbits}. Each orbit, integrated without systematic coordinate
 errors, is plotted in Appendix~\ref{app:orbits}. We will refer to these orbits
 by their names (thin-disk, thick-disk, halo) henceforth.
 
-We begin by considering the thick-disk orbit. Suppose an immortal observer who
+We begin with the thick-disk orbit. Consider an immortal observer who
 can measure the thick-disk star's phase-space position at many different times
-(and hence different orbital phases), but used a coordinate system in which
+(and hence different orbital phases). However, the immortal observer uses a coordinate system in which
 the midplane is systematically offset in height by $100\,\pc$ from its actual
 location --- i.e. we subtract the vector $(0, 0, 100)\,\pc$ from each position
 in the orbit. This corresponds to the immortal observer physically located at
@@ -534,7 +533,7 @@ potential. The relative size of the phase variation in each action depends on
 the direction of the systematic offset as well as the true values of the
 actions (i.e. the type of orbit). In reality we will have one measurement of
 the phase-space position to work with, in which case the determination of the
-orbital phase in $z$ or $R$ is degenerate with the degree of systematic offset
+orbital phase in $R$ or $z$ is degenerate with the degree of systematic offset
 in that coordinate (see Figure~\ref{fig:cartoon}).  In the following we
 therefore quote percentile ranges for the possible values computed for each
 action as a proxy for the effect of these systematic errors in the coordinate
@@ -551,7 +550,7 @@ pointing out that a $100\,\pc$ error in an orbit with
 $z_{\text{max}}=850\,\pc$ --- a $12\%$ error
 --- induced an $86\%$ error in the computation of $J_z$.
 
-For a systematic offset in $x$ (or Galactic center distance), the
+For a systematic offset in $x$ (or distance to the Galactic center), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $6.9$,
 $47$, and $0.71\,\actunit$ for $J_R$, $J_{\phi}$ and $J_z$, respectively.
 These are fractional errors of $21\%$, $3.1\%$ and $3.1\%$, respectively ---
@@ -578,8 +577,7 @@ errors are induced in $J_R$, with the middle $90\%$ of values over the $\Gyr$
 being within $\sim8\%$ of the true $J_R$. As expected, large errors are
 induced in $J_z$ with a $100\,\pc$ offset in $z$, with the middle $90\%$ of
 values being within $\sim43\%$ of the true $J_z$. The $x$ offset induces
-uncertainties in $J_R$ and $J_{\phi}$ of $\sim21\%$ and $\sim3\%$,
-respectively. A $\sim3\%$ error in $J_z$ is also induced.}
+uncertainties in $J_R$, $J_{\phi}$, and $J_z$ of $\sim21\%$, $\sim3\%$, and $\sim3\%$.}
 \label{fig:one_orbit_wrong_ref}
 \end{figure*}
 
@@ -598,7 +596,7 @@ arrow anchored on the true $J_z$ value. We call this $\Delta J_z$ and will use
 it (along with the similarly defined $\Delta J_R$ and $\Delta J_{\phi}$) to
 empirically describe the error distribution. We see that $\Delta J_z$ roughly
 corresponds to the distance from the true $J_z$ value to one of the modes of
-the error distribution.}
+the distribution of observed $J_z$ values.}
 \label{fig:Jz_hist}
 \end{figure}
 
@@ -613,7 +611,7 @@ $J_z$ (i.e. the $J_z$ computed with no offset in $z$). In the case of the
 thin-disk orbit (bottom panel), we see that, in addition to the prior
 complications, the error distribution is not even centered on null. This comes
 about when the midplane error is $\gtrsim z_{\text{max}}$, where
-$z_{\text{max}}$ is the maximum height of the orbit (equivalent to $A_z$ in
+$z_{\text{max}}$ is the maximum height of the orbit, equivalent to $A_z$ in the epicyclic approximation (see
 Section~\ref{ssec:epi_action}).
 
 We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
@@ -688,14 +686,14 @@ all three lines nearly overlap.
 
 In each panel of Figure~\ref{fig:many_orbit_wrong_ref}, where relevant, we
 include the estimation of the action errors derived under the epicyclic
-approximation from Equation~\eqref{eq:Ji_err_mosttime}. This Equation is
+approximation from Equation~\eqref{eq:Ji_err_mosttime}, with $\Delta v_{\phi}=0$, as dashed lines in the color of each orbit. This equation is
 relevant since during most of the orbit the star will be at maximum radial and
 vertical amplitude and we do not consider velocity offsets. Note that we
-consider an error in the $x$-coordinate $\Delta x$, which is not quite the
+consider an error in the $x$-coordinate $\Delta x$, which is not exactly the
 same as $\Delta R$. For observations of stars close to us, we have that
 $\Delta x \sim \Delta R$, but for the experiment performed in this Section we
 consider observations of the star throughout its entire orbit. This introduces
-a factor of $2/\pi$ when converting from $\Delta R$ to $\Delta x$, which we
+a factor of $2/\pi$ when converting from $\Delta x$ to $\Delta R$, which we
 derive in Appendix~\ref{app:deltax}.
 
 The epicyclic approximation is a good predictor of $\Delta J_z$, even for halo
@@ -735,7 +733,7 @@ description for any orbit.}
 \end{center}
 \caption{The fractional error in $J_z$ as a function of $J_z$ for a few
 different offsets in $z$. We show this for a $z$ offset of $10, 50, 100\,\pc$
-(red, cyan, green respectively). As before, the error ($\Delta J_z$) is one
+(orange, teal, and green respectively). As before, the error ($\Delta J_z$) is one
 half the 95\uth{} minus 5\uth{} percentile of the distribution of observed
 $J_z$ values over the course of the orbit. There are large errors for
 thin-disk like orbits ($J_z \sim 0.5\,\actunit$), even for a small midplane
@@ -745,7 +743,7 @@ offset of $10\,\pc$. }
 
 To further understand the effect of the midplane error, we also plot the
 fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
-100\,\pc$ (orange, cyan, and green, respectively) in
+100\,\pc$ (orange, teal, and green, respectively) in
 Figure~\ref{fig:dJz_fun_Jz}. For a thin disk-like orbit
 ($J_z\sim0.5\,\actunit$), even a $10\,\pc$ offset in $z$ is enough to induce a
 $\sim25\%$ error in $J_z$. For larger values of $J_z$, the fractional errors
@@ -774,7 +772,7 @@ the location of the central supermassive black hole, Sagittarius~A\textsuperscri
 interferometry of $8.178 \pm 0.035$~kpc \citep{2019arXiv190405721A}.
 
 Importantly, the location of \sgra{} may not be equivalent to
-the location of the ``dynamical Galactic center:'' the point in
+the location of the ``dynamical Galactic center,'' i.e., the point in
 three-dimensional space about which the stars in the solar neighborhood are
 orbiting. This assumption, although sensible and frequently made, has not yet been
 justified. It is tested in any construction of a  dynamical model where the
@@ -789,7 +787,7 @@ distance to \sgra{}.
 Second, one must define the angular orientation of the Galaxy. This was
 defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
 defining the coordinates of the Galactic center in B1950 coordinates as
-(17:42:26.6, -28:55:00) and the north Galactic pole as (12:49:00, +27:24:00).
+(17:42:26.6, -28:55:00) and the North Galactic pole as (12:49:00, +27:24:00).
 These two quantities, together with $R_0$, define the orientation of the
 Galactic plane. However, there is growing evidence that the stellar midplane
 is tilted relative to this coordinate system \citep{2014ApJ...797...53G,
@@ -856,7 +854,7 @@ we focus on the three Milky Way-mass zoom-ins considered in
 \citet{2018arXiv180610564S}, which were simulated as part of the
 \textit{Latte} suite and show broad agreement of many of their global
 properties with observations of the Milky Way \citep{2016ApJ...827L..23W,
-2018MNRAS.481.4133G} The $\z = 0$ snapshots\footnote{In this work, to avoid
+2018MNRAS.481.4133G}. The $\z = 0$ snapshots\footnote{In this work, to avoid
 confusion with the vertical height $z$, we refer to cosmological redshift as
 $\z$.} of these three simulations, named \mi{}, \mf{}, and \mm{} for
 shorthand, are publicly available alongside associated mock \textit{Gaia} DR2
@@ -871,8 +869,8 @@ for dark matter and star particles are fixed at $112\,\pc$ and $11.2\,\pc$,
 respectively.\footnote{This is $2.8$ times the often-quoted
 Plummer-equivalent.} The gas softening length is adaptive, but at $\z=0$ the
 median softening length for cold ($T < 10^4\,\text{K}$) gas particles around
-roughly solar positions (with cylindrical radii within $500\,\pc$ of
-$8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4, 12.5, 10.3\,\pc$ for \mi{},
+roughly solar positions (with galactocentric cylindrical radii within $0.5\,\kpc$ of
+$8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4$, $12.5$, and $10.3\,\pc$ for \mi{},
 \mf{}, and \mm{}, respectively. These values are summarized in
 Table~\ref{tab:scale_height}, along with measurements of the stellar and gas
 disk scale heights.
@@ -906,10 +904,10 @@ The softening lengths used in the simulations can affect the ability to
 resolve the very thinnest planar structures, which in turn can affect how much
 the density-based midplane varies as a function of azimuth. The Milky Way's
 dense, star-forming gas disk is thought to have a scale height of about
-$40\,\pc$ ($3\text{-}4$ times the cold gas softening length;
-\citealt{2019ApJ...871..145A}) and the thin stellar disk a scale height of
-about 300 pc (30 times the stellar softening length;
-\citealt{2008ApJ...673..864J}). We therefore expect that resolution effects
+$40\,\pc$, $\sim3\textup{--}4$ times the cold gas softening length
+\citep{2019ApJ...871..145A}. The thin stellar disk has a scale height of
+about $300\,\pc$, $\sim30$ times the stellar softening length
+\citep{2008ApJ...673..864J}. We therefore expect that resolution effects
 may still be affecting the scale heights of these components in the
 simulations, especially the cold gas. Indeed, the stellar scale heights of the
 simulated galaxies are equal to or larger than the Milky Way's while the gas scale
@@ -921,7 +919,7 @@ precluding extending the precision of the gas midplane definition to the
 stellar component.
 
 Cosmological simulations of Milky Way-mass galaxies are not perfect
-representations of the true Milky Way in other ways as well\footnote{The failure of cosmological simulations to exactly reproduce the Milky Way is not entirely due to limitations of the numerical model. Candidate Milky Way-like galaxies are chosen solely on their mass and isolation, for which there are a wide variety of possible galaxies with qualitatively different properties.}, as discussed in
+representations of the true Milky Way in other ways as well,\footnote{The failure of cosmological simulations to exactly reproduce the Milky Way is not entirely due to limitations of the numerical model. Candidate Milky Way-like galaxies are chosen solely on their mass and isolation, for which there are a wide variety of possible galaxies with qualitatively different properties.} as discussed in
 \citet{2018arXiv180610564S}. For instance, the velocity structure of \mi{} is
 closer to M31's than the Milky Way's (Loebman et al. in prep). However, in
 this work we are most interested in the global properties of the potential,
@@ -938,11 +936,11 @@ few lower than what could be expected in the Milky Way.
 
 In this work, we take the galactocentric coordinate system described in
 Section 3 of \citet{2018arXiv180610564S} as our fiducial coordinate system for
-each galaxy. In short, the center of the galaxy is found iteratively, the
+each galaxy. In short, the center of the galaxy is found iteratively. The
 center of mass velocity is then determined by all star particles within
-$15\,\kpc$ of this center, and the galaxy is then rotated onto a
-principal-axis frame determined by stars younger than $1\,\Gyr$ inside of the
-fiducial solar radius $R_{\odot} = 8.2\,\kpc$, such that the disk plane is the
+$15\,\kpc$ of this center. The galaxy is then rotated onto a
+principal axis frame determined by stars younger than $1\,\Gyr$ inside of the
+fiducial solar radius $R_{0} = 8.2\,\kpc$, such that the disk plane is the
 $x$--$y$ plane.
 
 \subsection{Description of Milky Way-Sagittarius Interaction Simulation} 
@@ -987,11 +985,14 @@ fiducial disk. We then re-define the new midplane of the cylinder to be the
 median $z$, re-select stars, and iterate until the median $z$ value converges.
 We find that only $10$ iterations of this procedure are necessary for
 convergence. The resulting median $z$ is taken to be what our observer would
-measure as the local Galactic midplane at each $\phi$. This procedure assumes
-perfect density estimation, and therefore perfect corrections for extinction,
-within the cylinder defining the ``solar neighborhood.'' Imperfect extinction
-correction is likely to increase the amplitude of the estimated fluctuations
-in $z$. To account for the effect of particle noise, we bootstrap-resample
+measure as the local Galactic midplane at each $\phi$.
+
+This procedure assumes perfect density estimation, and therefore perfect
+corrections for extinction within the cylinder defining the ``solar
+neighborhood.'' Imperfect extinction correction is likely to increase the
+amplitude of the estimated fluctuations in $z$.
+
+To account for the effect of particle noise, we bootstrap resample
 stars within a cylinder of stars with height $2\,\kpc$ and the same radius
 $1000$ times and determine the $1\,\sigma$ error bars by repeating the
 midplane determination with those reselection of stars.
@@ -1014,21 +1015,23 @@ $z$-axis as defined by the gas and stars.
 Figure~\ref{fig:midplane} shows the relative $z$ location of the inferred
 midplane our imaginary observer would determine as a function of azimuth for
 each galaxy, using their local ``solar neighborhood'' (the cylinder defined
-above). The $1\,\sigma$ error from the bootstrap procedure is shown as the
+above). We consider $50$ equally spaced bins in azimuth, a sufficient number such that each cylinder shares no stars with its neighboring cylinder. The $1\,\sigma$ error from the bootstrap procedure is shown as the
 dashed-line error bars. The middle $90\%$ of midplane values across the Solar
 circle spans $185$, $162$, $84\,\pc$ for \mi{}, \mf{}, and \mm{}. In two of
 the three cases the midplane therefore varies by more than $\pm 100\,\pc$
 depending on the azimuth along the Solar circle; in the third (\mm{}, which
 has the thinnest ``thin disk'' of stars, but the largest stellar mass) the
-variation is more like $\pm 50\,\pc$.
+variation is closer to $\pm 50\,\pc$.
 
 We compute the same midplane variation in Figure~\ref{fig:midplane_chervin},
-but for the toy simulation of a Sagittarius encounter
+but for four succcessive timesteps of the toy simulation of a Sagittarius encounter
 \citep{2018MNRAS.481..286L}. Again we have subtracted a best fit curve of the
 form $\text{A} \sin{\left(\phi + \text{B}\right)} + \text{C}$, with the values
 for $\text{A}$ being $9.5$, $2.5$, $-212$, and $-394\,\pc$, for $\text{B}$
 being $0.0013$, $0.0007$, $-0.63$, and $-1.00\,\text{rad}$ and $\text{C}$
-being $2.6$, $-7.8$, $-65$, and $-53\,\pc$ chronologically for each of the four timesteps shown. In the {\em upper} two panels, we see that the midplane is
+being $2.6$, $-7.8$, $-65$, and $-53\,\pc$ chronologically for each of the four timesteps shown.
+
+In the upper panels, we see that the midplane is
 relatively flat in the inner galaxy, but additional encounters drive strong
 midplane variation. In the lower left panel, we see a strong $m=2$ mode develop,
 consistent with the $R=8\,\kpc$ panel of Figure~17 in
@@ -1066,7 +1069,7 @@ before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
 for inaccuracies in the galactocentric coordinate system. Error bars are
 calculated as in Figure~\ref{fig:midplane}. (\Gus{Check:}) The upper
 panels show the midplane as a function of azimuth before the first encounter
-near the Solar circle. As later encounters occur which bring the
+near the Solar circle at $t=2.0\,\Gyr$ and $t=4.0\,\Gyr$. As later encounters occur which bring the
 Sagittarius-like object closer to the Solar circle, we can see that stronger
 midplane variations result. In fact, one can see that an $m=2$ mode is excited
 in the lower left panel at $t=6.0\,\Gyr$ --- this is consistent with Figure~17 of
@@ -1086,7 +1089,7 @@ the components of the LSR as a function of azimuth, but performing a best-fit
 subtraction to correct for misalignment of the original coordinate system (as
 in the previous section) is more involved. Since we find that the variation in
 the LSR is less pronounced than for the midplane, and since offsets in
-velocity only contribute to second order to $J_R$ and $J_z$ when a star is at
+velocity only contribute to second order to $\Delta J_R$ and $\Delta J_z$ when a star is at
 maximum amplitude in $R$ or $z$ (where the majority of the orbit is, see
 Section~\ref{ssec:epi_action}), we defer this calculation to future work.
 
@@ -1094,12 +1097,16 @@ Section~\ref{ssec:epi_action}), we defer this calculation to future work.
 We have used high-resolution cosmological simulations to illustrate that we
 expect the ``local midplane'' defined by stellar density to vary with azimuth
 by up to $\pm 100$ pc, as a natural consequence of the non-axisymmetry of the
-Galactic disk at small scales. While this is not in itself surprising or new,
-we also demonstrate that extending the coordinate system established by our
+Galactic disk at small scales.
+
+While this is not in itself surprising or new,
+we also demonstrated that extending the coordinate system established by our
 local midplane to a global axisymmetric coordinate system spanning the
 entirety of the Galactic disk introduces systematic error in computations of
 the actions under this symmetry assumption, when starting from the present-day
-positions and velocities of stars as measured by, e.g., \emph{Gaia}. These
+positions and velocities of stars as measured by, e.g., \emph{Gaia}.
+
+These
 systematic errors are most important for stars on thin disk-like orbits, where
 they can be large enough to yield actions representative of orbits in the
 thick disk. This effect is entirely due to the extension of a local to a
@@ -1112,7 +1119,8 @@ Galactocentric coordinate system offsets can also be generated by errors in
 the parameters of the Galactocentric coordinate system. However, such
 parameters have been measured to high enough precision that they are likely
 subdominant to the intrinsic variation of the midplane across large distances.
-On shorter scales, they are likely the dominant source of error.
+On shorter scales, they are likely the dominant source of error, and they are
+likely to be important for detailled modelling of kinematically cold stars.
 
 This finding has many implications for the study of the dynamics of stars in
 what is normally considered the regime of the epicyclic approximation:
@@ -1298,9 +1306,10 @@ Figure~\ref{fig:midplane}.
 \includegraphics[width=\textwidth]{fig/lsr.pdf}
 \end{center}
 \caption{The LSR as a function of azimuth at the
-fiducial Solar circle ($R_{\odot} = 8.2\,\kpc$). No best-fit subtraction is
+fiducial Solar circle ($R_0 = 8.2\,\kpc$). No best-fit subtraction is
 performed here as we did in the case of the midplane
-(Section~\ref{ssec:local_midplane}).}
+(Section~\ref{ssec:local_midplane}). Variations in $v_z$ are on the order of
+$\sim5\textup{--}10\,\kms$.}
 \label{fig:lsr_variations}
 \end{figure*}
 
