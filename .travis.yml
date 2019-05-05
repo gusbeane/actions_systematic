@@ -6,5 +6,6 @@ cache:
     - $HOME/.texlive
 script:
 - mkdir _build
+- cd paper
 # Prefix command with travis_wait x so it times out after 3 mins
-- travis_wait 3 pdflatex -output-directory _build ./paper/ms.tex
+- travis_wait 3 pdflatex -output-directory ../_build ms.tex
