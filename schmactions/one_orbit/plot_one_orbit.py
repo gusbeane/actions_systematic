@@ -134,7 +134,7 @@ ax[0].text(J0+dJRJR/3.5, 38.5, r'$\Delta J_R$', color='k')
 
 ax[0].axvline(x=J0, color='k', ls='dashed', lw=1)
 ax[0].set_ylabel(r'$\text{count}$')
-ax[0].text(27.25, 40, r'\text{thick-disk orbit}', color='k')
+ax[0].text(27.25, 42.25, r'\text{thick-disk orbit}', color='k')
 
 k0t, k1t, k2t = sclip(xact_thin)
 dJRJR_thin = 0.5*(np.percentile(xact_thin[:,0][k0t], 95) - np.percentile(xact_thin[:,0][k0t], 5))
@@ -216,7 +216,7 @@ ax[1].text(J1_thin+dJphiJphi_thin/3.5, 35.75, r'$\Delta J_{\phi}$', color='k')
 
 ax[1].axvline(x=J1_thin, color='k', ls='dashed', lw=1)
 ax[1].set_ylabel(r'$\text{count}$')
-ax[1].text(-1550, 44, r'\text{thin-disk orbit}', color='k')
+ax[1].text(-1550, 41, r'\text{thin-disk orbit}', color='k')
 
 ax[1].set_xlabel(r'$J_{\phi,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
