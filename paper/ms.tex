@@ -487,7 +487,7 @@ potential, but erroneously thinking they are located at $(8, 0, 0.1)\,\kpc$.
 \begin{deluxetable*}{cccccccc}
 \tablecaption{Description and names of the three orbits considered in this
 work. For the last two columns: $z_{\text{max}}$ is the maximum height of the
-orbit while $\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of the radial excursions of the orbit. In the epicyclic approximation, $A_z = z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ \label{tab:orbits}}
+orbit while $\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of the radial excursions of the orbit. In the epicyclic approximation, $A_z = z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$. \label{tab:orbits}}
 \tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial
 velocity} & \colhead{$J_R$} &
 \colhead{$J_{\phi}$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$} &
@@ -730,19 +730,22 @@ description for any orbit.}
 \includegraphics[width=\columnwidth]{fig/schmactions_many_orbits_Jz_fun.pdf}
 \end{center}
 \caption{The fractional error in $J_z$ as a function of $J_z$ for a few
-different offsets in $z$. We show this for a $z$ offset of $10, 50, 100\,\pc$
-(orange, teal, and green respectively). As before, the error ($\Delta J_z$) is one
-half the 95\uth{} minus 5\uth{} percentile of the distribution of observed
+different offsets in $z$. All orbits have the same initial position of $(8, 0, 0)\,\kpc$ and velocity $(-190, 0, v_z)\,\kms$, where we vary $v_z$. We show this for a $z$ offset of $10, 50, 100\,\pc$
+(orange, teal, and green respectively). As before, the error ($\Delta J_z$) is
+one half the 95\uth{} minus 5\uth{} percentile of the distribution of observed
 $J_z$ values over the course of the orbit. There are large errors for
 thin-disk like orbits ($J_z \sim 0.5\,\actunit$), even for a small midplane
-offset of $10\,\pc$. }
+offset of $10\,\pc$. As dashed lines in each color we also plot the prediction
+for $\Delta J_z/J_z$ from the epicyclic approximation
+(Equation~\eqref{eq:Ji_err_mosttime}), which shows excellent agreement with
+the numerically computed values.}
 \label{fig:dJz_fun_Jz}
 \end{figure}
 
 To further understand the effect of the midplane error, we also plot the
 fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
 100\,\pc$ (orange, teal, and green, respectively) in
-Figure~\ref{fig:dJz_fun_Jz}. For a thin disk-like orbit
+Figure~\ref{fig:dJz_fun_Jz}. For each orbit, we set the initial position to be $(8,0,0)\,\kpc$ and the initial velocity to be $(-190, 0, v_z)\,\kms$, where we vary $v_z$. For a thin disk-like orbit
 ($J_z\sim0.5\,\actunit$), even a $10\,\pc$ offset in $z$ is enough to induce a
 $\sim25\%$ error in $J_z$. For larger values of $J_z$, the fractional errors
 are suppressed, but the induced error can still be large depending on how
@@ -1317,7 +1320,7 @@ Averaging over the circle, we therefore have that,
 
 \section{LSR Variations} \label{app:lsr}
 We consider the variations of the LSR as a function of azimuth at the fiducial
-solar circle ($R_{\odot} = 8.2\,\kpc$) in Figure~\ref{fig:lsr_variations}. At
+solar circle ($R_{0} = 8.2\,\kpc$) in Figure~\ref{fig:lsr_variations}. At
 each azimuth, $\phi$, we take the median velocity in cylindrical coordinates
 of all stars within $200\,\pc$ of the position, following
 \citet{2018arXiv180610564S}. No best-fit subtraction was performed as in
