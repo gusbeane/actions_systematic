@@ -128,7 +128,7 @@ k0, k1, k2 = sclip(zact)
 dJRJR = 0.5*(np.percentile(xact[:,0][k0], 95) - np.percentile(xact[:,0][k0], 5))
 
 ax[0].hist(xact[:,0][k0], bins=np.linspace(J0 - 5, J0 + 5, 60),
-        edgecolor='k', fc='none', histtype='stepfilled')
+        edgecolor=tb_c[0], fc='none', histtype='stepfilled', linewidth=1.5)
 ax[0].arrow(J0, 38, dJRJR, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
 ax[0].text(J0+dJRJR/3.5, 38.5, r'$\Delta J_R$', color='k')
 
@@ -140,8 +140,8 @@ k0t, k1t, k2t = sclip(xact_thin)
 dJRJR_thin = 0.5*(np.percentile(xact_thin[:,0][k0t], 95) - np.percentile(xact_thin[:,0][k0t], 5))
 
 ax[1].hist(xact_thin[:,0][k0t], bins=np.linspace(J0_thin-5, J0_thin+5, 60),
-        edgecolor='k', fc='none', histtype='stepfilled')
-ax[1].arrow(J0_thin, 30, dJRJR_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
+        edgecolor=tb_c[0], fc='none', histtype='stepfilled', linewidth=1.5)
+ax[1].arrow(J0_thin, 30, dJRJR_thin, 0, head_width=0.7, head_length=0.35, length_includes_head=True, color='k')
 ax[1].text(J0_thin+dJRJR_thin/3.5, 30.5, r'$\Delta J_R$', color='k')
 
 ax[1].axvline(x=J0_thin, color='k', ls='dashed', lw=1)
@@ -162,26 +162,26 @@ fig, ax = plt.subplots(2,1, figsize=(columnwidth,6.5))
 k0, k1, k2 = sclip(zact)
 dJRJR = 0.5*(np.percentile(zact[:,0][k0], 95) - np.percentile(zact[:,0][k0], 5))
 
-ax[0].hist(zact[:,0][k0], bins=np.linspace(J0 - 3, J0 + 3, 60),
-        edgecolor='k', fc='none', histtype='stepfilled')
-ax[0].arrow(J0, 55, dJRJR, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
-ax[0].text(J0+dJRJR/3.5, 55.25, r'$\Delta J_R$', color='k')
+ax[0].hist(zact[:,0][k0], bins=np.linspace(J0 - 2, J0 + 2, 60),
+        edgecolor=tb_c[0], fc='none', histtype='stepfilled', linewidth=1.5)
+ax[0].arrow(J0, 35, dJRJR, 0, head_width=1, head_length=0.2, length_includes_head=True, color='k')
+ax[0].text(J0+dJRJR/15, 35.5, r'$\Delta J_R$', color='k')
 
 ax[0].axvline(x=J0, color='k', ls='dashed', lw=1)
 ax[0].set_ylabel(r'$\text{count}$')
-ax[0].text(29.5, 60, r'\text{thick-disk orbit}', color='k')
+ax[0].text(30.5, 45, r'\text{thick-disk orbit}', color='k')
 
 k0t, k1t, k2t = sclip(zact_thin)
 dJRJR_thin = 0.5*(np.percentile(zact_thin[:,0][k0t], 95) - np.percentile(zact_thin[:,0][k0t], 5))
 
-ax[1].hist(zact_thin[:,0][k0t], bins=np.linspace(J0_thin-2, J0_thin+2, 60),
-        edgecolor='k', fc='none', histtype='stepfilled')
-ax[1].arrow(J0_thin, 70, dJRJR_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
-ax[1].text(J0_thin+dJRJR_thin/3.5, 70.25, r'$\Delta J_R$', color='k')
+ax[1].hist(zact_thin[:,0][k0t], bins=np.linspace(J0_thin-1, J0_thin+1, 60),
+        edgecolor=tb_c[0], fc='none', histtype='stepfilled', linewidth=1.5)
+ax[1].arrow(J0_thin, 40, dJRJR_thin, 0, head_width=1, head_length=0.07, length_includes_head=True, color='k')
+ax[1].text(J0_thin+dJRJR_thin/1.5, 41, r'$\Delta J_R$', color='k')
 
 ax[1].axvline(x=J0_thin, color='k', ls='dashed', lw=1)
 ax[1].set_ylabel(r'$\text{count}$')
-ax[1].text(38.25, 110, r'\text{thin-disk orbit}', color='k')
+ax[1].text(39.35, 59, r'\text{thin-disk orbit}', color='k')
 
 ax[1].set_xlabel(r'$J_{R,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
@@ -198,8 +198,8 @@ k0, k1, k2 = sclip(xact)
 dJphiJphi = 0.5*(np.percentile(xact[:,1][k1], 95) - np.percentile(xact[:,1][k1], 5))
 
 ax[0].hist(xact[:,1][k1], bins=np.linspace(J1 - 30, J1 + 30, 60),
-        edgecolor='k', fc='none', histtype='stepfilled')
-ax[0].arrow(J1, 35, dJphiJphi, 0, head_width=1, head_length=0.4, length_includes_head=True, color='k')
+        edgecolor=tb_c[0], fc='none', histtype='stepfilled', linewidth=1.5)
+ax[0].arrow(J1, 35, dJphiJphi, 0, head_width=1, head_length=1.3, length_includes_head=True, color='k')
 ax[0].text(J1+dJphiJphi/3.5, 35.75, r'$\Delta J_{\phi}$', color='k')
 
 ax[0].axvline(x=J1, color='k', ls='dashed', lw=1)
@@ -210,13 +210,13 @@ k0t, k1t, k2t = sclip(xact_thin)
 dJphiJphi_thin = 0.5*(np.percentile(xact_thin[:,1][k1t], 95) - np.percentile(xact_thin[:,1][k1t], 5))
 
 ax[1].hist(xact_thin[:,1][k1t], bins=np.linspace(J1_thin-30, J1_thin+30, 60),
-        edgecolor='k', fc='none', histtype='stepfilled')
-ax[1].arrow(J1_thin, 35, dJphiJphi_thin, 0, head_width=1, head_length=0.15, length_includes_head=True, color='k')
+        edgecolor=tb_c[0], fc='none', histtype='stepfilled', linewidth=1.5)
+ax[1].arrow(J1_thin, 35, dJphiJphi_thin, 0, head_width=1, head_length=1.3, length_includes_head=True, color='k')
 ax[1].text(J1_thin+dJphiJphi_thin/3.5, 35.75, r'$\Delta J_{\phi}$', color='k')
 
 ax[1].axvline(x=J1_thin, color='k', ls='dashed', lw=1)
 ax[1].set_ylabel(r'$\text{count}$')
-ax[1].text(-1550, 38, r'\text{thin-disk orbit}', color='k')
+ax[1].text(-1550, 44, r'\text{thin-disk orbit}', color='k')
 
 ax[1].set_xlabel(r'$J_{\phi,\text{obs}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
 
