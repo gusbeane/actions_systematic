@@ -1,10 +1,10 @@
-sudo: required
-language: generic
-services: docker
-
+install:
+ - source ./texlive_install.sh
+cache:
+  directories:
+    - /tmp/texlive
+    - $HOME/.texlive
 script:
-  - docker pull dxjoke/tectonic-docker
-  - .ci/gen-hogg.sh
-  - docker run --mount src=$TRAVIS_BUILD_DIR/paper,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --print --keep-intermediates --reruns 0 ms.tex ; bibtex ms ; tectonic ms.tex"
-  - docker run --mount src=$TRAVIS_BUILD_DIR/paper,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --print --keep-intermediates --reruns 0 ms_hogg.tex ; bibtex ms_hogg ; tectonic ms_hogg.tex"
-  - source .ci/build-paper.sh
+- mkdir _build
+# Prefix command with travis_wait x so it times out after 3 mins
+- travis_wait 3 pdflatex -output-directory _build ./paper/ms.tex
