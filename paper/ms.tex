@@ -526,7 +526,9 @@ arrow anchored on the true $J_z$ value. We call this $\Delta J_z$ and will use
 it (along with the similarly defined $\Delta J_R$ and $\Delta J_{\phi}$) to
 empirically describe the error distribution. We see that $\Delta J_z$ roughly
 corresponds to the distance from the true $J_z$ value to one of the modes of
-the distribution of observed $J_z$ values.}
+the distribution of observed $J_z$ values. Similar plots for $J_R$ induced by
+a $z$ offset and $J_R$ and $J_{\phi}$ induced by an $x$ offset are given in
+Appendix~\ref{app:hist}.}
 \label{fig:Jz_hist}
 \end{figure}
 
@@ -613,6 +615,16 @@ complications, the error distribution is not even centered on null. This comes
 about when the midplane error is $\gtrsim z_{\text{max}}$, where
 $z_{\text{max}}$ is the maximum height of the orbit, equivalent to $A_z$ in the epicyclic approximation (see
 Section~\ref{ssec:epi_action}).
+
+In Appendix~\ref{app:hist} we plot the same histogram as in
+Figure~\ref{fig:Jz_hist}, but for the observed distributions of $J_R$ induced
+by a $z$ offset (upper left panel of Figure~\ref{fig:many_orbit_wrong_ref})
+and the observed distributions of $J_R$ and $J_{\phi}$ errors induced by an
+$x$ offset (lower left and lower center panels of
+Figure~\ref{fig:many_orbit_wrong_ref}, respectively). We find similar error
+distributions as in Figure~\ref{fig:Jz_hist}, with the exception that the
+observed $J_R$ distribution induced by an $x$ offset more closely resembles a
+Gaussian.
 
 \begin{figure*}[htb!]
 \begin{center}
@@ -1315,6 +1327,53 @@ Averaging over the circle, we therefore have that,
 \beq
 \avg{\Delta R} = \frac{2}{\pi} \Delta x\text{.}
 \eeq
+
+\section{$J_R$ and $J_{\phi}$ Observed Distributions} \label{app:hist}
+
+In Figure~\ref{fig:JR_zerr_hist} we plot the observed $J_R$ distribution
+induced by an offset in $z$, and in Figures~\ref{fig:JR_xerr_hist} and
+\ref{fig:Jphi_xerr_hist} we plot the observed $J_R$ and $J_{\phi}$
+distributions induced by an offset in $x$. We plot the distributions for the
+thick-disk (top panels) and thin-disk (bottom panels) orbits.
+
+We find that the observed $J_R$ distribution induced by an offset in $x$ more
+closely resembles a Gaussian, while the observed $J_R$ distribution induced by
+an offset in $z$ and the observed $J_{\phi}$ distribution induced by an offset
+in $x$ are both similar to the observed $J_z$ distribution induced by an
+offset in $z$ (see Figure~\ref{fig:Jz_hist}).
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3.35224200913in]{fig/schmactions_JR_zerr_hist.pdf}
+\end{center}
+\caption{A histogram of the observed values in $J_R$ for the thick-disk (top
+panel) and thin-disk (bottom panel) orbits assuming a $z$ offset of
+$100\,\pc$. The induced error distribution more closely resembles a Gaussian
+centered on the null value.}
+\label{fig:JR_zerr_hist}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3.35224200913in]{fig/schmactions_JR_xerr_hist.pdf}
+\end{center}
+\caption{A histogram of the observed values in $J_R$ for the thick-disk (top
+panel) and thin-disk (bottom panel) orbits assuming a $x$ offset of
+$100\,\pc$. The induced error distribution is non-Gaussian and bimodal, with
+neither of the modes centered on null.}
+\label{fig:JR_xerr_hist}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3.35224200913in]{fig/schmactions_Jphi_xerr_hist.pdf}
+\end{center}
+\caption{A histogram of the observed values in $J_{\phi}$ for the thick-disk (top
+panel) and thin-disk (bottom panel) orbits assuming a $z$ offset of
+$100\,\pc$. The induced error distribution is non-Gaussian and bimodal, with
+neither of the modes centered on null.}
+\label{fig:Jphi_xerr_hist}
+\end{figure}
 
 \section{LSR Variations} \label{app:lsr}
 We consider the variations of the LSR as a function of azimuth at the fiducial
