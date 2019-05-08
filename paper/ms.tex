@@ -66,7 +66,7 @@ Ave., New York, NY 10011, USA}
 \title{The Galactic Midplane Is Not a Plane: Implications for Dynamical
 Analysis with \textit{Gaia} Data and Beyond}
 
-\correspondingauthor{Angus Beane}
+% \correspondingauthor{Angus Beane}
 \email{abeane@sas.upenn.edu}
 
 \author[0000-0002-8658-1453]{Angus Beane}
@@ -101,7 +101,7 @@ Analysis with \textit{Gaia} Data and Beyond}
 \affil{\mpia}
 
 \author{Chervin F. P. Laporte}
-\altaffiliation{Simons Fellow}
+\altaffiliation{CITA National Fellow}
 \affil{\victoria}
 
 \begin{abstract}
@@ -946,17 +946,17 @@ $x$--$y$ plane.
 \subsection{Description of Milky Way-Sagittarius Interaction Simulation} 
 \label{ssec:sag_sim}
 In addition to the cosmological zoom-ins, we will also briefly consider results
-from a toy Sagittarius encounter simulation. This simulation offers us the
+from a live N-body simulation of a Sagittarius-like encounter. This simulation offers us the
 ability to see how the midplane varies in a more controlled environment. The
 details of the simulation are given in \citet{2018MNRAS.481..286L}, but we
 briefly summarize the most relevant details here. For the Milky Way, the dark
 halo is modeled as a Hernquist sphere of mass $10^{12}\,\Msun$ and scale
 length of $52\,\kpc$, the disk modeled as an exponential disk with a scale
 radius of $3.5\,\kpc$, scale height $0.53\,\kpc$, and mass
-$6\times10^{10}\,\Msun$, a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
-length $0.7\,\kpc$ \citep{1990ApJ...356..359H}. Sagittarius is modeled as a
-dark matter Hernquist sphere of mass \Gus{something} and scale length
-\Gus{something}, along with a stellar component modeled as a Hernquist sphere
+$6\times10^{10}\,\Msun$, and a Hernquist bulge of mass $10^{10}\,\Msun$ and scale
+length $0.7\,\kpc$ \citep{1990ApJ...356..359H}. We use the L2 model, for which Sagittarius is modeled as a
+dark matter Hernquist sphere of mass $8\times10^{10}\,\Msun$ and scale length
+$8\,\kpc$, along with a stellar component modeled as a Hernquist sphere
 of mass $6.4\times10^8\,\Msun$ and scale radius $0.85\,\kpc$. All components
 are realized with live distributions of N-body particles; the Milky Way and Sagittarius are
 each initialized to be in equilibrium in isolation \Gus{check!}.
@@ -978,7 +978,7 @@ function of azimuth at the solar circle. Starting from the coordinate system
 described in the previous section, which is approximately aligned so that the
 $z$-coordinate is perpendicular to the disk plane, we place our imaginary
 observer at $z=0$ and a galactocentric cylindrical radius of $8.2\,\kpc$ and vary the azimuth
-between $0<\phi<2\pi$.\footnote{The immortal observer also has warp drive, allowing them to travel around the galaxy much more quickly than its dynamical timescale (warp factor $\sim0.25$). Using warp drive allows them to circumvent time dilation effects.} At
+between $0<\phi<2\pi$. At
 each value of $\phi$ we then compute the median $z$ for stars within a
 cylinder of radius $0.5\,\kpc$ and height $1\,\kpc$ perpendicular to the
 fiducial disk. We then re-define the new midplane of the cylinder to be the
@@ -1276,14 +1276,16 @@ We would like to thank Megan Bedell, Robert A. Benjamin, Tobias Buck, Elena
 D'Onghia, Benoit Famaey, and Adrian Price-Whelan for helpful discussions. A.B.
 would like to thank Todd Phillips for helpful discussions. A.B. was supported
 in part by the Roy \& Diana Vagelos Program in the Molecular Life Sciences and
-the Roy \& Diana Vagelos Challenge Award. K.V.J.'s work was performed in part
-during the Gaia19 workshop and the 2019 Santa Barbara Gaia Sprint (also
-supported by the Heising-Simons Foundation), both hosted by the Kavli
-Institute for Theoretical Physics at the University of California, Santa
-Barbara. K.V.J.'s contributions were supported in part by the National Science
-Foundation under grants NSF PHY-1748958 and NSF AST-1614743. M.-M.M.L. was
-partly supported by NSF grant AST18-15461. The work of D.A.-A., A.B., D.W.H.,
-C.F.P.L., R.S., K.V.J., M.-M.M.L., and M.K.N. is supported by the Simons
+the Roy \& Diana Vagelos Challenge Award. K.V.J.'s and C.F.P.L.'s work was
+performed in part during the Gaia19 workshop and the 2019 Santa Barbara Gaia
+Sprint (also supported by the Heising-Simons Foundation), both hosted by the
+Kavli Institute for Theoretical Physics at the University of California, Santa
+Barbara. This work used the Extreme Science and Engineering Discovery
+Environment (XSEDE), which is supported by National Science Foundation grant
+number OCI-1053575. K.V.J.'s contributions were supported in part by the
+National Science Foundation under grants NSF PHY-1748958 and NSF AST-1614743.
+M.-M.M.L. was partly supported by NSF grant AST18-15461. The work of D.A.-A.,
+A.B., D.W.H., R.S., K.V.J., M.-M.M.L., and M.K.N. is supported by the Simons
 Foundation.
 
 \appendix
