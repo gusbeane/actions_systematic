@@ -196,8 +196,8 @@ or metallicity \citep{2018ApJ...867...31B, 2018arXiv180803278T,
 2019MNRAS.486.1167B}. Actions also provide a convenient basis for constructing
 models of the stellar distribution function
 \citep[e.g.][]{1915MNRAS..76...70J, 1985ApJ...295..388V, 2017ApJ...839...61T},
-or for associating stars with similar dynamical properties (e.g. to determine
-membership in moving groups).
+or for associating stars with similar dynamical properties, e.g., to
+potentially determine membership in moving groups.
 
 If the system being considered departs from axisymmetry in a significant
 and/or non-adiabatic way, the actions computed using an axisymmetric
@@ -219,23 +219,23 @@ the extended solar neighborhood in action space are discussed in
 The transformation to action space is nonlinear in both the phase-space
 position and the potential, and requires relatively strong assumptions about
 the system's symmetry. However, the Galactic potential is not strictly
-axisymmetric; with the vast improvement in the quality of phase-space
-measurements due to \textit{Gaia}, this assumption appears increasingly
-inadequate \citep[e.g.][]{2018Natur.561..360A}. Even if this assumption were
-close enough for many purposes, the parameters used in axisymmetric models may
+axisymmetric. This has been known for some time \citep[e.g.][]{1957AJ.....62...93K,2009MNRAS.396L..56M, 2012ApJ...750L..41W}, but with the vast improvement in the quality of phase-space
+measurements due to \textit{Gaia} this assumption is increasingly
+inadequate \citep[e.g.][]{2018Natur.561..360A, 2019MNRAS.485.3134L}. Even if this assumption were
+close enough for many purposes, the parameters used in axisymmetric models of the Galactic potential may
 be inadequately constrained by current observations.
 
 In this work we discuss how the imposition of a global axisymmetric coordinate
 system based on a local measurement of the midplane location and
 Galactocentric distance introduces systematic error in the computation of
 actions, especially for stars in the thin disk. Our main point is that the
-``local'' Galactic midplane is not the same as the ``global'' Galactic
-midplane. For stars relatively far from the Sun, their local midplane location
+``local'' and ``global'' Galactic
+midplanes are not the same. For stars relatively far from the Sun, their local midplane
 will not agree with our local midplane extrapolated onto their position due to
 relatively small-scale variations in the density of the gas and stellar
 distribution. Converting positions and velocities of more distant stars from a
-heliocentric to a Galactocentric coordinate system introduces a systematic
-bias in the $z$ coordinate, and hence the actions computed for these stars.
+heliocentric to a Galactocentric coordinate system thus introduces a systematic
+bias in the $z$ coordinate, and consequently the actions computed for these stars.
 The further from the solar neighborhood the target star, the more likely the
 mismatch will result in large systematic uncertainty, especially in the
 vertical action $J_z$. A similar argument applies to any remaining uncertainty
@@ -254,11 +254,10 @@ oscillating about the true midplane (horizontal solid gray line). Consider an
 observer who erroneously assumes the midplane is located at the horizontal
 dashed line. Suppose this observer measures the phase-space position of the
 star at two different orbital phases (teal and orange points). If the observer
-were then to integrate the star's orbit using a model potential with the
+were to then integrate the star's orbit using a model potential with the
 erroneous midplane, they would obtain the teal and orange curves for the
-star's orbit, respectively. The actions estimated from these two  erroneous
-orbits would subsequently differ, both from each other and from the actions
-estimated for the true orbit (in the potential with the correct midplane).
+star's orbit, respectively. The actions estimated from these two erroneous
+measurements would subsequently differ, both from each other and from the true measurement (in the potential with the correct coordinate system).
 Hence an incorrect midplane in the potential model assumed will induce
 phase-dependence in the actions estimated for a given star in that potential.}
 \label{fig:cartoon}
@@ -301,8 +300,7 @@ of the Galactocentric coordinate system.
 
 \subsection{Effect of Midplane Offset} \label{ssec:cartoon}
 We present a cartoon approximation in Figure~\ref{fig:cartoon} to show how an
-inaccurate or erroneous determination of the midplane (and hence the
-zero-point of the $z$ coordinate) leads to a phase-dependence of the actions
+inaccurate or erroneous determination of the midplane leads to a phase-dependence of the actions
 calculated from an orbit specified by a phase-space point and an assumed
 potential model. The $y$-axis corresponds to the vertical height of the orbit
 and the $x$-axis shows orbital phase. The solid gray curve indicates the
@@ -356,8 +354,8 @@ decoupled and follow simple harmonic motion about a circular and planar
 therein]{2008gady.book.....B}. We refer to the radius of this orbit (the
 ``guiding radius'') as $R_g$. This approximation is an excellent description
 of thin disk-like orbits and a good description of thick disk-like orbits in
-an axisymmetric potential (i.e. ignoring the influence of the Galactic bar and
-spiral arms). We also make the assumption of a perfectly flat circular
+an axisymmetric potential, i.e., ignoring the influence of the Galactic bar and
+spiral arms. We also make the assumption of a perfectly flat circular
 velocity curve with velocity $v_c$, a good approximation near the Solar circle
 \citep[e.g.][]{2017MNRAS.465...76M}.
 
@@ -548,8 +546,8 @@ Appendix~\ref{app:hist}.}
 We quantify how a systematic error in the Galactocentric coordinate system
 induces phase-dependence in the \emph{observed} actions. We will consider
 three orbits in the model potential described in
-Section~\ref{ssec:action_comp} that are typical of stars in the stellar thin
-disk, stellar thick disk, and the stellar halo. We summarize their initial
+Section~\ref{ssec:action_comp} that are typical of stars in the thin
+disk, thick disk, and halo. We summarize their initial
 positions in phase space and the actions computed by integrating their orbits
 in the correct potential in Table~\ref{tab:orbits}. Each orbit, integrated
 without systematic coordinate errors, is plotted in Appendix~\ref{app:orbits}.
@@ -566,7 +564,7 @@ observer physically located at e.g. the position $(8, 0, 0)\,\kpc$ in the
 coordinate system of the true potential, but erroneously thinking they are
 located at $(8, 0, 0.1)\,\kpc$.
 
-We consider that the immortal observer makes a measurement every $\Myr$. At
+We consider that the observer makes a measurement every $\Myr$. At
 each measurement, we compute the actions as outlined above using the true
 potential but by specifiying the star's starting position using the
 systematically offset coordinate system. Essentially we are shifting the
@@ -588,13 +586,13 @@ distance from the Sun to the Galactic center.
 
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the
 offset coordinate systems depend on the time (i.e. orbital phase) at which the
-star's phase-space position is observed. To the immortal observer this would
-appear as time-dependence in the actions, which appear to oscillate around
-their value using the correct coordinate system even though in this example
+star's phase-space position is observed. To the observer this would
+appear as time-dependence in the actions, oscillating around
+their value using the correct coordinate system. This time dependence comes even though
 the observer is using the correctly constructed best-fit static, axisymmetric
 potential. The relative size of the phase variation in each action depends on
 the direction of the systematic offset as well as the true values of the
-actions (i.e. the type of orbit). In reality we will have one measurement of
+actions (i.e. the type of orbit). In reality, we will have one measurement of
 the phase-space position to work with, in which case the determination of the
 orbital phase in $R$ or $z$ is degenerate with the degree of systematic offset
 in that coordinate (see Figure~\ref{fig:cartoon}).  In the following we
@@ -683,8 +681,7 @@ Empirically describing the error distribution shown in
 Figure~\ref{fig:Jz_hist} is difficult. Of course, Gaussian summary statistics
 are not adequate. We therefore elect to measure this error by computing one
 half the 95\uth{} percentile minus the 5\uth{} percentile of the distribution
-of observed action values. We refer to this quantity as $\Delta J_i$ for each
-action value. We plot this quantity in Figure~\ref{fig:Jz_hist} as a
+of observed action values. We plot this quantity, which we refer to as $\Delta J_i$ for each action, in Figure~\ref{fig:Jz_hist} as a
 horizontal arrow anchored on the true action value. Because of the bimodality
 of the error distribution, this quantity roughly measures the distance from
 the true action value to the peak of one of the modes. Furthermore, this
