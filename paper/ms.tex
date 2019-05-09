@@ -778,72 +778,11 @@ Equation~\eqref{eq:Ji_err_mosttime} as dashed lines for each $z$ offset. We
 find that the epicyclic approximation matches the numerical estimate quite
 well.
 
-\section{Coordinate System Offsets I. Measurement Errors} \label{sec:mes_err}
-We consider the first potential source of coordinate system offsets which
-would generate the action errors described in Section~\ref{sec:ref_frame}:
-uncertainties in measurements of the position and velocity of the Sun relative
-to the Galactic center. Converting from heliocentric to Galactocentric
-coordinates relies on these measurements. Therefore, errors in their values
-will induce a systematic offset in the Galactocentric phase-space position of
-any observed star.
-
-\subsection{Galactic Center}
-First, one must define the center of the Galaxy. This is usually taken to be
-the location of the central supermassive black hole, Sagittarius~A\textsuperscript{*}
-\citep[\sgra{}, e.g.][]{2004ApJ...616..872R}. From stellar motions near
-\sgra{}, the distance from the Sun to \sgra{}, referred to as $R_0$, can be
-precisely measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a
-recent measurement using near-infrared interferometry of $8.178 \pm 0.035$~kpc
-\citep{2019arXiv190405721A}.
-
-\subsection{Galactic Orientation}
-Second, one must define the angular orientation of the Galaxy. This was
-defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
-defining the coordinates of the Galactic center in B1950 coordinates as
-(17:42:26.6, -28:55:00) and the North Galactic pole as (12:49:00, +27:24:00).
-These two quantities, together with $R_0$, define the orientation of the
-Galactic plane. However, there is growing evidence that the stellar midplane
-is tilted relative to this coordinate system \citep{2014ApJ...797...53G,
-2016ARAA..54..529B}, though not the H~\textsc{ii} midplane
-\citep{2019ApJ...871..145A}.
-
-\subsection{Solar Height}
-Third, one must define the Sun's vertical distance from the Galactic midplane,
-which can be determined by identifying where the stellar density and
-velocities reach a maximum (effectively the median height of all disk stars).
-The Solar height is usually taken to be $\sim 25\,\pc$
-\citep{2001ApJ...553..184C}, with a more recent measurement from \textit{Gaia}
-DR2 placing it at $20.8 \pm 0.3\,\pc$ \citep{2019MNRAS.482.1417B}. Another
-strategy is to use the cold gas or H~\textsc{ii} regions in the disk to define
-the Galactic midplane, leading to slightly different values (by $\sim 5\,\pc$)
-for the Sun's relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em
-Gaia} review of these measurements is given by \citet{2016ARAA..54..529B}.
-
-\subsection{Local Standard of Rest}
-Finally, one must define the LSR, or mean velocity of stars near the Sun
-relative to the Galactic center (which is defined to have zero velocity), and
-the velocity of the Sun relative to the LSR. The radial ($U_{\odot}$) and
-vertical ($W_{\odot}$) components are computed by taking the mean motions of
-different stellar groups \citep[e.g.][]{2012MNRAS.427..274S}. The azimuthal
-component ($V_{\odot}$) is more difficult to measure, but can be modeled using
-the asymmetric drift relation \citep{2008gady.book.....B}. The values of the
-components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. The
-value of the circular velocity is taken to be $\sim 220\kms$
-\citep[e.g.][]{2012ApJ...759..131B}.
-
-\vspace{6pt}
-
-Considerable effort has been placed on each of these measurements, but
-uncertainties remain, and detailed dynamical modeling across the disk ---
-particularly for dynamically cold stars --- may have to take them into
-account. For instance, the discrepancy of $\sim 5\,\pc$ between the midplane
-defined by stars and by gas will induce a $\sim10\%$ error in $J_z$ for an
-orbit with $z_{\text{max}}\sim100\,\pc$ (see Section~\ref{sec:ref_frame}).
 
 \section{Coordinate System Offsets from Azimuthal Midplane Variations}
 \label{sec:local_fire}
 
-Aside from measurement uncertainties, intrinsic variations of the midplane position across the disk of the galaxy can contribute to systematic errors in the actions computed assuming an axisymmetric potential model. The midplane position can vary as a function of location due to small local variations in the density of stars and gas in the Galaxy. Hints of this variation as a function of Galactocentric radius have been noted through their impact on the stellar velocity distribution by \citet{2012ApJ...750L..41W},\citet{2013ApJ...777L...5C}, and \citet{2013MNRAS.436..101W} pre-Gaia and recently by \citet{2019arXiv190209569F} post-Gaia. As pointed out by e.g. \citet{2014ApJ...797...53G} and \citet{2019ApJ...871..145A}, among many others, the gas distribution in the Galaxy also shows significant density variation across the disk. In this work, to stay close to the assumptions of our analytic calculations in \S \ref{ssec:epi_action}, we specifically consider \emph{azimuthal} variations in the midplane at the Solar circle, as defined by the stellar mass density. Since to our knowledge there are no direct empirical measurements of these variations for the Milky Way, we use two sets of simulations to estimate the size of this effect. One set are three zoomed, cosmological-hydrodynamical simulations of Milky Way-mass galaxies from the FIRE collaboration, described briefly in \S \ref{ssec:cosmozoom}, which include stars, gas, and dark matter in a fully cosmological setting but are not tailored to specific properties of the MW (such as the scale height or scale length, or the details of the accretion history). We use these simulations to span the range of possibilities for azimuthal midplane variations. The other simulations are isolated N-body simulations of interactions between the MW and a Sagittarius-like dwarf galaxy, described briefly in \S \ref{ssec:sag_sim}; these include dark matter and stars and are tailored to existing measurements of the structure of the MW's disk and of the orbit and properties of the Sagittarius (Sgr) dwarf galaxy. Comparing the azimuthal midplane variations in these simulations before and after the interaction with Sgr gives an idea of the effect of one minor merger whose properties are relatively well measured. 
+Intrinsic variations of the midplane position across the disk of the galaxy can contribute to systematic errors in the actions computed assuming an axisymmetric potential model. The midplane position can vary as a function of location due to small local variations in the density of stars and gas in the Galaxy. Hints of this variation as a function of Galactocentric radius have been noted through their impact on the stellar velocity distribution by \citet{2012ApJ...750L..41W},\citet{2013ApJ...777L...5C}, and \citet{2013MNRAS.436..101W} pre-Gaia and recently by \citet{2019arXiv190209569F} post-Gaia. As pointed out by e.g. \citet{2014ApJ...797...53G} and \citet{2019ApJ...871..145A}, among many others, the gas distribution in the Galaxy also shows significant density variation across the disk. In this work, to stay close to the assumptions of our analytic calculations in \S \ref{ssec:epi_action}, we specifically consider \emph{azimuthal} variations in the midplane at the Solar circle, as defined by the stellar mass density. Since to our knowledge there are no direct empirical measurements of these variations for the Milky Way, we use two sets of simulations to estimate the size of this effect. One set are three zoomed, cosmological-hydrodynamical simulations of Milky Way-mass galaxies from the FIRE collaboration, described briefly in \S \ref{ssec:cosmozoom}, which include stars, gas, and dark matter in a fully cosmological setting but are not tailored to specific properties of the MW (such as the scale height or scale length, or the details of the accretion history). We use these simulations to span the range of possibilities for azimuthal midplane variations. The other simulations are isolated N-body simulations of interactions between the MW and a Sagittarius-like dwarf galaxy, described briefly in \S \ref{ssec:sag_sim}; these include dark matter and stars and are tailored to existing measurements of the structure of the MW's disk and of the orbit and properties of the Sagittarius (Sgr) dwarf galaxy. Comparing the azimuthal midplane variations in these simulations before and after the interaction with Sgr gives an idea of the effect of one minor merger whose properties are relatively well measured. 
 
 \subsection{Description of FIRE Simulations} \label{ssec:cosmozoom}
 The FIRE cosmological hydrodynamic simulations
@@ -938,9 +877,9 @@ perspective, the simulated galaxies are actually \emph{more} axisymmetric than
 we might expect of the Milky Way. While they have prominent spiral arms, none
 has as strong a bar as the Milky Way does at present day, and none has a
 nearby companion like the Large Magellanic Cloud. One of the three we consider
-(\mf) does have an ongoing interaction with a satellite galaxy similar to
+(\mf) does have an ongoing interaction with a satellite galaxy similar in mass to
 Sagittarius, which has punched through the galactic disk outside the solar
-circle and induced some warping.
+circle, leaving behind some of its stars and inducing warping in the disk.
 
 In this work, we take the galactocentric coordinate system described in
 Section 3 of \citet{2018arXiv180610564S} as our fiducial coordinate system for
@@ -1109,14 +1048,10 @@ maximum amplitude in $R$ or $z$ (where the majority of the orbit is, see
 Section~\ref{ssec:epi_action}), we defer this calculation to future work.
 
 \section{Discussion} \label{sec:discussion} 
-We have used high-resolution cosmological simulations to illustrate that we
+We have used high-resolution simulations to illustrate that we
 expect the ``local midplane'' defined by stellar density to vary with azimuth
 by up to $\pm 100$ pc, as a natural consequence of the non-axisymmetry of the
-Galactic disk at small scales.
-
-While this is not in itself surprising or new, we also demonstrated that
-extending the coordinate system established by our local midplane to a global
-axisymmetric coordinate system spanning the entirety of the Galactic disk
+Galactic disk at small scales. While this is not in itself surprising or new, we also demonstrated that extending the coordinate system established by our local midplane to a global axisymmetric coordinate system spanning the entirety of the Galactic disk
 introduces systematic error in computations of the actions under this symmetry
 assumption, when starting from the present-day positions and velocities of
 stars as measured by, e.g., \emph{Gaia}.
@@ -1133,7 +1068,7 @@ This finding has many implications for the study of the dynamics of stars in
 what is normally considered the regime of the epicyclic approximation:
 quasi-harmonic oscillations around a circular ``guiding center orbit.''
 
-\subsection{Estimate of Milky Way Midplane Offsets from Current Data}
+\subsection{Estimates of Milky Way Midplane Offsets from Current Data}
 \label{ssec:mw_data_midplane}
 
 Systematic variations in $v_z$ were first noted as asymmetries in the local
@@ -1159,19 +1094,24 @@ stress that this is a rough calculation, but it shows that already we see
 evidence in the data from velocities for midplane offsets on the order of what
 we saw in both sets of simulations.
 
-\subsection{Coordinate System Offsets}\label{ssec:coord_off}
-In Section~\ref{sec:mes_err} we discussed the current observational efforts to
-measure the parameters of the Galactocentric coordinate system. We noted that
-the solar height is discrepant between gas-based and stellar-based
-determinations by $\sim5\,\pc$. While the effect is small and thus only likely
-to dominate the intrinsic midplane variations on small scales, it may be
-important for detailed modeling of kinematically cold stars where a $5\,\pc$
-offset is relevant.
+\subsection{Uncertainties in the Solar position and velocity}\label{ssec:coord_off}
 
-We also noted that the distance from the Sun to \sgra{} has been recently
-measured to a very low uncertainty of $\sim0.3\%$ or $\pm25\,\pc$
-\citep{2019arXiv190405721A}. However, the location of \sgra{} may not be
-equivalent to the location of the ``dynamical Galactic center,'' i.e., the
+Uncertainties in measurements of the position and velocity of the Sun relative
+to the Galactic center can also contribute to systematic error in the actions, since converting from heliocentric to Galactocentric
+coordinates relies on these measurements. Therefore, errors in their values
+will induce a systematic offset in the Galactocentric phase-space position of
+any observed star. Considerable effort has been placed on each of these measurements, but uncertainties remain, and detailed dynamical modeling across the disk---particularly for dynamically cold stars---may have to take them into
+account. 
+Here we briefly review the current measurements and their uncertainties, and the implications for the calculation of actions. 
+
+\subsubsection{Galactic Center position}
+First, one must define the center of the Galaxy. This is usually taken to be
+the location of the central supermassive black hole, Sagittarius~A\textsuperscript{*}
+\citep[\sgra{}, e.g.][]{2004ApJ...616..872R}. From stellar motions near
+\sgra{}, the distance from the Sun to \sgra{}, referred to as $R_0$, can be
+precisely measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}, with a
+recent measurement using near-infrared interferometry of $8.178 \pm 0.035$~kpc
+\citep{2019arXiv190405721A}, or $\sim0.3\%$. However, the location of \sgra{} may not be equivalent to the location of the ``dynamical Galactic center,'' i.e., the
 point in three-dimensional space about which the stars in the solar
 neighborhood are orbiting. This assumption, although sensible and frequently
 made, has not yet been justified.
@@ -1197,6 +1137,47 @@ comparable to that of the distance to \sgra{}.
 
 We did not consider in this text the effect of the \emph{angular position} of
 the dynamical Galactic center being offset with \sgra{}.
+
+\subsubsection{Galactic Orientation}
+Second, one must define the angular orientation of the Galaxy. This was
+defined in 1958 by the IAU subcomission 33b \citep{1960MNRAS.121..123B} by
+defining the coordinates of the Galactic center in B1950 coordinates as
+(17:42:26.6, -28:55:00) and the North Galactic pole as (12:49:00, +27:24:00).
+These two quantities, together with $R_0$, define the orientation of the
+Galactic plane. However, there is growing evidence that the stellar midplane
+is tilted relative to this coordinate system \citep{2014ApJ...797...53G,
+2016ARAA..54..529B}, though not the H~\textsc{ii} midplane
+\citep{2019ApJ...871..145A}.  This tilt will contribute a linear dependence in Galactocentric radius to the systematic errors in actions induced by midplane offsets.
+
+\subsubsection{Solar Height}
+Third, one must define the Sun's vertical distance from the Galactic midplane,
+which can be determined by identifying where the stellar density and
+velocities reach a maximum (effectively the median height of all disk stars).
+The Solar height is usually taken to be $\sim 25\,\pc$
+\citep{2001ApJ...553..184C}, with a more recent measurement from \textit{Gaia}
+DR2 placing it at $20.8 \pm 0.3\,\pc$ \citep{2019MNRAS.482.1417B}. Another
+strategy is to use the cold gas or H~\textsc{ii} regions in the disk to define
+the Galactic midplane, leading to slightly different values (by $\sim 5\,\pc$)
+for the Sun's relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em
+Gaia} review of these measurements is given by \citet{2016ARAA..54..529B}. The discrepancy between gas-based and stellar-based determinations of the solar height is small, and thus only likely to dominate over intrinsic midplane variations on small scales, but will be relevant for detailed modeling of young and kinematically cold stars. For instance, it will induce a $\sim10\%$ error in $J_z$ for an
+orbit with $z_{\text{max}}\sim100\,\pc$ (see Section~\ref{sec:ref_frame}).
+
+
+\subsubsection{Local Standard of Rest}
+Finally, one must define the LSR, or mean velocity of stars near the Sun
+relative to the Galactic center (which is defined to have zero velocity), and
+the velocity of the Sun relative to the LSR. The radial ($U_{\odot}$) and
+vertical ($W_{\odot}$) components are computed by taking the mean motions of
+different stellar groups \citep[e.g.][]{2012MNRAS.427..274S}. The azimuthal
+component ($V_{\odot}$) is more difficult to measure, but can be modeled using
+the asymmetric drift relation \citep{2008gady.book.....B}. The values of the
+components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. Their uncertainties should also lead to systematic errors in the actions, as given in Eqs. \ref{eq:induced_Jphi}--\ref{eq:induced_Jz}. For example, the
+value of the circular velocity is taken to be $\sim 220\kms$
+\citep[e.g.][]{2012ApJ...759..131B} with roughly 10\% uncertainty. Based on the analytic estimates in \S \ref{ssec:epi_action}, we expect this to translate to at least a 10\% systematic error in $J_{\phi}$.
+
+\vspace{6pt}
+
+
 
 \section{Conclusions}\label{sec:conclusion}
 Actions have promise as excellent orbit labels. If the Galaxy can be
@@ -1236,10 +1217,10 @@ priori.
 
 \item To demonstrate the previous point, we measured the local galactic
 midplane along the Solar circle in three different high-resolution, zoom-in
-simulations of Milky Way mass galaxies from the FIRE collaboration. We found
+simulations of Milky Way mass galaxies from the FIRE collaboration, as well as a controlled simulation of the interaction of the MW with Sagittarius. We found
 that the midplane varies as a function of azimuth at the Solar circle by
-$\sim185, 162, 84\,\pc$ (middle $90\%$) for the three galaxies we considered
-(\mi{}, \mf{}, and \mm{}, respectively).
+$\sim185, 162, 84\,\pc$ (middle $90\%$) for the three cosmological simulations we considered
+(\mi{}, \mf{}, and \mm{}, respectively) and by $\sim30$ and $\sim100$ pc before and after the interaction in the controlled simulation. Comparison of the corresponding velocity variations with recent measurements in the MW suggests that these values are consistent with expectations for midplane variations in the MW itself, which have not yet been measured as a function of azimuth.
 
 \item Assuming a vertical velocity variation of the Milky Way of
 $\sim5\,\kms$, consistent with recent results from \textit{Gaia} DR2
@@ -1248,11 +1229,11 @@ simulations (Figure~\ref{fig:lsr_variations}), we estimated that the
 corresponding midplane offsets are $\sim60\textup{--}90\,\pc$ by dimensional
 analysis with the vertical frequencies of disk-like orbits.
 
-\item While inaccuracies in the parameters of the currently adopted
-Galactocentric coordinate system are likely to be unimportant for most
-applications, we discussed the importance of testing the assumption that the
-dynamical Galactic center is colocated with \sgra{}, which we mentioned how to
-do.
+\item Some inaccuracies in the parameters of the currently adopted
+Galactocentric coordinate system are likely important for some
+applications. In particular, it is imperative to test the assumption that the
+dynamical Galactic center is colocated with \sgra{}. We discuss how to
+do this in \S \ref{ssec:coord_off}.
 
 \item This work emphasizes the importance of combining chemistry and dynamics.
 Chemical tagging \citep{2002ARA&A..40..487F} and dynamical tagging must
