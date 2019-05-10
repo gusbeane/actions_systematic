@@ -1171,7 +1171,13 @@ These two quantities, together with $R_0$, define the orientation of the
 Galactic plane. However, there is growing evidence that the stellar midplane
 is tilted relative to this coordinate system \citep{2014ApJ...797...53G,
 2016ARAA..54..529B}, though not the H~\textsc{ii} midplane
-\citep{2019ApJ...871..145A}.  This tilt will contribute a linear dependence in Galactocentric radius to the systematic errors in actions induced by midplane offsets.
+\citep{2019ApJ...871..145A}.
+
+This tilt will contribute a systematic offset in $z$, with the exact magnitude
+depending on the position of the observed star. For instance,
+\citet{2014ApJ...797...53G} quote a $\sim0.4\degree$ tilt at $3.1\,\kpc$,
+corresponding to a vertical height of $\sim22\,\pc$. This corresponds to a
+$37\%$ ($5\%$) error in $J_z$ for the thin-disk (thick-disk) orbit.
 
 \subsubsection{Solar Height}
 Third, one must define the Sun's vertical distance from the Galactic midplane,
@@ -1184,7 +1190,7 @@ strategy is to use the cold gas or H~\textsc{ii} regions in the disk to define
 the Galactic midplane, leading to slightly different values (by $\sim 5\,\pc$)
 for the Sun's relative height \citep[e.g.][]{2019ApJ...871..145A}. A pre-{\em
 Gaia} review of these measurements is given by \citet{2016ARAA..54..529B}. The discrepancy between gas-based and stellar-based determinations of the solar height is small, and thus only likely to dominate over intrinsic midplane variations on small scales, but will be relevant for detailed modeling of young and kinematically cold stars. For instance, it will induce a $\sim10\%$ error in $J_z$ for an
-orbit with $z_{\text{max}}\sim100\,\pc$ (see Section~\ref{sec:ref_frame}).
+orbit with $z_{\text{max}}\sim100\,\pc$.
 
 
 \subsubsection{Local Standard of Rest}
@@ -1197,7 +1203,7 @@ component ($V_{\odot}$) is more difficult to measure, but can be modeled using
 the asymmetric drift relation \citep{2008gady.book.....B}. The values of the
 components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. Their uncertainties should also lead to systematic errors in the actions, as given in Eqs. \ref{eq:induced_Jphi}--\ref{eq:induced_Jz}. For example, the
 value of the circular velocity is taken to be $\sim 220\kms$
-\citep[e.g.][]{2012ApJ...759..131B} with roughly 10\% uncertainty. Based on the analytic estimates in \S \ref{ssec:epi_action}, we expect this to translate to at least a 10\% systematic error in $J_{\phi}$.
+\citep[e.g.][]{2012ApJ...759..131B} with roughly $10\%$ uncertainty. We expect this to translate to at least a $10\%$ systematic error in $J_{\phi}$.
 
 \section{Conclusions}\label{sec:conclusion}
 Actions have promise as excellent orbit labels. If the Galaxy can be
