@@ -42,6 +42,7 @@ glist = ['Disk_200', 'Disk_400', 'Disk_600', 'Disk_690']
 column = [0,1,2,3]
 time = [r'$t=2.0\,\text{Gyr}$', r'$t=4.0\,\text{Gyr}$', 
         r'$t=6.0\,\text{Gyr}$', r'$t=6.9\,\text{Gyr}$']
+
 fig,axs = plt.subplots(2,4,figsize=((2/3)*textwidth,4))
 for gal,col,tm in zip(glist,column,time):
     out = np.load('out_'+gal+'.npy')
@@ -87,7 +88,11 @@ axs[0,0].set_title("Chervin's Simulation")
 fig.tight_layout()
 plt.savefig('midplane.pdf')
 
-fig, ax = plt.subplots(2, 2, sharex=True, figsize=((2/3)*textwidth,3.5))
+fig, ax = plt.subplots(2, 2, sharex=True, figsize=((2/3)*textwidth,3))
+
+for x in ax.flatten():
+    x.locator_params('y', nbins=5)
+
 # now make paper plot, with just fit
 for gal,x,tm in zip(glist,ax.flatten(),time):
     out = np.load('out_'+gal+'.npy')
