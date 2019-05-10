@@ -4,18 +4,16 @@ import numpy as np
 Rsun = 8.2
 dR = 0.5
 dZ = 1.0
-maxT = 1E4
+maxT = 1E3
 
 def read_snap(gal):
     # takes in galaxy (string = m12i, m12f, m12m, etc.)
     # reads in and sets fiducial coordinates
     # returns snap
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
-    sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
-    snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'], 'index', 600,
-                                        properties=['position', 'id',
-                                                    'mass', 'velocity',
-                                                    'form.scalefactor',
+    sim_directory = '/Users/abeane/scratch/actions_systematic/data/fire2/metaldiff/'+gal+'_res7100'
+    snap = gizmo.io.Read.read_snapshots(['gas'], 'index', 600,
+                                        properties=['position',
                                                     'smooth.length', 'temperature'],
                                         assign_center=False,
                                         simulation_directory=sim_directory)
