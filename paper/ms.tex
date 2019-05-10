@@ -525,9 +525,9 @@ $\sim21\%$, $\sim3\%$, and $\sim3\%$.}
 \begin{center}
 \includegraphics[width=\columnwidth]{fig/schmactions_Jz_zerr_hist.pdf}
 \end{center}
-\caption{A histogram of the computed values of $J_z$ for the thick-disk (top
+\caption{A histogram of the computed values of $J_z$ at different orbital phases for the thick-disk (top
 panel) and thin-disk (bottom panel) orbits assuming a $z$ offset of
-$100\,\pc$, at different orbital phases. One can see that if the observed $z$ values have a bias (from e.g.
+$100\,\pc$. One can see that if the observed $z$ values have a bias (from e.g.
 an incorrectly computed midplane), then the induced error distribution in
 $J_z$ is decidedly non-Gaussian. Therefore, any sort of error propagation must
 take this into account. Intuition for the shape of each panel is given in the
@@ -617,9 +617,9 @@ $47$, and $0.71\,\actunit$ for $J_R$, $J_{\phi}$ and $J_z$, respectively.
 These are fractional errors of $21\%$, $3.1\%$ and $3.1\%$ in these actions, respectively, despite only a $1.2\%$ error in the distance to the Galactic center.
 
 In Figure~\ref{fig:Jz_hist} we plot a histogram of the values of
-$J_z$ computed for the thick-disk orbit (top panel) and thin-disk orbit (bottom panel)
-assuming a $z$ offset of $100\,\pc$ (i.e. as in the upper right panel of
-Figure~\ref{fig:one_orbit_wrong_ref}), as a function of orbital phase. The true value of $J_z$ is plotted as a
+$J_z$ computed at different orbital phases for the thick-disk orbit (top panel) and thin-disk orbit (bottom panel)
+assuming a $z$ offset of $100\,\pc$ (as in the upper right panel of
+Figure~\ref{fig:one_orbit_wrong_ref}). The true value of $J_z$ is plotted as a
 vertical dashed line. The systematic error in $J_z$ induced by a
 systematic offset in $z$ is non-Gaussian and bimodal; neither of the modes is centered on the true $J_z$ (i.e. the $J_z$ computed with no offset in $z$). In the case of the thin-disk orbit
 (bottom panel), we see that, in addition to the prior complications, the
@@ -754,7 +754,7 @@ for all orbits.
 \end{center}
 \caption{The fractional error in $J_z$ as a function of $J_z$ for a few
 different offsets in $z$. All orbits have the same initial position of $(8, 0,
-0)\,\kpc$ and velocity $(-190, 0, v_z)\,\kms$, where we vary $v_z$. We show
+0)\,\kpc$ and velocity $(0, -190, v_z)\,\kms$, where we vary $v_z$. We show
 this for a $z$ offset of $10, 50, 100\,\pc$ (orange, teal, and green
 respectively). As before, the error ($\Delta J_z$) is one half the 95\uth{}
 minus 5\uth{} percentile of the distribution of $J_z$ values over the
@@ -770,7 +770,7 @@ To further understand the effect of the midplane error, we also plot the
 fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
 100\,\pc$ (orange, teal, and green, respectively) in
 Figure~\ref{fig:dJz_fun_Jz}. For each orbit, we set the initial position to be
-$(8,0,0)\,\kpc$ and the initial velocity to be $(-190, 0, v_z)\,\kms$, where
+$(8,0,0)\,\kpc$ and the initial velocity to be $(0, -190, v_z)\,\kms$, where
 we vary $v_z$. For a thin disk-like orbit ($J_z\sim0.5\,\actunit$), even a
 $10\,\pc$ offset in $z$ is enough to induce a $\sim25\%$ error in $J_z$. For
 larger values of $J_z$, the fractional errors are suppressed, but the induced
@@ -985,14 +985,14 @@ $1\,\sigma $ error bars, which we report as dashed lines.}
 Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
 before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
 for inaccuracies in the galactocentric coordinate system. Error bars are
-calculated as in Figure~\ref{fig:midplane}. (\Gus{Check:}) The upper panels
+calculated as in Figure~\ref{fig:midplane}. The upper panels
 show the midplane as a function of azimuth before the first encounter near the
 Solar circle at $t=2.0\,\Gyr$ and $t=4.0\,\Gyr$. As later encounters occur
 which bring the Sagittarius-like object closer to the Solar circle, we can see
 that stronger midplane variations result. In fact, one can see that an $m=2$
 mode is excited in the lower left panel at $t=6.0\,\Gyr$ --- this is
 consistent with Figure~17 of \citet{2018MNRAS.481..286L}, which shows that an
-$m=2$ mode is excited (note that $m=0$ and $m=1$ modes are stronger, but these
+$m=2$ mode is excited ($m=0$ and $m=1$ modes are stronger, but these
 are removed in our sine-curve subtraction). The fact that the $t=6.9\,\Gyr$
 panel looks qualitatively similar to the panels from the FIRE simulations
 (Figure~\ref{fig:midplane}) suggests that midplane variations are
@@ -1124,7 +1124,7 @@ any observed star. Considerable effort has been placed on each of these measurem
 account. 
 Here we briefly review the current measurements and their uncertainties, and the implications for the calculation of actions. 
 
-\subsubsection{Galactic Center position}
+\subsubsection{Galactic Center Position}
 First, one must define the center of the Galaxy. This is usually taken to be
 the location of the central supermassive black hole, Sagittarius~A\textsuperscript{*}
 \citep[\sgra{}, e.g.][]{2004ApJ...616..872R}. From stellar motions near
@@ -1155,7 +1155,7 @@ measurements of $R_0$ have been made (\citealt{2016ARAA..54..529B} summarize
 many pre-\textit{Gaia} results), but none have yet achieved a precision
 comparable to that of the distance to \sgra{}.
 
-We did not consider in this text the effect of the \emph{angular position} of
+We did not consider in this work the effect of the \emph{angular position} of
 the dynamical Galactic center being offset with \sgra{}.
 
 \subsubsection{Galactic Orientation}
@@ -1195,10 +1195,6 @@ components of the LSR are usually taken from \citet{2010MNRAS.403.1829S}. Their 
 value of the circular velocity is taken to be $\sim 220\kms$
 \citep[e.g.][]{2012ApJ...759..131B} with roughly 10\% uncertainty. Based on the analytic estimates in \S \ref{ssec:epi_action}, we expect this to translate to at least a 10\% systematic error in $J_{\phi}$.
 
-\vspace{6pt}
-
-
-
 \section{Conclusions}\label{sec:conclusion}
 Actions have promise as excellent orbit labels. If the Galaxy can be
 approximated as axisymmetric and 6D phase space positions can be measured
@@ -1237,10 +1233,10 @@ priori.
 
 \item To demonstrate the previous point, we measured the local galactic
 midplane along the Solar circle in three different high-resolution, zoom-in
-simulations of Milky Way mass galaxies from the FIRE collaboration, as well as a controlled simulation of the interaction of the MW with Sagittarius. We found
+simulations of Milky Way mass galaxies from the FIRE collaboration, as well as a controlled simulation of the interaction of the Milky Way with Sagittarius. We found
 that the midplane varies as a function of azimuth at the Solar circle by
 $\sim$185, 162, 84 pc (middle $90\%$) for the three cosmological simulations we considered
-(\mi{}, \mf{}, and \mm{}, respectively) and by $\sim$30 and $\sim$100 pc before and after the interaction in the controlled simulation. Comparison of the corresponding velocity variations with recent measurements in the MW suggests that these values are consistent with expectations for midplane variations in the MW itself, which have not yet been measured as a function of azimuth.
+(\mi{}, \mf{}, and \mm{}, respectively) and by $\sim$30 and $\sim$100 pc before and after the interaction in the controlled simulation. Comparison of the corresponding velocity variations with recent measurements in the Milky Way suggests that these values are consistent with expectations for midplane variations in the Milky Way itself, which have not yet been measured as a function of azimuth.
 
 \item Assuming a vertical velocity variation of the Milky Way of
 $\sim5\,\kms$, consistent with recent results from \textit{Gaia} DR2
