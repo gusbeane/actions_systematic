@@ -783,7 +783,28 @@ well.
 \section{Coordinate System Offsets from Azimuthal Midplane Variations}
 \label{sec:local_fire}
 
-Intrinsic variations of the midplane position across the disk of the galaxy can contribute to systematic errors in the actions computed assuming an axisymmetric potential model. The midplane position can vary as a function of location due to small local variations in the density of stars and gas in the Galaxy. Hints of this variation as a function of Galactocentric radius have been noted through their impact on the stellar velocity distribution by \citet{2012ApJ...750L..41W},\citet{2013ApJ...777L...5C}, and \citet{2013MNRAS.436..101W} pre-Gaia and recently by \citet{2019arXiv190209569F} post-Gaia. As pointed out by e.g. \citet{2014ApJ...797...53G} and \citet{2019ApJ...871..145A}, among many others, the gas distribution in the Galaxy also shows significant density variation across the disk. In this work, to stay close to the assumptions of our analytic calculations in \S \ref{ssec:epi_action}, we specifically consider \emph{azimuthal} variations in the midplane at the Solar circle, as defined by the stellar mass density. Since to our knowledge there are no direct empirical measurements of these variations for the Milky Way, we use two sets of simulations to estimate the size of this effect. One set are three zoomed, cosmological-hydrodynamical simulations of Milky Way-mass galaxies from the FIRE collaboration, described briefly in \S \ref{ssec:cosmozoom}, which include stars, gas, and dark matter in a fully cosmological setting but are not tailored to specific properties of the MW (such as the scale height or scale length, or the details of the accretion history). We use these simulations to span the range of possibilities for azimuthal midplane variations. The other simulations are isolated N-body simulations of interactions between the MW and a Sagittarius-like dwarf galaxy, described briefly in \S \ref{ssec:sag_sim}; these include dark matter and stars and are tailored to existing measurements of the structure of the MW's disk and of the orbit and properties of the Sagittarius (Sgr) dwarf galaxy. Comparing the azimuthal midplane variations in these simulations before and after the interaction with Sgr gives an idea of the effect of one minor merger whose properties are relatively well measured.
+The stellar midplane of the Galaxy should vary as a function of azimuth and
+Galactocentric radius due to small, local variations in the stellar density.
+Hints of this variation as a function of Galactocentric radius have been noted
+through their impact on the stellar velocity distribution pre-\emph{Gaia} by
+\citet{2012ApJ...750L..41W}, \citet{2013ApJ...777L...5C}, and
+\citet{2013MNRAS.436..101W} and recently post-\emph{Gaia} by
+\citet{2019arXiv190209569F}. As pointed out by e.g.
+\citet{2014ApJ...797...53G} and \citet{2019ApJ...871..145A}, among many
+others, the gas distribution in the Galaxy also shows significant density
+variation across the disk.
+
+The local Galactocentric coordinate system is defined based on the location of
+the Sun relative to the midplane. Extending this coordinate system to a global
+one therefore introduces systematic errors in the $z$ components of stellar
+positions. As discussed in Section~\ref{sec:ref_frame}, this systematic error
+introduces errors in integrating orbits and computing actions.
+
+We specifically consider \emph{azimuthal} variations in the midplane at the Solar circle, as defined by the stellar mass density. Since, to our knowledge, there are no direct empirical measurements of these variations in the Milky Way, we use example simulations from two classes of simulations to estimate the size of this effect. 
+
+One set are three zoom-in, cosmological-hydrodynamical simulations of Milky Way-mass galaxies from the FIRE collaboration, described briefly in \S \ref{ssec:cosmozoom}. These include stars, gas, and dark matter in a fully cosmological setting but are not tailored to specific properties of the Milky Way (such as the scale height or scale length, or the details of the accretion history). We use these simulations to span the range of possibilities for azimuthal midplane variations.
+
+The other set of simulations are isolated N-body simulations of interactions between the Milky Way and a Sagittarius-like dwarf galaxy, described briefly in \S \ref{ssec:sag_sim}. These include dark matter and stars and are tailored to existing measurements of the structure of the Milky Way's disk and of the orbit and properties of the Sagittarius dwarf galaxy. Comparing the azimuthal midplane variations in the host galaxy of these simulations before and after the interaction with the Sagittarious-like object gives an idea of the effect of one minor merger whose properties are relatively well measured.
 
 \subsection{Description of FIRE Simulations} \label{ssec:cosmozoom}
 The FIRE cosmological hydrodynamic simulations
