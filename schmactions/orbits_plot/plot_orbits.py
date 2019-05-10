@@ -30,6 +30,8 @@ for init_vel, x in zip(init_vel_list, np.transpose(ax)):
     s = schmactions(init_pos, init_vel, save_orbit=True)
     pos = np.transpose(s.orbit.xyz.to_value(u.kpc))[:2000] # only grab the first 2 Gyr
 
+    print(s.res['freqs'])
+
     R = np.linalg.norm(pos[:,:2], axis=1)
     phi = np.mod(np.arctan2(pos[:,1], pos[:,2]), 2.*np.pi)
 
