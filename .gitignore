@@ -4,8 +4,8 @@ paper/ms.pdf
 paper/*.blg
 V62/
 
-runs/include/utilities/
-runs/include/gizmo_analysis/
+include/utilities
+include/gizmo_analysis
 __pycache__/
 cache/
 
