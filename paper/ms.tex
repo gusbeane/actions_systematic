@@ -111,222 +111,231 @@ Analysis with \textit{Gaia} Data and Beyond}
 Orbital properties of stars, computed from their six-dimensional phase space
 measurements and an assumed Galactic potential, are used to understand the
 structure and evolution of the Galaxy. Stellar actions, computed from orbits,
-have the attractive quality of being invariant and thus good quantitative
-labels of a star's orbit. A systematic bias in the phase space position
-induces a phase-dependence in the actions, which we interpret as a systematic
-error distinct from typical observational errors and Galactic potential uncertainties. An offset in the vertical position of $\sim15\,\pc$ ($\sim120\,\pc$) for a thin (thick) disk orbit is sufficient to induce a
-$25\%$ systematic error in the vertical action $J_z$. The induced error distribution is
-non-Gaussian and bimodal, with neither of the modes peaking on the null value.
-Furthermore, we show that the local midplane varies by $\sim100\,\pc$ at the
-solar circle in Milky Way-mass cosmological zoom-in simulations from the FIRE
-project. From observations that the mean vertical velocity of the Milky Way
-disk varies by $\sim5\textup{--}10\,\kms$ with radius, we estimate that the true midplane
-variations are of order $\sim60\textup{--}170\,\pc$, with similar offsets seen in recent three-dimensional dust maps. Thus, current
-state-of-the-art action calculations, which assume the global and local
-midplanes are identical, are likely to include a systematic vertical offset
-depending on the volume considered. Variation in the local standard of rest
-induces similar issues. The variation of the midplane must be taken into
-account when performing dynamical analysis across the large regions of the
-disk accessible to \textit{Gaia} and future missions.
+have the attractive quality of being invariant and thus good quantitative labels
+of a star's orbit. A systematic bias in the phase space position induces a
+phase-dependence in the actions, which we interpret as a systematic error
+distinct from typical observational errors and Galactic potential uncertainties.
+An offset in the vertical position of $\sim15\,\pc$ ($\sim120\,\pc$) for a thin
+(thick) disk orbit is sufficient to induce a $25\%$ systematic error in the
+vertical action $J_z$. The induced error distribution is non-Gaussian and
+bimodal, with neither of the modes peaking on the null value. Furthermore, we
+show that the local midplane varies by $\sim100\,\pc$ at the solar circle in
+Milky Way-mass cosmological zoom-in simulations from the FIRE project. From
+observations that the mean vertical velocity of the Milky Way disk varies by
+$\sim5\textup{--}10\,\kms$ with radius, we estimate that the true midplane
+variations are of order $\sim60\textup{--}170\,\pc$, with similar offsets seen
+in recent three-dimensional dust maps. Thus, current state-of-the-art action
+calculations, which assume the global and local midplanes are identical, are
+likely to include a systematic vertical offset depending on the volume
+considered. Variation in the local standard of rest induces similar issues. The
+variation of the midplane must be taken into account when performing dynamical
+analysis across the large regions of the disk accessible to \textit{Gaia} and
+future missions.
 
 \end{abstract}
 
 \keywords{Galaxy: disk -- Galaxy: evolution -- Galaxy: kinematics and dynamics
 -- Galaxy: structure -- stars: kinematics and dynamics}
 
-\section{Introduction} \label{sec:intro}
-Our understanding of the Milky Way is currently undergoing a revolution as a
-result of \textit{Gaia} Data Release 2 (DR2). Recent major discoveries
-include the affirmation of remnants of a major merger \citep{2018ApJ...860L..11K, 2018MNRAS.478..611B, 2018Natur.563...85H, 2019MNRAS.486..378L, 2019MNRAS.482.3426M} hinted at in pre-\textit{Gaia} work \citep[e.g.,][]{2005MNRAS.359...93M, 2011MNRAS.412.1203N}, a phase-space
+\section{Introduction} \label{sec:intro} Our understanding of the Milky Way is
+currently undergoing a revolution as a result of \textit{Gaia} Data Release 2
+(DR2). Recent major discoveries include the affirmation of remnants of a major
+merger \citep{2018ApJ...860L..11K, 2018MNRAS.478..611B, 2018Natur.563...85H,
+2019MNRAS.486..378L, 2019MNRAS.482.3426M} hinted at in pre-\textit{Gaia} work
+\citep[e.g.,][]{2005MNRAS.359...93M, 2011MNRAS.412.1203N}, a phase-space
 ``spiral'' in the solar neighborhood \citep{2018Natur.561..360A} possibly
 indicating local substructure infall \citep{2018MNRAS.481.1501B,
-2019MNRAS.485.3134L}, and a gap
-suggestive of perturbation by a dark matter subtructure in the tidal stream
-GD1 \citep{2018ApJ...863L..20P, 2018arXiv181103631B}. These discoveries all
-indicate that the Milky Way's stellar distribution, which demonstrably departs
-significantly from axisymmetry, is undergoing phase mixing and dynamical
-interactions across a range of spatial and temporal scales.
+2019MNRAS.485.3134L}, and a gap suggestive of perturbation by a dark matter
+subtructure in the tidal stream GD1 \citep{2018ApJ...863L..20P,
+2018arXiv181103631B}. These discoveries all indicate that the Milky Way's
+stellar distribution, which demonstrably departs significantly from axisymmetry,
+is undergoing phase mixing and dynamical interactions across a range of spatial
+and temporal scales.
 
-The assumption of a global, axisymmetric Galactocentric coordinate system \citep{2008gady.book.....B} underlies much of the quantitative analysis of the mechanisms that give rise to these signautres. In order to do construct such a system, the
-Sun's relative position must be
-defined and measured both precisely and accurately. This involves determining
-the angular position of and distance to the Galactic center, the orientation
-of the Galactic plane, the height of the Sun above the Galactic midplane, and
-the local standard of rest (LSR). We review and discuss the observational efforts to
-measure these parameters in Section~\ref{ssec:coord_off}.
+The assumption of a global, axisymmetric Galactocentric coordinate system
+\citep{2008gady.book.....B} underlies much of the quantitative analysis of the
+mechanisms that give rise to these signautres. In order to do construct such a
+system, the Sun's relative position must be defined and measured both precisely
+and accurately. This involves determining the angular position of and distance
+to the Galactic center, the orientation of the Galactic plane, the height of the
+Sun above the Galactic midplane, and the local standard of rest (LSR). We review
+and discuss the observational efforts to measure these parameters in
+Section~\ref{ssec:coord_off}.
 
 Once a Galactocentric coordinate system has been established and a
 six-dimensional (6D) phase space measurement of a star has been made, it is
 often desirable to convert this measurement into action space to concisely
-summarize its projected orbit, model the stellar distribution function, or
-find stars with similar dynamical properties. Actions are conserved quantities
-that describe the orbit of a star under the assumption of regular, bound
-orbits in a system where the equations of motion are separable in a particular
-coordinate system. They are the cyclical integral of the canonical momentum
-over its conjugate position:
-\beq\label{eq:actions}
-J_i \equiv
-\frac{1}{2\pi} \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,}
-\eeq
-where $p_i$ are the conjugate momenta.
-Under the assumption of axisymmetry, $i=R,z,\phi$ are the radial, vertical,
-and azimuthal coordinates respectively in a cylindrical coordinate system. In a slowly-evolving axisymmetric
-potential, these actions are invariant and $J_{\phi} \equiv L_z$, where $L_z$
-is the $z$-component of the angular momentum
-\citep{2008gady.book.....B,2014RvMP...86....1S}.
+summarize its projected orbit, model the stellar distribution function, or find
+stars with similar dynamical properties. Actions are conserved quantities that
+describe the orbit of a star under the assumption of regular, bound orbits in a
+system where the equations of motion are separable in a particular coordinate
+system. They are the cyclical integral of the canonical momentum over its
+conjugate position: \beq\label{eq:actions} J_i \equiv \frac{1}{2\pi}
+\oint_{\text{orbit}}p_i\,\text{d}x_i\text{,} \eeq where $p_i$ are the conjugate
+momenta. Under the assumption of axisymmetry, $i=R,z,\phi$ are the radial,
+vertical, and azimuthal coordinates respectively in a cylindrical coordinate
+system. In a slowly-evolving axisymmetric potential, these actions are invariant
+and $J_{\phi} \equiv L_z$, where $L_z$ is the $z$-component of the angular
+momentum \citep{2008gady.book.....B,2014RvMP...86....1S}.
 
-With the advent of 6D phase-space measurements over a relatively large
-($\gtrsim 2$ kpc) volume from the \textit{Gaia} satellite, the study of stellar
-actions has gained new popularity. One reason is dimensionality reduction---an
-individual stellar orbit is concisely described by three actions, as opposed
-to six phase space coordinates. Second, under the assumption of a phase-mixed
+With the advent of 6D phase-space measurements over a relatively large ($\gtrsim
+2$ kpc) volume from the \textit{Gaia} satellite, the study of stellar actions
+has gained new popularity. One reason is dimensionality reduction---an
+individual stellar orbit is concisely described by three actions, as opposed to
+six phase space coordinates. Second, under the assumption of a phase-mixed
 system, the dynamical properties of a population of stars should be uniquely a
-function of their actions and independent of the conjugate angles. This allows one to use actions to study the relationship between \emph{orbital} properties of stars
-and other intrinsic, and, at least partially, invariant properties such as age
-or metallicity \citep{2018ApJ...867...31B, 2018arXiv180803278T,
+function of their actions and independent of the conjugate angles. This allows
+one to use actions to study the relationship between \emph{orbital} properties
+of stars and other intrinsic, and, at least partially, invariant properties such
+as age or metallicity \citep{2018ApJ...867...31B, 2018arXiv180803278T,
 2018MNRAS.481.4093S, 2019arXiv190304030G, 2019arXiv190309320D,
 2019MNRAS.486.1167B}. Actions also provide a convenient basis for constructing
-models of the stellar distribution function
-\citep[e.g.,][]{1915MNRAS..76...70J, 1985ApJ...295..388V, 2017ApJ...839...61T},
-or for associating stars with similar dynamical properties, e.g., to
-potentially determine membership in moving groups.
+models of the stellar distribution function \citep[e.g.,][]{1915MNRAS..76...70J,
+1985ApJ...295..388V, 2017ApJ...839...61T}, or for associating stars with similar
+dynamical properties, e.g., to potentially determine membership in moving
+groups.
 
-If the system being considered departs from axisymmetry in a significant
-and/or non-adiabatic way, the actions computed using an axisymmetric
-approximation to the true potential can exhibit cyclic dependence on the
-orbital phase (or time at which the star's position and velocity are
-observed), large-scale migration, or diffusion from their initial values. In
-the Milky Way, stellar actions are expected to diffuse on short time scales
-due to scattering with gas clouds and to evolve on longer time scales in the
-case of orbits near resonances with spiral arms, bar(s), and other large scale
-perturbations \citep{2014RvMP...86....1S}. For this reason, actions have been used to study stellar scattering in the Milky Way disk
-using the improved astrometry of \textit{Gaia} DR2 and various age catalogues
-\citep{2018ApJ...867...31B, 2018arXiv180803278T}. Actions have also been used
-to study different models of spiral structure in the Milky Way
-\citep{2019MNRAS.tmp..155S}. Characteristics of the distribution of stars in
-the extended solar neighborhood in action space are discussed in
-\citet{2019MNRAS.484.3291T}.
+If the system being considered departs from axisymmetry in a significant and/or
+non-adiabatic way, the actions computed using an axisymmetric approximation to
+the true potential can exhibit cyclic dependence on the orbital phase (or time
+at which the star's position and velocity are observed), large-scale migration,
+or diffusion from their initial values. In the Milky Way, stellar actions are
+expected to diffuse on short time scales due to scattering with gas clouds and
+to evolve on longer time scales in the case of orbits near resonances with
+spiral arms, bar(s), and other large scale perturbations
+\citep{2014RvMP...86....1S}. For this reason, actions have been used to study
+stellar scattering in the Milky Way disk using the improved astrometry of
+\textit{Gaia} DR2 and various age catalogues \citep{2018ApJ...867...31B,
+2018arXiv180803278T}. Actions have also been used to study different models of
+spiral structure in the Milky Way \citep{2019MNRAS.tmp..155S}. Characteristics
+of the distribution of stars in the extended solar neighborhood in action space
+are discussed in \citet{2019MNRAS.484.3291T}.
 
-The true Galactic potential is not strictly
-axisymmetric. This has been known for some time \citep[e.g.,][]{1957AJ.....62...93K,2009MNRAS.396L..56M, 2012ApJ...750L..41W}, but with the vast improvement in the quality of phase-space
-measurements due to \textit{Gaia} this assumption is increasingly
-inadequate \citep[e.g.,][]{2018Natur.561..360A, 2019MNRAS.485.3134L}. Even if this assumption were
-close enough for many purposes, the parameters used in axisymmetric models of the Galactic potential may
-be inadequately constrained by current observations.
+The true Galactic potential is not strictly axisymmetric. This has been known
+for some time \citep[e.g.,][]{1957AJ.....62...93K,2009MNRAS.396L..56M,
+2012ApJ...750L..41W}, but with the vast improvement in the quality of
+phase-space measurements due to \textit{Gaia} this assumption is increasingly
+inadequate \citep[e.g.,][]{2018Natur.561..360A, 2019MNRAS.485.3134L}. Even if
+this assumption were close enough for many purposes, the parameters used in
+axisymmetric models of the Galactic potential may be inadequately constrained by
+current observations.
 
-The main point of this paper is as follows. Due to relatively small-scale variations in the density of gas and stars, the
-local midplane should vary as a function of radius and azimuth. For stars
-relatively far from the Sun, their local midplane will differ from our
-local midplane extrapolated onto their position.
-Converting positions and velocities of more distant stars from a
+The main point of this paper is as follows. Due to relatively small-scale
+variations in the density of gas and stars, the local midplane should vary as a
+function of radius and azimuth. For stars relatively far from the Sun, their
+local midplane will differ from our local midplane extrapolated onto their
+position. Converting positions and velocities of more distant stars from a
 heliocentric to a Galactocentric coordinate system thus introduces a systematic
-bias in the $z$ coordinate. We show that this bias induces non-Gaussian errors in the actions computed for these stars.
-The further from the solar neighborhood the target star is, the more likely the
-mismatch will result in large systematic uncertainty, especially in the
-vertical action $J_z$. A similar argument applies to any remaining uncertainty
-in measurements of the Galactocentric radius of the Sun and to variations in
-the LSR.
+bias in the $z$ coordinate. We show that this bias induces non-Gaussian errors
+in the actions computed for these stars. The further from the solar neighborhood
+the target star is, the more likely the mismatch will result in large systematic
+uncertainty, especially in the vertical action $J_z$. A similar argument applies
+to any remaining uncertainty in measurements of the Galactocentric radius of the
+Sun and to variations in the LSR.
 
 \begin{figure*}[ht!]
 \begin{center}
 \includegraphics[width=\textwidth]{fig/cartoon.pdf}
 \end{center}
-\caption{Cartoon approximation showing the effect an error in the
-determination of the coordinate midplane can have on orbit integration and
-action estimation. The $x$-axis shows the orbital phase and the $y$-axis the
-vertical height. The top gray curve depicts an example ``true'' orbit
-oscillating about the true midplane (horizontal solid gray line). Consider an
-observer who erroneously assumes the midplane is located at the horizontal
-dashed line. Suppose this observer measures the phase-space position of the
-star at two different orbital phases (teal and orange points). If the observer
-were to then integrate the star's orbit using a model potential with the
-erroneous midplane, they would obtain the teal and orange curves for the
-star's orbit, respectively. The actions estimated from these two erroneous
-measurements would subsequently differ, both from each other and from the true measurement (in the potential with the correct coordinate system).
-Hence an incorrect midplane in the potential model assumed will induce
-phase-dependence in the actions estimated for a given star in that potential.}
-\label{fig:cartoon}
-\end{figure*}
+\caption{Cartoon approximation showing the effect an error in the determination
+of the coordinate midplane can have on orbit integration and action estimation.
+The $x$-axis shows the orbital phase and the $y$-axis the vertical height. The
+top gray curve depicts an example ``true'' orbit oscillating about the true
+midplane (horizontal solid gray line). Consider an observer who erroneously
+assumes the midplane is located at the horizontal dashed line. Suppose this
+observer measures the phase-space position of the star at two different orbital
+phases (teal and orange points). If the observer were to then integrate the
+star's orbit using a model potential with the erroneous midplane, they would
+obtain the teal and orange curves for the star's orbit, respectively. The
+actions estimated from these two erroneous measurements would subsequently
+differ, both from each other and from the true measurement (in the potential
+with the correct coordinate system). Hence an incorrect midplane in the
+potential model assumed will induce phase-dependence in the actions estimated
+for a given star in that potential.} \label{fig:cartoon} \end{figure*}
 
-In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
-system errors have on the measured actions. In
-Section~\ref{sec:local_fire} we examine the azimuthal variations of the
-midplane itself in examples from two classes of simulations: cosmological, hydrodynamical,
-zoom-in simulations of isolated Milky Way-mass galaxies from the Feedback in Realistic
-Environments (FIRE)
+In Section~\ref{sec:ref_frame}, we describe the general impact coordinate system
+errors have on the measured actions. In Section~\ref{sec:local_fire} we examine
+the azimuthal variations of the midplane itself in examples from two classes of
+simulations: cosmological, hydrodynamical, zoom-in simulations of isolated Milky
+Way-mass galaxies from the Feedback in Realistic Environments (FIRE)
 collaboration\footnote{\url{https://fire.northwestern.edu}}
 \citep{2014MNRAS.445..581H, 2016ApJ...827L..23W, 2018MNRAS.480..800H}, and a
-controlled N-body simulation of a Sagittarius encounter with a galaxy
-otherwise tailored to the stellar mass, scale length, and scale height of the
-Milky Way \citep{2018MNRAS.481..286L}. In Section~\ref{sec:discussion}, we discuss the implications of midplane
-variations, and the resulting systematic uncertainty in the vertical action,
-for action-space analyses. We also estimate the expected midplane variations
-of the Milky Way based on the observed velocity variations and three-dimensional dust maps. We summarize our
-main results and conclude in Section~\ref{sec:conclusion}.
+controlled N-body simulation of a Sagittarius encounter with a galaxy otherwise
+tailored to the stellar mass, scale length, and scale height of the Milky Way
+\citep{2018MNRAS.481..286L}. In Section~\ref{sec:discussion}, we discuss the
+implications of midplane variations, and the resulting systematic uncertainty in
+the vertical action, for action-space analyses. We also estimate the expected
+midplane variations of the Milky Way based on the observed velocity variations
+and three-dimensional dust maps. We summarize our main results and conclude in
+Section~\ref{sec:conclusion}.
 
 \section{Motivation} \label{sec:ref_frame}
 We first demonstrate the significance to action computations of a systematic
-offset in the determination of the Galactic midplane, distance to the
-Galactic center, or LSR. We will find that such offsets are especially important for
+offset in the determination of the Galactic midplane, distance to the Galactic
+center, or LSR. We will find that such offsets are especially important for
 disk-like orbits. The consequences we explore here may also arise from various
-other systematic errors. For instance, the axisymmetric Galactic potential
-model used in many works to compute actions may not be a good description of
-the true potential --- or the parameters used may yield a potential that is
+other systematic errors. For instance, the axisymmetric Galactic potential model
+used in many works to compute actions may not be a good description of the true
+potential --- or the parameters used may yield a potential that is
 systematically incorrect outside an original fitted region. In this work, we
 assume that the Galaxy is perfectly described by our model axisymmetric
-potential, and simply explore the consequences of offsets in the Galactocentric coordinate system.
+potential, and simply explore the consequences of offsets in the Galactocentric
+coordinate system.
 
 \subsection{Effect of Midplane Offset} \label{ssec:cartoon}
-We present a cartoon approximation of an orbit in Figure~\ref{fig:cartoon} to show how an
-inaccurate or erroneous determination of the midplane leads to a phase-dependence of the actions
-calculated from a phase-space point and an assumed
-potential model. The $x$-axis corresponds to orbital phase
-and the $y$-axis to vertical height. The solid gray curve indicates the
-``true'' orbit of the star; that is, as it oscillates around the
-true midplane.
+We present a cartoon approximation of an orbit in Figure~\ref{fig:cartoon} to
+show how an inaccurate or erroneous determination of the midplane leads to a
+phase-dependence of the actions calculated from a phase-space point and an
+assumed potential model. The $x$-axis corresponds to orbital phase and the
+$y$-axis to vertical height. The solid gray curve indicates the ``true'' orbit
+of the star; that is, as it oscillates around the true midplane.
 
 The dashed gray line, offset from the true midplane, is the midplane location
-used by an observer to integrate the orbit of the star and estimate its
-actions. The model potential is otherwise identical to the one in which the
-star is actually moving.
+used by an observer to integrate the orbit of the star and estimate its actions.
+The model potential is otherwise identical to the one in which the star is
+actually moving.
 
 Now suppose this observer makes a measurement of the star's position and
 velocity at the teal point or the orange point (i.e. at two different orbital
 phases). Then the teal and orange curves correspond to the orbits that the
 observer would compute for each point based on the potential model with the
-offset midplane. In action space, this would correspond to a different value
-of $J_z$ for the teal and orange points. In this way, assuming the wrong
-coordinate system induces a phase-dependence in the actions estimated for the
-star, which in the correct potential (in this example, the one with the
-correct midplane) should be phase-independent. 
+offset midplane. In action space, this would correspond to a different value of
+$J_z$ for the teal and orange points. In this way, assuming the wrong coordinate
+system induces a phase-dependence in the actions estimated for the star, which
+in the correct potential (in this example, the one with the correct midplane)
+should be phase-independent.
 
 This example uses an offset in $z$, but one would expect an analogous effect
 from an offset in another coordinate, such as the distance to the Galactic
-center or the LSR. A similar effect in which actions gain
-time-dependence due to a time-varying potential was pointed out by
-\citet{2015A&A...584A.120B}.
+center or the LSR. A similar effect in which actions gain time-dependence due to
+a time-varying potential was pointed out by \citet{2015A&A...584A.120B}.
 
 \subsection{Epicyclic Approximation} \label{ssec:epi_action}
 
 \begin{deluxetable*}{cCCCCCCCCC}
-\tablecaption{Description and names of the three orbits considered in this
-work. For the last four columns: $z_{\text{max}}$ is the maximum height of the
-orbit, $\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of
-the radial excursions of the orbit, and $\kappa$ and $\nu$ are the radial/epicyclic and vertical frequencies of the orbit. In the epicyclic approximation, $A_z =
+
+\tablecaption{Description and names of the three orbits considered in this work.
+For the last four columns: $z_{\text{max}}$ is the maximum height of the orbit,
+$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of the radial
+excursions of the orbit, and $\kappa$ and $\nu$ are the radial/epicyclic and
+vertical frequencies of the orbit. In the epicyclic approximation, $A_z =
 z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$.
-\label{tab:orbits}}
-\tablehead{\colhead{name} & \colhead{initial position} & \colhead{initial
-velocity} & \colhead{$J_R$} &
-\colhead{$J_{\phi}$} & \colhead{$J_z$} & \colhead{$z_{\text{max}}$} &
-\colhead{$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$} & \colhead{$\kappa$} & \colhead{$\nu$} \\ \colhead{ } &
-\colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{km\,s}^{-1}$} &
-\colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
+\label{tab:orbits}} \tablehead{\colhead{name} & \colhead{initial position} &
+\colhead{initial velocity} & \colhead{$J_R$} & \colhead{$J_{\phi}$} &
+\colhead{$J_z$} & \colhead{$z_{\text{max}}$} &
+\colhead{$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$} & \colhead{$\kappa$} &
+\colhead{$\nu$} \\ \colhead{ } & \colhead{$\mathrm{kpc}$} &
+\colhead{$\mathrm{km\,s}^{-1}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
 \colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
-\colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{Myr}^{-1}$} & \colhead{$\mathrm{Myr}^{-1}$}}
-\startdata 
-\thin{} & (8, 0, 0) & (0, -190, 10) & 40.3 & -1520 & 0.69 & 0.12 & 1.29 & 0.049 & 0.093 \\
-\thick{} & (8, 0, 0) & (0, -190, 50) & 32.5 & -1520 & 23.0 & 0.85 & 1.19 & 0.048 & 0.061 \\ 
-\halo{} & (8, 0, 0) & (0, -190, 190) & 32.8 & -1520 & 529.1 & 6.16 & 2.34 & 0.033 & 0.025
+\colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{kpc}$} &
+\colhead{$\mathrm{Myr}^{-1}$} & \colhead{$\mathrm{Myr}^{-1}$}}
+\startdata
+\thin{} & (8, 0, 0) & (0, -190, 10) & 40.3 & -1520 & 0.69 & 0.12 & 1.29 & 0.049
+& 0.093 \\
+\thick{} & (8, 0, 0) & (0, -190, 50) & 32.5 & -1520 & 23.0 & 0.85 &
+1.19 & 0.048 & 0.061 \\
+\halo{} & (8, 0, 0) & (0, -190, 190) & 32.8 & -1520 &
+529.1 & 6.16 & 2.34 & 0.033 & 0.025
 \enddata
 \end{deluxetable*}
 
@@ -407,7 +416,7 @@ propagation of errors formula to Equation~\eqref{eq:JR_Jz_epi_energy} to
 determine the error in each of the actions. For $J_{\phi}$, the induced error
 is:
 \beq\label{eq:induced_Jphi}
-\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g} 
+\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}
                                     + \frac{\Delta v_{\phi}}{v_c}\text{.}
 \eeq
 For $J_R$, the induced error is:
@@ -427,7 +436,7 @@ both $R$ and $z$, we can approximate the order of magnitude of the systematic
 error in the actions by
 \beq\label{eq:Ji_err_mosttime}
 \begin{split}
-\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta R}{R_g} 
+\frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta R}{R_g}
                                     + \frac{\Delta v_{\phi}}{v_c} \\
 \frac{\Delta J_{R}}{J_{R}} &= \frac{2\Delta R}{A_R} \\
 \frac{\Delta J_{z}}{J_{z}} &= \frac{2\Delta z}{A_z} \text{,}
@@ -569,7 +578,7 @@ Sun to the Galactic center.
 
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the
 offset coordinate systems oscillates as a function of the time/orbital phase at which the
-star's phase-space position is observed. 
+star's phase-space position is observed.
 This time dependence comes even though
 the observer is using the correctly constructed best-fit static, axisymmetric
 potential. The relative size of the phase variation in each action depends on
@@ -635,7 +644,7 @@ prediction of the induced action error (Equation~\eqref{eq:Ji_err_mosttime}).
 In the epicyclic approximation, a $z$ offset only induces an error in $J_z$
 --- for all three orbits the epicyclic approximation is a good description of
 the $J_z$ error. An $x$ offset induces an error in $J_R$ and $J_{\phi}$. The
-error in $J_R$ is somewhat well-described for \thin{} and \thick{}, 
+error in $J_R$ is somewhat well-described for \thin{} and \thick{},
 and a poor description for \halo{}. For $J_{\phi}$, the
 epicyclic approximation is not a good description for any orbit.}
 \label{fig:many_orbit_wrong_ref}
@@ -685,7 +694,7 @@ $z$, as discussed earlier. Indeed, the result we found in
 Figure~\ref{fig:one_orbit_wrong_ref} for \thick{} holds for all
 orbit types. This is also a demonstration of the robustness of the
 integration and action calculation methods we use.
- 
+
 The upper right panel of Figure~\ref{fig:many_orbit_wrong_ref} shows that the
 fractional error in $J_z$ is more exaggerated for more planar (disk-like)
 orbits. For \thin{} (\thick{}), a systematic offset of $15\,\pc$ ($120\,\pc$) in the $z$-coordinate results in a $25\%$ deviation in $J_z$.
@@ -788,7 +797,7 @@ population synthesis models, generating galactic winds self-consistently
 observed galaxy properties, including stellar masses, star formation
 histories, metallicities, and morphologies and kinematics of thin and thick
 disks \citep{2014MNRAS.445..581H, 2016MNRAS.456.2140M, 2017MNRAS.467.2430M,
-2016ApJ...827L..23W, 2018MNRAS.481.4133G, 2018MNRAS.480..800H}. 
+2016ApJ...827L..23W, 2018MNRAS.481.4133G, 2018MNRAS.480..800H}.
 
 For this work,
 we focus on the three Milky Way-mass zoom-ins considered in
@@ -882,7 +891,7 @@ $15\,\kpc$ of this center. The galaxy is then rotated onto a principal axis
 frame determined by stars younger than $1\,\Gyr$ inside of the fiducial solar
 radius $R_{0} = 8.2\,\kpc$, such that the disk plane is the $x$--$y$ plane.
 
-\subsection{Description of Milky Way-Sagittarius Interaction Simulation} 
+\subsection{Description of Milky Way-Sagittarius Interaction Simulation}
 \label{ssec:sag_sim}
 In addition to the cosmological zoom-ins, we will also briefly consider
 results from a live N-body simulation of a Sagittarius-like encounter. This
@@ -1009,7 +1018,7 @@ best fit curve of the form $\text{A} \sin{\left(\phi + \text{B}\right)} +
 \text{C}$, with the values for $\text{A}$ being $9.5$, $2.5$, $-212$, and
 $-394\,\pc$, for $\text{B}$ being $0.0013$, $0.0007$, $-0.63$, and
 $-1.00\,\text{rad}$ and $\text{C}$ being $2.6$, $-7.8$, $-65$, and $-53\,\pc$
-chronologically for each of the four timesteps shown. The middle $90\%$ of midplane values across the solar circle spans $49$, $62$, $137$, and $119\,\pc$, for each timestep. 
+chronologically for each of the four timesteps shown. The middle $90\%$ of midplane values across the solar circle spans $49$, $62$, $137$, and $119\,\pc$, for each timestep.
 
 These values for the midplane variation are consistent with the azimuthal
 midplane variations seen by \citet{2013MNRAS.429..159G}. However, they only
@@ -1038,7 +1047,7 @@ contribute to second order to $\Delta J_R$ and $\Delta J_z$ when a star is at
 maximum amplitude in $R$ or $z$ (where the majority of the orbit is, see
 Section~\ref{ssec:epi_action}), we defer this calculation to future work.
 
-\section{Discussion} \label{sec:discussion} 
+\section{Discussion} \label{sec:discussion}
 We have used high-resolution simulations to illustrate that we expect the
 local midplane defined by stellar density to vary with azimuth by up to $\pm
 100$ pc, as a natural consequence of the non-axisymmetry of the Galactic disk
@@ -1067,7 +1076,7 @@ radial velocity surveys of the Sloan Digital Sky Surveys
 \citep{2012ApJ...750L..41W} and RAdial Velocity Experiment
 \citep{2013MNRAS.436..101W}. Subsequently, \citet{2013ApJ...777L...5C} pointed
 out suggestions of an oscillation in average vertical velocities of order
-$5\,\kms$ on $\sim\,\kpc$ scales looking toward the Galactic anticenter. 
+$5\,\kms$ on $\sim\,\kpc$ scales looking toward the Galactic anticenter.
 
 Work
 by the \textit{Gaia} collaboration confirmed these preliminary results on the
@@ -1101,8 +1110,8 @@ to the Galactic center can also contribute to systematic error in the actions, s
 coordinates relies on these measurements. Therefore, errors in their values
 will induce a systematic offset in the Galactocentric phase-space position of
 any observed star. Considerable effort has been placed on each of these measurements, but uncertainties remain, and detailed modeling across the disk\,---\,particularly for dynamically cold stars\,---\,may have to take them into
-account. 
-Here we briefly review the current measurements, their uncertainties, and the implications for the calculation of actions. 
+account.
+Here we briefly review the current measurements, their uncertainties, and the implications for the calculation of actions.
 
 \subsubsection{Galactic Center Position}
 First, one must define the center of the Galaxy. This is usually taken to be
@@ -1111,7 +1120,7 @@ the location of the central supermassive black hole, Sagittarius~A\textsuperscri
 \sgra{}, the distance from the Sun to \sgra{}, $R_0$, can be
 precisely measured \citep{2009ApJ...692.1075G, 2018AA...615L..15G}. A
 recent measurement using near-infrared interferometry places $R_0$ at $8.178 \pm 0.035$~kpc
-\citep{2019arXiv190405721A}, or a $\sim0.3\%$ uncertainty. 
+\citep{2019arXiv190405721A}, or a $\sim0.3\%$ uncertainty.
 
 However, the location of \sgra{} may not be equivalent to the location of the ``dynamical Galactic center,'' i.e., the
 point in three-dimensional space about which the stars in the solar
@@ -1332,7 +1341,7 @@ Keeping only terms to first order in $\Delta x$, we have that,
 \beq
 \begin{split}
 R_{\text{err}}^2 &= R^2 - 2 R \cos{\phi} \Delta x \\
-\implies \Delta R &\equiv \abs{R_{\text{err}} - R} 
+\implies \Delta R &\equiv \abs{R_{\text{err}} - R}
         = \abs{\cos{\phi}} \Delta x\text{.}
 \end{split}
 \eeq
