@@ -33,7 +33,6 @@
 \newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\avg}[1]{\left< #1 \right>}
 \newcommand{\z}{z_r}
-\newcommand{\uth}{\textsuperscript{th}}
 \newcommand{\n}{\text{n}}
 
 \newcommand{\beq}{\begin{equation}}
@@ -116,7 +115,7 @@ have the attractive quality of being invariant and thus good quantitative
 labels of a star's orbit. A systematic bias in the phase space position
 induces a phase-dependence in the actions, which we interpret as a systematic
 error distinct from typical observational errors and Galactic potential uncertainties. An offset in the vertical position of $\sim15\,\pc$ ($\sim120\,\pc$) for a thin (thick) disk orbit is sufficient to induce a
-$25\,\%$ systematic error in the vertical action $J_z$. The induced error distribution is
+$25\%$ systematic error in the vertical action $J_z$. The induced error distribution is
 non-Gaussian and bimodal, with neither of the modes peaking on the null value.
 Furthermore, we show that the local midplane varies by $\sim100\,\pc$ at the
 solar circle in Milky Way-mass cosmological zoom-in simulations from the FIRE
@@ -515,7 +514,7 @@ $100\,\pc$. One can see that if the observed $z$ values have a bias (from, e.g.,
 an incorrectly computed midplane), then the induced error distribution in
 $J_z$ is decidedly non-Gaussian. Therefore, any sort of error propagation must
 take this into account. Intuition for the shape of each panel is given in the
-text. We also plot one half the 95\uth{} percentile minus the 5\uth{}
+text. We also plot one half the 95th percentile minus the 5th
 percentile of each distribution as a horizontal arrow anchored on the true
 $J_z$ value. We call this $\Delta J_z$ and will use it (along with the
 similarly defined $\Delta J_R$ and $\Delta J_{\phi}$) to empirically describe
@@ -585,8 +584,8 @@ system.
 
 For a systematic offset in $z$ (upper panels), the 95\textsuperscript{th}
 minus 5\textsuperscript{th} percentiles are $2.2$ and $6.2\,\actunit$ for
-$J_R$ and $J_z$, respectively. These are fractional errors of $5.7\,\%$ and
-$86\,\%$, respectively. The error induced in $J_{\phi}$ is negligible, as
+$J_R$ and $J_z$, respectively. These are fractional errors of $5.7\%$ and
+$86\%$, respectively. The error induced in $J_{\phi}$ is negligible, as
 expected since $J_{\phi}$ only depends on the $x$- and $y$-components of the
 position and velocity of the stars.\footnote{In practice, however, $J_{\phi}$
 is computed as part of the torus-fitting method.} It is worth pointing out
@@ -624,7 +623,7 @@ Gaussian distribution.
 \begin{center}
 \includegraphics[width=\textwidth]{fig/schmactions_many_orbits.pdf}
 \end{center}
-\caption{We report one half the 95\uth{} minus 5\uth{} percentile of the error
+\caption{We report one half the 95th minus 5th percentile of the error
 in the measured action ($\Delta J_i$) from coordinate system errors for
 \thin{}, \thick{}, and \halo{} orbits (Table~\ref{tab:orbits}). See discussion in the
 text and Figure~\ref{fig:Jz_hist} for the justification in using this to measure the magnitude of the
@@ -658,7 +657,7 @@ the density cannot become negative but it can grow arbitrarily large.}
 
 Gaussian summary statistics are clearly insufficient to describe the distribution shown in
 Figure~\ref{fig:Jz_hist}. We therefore elect to measure this error by computing one
-half the 95\uth{} percentile minus the 5\uth{} percentile of the distribution
+half the 95th percentile minus the 5th percentile of the distribution
 of action values. We plot this quantity, which we refer to as $\Delta J_i$ for each action, in Figure~\ref{fig:Jz_hist} as a
 horizontal arrow anchored on the true action value. Because of the bimodality
 of the error distribution, this quantity roughly measures the distance from
@@ -726,10 +725,10 @@ for all orbits.
 \caption{The fractional error in $J_z$ as a function of $J_z$ for a few
 different offsets in $z$. All orbits have the same initial position of $(8, 0,
 0)\,\kpc$ and velocity $(0, -190, v_z)\,\kms$, where we vary $v_z$.\footref{note:vz_orbits} We show
-this for a $z$ offset of $10, 50, 100\,\pc$ (orange, teal, and green
-respectively). As before, the error ($\Delta J_z$) is one half the 95\uth{}
-minus 5\uth{} percentile of the distribution of $J_z$ values over the
-course of the orbit. There are large errors for \thin{} like orbits ($J_z
+this for a $z$ offset of $10, 50, 100\,\pc$ (orange, teal, and green,
+respectively). As before, the error ($\Delta J_z$) is one half the 95th
+minus 5th percentile of the distribution of $J_z$ values over the
+course of the orbit. There are large errors for \thin{}-like orbits ($J_z
 \sim 0.5\,\actunit$), even for a small midplane offset of $10\,\pc$. As dashed
 lines in each color we also plot the prediction for $\Delta J_z/J_z$ from the
 epicyclic approximation (Equation~\eqref{eq:Ji_err_mosttime}), which shows
@@ -802,10 +801,10 @@ $\z$.} of these three simulations, named \mi{}, \mf{}, and \mm{} for
 shorthand, are publicly available alongside associated mock \textit{Gaia} DR2
 catalogues generated from them.\footnote{\url{http://ananke.hub.yt}}
 
-\begin{deluxetable*}{cccccc}[htb!]
-\tablecaption{Stellar and gas disk scale heights of the real Milky Way and the
-simulated galaxies considered in this work. For comparison, we also give the median
-softening lengths for the simulated galaxies, computed for cold gas ($T<1000\,\text{K}$) and stars with $\abs{R-R_0} < 0.5\,\kpc$ and $\abs{z} < 1\,\kpc$. We have assumed that $R_0=8.2\,\kpc$.\label{tab:scale_height}}
+\begin{deluxetable*}{cCCCCC}[htb!]
+\tablecaption{Stellar and gas disk scale heights of the Milky Way and the
+FIRE galaxies considered in this work (described in Section~\ref{ssec:cosmozoom}). For comparison, we also give the median
+softening lengths for the FIRE galaxies, computed for cold gas ($T<1000\,\text{K}$) and stars with $\abs{R-R_0} < 0.5\,\kpc$ and $\abs{z} < 1\,\kpc$. We have assumed that $R_0=8.2\,\kpc$.\label{tab:scale_height}}
 \tablehead{\colhead{galaxy} & \colhead{\makecell{cold\tablenotemark{a} gas disk \\ scale height}} &
 \colhead{\makecell{thin disk \\ scale height}} & \colhead{\makecell{thick disk \\ scale height}} & \colhead{\makecell{cold\tablenotemark{a} gas \\
 softening length}} & \colhead{\makecell{stellar \\ softening length}} \\
@@ -935,16 +934,15 @@ each $\phi$.
 \begin{center}
 \includegraphics[width=\textwidth]{fig/midplane_fit.pdf}
 \end{center}
-\caption{The local midplane determined at the fiducial Solar radius
-($8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} (left,
+\caption{The local midplane determined at the fiducial solar circle
+($R_0 = 8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} (left,
 center, and right panels) as a function of azimuthal angle, at cosmological redshift $\z =0$. The local midplane is determined at
 a position $\phi$ by taking the median height of all stars within
 $R=0.5\,\kpc$ and $z=1\,\kpc$ (in cylindrical coordinates). The procedure is
 performed again using the new height $10$ times to converge on the local
 midplane height. In order to allow for the possibility that the fiducial
 galactocentric coordinate system is incorrect, we subtract the best fit
-$A\sin{(\phi+B)}+C$ curve from each panel. We then bootstrap resample $1000$ times on
-all stars within a $2\,\kpc$ height of the fiducial midplane to determine
+$A\sin{(\phi+B)}+C$ curve from each panel. We then bootstrap resample $1000$ times to determine
 $1\,\sigma $ error bars, which we report as dashed lines.}
 \label{fig:midplane}
 \end{figure*}
@@ -953,8 +951,8 @@ $1\,\sigma $ error bars, which we report as dashed lines.}
 \begin{center}
 \includegraphics[width=342.078286667pt]{fig/midplane_fit_chervinsim.pdf}
 \end{center}
-\caption{The local midplane determined at the fiducial Solar radius
-($8.2\,\kpc$) for 4 different time steps from live N-body simulations of a
+\caption{The local midplane determined at the fiducial solar circle
+($R_0 = 8.2\,\kpc$) for four different time steps from live N-body simulations of a
 Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
 before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
 for inaccuracies in the galactocentric coordinate system. Error bars are
@@ -1219,7 +1217,7 @@ their orbital phases, this results in systematic error in the computed actions
 \item Inaccuracy in the midplane location most severely affects computation of
 the vertical action $J_z$. A midplane offset of $\sim6\,\pc$ ($\sim50\,\pc$)
 for a typical thin (thick) disk orbit results in a $10\%$ error in $J_z$ (as
-defined by one half the middle $90\uth$ percentile). The fractional error is
+defined by one half the middle 90th percentile). The fractional error is
 significantly less for halo orbits.
 
 \item The distribution of systematic errors in the actions induced by a
@@ -1311,7 +1309,7 @@ We plot the three orbits considered throughout the work
 \caption{The three orbits presented in Table~\ref{tab:orbits} and considered
 throughout the work. We plot \thin{}, \thick{}, and \halo{} in the
 left, center, and right columns, respectively. The upper row shows a plot of
-$x$ vs. $y$ while the lower row shows $R$ vs. $z$.}
+$x$~vs.~$y$ while the lower row shows $R$~vs.~$z$.}
 \label{fig:plot_orbits}
 \end{figure*}
 
