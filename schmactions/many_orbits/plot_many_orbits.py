@@ -52,7 +52,7 @@ def sclip(a, s=4):
     k2 = np.where(a2bool)[0]
     return k0, k1, k2
 
-name_list = ['thin-disk', 'thick-disk', 'halo']
+name_list = [r'\texttt{thin-disk}', r'\texttt{thick-disk}', r'\texttt{halo}']
 fname_list = ['thin', 'thick', 'halo']
 Az_list = np.array([120, 850, 6160]) # pc
 AR_list = np.array([1290, 1190, 2340]) # pc

@@ -49,9 +49,9 @@ ax[0][0].set_ylabel(r'$y\,[\,\text{kpc}\,]$')
 for x in ax[0]:
     x.set_xlabel(r'$x\,[\,\text{kpc}\,]$')
 
-ax[0][0].set_title(r'thin-disk')
-ax[0][1].set_title(r'thick-disk')
-ax[0][2].set_title(r'halo')
+ax[0][0].set_title(r'\texttt{thin-disk}')
+ax[0][1].set_title(r'\texttt{thick-disk}')
+ax[0][2].set_title(r'\texttt{halo}')
 
 ax[1][0].set_ylabel(r'$z\,[\,\text{kpc}\,]$')
 for x in ax[1]:

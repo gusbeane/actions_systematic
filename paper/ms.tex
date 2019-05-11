@@ -38,6 +38,9 @@
 \newcommand{\beq}{\begin{equation}}
 \newcommand{\eeq}{\end{equation}}
 
+\newcommand{\thin}{\texttt{thin-disk}}
+\newcommand{\thick}{\texttt{thick-disk}}
+\newcommand{\halo}{\texttt{halo}}
 \newcommand{\thincolor}{pink}
 \newcommand{\thickcolor}{brown}
 \newcommand{\halocolor}{blue}
@@ -321,9 +324,9 @@ velocity} & \colhead{$J_R$} &
 \colhead{$\mathrm{kpc\,km\,s^{-1}}$} & \colhead{$\mathrm{kpc\,km\,s^{-1}}$} &
 \colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{kpc}$} & \colhead{$\mathrm{Myr}^{-1}$} & \colhead{$\mathrm{Myr}^{-1}$}}
 \startdata 
-thin-disk & (8, 0, 0) & (0, -190, 10) & 40.3 & -1520 & 0.69 & 0.12 & 1.29 & 0.049 & 0.093 \\
-thick-disk & (8, 0, 0) & (0, -190, 50) & 32.5 & -1520 & 23.0 & 0.85 & 1.19 & 0.048 & 0.061 \\ 
-halo & (8, 0, 0) & (0, -190, 190) & 32.8 & -1520 & 529.1 & 6.16 & 2.34 & 0.033 & 0.025
+\thin{} & (8, 0, 0) & (0, -190, 10) & 40.3 & -1520 & 0.69 & 0.12 & 1.29 & 0.049 & 0.093 \\
+\thick{} & (8, 0, 0) & (0, -190, 50) & 32.5 & -1520 & 23.0 & 0.85 & 1.19 & 0.048 & 0.061 \\ 
+\halo{} & (8, 0, 0) & (0, -190, 190) & 32.8 & -1520 & 529.1 & 6.16 & 2.34 & 0.033 & 0.025
 \enddata
 \end{deluxetable*}
 
@@ -480,8 +483,8 @@ orbit integration and torus mapping throughout \citep{2016MNRAS.457.2107S}.
 \includegraphics[width=\textwidth]{fig/schmactions_one_orbit.pdf}
 \end{center}
 \caption{The artificial phase-dependence in the computed actions with an
-error in the Galactocentric coordinate system. We consider here the thick-disk
-orbit, which has actions of $(J_R, J_{\phi}, J_z) = (37.9, -1520,
+error in the Galactocentric coordinate system. We consider here \thick{},
+which has actions of $(J_R, J_{\phi}, J_z) = (37.9, -1520,
 7.0)\,\actunit$ and $z_{\text{max}}=850\,\pc$ (see Table~\ref{tab:orbits}). We
 integrate the orbit according to the procedure laid out in
 Section~\ref{ssec:action_comp}, and which we plot in
@@ -505,8 +508,8 @@ $\sim21\%$, $\sim3\%$, and $\sim3\%$.}
 \begin{center}
 \includegraphics[width=\columnwidth]{fig/schmactions_Jz_zerr_hist.pdf}
 \end{center}
-\caption{A histogram of the computed values of $J_z$ at different orbital phases for the thick-disk (top
-panel) and thin-disk (bottom panel) orbits assuming a $z$ offset of
+\caption{A histogram of the computed values of $J_z$ at different orbital phases for \thick{} (top
+panel) and \thin{} (bottom panel) orbits assuming a $z$ offset of
 $100\,\pc$. One can see that if the observed $z$ values have a bias (from, e.g.,
 an incorrectly computed midplane), then the induced error distribution in
 $J_z$ is decidedly non-Gaussian. Therefore, any sort of error propagation must
@@ -531,11 +534,11 @@ disk, thick disk, and halo. We summarize their initial
 positions in phase space, the actions computed by integrating their orbits
 in the correct potential, and other properties in Table~\ref{tab:orbits}. Each orbit, integrated
 without systematic coordinate errors, is plotted in Appendix~\ref{app:orbits}.
-We will refer to these orbits by their names (thin-disk, thick-disk, halo)
+We will refer to these orbits by their names (\thin{}, \thick{}, \halo{})
 henceforth.
 
-We begin with the thick-disk orbit. Consider an observer who can
-measure the thick-disk star's phase-space position at many different times
+We begin with \thick{}. Consider an observer who can
+measure the orbit's phase-space position at many different times
 (and hence different orbital phases), but does so using a
 coordinate system in which the midplane is systematically offset in height by
 $100\,\pc$ from its actual location. To model this we subtract the vector $(0, 0,
@@ -594,12 +597,12 @@ For a systematic offset in $x$ (or distance to the Galactic center), the
 $47$, and $0.71\,\actunit$ for $J_R$, $J_{\phi}$ and $J_z$, respectively.
 These are fractional errors of $21\%$, $3.1\%$ and $3.1\%$ in these actions, respectively, despite only a $1.2\%$ error in the distance to the Galactic center.
 
-In Figure~\ref{fig:Jz_hist} we plot a histogram of the values of
-$J_z$ computed at different orbital phases for the thick-disk orbit (top panel) and thin-disk orbit (bottom panel)
+In Figure~\ref{fig:Jz_hist}, we plot a histogram of the values of
+$J_z$ computed at different orbital phases for \thick{} (top panel) and \thin{} (bottom panel),
 assuming a $z$ offset of $100\,\pc$ (as in the upper right panel of
 Figure~\ref{fig:one_orbit_wrong_ref}). The true value is plotted as a
 vertical dashed line. The systematic error in $J_z$ induced by a
-systematic offset in $z$ is non-Gaussian and bimodal; neither of the modes is centered on the null value. In the case of the thin-disk orbit
+systematic offset in $z$ is non-Gaussian and bimodal; neither of the modes is centered on the null value. In the case of \thin{}
 (bottom panel), we see that, in addition to the prior complications, the
 distribution is not even centered on the true value. This comes about when the midplane
 error is~$\gtrsim z_{\text{max}}$, where $z_{\text{max}}$ is the maximum
@@ -621,8 +624,8 @@ Gaussian distribution.
 \includegraphics[width=\textwidth]{fig/schmactions_many_orbits.pdf}
 \end{center}
 \caption{We report one half the 95\uth{} minus 5\uth{} percentile of the error
-in the measured action ($\Delta J_i$) from coordinate system errors for the
-thin, thick, and halo orbits (Table~\ref{tab:orbits}). See discussion in the
+in the measured action ($\Delta J_i$) from coordinate system errors for
+\thin{}, \thick{}, and \halo{} orbits (Table~\ref{tab:orbits}). See discussion in the
 text for the justification in using this to measure the magnitude of the
 induced error. The left, center, and right panels show the result for $J_R$,
 $J_{\phi}$, and $J_z$, respectively. The upper panels consider an offset in
@@ -632,18 +635,18 @@ prediction of the induced action error (Equation~\eqref{eq:Ji_err_mosttime}).
 In the epicyclic approximation, a $z$ offset only induces an error in $J_z$
 --- for all three orbits the epicyclic approximation is a good description of
 the $J_z$ error. An $x$ offset induces an error in $J_R$ and $J_{\phi}$. The
-error in $J_R$ is somewhat well-described for the thin-disk and thick-disk
-orbits, and a poor description for the halo orbit. For $J_{\phi}$, the
+error in $J_R$ is somewhat well-described for \thin{} and \thick{}, 
+and a poor description for \halo{}. For $J_{\phi}$, the
 epicyclic approximation is not a good description for any orbit.}
 \label{fig:many_orbit_wrong_ref}
 \end{figure*}
 
 We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
-Consider first the thick-disk orbit (top panel), where the offset in $z$ is
+Consider first the \thick{} (top panel), where the offset in $z$ is
 much less than $z_{\text{max}}$ of the orbit. The peaks in the distribution
 correspond to the turning points of the orbit (or points of maximum vertical
 amplitude), where $v_z \sim 0$ and where the star is on most of it orbit. This
-is why the distribution, which is calculated at evenly spaced time intervals, peaks at these values. For the thin-disk orbit
+is why the distribution, which is calculated at evenly spaced time intervals, peaks at these values. For the \thin{}
 (bottom panel), the offset in $z$ is comparable to $z_{\text{max}}$. Now,
 there will be some points in the orbit where $v_z = 0$ and $z=0$ (in the
 erroneous coordinate system). At these points, the computed $J_z$
@@ -667,10 +670,8 @@ We now repeat the same procedure as in Figure~\ref{fig:one_orbit_wrong_ref}
 but for systematic offsets between $0$ and $500\,\pc$ in the $z$ and $x$
 components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report $\Delta
 J_i/J_i$ for the three different fiducial orbits in Table~\ref{tab:orbits}.
-The thick-disk (\thickcolor) orbit is the one from
-Figure~\ref{fig:one_orbit_wrong_ref}, but we also now consider the effect on
-the action determined for the thin-disk (\thincolor) and halo (\halocolor)
-orbits.
+Figure~\ref{fig:one_orbit_wrong_ref} considered \thick{} (\thickcolor), but we also now consider the effect on
+the action determined for \thin{} (\thincolor) and \halo{} (\halocolor).
 
 The upper panels of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread
 induced in each action for an offset in the $z$-component. In the lower panels we consider offsets in the $x$ component (i.e. the
@@ -681,14 +682,14 @@ In the upper middle panel of Figure~\ref{fig:many_orbit_wrong_ref}, there is
 essentially no spread in the determination of $J_{\phi}$. This is expected
 since $J_{\phi}$ is independent of $z$ and is thus unaffected by offsets in
 $z$, as discussed earlier. Indeed, the result we found in
-Figure~\ref{fig:one_orbit_wrong_ref} for the thick-disk orbit holds for all
+Figure~\ref{fig:one_orbit_wrong_ref} for \thick{} holds for all
 orbit types. This is also a demonstration of the robustness of the
 integration and action calculation methods we use.
  
 The upper right panel of Figure~\ref{fig:many_orbit_wrong_ref} shows that the
 fractional error in $J_z$ is more exaggerated for more planar (disk-like)
-orbits. For the thin-disk (thick-disk) orbit, a systematic offset of $15\,\pc$ ($120\,\pc$) in the $z$-coordinate results in a $25\%$ deviation in $J_z$.
-The halo orbit is relatively resistant to errors in the midplane, with
+orbits. For \thin{} (\thick{}), a systematic offset of $15\,\pc$ ($120\,\pc$) in the $z$-coordinate results in a $25\%$ deviation in $J_z$.
+We find that \halo{} is relatively resistant to errors in the midplane, with
 only $\sim15\%$ error in $J_z$ out to an offset of $500\,\pc$.
 
 For the offset in the Solar radius (lower panels), the error is largest for
@@ -709,12 +710,12 @@ consider observations of the star throughout its entire orbit. This introduces
 a factor of $2/\pi$ when converting from $\Delta x$ to $\Delta R$, which we
 derive in Appendix~\ref{app:deltax}.
 
-The epicyclic approximation is a good predictor of $\Delta J_z$, even for halo
-orbits. It performs similarly for $\Delta J_R$, now underpredicting for halo
-orbits and slightly overpredicting for thin-disk orbits. Note that for the
-particular orbits we chose, the thin-disk orbit has slightly larger $A_R$ than
-the thick-disk orbit, and so we expect the epicyclic approximation to perform
-slightly worse. The epicyclic approximation underpredicts $\Delta J_{\phi}$
+The epicyclic approximation is a good predictor of $\Delta J_z$, even for \halo{}.
+It performs similarly for $\Delta J_R$, now underpredicting for \halo{}
+and slightly overpredicting for \thin{}. Note that for the
+particular orbits we chose, \thin{} has slightly larger $A_R$ than
+\thick{}, and so we actually expect the epicyclic approximation to perform
+slightly worse for \thin{} in this case. The epicyclic approximation underpredicts $\Delta J_{\phi}$
 for all orbits.
 
 \begin{figure}
@@ -727,7 +728,7 @@ different offsets in $z$. All orbits have the same initial position of $(8, 0,
 this for a $z$ offset of $10, 50, 100\,\pc$ (orange, teal, and green
 respectively). As before, the error ($\Delta J_z$) is one half the 95\uth{}
 minus 5\uth{} percentile of the distribution of $J_z$ values over the
-course of the orbit. There are large errors for thin-disk like orbits ($J_z
+course of the orbit. There are large errors for \thin{} like orbits ($J_z
 \sim 0.5\,\actunit$), even for a small midplane offset of $10\,\pc$. As dashed
 lines in each color we also plot the prediction for $\Delta J_z/J_z$ from the
 epicyclic approximation (Equation~\eqref{eq:Ji_err_mosttime}), which shows
@@ -740,7 +741,7 @@ fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
 100\,\pc$ (orange, teal, and green, respectively) in
 Figure~\ref{fig:dJz_fun_Jz}. For each orbit, we set the initial position to be
 $(8,0,0)\,\kpc$ and the initial velocity to be $(0, -190, v_z)\,\kms$, where
-we vary $v_z$.\footnote{The thin-disk, thick-disk, and halo orbits correspond to setting $v_z=10$, $50$, and $190$, respectively (see Table~\ref{tab:orbits}).} For a thin disk-like orbit ($J_z\sim0.5\,\actunit$), even a
+we vary $v_z$.\footnote{One can recover \thin{}, \thick{}, and \halo{} by setting $v_z=10$, $50$, and $190$, respectively (see Table~\ref{tab:orbits}).} For a \thin{}-like orbit ($J_z\sim0.5\,\actunit$), even a
 $10\,\pc$ offset in $z$ is enough to induce a $\sim25\%$ error in $J_z$. For
 larger values of $J_z$, the fractional errors are suppressed, but the induced
 error can still be large depending on how great the $z$ offset is. We also
@@ -811,12 +812,12 @@ softening length}} & \colhead{\makecell{stellar \\ softening length}} \\
 & \colhead{(pc)} }
 \startdata
 Milky Way\tablenotemark{b} & 40 & 300 & 900 & \nodata & \nodata \\
-\mi\tablenotemark{c} & 800\tablenotemark{d} & 480 & 2000 & 12.4 & 11.2 \\
-\mf\tablenotemark{c} & 360 & 440 & 1280 & 12.5 & 11.2 \\
-\mm\tablenotemark{c} & 250 & 290 & 1030 &10.3 & 11.2 \\
+\mi\tablenotemark{c} & 800\tablenotemark{d} & 480 & 2000 & 53.4 & 11.2 \\
+\mf\tablenotemark{c} & 360 & 440 & 1280 & 57.2 & 11.2 \\
+\mm\tablenotemark{c} & 250 & 290 & 1030 & 60.1 & 11.2 \\
 \enddata
 % \tablerefs{\citet{2016ARAA..54..529B,2018arXiv180610564S,2008ApJ...673..864J}}
-\tablenotetext{a}{$T<1000$ K}
+\tablenotetext{a}{$T<100\,\text{K}$}
 \tablenotetext{b}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
 \tablenotetext{c}{\citet{2018arXiv180610564S}}
 \tablenotetext{d}{The azimuthally averaged gas vertical density profile in
@@ -831,10 +832,10 @@ stellar evolution \citep{2018arXiv180610564S}. Softening lengths for dark
 matter and star particles are fixed at $112\,\pc$ and $11.2\,\pc$,
 respectively.\footnote{This is $2.8$ times the often-quoted
 Plummer-equivalent.} The gas softening length is adaptive, but at $\z=0$ the
-median softening length for cold ($T < 10^4\,\text{K}$) gas particles around
+median softening length for cold ($T < 100\,\text{K}$) gas particles around
 roughly solar positions (with galactocentric cylindrical radii within
-$0.5\,\kpc$ of $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $12.4$, $12.5$, and
-$10.3\,\pc$ for \mi{}, \mf{}, and \mm{}, respectively. These values are
+$0.5\,\kpc$ of $8.2\,\kpc$ and $\abs{z}<1\,\kpc$) is $53.4$, $57.2$, and
+$60.1\,\pc$ for \mi{}, \mf{}, and \mm{}, respectively. These values are
 summarized in Table~\ref{tab:scale_height}, along with measurements of the
 stellar and gas disk scale heights.
 
@@ -842,11 +843,11 @@ The softening lengths used in the simulations can affect the ability to
 resolve the very thinnest planar structures, which in turn can affect how much
 the density-based midplane varies as a function of azimuth. The Milky Way's
 dense, star-forming gas disk is thought to have a scale height of about
-$40\,\pc$, $\sim3\textup{--}4$ times the cold gas softening length
+$40\,\pc$, on the order of the cold gas softening length
 \citep{2019ApJ...871..145A}. The thin stellar disk has a scale height of about
 $300\,\pc$, $\sim30$ times the stellar softening length
-\citep{2008ApJ...673..864J}. We therefore expect that resolution effects may
-still be affecting the scale heights of these components in the simulations,
+\citep{2008ApJ...673..864J}. We therefore expect that resolution effects are
+still affecting the scale heights of these components in the simulations,
 especially the cold gas. Indeed, the stellar scale heights of the simulated
 galaxies are equal to or larger than the Milky Way's while the gas scale
 heights are significantly larger (although the proper basis comparison is less
@@ -1078,7 +1079,7 @@ simulation that the vertical velocity variation as a function of azimuth is
 $\sim5\text{--}10\,\kms$ (Figure~\ref{fig:lsr_variations}), consistent with
 these observations.
 
-The vertical frequency of the thin-disk and thick-disk orbits are $\sim
+The vertical frequency of \thin{} and \thick{} are $\sim
 0.09\,\Myr^{-1}$ and $\sim0.06\,\Myr^{-1}$, respectively (Table~\ref{tab:orbits}). By dimensional
 analysis, and assuming a vertical velocity variation of $5\textup{--}10\,\kms$, we
 therefore expect the midplane offsets to be $\sim 57\textup{--}170\,\pc$. We
@@ -1125,7 +1126,7 @@ generated by a small error in $R_0$ can be understood from the epicyclic
 approximation (Equation~\eqref{eq:Ji_err_mosttime}, which states that $\Delta J_R/J_R = 2\Delta R/A_R$. The
 fractional error in $J_R$ is related to the error in $R_0$ as a fraction of
 the \emph{radial amplitude} of the orbit, which is much smaller than $R_0$
-($\sim1.2\,\kpc$ for the thin-disk and thick-disk orbits we considered). This
+($\sim1.2\,\kpc$ for \thin{} and \thick{}). This
 also implies the very precise $0.3\%$ measurement of $R_0$ still translates to
 a $\sim4\%$ uncertainty in $J_R$.
 
@@ -1155,7 +1156,7 @@ This tilt will contribute a systematic offset in $z$, with the exact magnitude
 depending on the position of the observed star. For instance,
 \citet{2014ApJ...797...53G} quote a $\sim0.4\degree$ tilt at $3.1\,\kpc$,
 corresponding to a vertical height of $\sim22\,\pc$. This corresponds to a
-$37\%$ ($5\%$) error in $J_z$ for the thin-disk (thick-disk) orbit.
+$37\%$ ($5\%$) error in $J_z$ for \thin{} (\thick{}).
 
 \subsubsection{Solar Height}
 Third, one must define the Sun's vertical distance from the Galactic midplane,
@@ -1307,7 +1308,7 @@ We plot the three orbits considered throughout the work
 \includegraphics[width=\textwidth]{fig/orbits.pdf}
 \end{center}
 \caption{The three orbits presented in Table~\ref{tab:orbits} and considered
-throughout the work. We plot the thin-disk, thick-disk, and halo orbits in the
+throughout the work. We plot \thin{}, \thick{}, and \halo{} in the
 left, center, and right columns, respectively. The upper row shows a plot of
 $x$ vs. $y$ while the lower row shows $R$ vs. $z$.}
 \label{fig:plot_orbits}
@@ -1346,7 +1347,7 @@ Averaging over the circle, we therefore have that,
 In Figure~\ref{fig:Jphi_JR_hist} we plot the distribution of $J_R$ as a
 function of orbital phase induced by an offset in $x$ and $z$ and the
 distribution of $J_{\phi}$ for an offset in $x$. We plot the distributions for
-the thick-disk (upper panels) and thin-disk (lower panels) orbits. We find that the $J_R$ distribution induced by an offset in $x$ more
+\thick{} (upper panels) and \thin{} (lower panels). We find that the $J_R$ distribution induced by an offset in $x$ more
 closely resembles a Gaussian, while the $J_R$ distribution induced by
 an offset in $z$ and the $J_{\phi}$ distribution induced by an offset
 in $x$ are both similar to the $J_z$ distribution induced by an
@@ -1356,8 +1357,8 @@ offset in $z$ (see Figure~\ref{fig:Jz_hist}).
 \begin{center}
 \includegraphics[width=7.10000594991in]{fig/schmactions_Jphi_JR_hist.pdf}
 \end{center}
-\caption{A histogram of the values computed for $J_R$ and $J_{\phi}$ for the
-thick-disk (upper panels) and thin-disk (lower panels). For $J_R$ we assume an
+\caption{A histogram of the values computed for $J_R$ and $J_{\phi}$ for
+\thick{} (upper panels) and \thin{} (lower panels). For $J_R$ we assume an
 $x$ offset (left) and $z$ offset (center) of $100\,\pc$, while for $J_{\phi}$
 we consider only an $x$ offset (right). In each panel the true value is given
 by a vertical dashed line. The induced error distribution in $J_R$ for an $x$

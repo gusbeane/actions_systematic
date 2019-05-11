@@ -4,14 +4,14 @@ import numpy as np
 Rsun = 8.2
 dR = 0.5
 dZ = 1.0
-maxT = 1E3
+maxT = 100
 
 def read_snap(gal):
     # takes in galaxy (string = m12i, m12f, m12m, etc.)
     # reads in and sets fiducial coordinates
     # returns snap
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
-    sim_directory = '/Users/abeane/scratch/actions_systematic/data/fire2/metaldiff/'+gal+'_res7100'
+    sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
     snap = gizmo.io.Read.read_snapshots(['gas'], 'index', 600,
                                         properties=['position',
                                                     'smooth.length', 'temperature'],
@@ -38,5 +38,5 @@ for gal in ['m12i', 'm12f', 'm12m']:
     Tbool = snap['gas']['temperature'] < maxT
 
     keys = np.where(np.logical_and(np.logical_and(rbool, zbool), Tbool))[0]
-    print(gal, 2.8 * np.median( snap['gas']['smooth.length'] ) /1000, ' kpc' )
+    print(gal, 2.8 * np.median( snap['gas']['smooth.length'][keys] ) /1000, ' kpc' )
 
