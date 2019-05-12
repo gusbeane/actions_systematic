@@ -25,13 +25,6 @@ tb_c = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f',
 xmin = 0
 xmax = 1000
 
-y0min = 20
-y0max = 40
-y1min = -1800
-y1max = -1000
-y2min = 10
-y2max = 30
-
 histmin = 15
 histmax = 30
 
@@ -64,6 +57,13 @@ init_pos = [8, 0, 0] * u.kpc
 init_vel = [0, -190, 50] * u.km/u.s
 init_vel_thin = [0, -190, 10] * u.km/u.s
 
+y0min = J0 - 9
+y0max = J0 + 9
+y1min = J1 - 50
+y1max = J1 + 50
+y2min = J2 - 9
+y2max = J2 + 9
+
 s = schmactions(init_pos, init_vel)
 sthin = schmactions(init_pos, init_vel_thin)
 
@@ -82,15 +82,18 @@ xtime_thin = sthin.extract_time(xout_thin)
 fig, ax = plt.subplots(2, 3, figsize=(textwidth, 4), sharex=True)
 
 for x,t,a in zip(ax, (ztime, xtime), (zact, xact)):
-    # get keys corresponding to 4 sigmaclip
-    k0, k1, k2 = sclip(a)
-    x[0].plot(t[k0], a[:,0][k0], c=tb_c[0])
-    x[1].plot(t[k1], a[:,1][k1], c=tb_c[0])
-    x[2].plot(t[k2], a[:,2][k2], c=tb_c[0])
+    # get keys corresponding to 2 sigmaclip
+    k0, k1, k2 = sclip(a, s=4)
 
-    x[0].plot(t, np.full(len(t), J0), c=tb_c[0], ls='dashed')
-    x[1].plot(t, np.full(len(t), J1), c=tb_c[0], ls='dashed')
-    x[2].plot(t, np.full(len(t), J2), c=tb_c[0], ls='dashed')
+    print('num excluded = ', len(t) - len(k0), len(t) - len(k1), len(t) - len(k2))
+
+    x[0].plot(t, np.full(len(t), J0), c=tb_c[-1], ls='dashed')
+    x[1].plot(t, np.full(len(t), J1), c=tb_c[-1], ls='dashed')
+    x[2].plot(t, np.full(len(t), J2), c=tb_c[-1], ls='dashed')
+
+    x[0].plot(t[k0], a[:,0][k0], c=tb_c[3])
+    x[1].plot(t[k1], a[:,1][k1], c=tb_c[3])
+    x[2].plot(t[k2], a[:,2][k2], c=tb_c[3])
 
     # set limits on plots
     x[0].set_ylim(y0min, y0max)
