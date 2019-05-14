@@ -259,6 +259,8 @@ uncertainty, especially in the vertical action $J_z$. A similar argument applies
 to any remaining uncertainty in measurements of the Galactocentric radius of the
 Sun and to variations in the LSR.
 
+%mm [the x-axis of this figure should be labeled orbital phase for
+%consistency with the text]
 \begin{figure*}[ht!]
 \begin{center}
 \includegraphics[width=\textwidth]{fig/cartoon.pdf}
@@ -311,10 +313,15 @@ coordinate system.
 \subsection{Effect of Midplane Offset} \label{ssec:cartoon}
 We present a cartoon approximation of an orbit in Figure~\ref{fig:cartoon} to
 show how an inaccurate or erroneous determination of the midplane leads to a
-phase-dependence of the actions calculated from a phase-space point and an
+%mm phase-dependence of the actions calculated from a phase-space
+%point and an
+   dependence on orbital phase of the value of the actions calculated
+   from a point in phase space and an
 assumed potential model. The $x$-axis corresponds to orbital phase and the
-$y$-axis to vertical height. The solid gray curve indicates the ``true'' orbit
-of the star; that is, as it oscillates around the true midplane.
+$y$-axis to vertical height. The solid gray curve indicates the 
+%mm ``true'' orbit of the star; that is, as it oscillates around the
+%true midplane.
+     true orbit of the star as it oscillates around the true midplane.
 
 The dashed gray line, offset from the true midplane, is the midplane location
 used by an observer to integrate the orbit of the star and estimate its actions.
@@ -331,8 +338,10 @@ system induces a phase-dependence in the actions estimated for the star, which
 in the correct potential (in this example, the one with the correct midplane)
 should be phase-independent.
 
-This example uses an offset in $z$, but one would expect an analogous effect
-from an offset in another coordinate, such as the distance to the Galactic
+This example uses an offset in $z$, but one 
+%mm would expect an analogous effect from an offset in another coordinate, 
+    analagous effects occur from offsets in other coordinates, 
+such as the distance to the Galactic
 center or the LSR. A similar effect in which actions gain time-dependence due to
 a time-varying potential was pointed out by \citet{2015A&A...584A.120B}.
 
@@ -367,14 +376,24 @@ z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$.
 
 Before turning to numerical methods, we derive analytic expressions for the
 systematic error in the actions induced from offsets in the position (e.g., the midplane or
-Galactic center distance) or velocity (e.g., the local standard of rest) of the assumed coordinate system's origin. We use the epicyclic approximation, which
+Galactic center distance) or velocity (e.g., the 
+%mm local standard of rest)
+     LSR) 
+of the assumed coordinate system's origin. We use the epicyclic approximation, which
 assumes that the motion in the $z$ and $R$ components of the orbit are
 decoupled and follow simple harmonic motion about a circular and planar
-``guiding orbit'' \citep[][Section~3.2 and references
-therein]{2008gady.book.....B}. We refer to the radius of this orbit (the
-``guiding radius'') as $R_g$. This approximation is an excellent description
+%mm ``guiding orbit''
+     guiding orbit 
+\citep[][Section~3.2 and references
+therein]{2008gady.book.....B}. We refer to the radius of this orbit
+%mm  (the``guiding radius'') as $R_g$. 
+     as the guiding radius $R_g$.
+This approximation is an excellent description
 of the thin disk and a good description of the thick disk in
-an axisymmetric potential, i.e., ignoring the influence of the Galactic bar and
+an axisymmetric potential
+%mm , i.e., ignoring 
+    that ignores
+the influence of the Galactic bar and
 spiral arms. We also make the assumption of a perfectly flat circular
 velocity curve with $v_c(R) = v_c$, a good approximation near the solar circle
 \citep[e.g.,][]{2017MNRAS.465...76M}.
@@ -391,8 +410,10 @@ z(t) &= A_z \sin{(\nu t + \beta)}
 \eeq
 where $\kappa$ and $\nu$ are the radial/epicyclic and vertical frequencies, $\Omega_c
 \equiv v_c/R_g$ is the orbital frequency of the guiding center, $A_z$ and $A_R$ are the amplitudes in the vertical and radial coordinates, and $\alpha$ and
-$\beta$ are arbitrary phases. Similarly, the velocities of the orbit are
-given by:
+$\beta$ are 
+%mm arbitrary phases
+    the initial orbital phases at $t = 0$.
+Similarly, the velocities of the orbit are given by:
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
 v_{\phi}(t) &= v_c \\
@@ -402,16 +423,22 @@ v_z(t) &= \nu A_z \cos{(\nu t + \beta)}
 \end{split}
 \eeq
 
-In this case, we have that for $J_{\phi}$
+In this case, 
+%mm we have that for $J_{\phi}$
+    the azimuthal action is
 \citep[][Section~3.5.3b]{2008gady.book.....B}:
 \beq\label{eq:Jphi_epi}
 J_{\phi} = R_g v_c\text{,}
 \eeq
-and for $J_R$ and $J_z$:
+and
+%mm for $J_R$ and $J_z$:
+    the radial and vertical actions are
 \beq\label{eq:JR_Jz_epi}
 \begin{split}
-J_R &= \frac{E_R}{\kappa} \\
-J_z &= \frac{E_z}{\nu} \text{,}
+J_R &= %mm \frac{E_R}{\kappa} \\
+            E_R/\kappa \\
+J_z &= %mm \frac{E_z}{\nu}  \text{,}
+            E_z / \nu, 
 \end{split}
 \eeq
 where $E_R$ and $E_z$ are the energy per unit mass in the radial and vertical
@@ -486,8 +513,10 @@ actions we use the torus-mapping technique first presented by
 calculate actions for an orbital time-series starting from a phase-space
 position $(x, v)$ and integrated in a potential $\Phi$. For our Galactic potential we use \texttt{MWPotential}, based on the Milky Way
 potential available in \texttt{galpy} \citep{2015ApJS..216...29B}, which includes a Hernquist bulge and nucleus \citep{1990ApJ...356..359H},
-a Miyamoto--Nagai disk \citep{1975PASJ...27..533M}, and an NFW halo
-\citep{1997ApJ...490..493N}, and is fit to empirically match some
+a Miyamoto--Nagai disk \citep{1975PASJ...27..533M}, and 
+%mm an NFW halo \citep{1997ApJ...490..493N},
+    a Navarro, Frenk, \& White \citeyear{1997ApJ...490..493N} halo,
+and is fit to empirically match some
 observations.
 We use the Dormand-Prince 8(5,3) integration scheme
 \citep{Dormand80:integrator} with a timestep of $1\,\Myr$ and integrate for
