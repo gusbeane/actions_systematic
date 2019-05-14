@@ -19,7 +19,8 @@
 \newcommand{\kpc}{\text{kpc}}
 \newcommand{\Myr}{\text{Myr}}
 \newcommand{\Gyr}{\text{Gyr}}
-\newcommand{\kms}{\text{km}/\text{s}}
+%mm  \newcommand{\kms}{\text{km}/\text{s}}
+         \newcommand{\kms}{\text{km} \text{s}^{-1}}
 \newcommand{\actunit}{\text{kpc}\,\kms}
 
 \newcommand{\unit}[2]{\ensuremath{\textrm{#1}^{\mathrm{#2}}}}
@@ -577,7 +578,10 @@ panel) and \thin{} (bottom panel) assuming a $z$ offset of
 $100\,\pc$. One can see that if the observed $z$ values have a bias (from, e.g.,
 an incorrectly computed midplane), then the induced error distribution in
 $J_z$ is decidedly non-Gaussian. Therefore, any sort of error propagation must
-take this into account. Intuition for the shape of each panel is given in the
+take this into account. 
+%mm Intuition 
+    A heuristic explanation
+for the shape of each panel is given in the
 text. We also plot one half the 95th percentile minus the 5th
 percentile of each distribution as a horizontal arrow anchored on the true
 $J_z$ value. We call this $\Delta J_z$ and will use it (along with the
@@ -612,13 +616,18 @@ coordinate system of the true potential, but erroneously thinking they are
 located at $(8, 0, 0.1)\,\kpc$.
 
 We consider the observer making a measurement, integrating an orbit, and
-computing actions every $\Myr$ using the prescription above. However, we
+computing actions every 
+%mm $\Myr$
+    megayear 
+using the prescription above. However, we
 specify the star's starting position using the systematically offset
 coordinate system.
 Essentially we are shifting and then reintegrating at each point along the original orbit.
 The actions computed using the offset coordinate system
-for each phase-space starting point are shown for the first $\Gyr$ of the
-orbit in the upper panels of
+for each phase-space starting point are shown for the first 
+%mm $\Gyr$
+  gigayear 
+of the orbit in the upper panels of
 Figure~\ref{fig:one_orbit_wrong_ref}.\footnote{Occasionally the numerical
 scheme fails and very large actions are reported by \texttt{gala}---we perform
 a $5\sigma$ clip on each action to exclude such orbits, but this only excludes
@@ -632,10 +641,12 @@ component offset of $100\,\pc$, i.e., subtracting the vector $(100, 0,
 Sun to the Galactic center.
 
 Figure~\ref{fig:one_orbit_wrong_ref} shows that the actions computed in the
-offset coordinate systems oscillates as a function of the time/orbital phase at which the
+offset coordinate systems oscillate
+%mm s 
+as a function of the time/orbital phase at which the
 star's phase-space position is observed.
 This time dependence comes even though
-the observer is using the correctly constructed best-fit static, axisymmetric
+the observer is using the correctly constructed, best-fit, static, axisymmetric
 potential. The relative size of the phase variation in each action depends on
 the direction of the systematic offset as well as the true values of the
 actions (i.e. the type of orbit). In reality, we will have one measurement of
@@ -705,7 +716,10 @@ epicyclic approximation is not a good description for any orbit.}
 \label{fig:many_orbit_wrong_ref}
 \end{figure*}
 
-We now describe the intuition behind the shape of Figure~\ref{fig:Jz_hist}.
+We now 
+%mm describe the intuition behind 
+    suggest a heuristic explanation for
+the shape of Figure~\ref{fig:Jz_hist}.
 Consider first the \thick{} (top panel), where the offset in $z$ is
 much less than $z_{\text{max}}$ of the orbit. The peaks in the distribution
 correspond to the turning points of the orbit (or points of maximum vertical
@@ -722,8 +736,12 @@ the density cannot become negative but it can grow arbitrarily large.}
 Gaussian summary statistics are clearly insufficient to describe the distribution shown in
 Figure~\ref{fig:Jz_hist}. We therefore elect to measure this error by computing one
 half the 95th percentile minus the 5th percentile of the distribution
-of action values. We plot this quantity, which we refer to as $\Delta J_i$ for each action, in Figure~\ref{fig:Jz_hist} as a
-horizontal arrow anchored on the true action value. Because of the bimodality
+of action values. We plot this quantity
+%mm
+     in Figure~\ref{fig:Jz_hist}, 
+which we refer to as $\Delta J_i$ for each action, 
+%mm in Figure~\ref{fig:Jz_hist} 
+as a horizontal arrow anchored on the true action value. Because of the bimodality
 of the error distribution, this quantity roughly measures the distance from
 the true action value to the peak of one of the modes. Furthermore, this
 bimodality also implies that $\Delta J_i$ is not very sensitive to the exact
