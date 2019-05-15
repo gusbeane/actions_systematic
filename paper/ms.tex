@@ -21,7 +21,7 @@
 \newcommand{\Myr}{\text{Myr}}
 \newcommand{\Gyr}{\text{Gyr}}
 %mm  \newcommand{\kms}{\text{km}/\text{s}}
-         \newcommand{\kms}{\text{km} \text{s}^{-1}}
+         \newcommand{\kms}{\text{km}\,\text{s}^{-1}}
 \newcommand{\actunit}{\text{kpc}\,\kms}
 
 \newcommand{\unit}[2]{\ensuremath{\textrm{#1}^{\mathrm{#2}}}}
@@ -859,7 +859,9 @@ Equation~\eqref{eq:Ji_err_mosttime} as dashed lines for each $z$ offset. We
 find that the epicyclic approximation matches the numerical estimate quite
 well.
 
-\section{Coordinate System Offsets from Azimuthal Midplane Variations}
+\section{
+%mm Coordinate System Offsets from Azimuthal 
+Midplane Variations}
 \label{sec:local_fire}
 
 The stellar midplane of the Galaxy should vary as a function of azimuth and
@@ -904,10 +906,14 @@ we focus on the three Milky Way-mass zoom-ins considered in
 \citet{2018arXiv180610564S}, which were simulated as part of the
 \textit{Latte} suite and show broad agreement of many of their global
 properties with observations of the Milky Way \citep{2016ApJ...827L..23W,
-2018MNRAS.481.4133G}. The $\z = 0$ snapshots\footnote{In this work, to avoid
-confusion with the vertical height $z$, we refer to cosmological redshift as
-$\z$.} of these three simulations, named \mi{}, \mf{}, and \mm{} for
-shorthand, are publicly available alongside associated mock \textit{Gaia} DR2
+2018MNRAS.481.4133G}. The 
+%mm $\z = 0$ snapshots\footnote{In this work, to avoid
+%confusion with the vertical height $z$, we refer to cosmological redshift as
+%$\z$.} of these three simulations, 
+      The snapshots of these three simulations at cosmological redshift $\z = 0$,
+named \mi{}, \mf{}, and \mm{},
+%mm for shorthand, 
+are publicly available alongside associated mock \textit{Gaia} DR2
 catalogues generated from them.\footnote{\url{http://ananke.hub.yt}}
 
 \begin{deluxetable*}{cCCCCC}[htb!]
@@ -961,18 +967,28 @@ especially the cold gas. Indeed, the stellar scale heights of the simulated
 galaxies are equal to or larger than the Milky Way's while the gas scale
 heights are significantly larger (although the proper basis comparison is less
 clear in the case of the gas; the quoted value for the Milky Way comes from
-studies of high-mass star-forming regions). As noted above, the midplanes
-defined by gas and stars can be tilted with respect to one another as well,
+studies of high-mass star-forming regions). 
+%mm As noted above, the  [not sure it has been?]
+     The 
+midplanes defined by gas and stars can be tilted with respect to one another as well,
 precluding extending the precision of the gas midplane definition to the
 stellar component.
 
 Cosmological simulations of Milky Way-mass galaxies are not perfect
-representations of the true Milky Way in other ways as well,\footnote{The
-failure of cosmological simulations to exactly reproduce the Milky Way is not necessarily due to limitations of the numerical model. Candidate Milky Way-like
-galaxies are chosen solely on their mass and isolation, for which there are a
-wide variety of possible galaxies with qualitatively different properties.} as
-discussed in \citet{2018arXiv180610564S}. For instance, the velocity structure
-of \mi{} is closer to M31's than the Milky Way's (S. Loebman et al., in preparation).
+representations of the true Milky Way in other ways as well,
+%mm [This looks like text, not footnote] \footnote{
+       as discussed in \citet{2018arXiv180610564S}.
+The failure of cosmological simulations to exactly reproduce the Milky
+Way is not necessarily due to limitations of the numerical
+model. Candidate Milky Way-like galaxies are chosen solely on their
+mass and isolation, for which there are a wide variety of possible galaxies with qualitatively different
+properties. 
+%mm }  as discussed in \citet{2018arXiv180610564S}. For instance, 
+       For example,
+the velocity structure of \mi{} is closer to M31's than the Milky
+Way's (S. Loebman et al., in preparation). 
+
+%mm [inserted para break]
 However, in this work we are most interested in the global properties of the
 potential, and specifically in deviations from axisymmetry. From this
 perspective, the simulated galaxies are actually \emph{more} axisymmetric than
@@ -996,43 +1012,79 @@ radius $R_{0} = 8.2\,\kpc$, such that the disk plane is the $x$--$y$ plane.
 In addition to the cosmological zoom-ins, we will also briefly consider
 results from a live N-body simulation of a Sagittarius-like encounter. This
 simulation offers us the ability to see how the midplane varies in a more
-controlled environment. The details of the simulation are given in
+controlled environment. The 
+%mm details of the simulation are given in
+     simulation is described by
 \citet{2018MNRAS.481..286L}, but we briefly summarize the most relevant
 details here.
 
 For the Milky Way, the dark halo is modeled as a Hernquist
-sphere of mass $10^{12}\,\Msun$ and scale length of $52\,\kpc$, the disk
+sphere of mass $10^{12}\,\Msun$ and scale length of $52\,\kpc$, the
+disk
+%mm
+    is
 modeled as an exponential disk with a scale radius of $3.5\,\kpc$, scale
 height $0.53\,\kpc$, and mass $6\times10^{10}\,\Msun$, and a Hernquist bulge
 of mass $10^{10}\,\Msun$ and scale length $0.7\,\kpc$
-\citep{1990ApJ...356..359H}. We use the L2 model, for which Sagittarius is
+\citep{1990ApJ...356..359H}
+%mm
+     is included.
+%mm We use the L2 model, for which Sagittarius is
+     The Sagittarius dwarf is
 modeled with two components: a dark matter Hernquist sphere of mass $8\times10^{10}\,\Msun$ and
 scale length $8\,\kpc$, and a stellar component modeled as a Hernquist
 sphere of mass $6.4\times10^8\,\Msun$ and scale length $0.85\,\kpc$. All
-components are realized with live distributions of N-body particles; the Milky
-Way and Sagittarius are each initialized to be in equilibrium in isolation.
-
-The mass resolution of the simulation is $2.6\times10^4$, $1.2\times10^4$, and
-$1.0\times10^4\,\Msun$ for the dark matter, disk, and bulge components,
+components are realized with 
+%mm live distributions of 
+    distributions of live
+N-body particles; the Milky Way and Sagittarius are each initialized
+to be in equilibrium in isolation. 
+ 
+The mass resolution of the simulation is 
+%mm $2.6\times10^4$, $1.2\times10^4$, 
+       $2.6\times10^4\,\Msun$, $1.2\times10^4\,\Msun$, 
+and $1.0\times10^4\,\Msun$ for the dark matter, disk, and bulge components,
 respectively. For the disk and bulge components, a softening length of
 $30\,\pc$ is used whereas for the halo a softening length of $60\,\pc$ is
-used. For Sagittarius, the softening length for the dark matter and the stars
-is $60$ and $40\,\pc$, respectively.
+used. For Sagittarius, the softening length for the dark matter and
+the stars is 
+%mm $60$
+     $60\,\pc$ 
+and $40\,\pc$, respectively.
 
 The fiducial coordinate system for these N-body simulations is the rest frame
 of the aligned host galaxy at the beginning of the simulation.
 
 \subsection{The Local Midplane} \label{ssec:local_midplane}
-Using the two sets of simulations, we determine the local midplane that an
-observer might measure if they were situated in each of these galaxies as a
-function of azimuth at the solar circle. Starting from the coordinate system
-described in the previous section, which is approximately aligned so that the
+Using the two sets of simulations, we determine the local midplane
+%mm 
+       as a function of azimuth at the solar circle
+that an observer might measure if they were situated in each of these
+galaxies% 
+%mm as a function of azimuth at the solar circle
+. Starting from the coordinate system
+described in the previous section, which is 
+approximately 
+%mm
+    \MM{[isn't this by definition, at least on average, not
+      approximate?]} 
+aligned so that the
 $z$-coordinate is perpendicular to the disk plane, we place our imaginary
 observer at $z=0$ and a galactocentric cylindrical radius of $8.2\,\kpc$ and
-vary the azimuth between $0<\phi<2\pi$. We consider $50$ equally spaced bins in azimuth, a sufficient number
-such that each cylinder shares no stars with its neighboring cylinder. At each value of $\phi$ we then
-compute the median $z$ for stars within a cylinder of radius $0.5\,\kpc$ and
-height $1\,\kpc$ perpendicular to the fiducial disk. We then re-define the new
+vary the azimuth between $0<\phi<2\pi$. 
+%mm [this was written backwards.  Reordered.] 
+%We consider $50$ equally spaced bins in azimuth, a sufficient number
+%such that each cylinder shares no stars with its neighboring
+%cylinder. 
+At 
+%mm each value of 
+    equally spaced values of 
+$\phi$ we then compute the median $z$ for stars within a cylinder of radius $0.5\,\kpc$ and
+height $1\,\kpc$ perpendicular to the fiducial disk  
+%mm .
+     and centered on it. We choose to use 50 values, sufficiently few that no cylinder shares stars
+     with its neighbors.
+We then re-define the new
 midplane of the cylinder to be the median $z$, re-select stars, and iterate
 until the median $z$ value converges. We find that only $10$ iterations of
 this procedure are necessary for convergence. The resulting median $z$ is
@@ -1047,11 +1099,14 @@ each $\phi$.
 ($R_0 = 8.2\,\kpc$) for the three FIRE galaxies \mi{}, \mf{}, and \mm{} (left,
 center, and right panels) as a function of azimuthal angle, at cosmological redshift $\z =0$. The local midplane is determined at
 a position $\phi$ by taking the median height of all stars within
-$R=0.5\,\kpc$ and $z=1\,\kpc$ (in cylindrical coordinates). The procedure is
-performed again using the new height $10$ times to converge on the local
-midplane height. In order to allow for the possibility that the fiducial
+$R=0.5\,\kpc$ and $z=1\,\kpc$ (in cylindrical coordinates). 
+%mm [redundant with text] The procedure is performed again using the new height $10$ times
+%to converge on the local midplane height. 
+In order to allow for the possibility that the fiducial
 galactocentric coordinate system is incorrect, we subtract the best fit
-$A\sin{(\phi+B)}+C$ curve from each panel. We then bootstrap resample $1000$ times to determine
+%mm $A\sin{(\phi+B)}+C$ 
+     sine
+curve from each panel. We then bootstrap resample $1000$ times to determine
 $1\,\sigma $ error bars, which we report as dashed lines.}
 \label{fig:midplane}
 \end{figure*}
@@ -1063,7 +1118,10 @@ $1\,\sigma $ error bars, which we report as dashed lines.}
 \caption{The local midplane determined at the fiducial solar circle
 ($R_0 = 8.2\,\kpc$) for four different time steps from live N-body simulations of a
 Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
-before, we have subtracted the best fit $A\sin{(\phi+B)}+C$ curve to account
+before, we have subtracted the best fit 
+%mm $A\sin{(\phi+B)}+C$ 
+     sine
+curve to account
 for inaccuracies in the galactocentric coordinate system. Error bars are
 calculated as in Figure~\ref{fig:midplane}. The upper panels
 show the midplane as a function of azimuth before the first encounter near the
@@ -1085,17 +1143,35 @@ times and determine the $1\,\sigma$ error bars by repeating the midplane
 determination with that reselection.
 
 To allow for potential small inaccuracies in the determination of the original
-fiducial coordinate system, we also subtract the best fit $\text{A}
-\sin{\left(\phi + \text{B}\right)} + \text{C}$ curve from the midplane as a
+fiducial coordinate system, we also subtract the best fit 
+%mm \text{A} \sin{\left(\phi + \text{B}\right)} + \text{C}\eeq curve
+    curve of the form 
+    \beq A \sin{\left(\phi + B\right)} + C \label{eq:fit-curve}\eeq 
+from the midplane as a
 function of azimuth to account for an overall tilt of the midplane (a
 simplified version of the strategy described in
-\citealt{2019ApJ...871..145A}). For $\text{A}$, the values are $-165$, $45$,
-and $8.8\,\pc$, for $\text{B}$ the values are $0.67$, $-0.088$, and
-$0.031\,\text{rad}$ and for $\text{C}$ the values are $-69$, $19$, and
-$-18\,\pc$ for \mi{}, \mf{}, and \mm{}, respectively. For the assumed Solar
-radius of $8.2\,\kpc$, we can approximate the angle offset for the $z$-axis
-from the values of $\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$
-for \mi{}, \mf{}, and \mm{}. These angle offsets are consistent with the
+\citealt{2019ApJ...871..145A}). 
+%mm [perhaps this would be better presented as a table] For
+%$\text{A}$, the values are $-165$, $45$, and $8.8\,\pc$, for
+%$\text{B}$ the values are $0.67$, $-0.088$, and $0.031\,\text{rad}$
+%and for $\text{C}$ the values are $-69$, $19$, and $-18\,\pc$ for
+%\mi{}, \mf{}, and \mm{}, respectively. 
+    For models (\mi{}, \mf{}, \mm{}) the best fit values are $A =
+    (-165, 45, 8.8)\,\pc$, $B = (0.67, -0.088, 0.031)\,\text{rad}$,
+    and $C = (-69, 19, -18)\,\pc$.
+For the assumed Solar radius of $8.2\,\kpc$, we can approximate the
+angle offset 
+%mm 
+    $\Delta \theta$ 
+for the $z$-axis from the values of 
+%mm [change to rad for consistency with B.   Note that you did not
+%give two significant figures of accuracy for the last value.
+%Strictly speaking should be corrected, though this is pretty minor.]
+%$\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$ for \mi{},
+%\mf{}, and \mm{}.  
+      $A$. We find for the same models $\Delta \theta = (0.020, 5.4
+      \times 10^{-3}, 1.0 \times 10^{-3})\,\text{rad}$.
+These angle offsets are consistent with the
 values given in \citet{2018arXiv180610564S} for the difference between the
 $z$-axis as defined by the gas and stars.
 
@@ -1105,7 +1181,9 @@ each galaxy, using their local solar neighborhood (the cylinder defined
 above). The
 $1\,\sigma$ error from the bootstrap procedure is shown as the dashed-line
 error bars. The middle $90\%$ of midplane values across the solar circle spans
-$185$, $162$, $84\,\pc$ for \mi{}, \mf{}, and \mm{}. In two of the three cases
+%$185$, $162$, $84\,\pc$ for \mi{}, \mf{}, and \mm{}. 
+    $(1.9 \times 10^2, 1.6 \times 10^2, 84)\,\pc$ for these models.
+In two of the three cases
 the midplane therefore varies by more than $\pm 100\,\pc$ depending on the
 azimuth along the solar circle; in the third (\mm{}, which has the thinnest
 ``thin disk'' of stars, but the largest stellar mass) the variation is closer
@@ -1114,11 +1192,22 @@ to~$\pm 50\,\pc$.
 We compute the same midplane variation in Figure~\ref{fig:midplane_chervin},
 but for four succcessive timesteps of the live N-body simulation of a
 Sagittarius encounter \citep{2018MNRAS.481..286L}. Again we have subtracted a
-best fit curve of the form $\text{A} \sin{\left(\phi + \text{B}\right)} +
-\text{C}$, with the values for $\text{A}$ being $9.5$, $2.5$, $-212$, and
-$-394\,\pc$, for $\text{B}$ being $0.0013$, $0.0007$, $-0.63$, and
-$-1.00\,\text{rad}$ and $\text{C}$ being $2.6$, $-7.8$, $-65$, and $-53\,\pc$
-chronologically for each of the four timesteps shown. The middle $90\%$ of midplane values across the solar circle spans $49$, $62$, $137$, and $119\,\pc$, for each timestep.
+best fit curve of the form 
+%mm [again, you are missing significant digits in B: always report the
+%same number. When you gave 3 I cut back to two, but I can't fill in when
+%you only give one.] $\text{A} \sin{\left(\phi + \text{B}\right)} +
+%\text{C}$, with the values for $\text{A}$ being $9.5$, $2.5$, $-212$, and
+%$-394\,\pc$, for $\text{B}$ being $0.0013$, $0.0007$, $-0.63$, and
+%$-1.00\,\text{rad}$ and $\text{C}$ being $2.6$, $-7.8$, $-65$, and
+%$-53\,\pc$ chronologically for each of the four timesteps shown. 
+    given in Equation~(\ref{eq:fit-curve}), with the values at times
+    $(2, 4, 6, 6.9)\,\Gyr$ being $A = (9.5, 2.5, -2.1 \times 10^2,
+    -3.9 \times 10^2)\,\pc$, $B
+    = (1.3 \times 10^{-3}, 7 \times 10^{-4}, -0.63,
+    -1.0)\,\text{rad}$, and $C = (2.6,-7.8, -65, -53)\,\pc$.
+The middle $90\%$ of midplane values across the solar circle spans 
+%mm $49$, $62$, $137$, and $119\,\pc$, for each timestep.
+       $(49, 62, 1.4 \times 10^2, 1.2 \times 10^2)\,\pc$.
 
 These values for the midplane variation are consistent with the azimuthal
 midplane variations seen by \citet{2013MNRAS.429..159G}. However, they only
@@ -1148,11 +1237,15 @@ maximum amplitude in $R$ or $z$ (where the majority of the orbit is, see
 Section~\ref{ssec:epi_action}), we defer this calculation to future work.
 
 \section{Discussion} \label{sec:discussion}
-We have used high-resolution simulations to illustrate that we expect the
-local midplane defined by stellar density to vary with azimuth by up to $\pm
+We have used high-resolution simulations to illustrate 
+%mm that 
+    why
+we expect the local midplane defined by stellar density to vary with azimuth by up to $\pm
 100$ pc, as a natural consequence of the non-axisymmetry of the Galactic disk
 at small scales. While this is not in itself surprising or new, we have also
-discussed that the discrepancy between our local midplane and that of distant
+%mm discussed [shown?]
+    argued
+that the discrepancy between our local midplane and that of distant
 stars introduces a systematic error in the $z$ component when converting from
 heliocentric to Galactocentric coordinates. This systematic error introduces a
 non-Gaussian error in the vertical action, $J_z$, when starting from the
