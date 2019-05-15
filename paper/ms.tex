@@ -13,6 +13,7 @@
 \usepackage{scrextend}
 
 \newcommand{\Gus}[1]{\textcolor{red}{#1}}
+\newcommand{\MM}[1]{\textcolor{blue}{#1}}   %mm  Mordecai
 
 \newcommand{\Msun}{\ensuremath{\text{M}_\odot}}
 \newcommand{\pc}{\text{pc}}
@@ -770,7 +771,13 @@ integration and action calculation methods we use.
 
 The upper right panel of Figure~\ref{fig:many_orbit_wrong_ref} shows that the
 fractional error in $J_z$ is more exaggerated for more planar (disk-like)
-orbits. For \thin{} (\thick{}), a systematic offset of $15\,\pc$ ($120\,\pc$) in the $z$-coordinate results in a $25\%$ deviation in $J_z$.
+orbits. For \thin{}, 
+%mm (\thick{}), 
+a systematic offset of $15\,\pc$
+%mm ($120\,\pc$)
+in the $z$-coordinate results in a $25\%$ deviation in $J_z$,
+%mm
+     while a $120\,\pc$ offset results in the same deviation for \thick{}.
 We find that \halo{} is relatively resistant to errors in the midplane, with
 only $\sim15\%$ error in $J_z$ out to an offset of $500\,\pc$.
 
@@ -783,7 +790,10 @@ In each panel of Figure~\ref{fig:many_orbit_wrong_ref}, where relevant, we
 include the estimation of the action errors derived under the epicyclic
 approximation from Equation~\eqref{eq:Ji_err_mosttime}, with $\Delta
 v_{\phi}=0$, as dashed lines in the color of each orbit. This equation is
-relevant since during most of the orbit the star will be at maximum radial and
+relevant since during most of the orbit the star will be 
+%mm at 
+    close to 
+maximum radial and
 vertical amplitude. Note that we
 consider an error in the $x$-coordinate $\Delta x$, which is not exactly the
 same as $\Delta R$. For observations of stars close to us, we have that
@@ -819,12 +829,29 @@ excellent agreement with the numerically computed values.}
 \end{figure}
 
 To further understand the effect of the midplane error, we also plot the
-fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of $10, 50,
+fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of 
+%mm $10, 50,
+     10, 50, and $
 100\,\pc$ (orange, teal, and green, respectively) in
-Figure~\ref{fig:dJz_fun_Jz}. For each orbit, we set the initial position to be
+Figure~\ref{fig:dJz_fun_Jz}. 
+For each orbit, we set the initial position to be
 $(8,0,0)\,\kpc$ and the initial velocity to be $(0, -190, v_z)\,\kms$, where
-we vary $v_z$.\footnote{\label{note:vz_orbits}One can recover \thin{}, \thick{}, and \halo{} by setting $v_z=10$, $50$, and $190$, respectively (see Table~\ref{tab:orbits}).} For a \thin{}-like orbit ($J_z\sim0.5\,\actunit$), even a
-$10\,\pc$ offset in $z$ is enough to induce a $\sim25\%$ error in $J_z$. For
+we vary $v_z$.\footnote{\label{note:vz_orbits}One can recover \thin{},
+  \thick{}, and \halo{} by setting $v_z=10$, $50$, and $190
+%mm
+     \kms$,
+ respectively, 
+%mm [one significant figure values]
+      giving $J_z \simeq 0.7, 20,$ and $500\,\actunit$  
+(see Table~\ref{tab:orbits}).} For a \thin{}-like orbit ($J_z\sim
+%mm 0.5
+         0.7%
+\,\actunit$), 
+even a
+$10\,\pc$ offset in $z$ is enough to induce a 
+%mm $\sim25\%$ 
+         $\sim20\%$ 
+error in $J_z$. For
 larger values of $J_z$, the fractional errors are suppressed, but the induced
 error can still be large depending on how great the $z$ offset is. We also
 plot the epicylic prediction for $\Delta J_z / J_z$ from
