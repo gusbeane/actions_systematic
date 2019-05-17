@@ -4,15 +4,11 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
 
-from pykdgrav import ConstructKDTree, GetAccelParallel
 from astropy.constants import G as G_astropy
-from scipy.optimize import root_scalar
 import astropy.units as u
 
 import sys
-import itertools
 from joblib import Parallel, delayed
-import multiprocessing
 
 from matplotlib import rc
 import matplotlib as mpl
@@ -42,12 +38,12 @@ def read_snap(gal):
     # reads in and sets fiducial coordinates
     # returns snap
     gal_info = 'fiducial_coord/' + gal + '_res7100_center.txt'
-    sim_directory = '/mnt/ceph/users/firesims/fire2/metaldiff/'+gal+'_res7100'
-    snap = gizmo.io.Read.read_snapshots(['star', 'gas', 'dark'], 'index', 600,
+    root = '/mnt/ceph/users/firesims/fire2/metaldiff/'
+    #root = '/Users/abeane/scratch/actions_systematic/data/fire2/metaldiff/'
+    sim_directory = root + gal + '_res7100'
+    snap = gizmo.io.Read.read_snapshots(['star'], 'index', 600,
                                         properties=['position', 'id',
-                                                    'mass', 'velocity',
-                                                    'form.scalefactor',
-                                                    'smooth.length'],
+                                                    'mass', 'velocity'],
                                         assign_center=False,
                                         simulation_directory=sim_directory)
     ref = np.genfromtxt(gal_info, comments='#', delimiter=',')
@@ -155,7 +151,8 @@ def main(gal):
     np.save('output/out_'+gal+'.npy', out)
 
 if __name__ == '__main__':
-    glist = ['m12i', 'm12f', 'm12m']
+    # glist = ['m12i', 'm12f', 'm12m']
+    glist = ['m12m']
     for gal in glist:
         main(gal)
 
