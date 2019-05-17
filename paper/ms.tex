@@ -340,7 +340,7 @@ system induces a phase-dependence in the actions estimated for the star, which
 in the correct potential (in this example, the one with the correct midplane)
 should be phase-independent.
 
-This example uses an offset in $z$, but one 
+This example uses an offset in $z$, but 
 %mm would expect an analogous effect from an offset in another coordinate, 
     analagous effects occur from offsets in other coordinates, 
 such as the distance to the Galactic
@@ -414,7 +414,7 @@ where $\kappa$ and $\nu$ are the radial/epicyclic and vertical frequencies, $\Om
 \equiv v_c/R_g$ is the orbital frequency of the guiding center, $A_z$ and $A_R$ are the amplitudes in the vertical and radial coordinates, and $\alpha$ and
 $\beta$ are 
 %mm arbitrary phases
-    the initial orbital phases at $t = 0$.
+    the initial orbital phases.
 Similarly, the velocities of the orbit are given by:
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
@@ -737,12 +737,8 @@ the density cannot become negative but it can grow arbitrarily large.}
 Gaussian summary statistics are clearly insufficient to describe the distribution shown in
 Figure~\ref{fig:Jz_hist}. We therefore elect to measure this error by computing one
 half the 95th percentile minus the 5th percentile of the distribution
-of action values. We plot this quantity
-%mm
-     in Figure~\ref{fig:Jz_hist}, 
-which we refer to as $\Delta J_i$ for each action, 
-%mm in Figure~\ref{fig:Jz_hist} 
-as a horizontal arrow anchored on the true action value. Because of the bimodality
+of action values. We refer to this quantity as $\Delta J_i$ for each action and plot it in Figure~\ref{fig:Jz_hist} as a horizontal arrow anchored on the true action value.
+ Because of the bimodality
 of the error distribution, this quantity roughly measures the distance from
 the true action value to the peak of one of the modes. Furthermore, this
 bimodality also implies that $\Delta J_i$ is not very sensitive to the exact
@@ -817,7 +813,7 @@ for all orbits.
 \caption{The fractional error in $J_z$ as a function of $J_z$ for a few
 different offsets in $z$. All orbits have the same initial position of $(8, 0,
 0)\,\kpc$ and velocity $(0, -190, v_z)\,\kms$, where we vary $v_z$.\footref{note:vz_orbits} We show
-this for a $z$ offset of $10, 50, 100\,\pc$ (orange, teal, and green,
+this for a $z$ offset of $10$, $50$, and $100\,\pc$ (orange, teal, and green,
 respectively). As before, the error ($\Delta J_z$) is one half the 95th
 minus 5th percentile of the distribution of $J_z$ values over the
 course of the orbit. There are large errors for \thin{}-like orbits ($J_z
@@ -831,15 +827,13 @@ excellent agreement with the numerically computed values.}
 To further understand the effect of the midplane error, we also plot the
 fractional error in $J_z$ as a function of $J_z$ for $z$ offsets of 
 %mm $10, 50,
-     10, 50, and $
+     $10$, $50$, and $
 100\,\pc$ (orange, teal, and green, respectively) in
 Figure~\ref{fig:dJz_fun_Jz}. 
 For each orbit, we set the initial position to be
 $(8,0,0)\,\kpc$ and the initial velocity to be $(0, -190, v_z)\,\kms$, where
 we vary $v_z$.\footnote{\label{note:vz_orbits}One can recover \thin{},
-  \thick{}, and \halo{} by setting $v_z=10$, $50$, and $190
-%mm
-     \kms$,
+  \thick{}, and \halo{} by setting $v_z=10$, $50$, and $190$,
  respectively, 
 %mm [one significant figure values]
       giving $J_z \simeq 0.7, 20,$ and $500\,\actunit$  
@@ -861,7 +855,7 @@ well.
 
 \section{
 %mm Coordinate System Offsets from Azimuthal 
-Midplane Variations}
+Azimuthal Midplane Variations}
 \label{sec:local_fire}
 
 The stellar midplane of the Galaxy should vary as a function of azimuth and
@@ -907,9 +901,9 @@ we focus on the three Milky Way-mass zoom-ins considered in
 \textit{Latte} suite and show broad agreement of many of their global
 properties with observations of the Milky Way \citep{2016ApJ...827L..23W,
 2018MNRAS.481.4133G}. The 
-%mm $\z = 0$ snapshots\footnote{In this work, to avoid
-%confusion with the vertical height $z$, we refer to cosmological redshift as
-%$\z$.} of these three simulations, 
+$\z = 0$ snapshots\footnote{In this work, to avoid
+confusion with the vertical height $z$, we refer to cosmological redshift as
+$\z$.} of these three simulations, 
       The snapshots of these three simulations at cosmological redshift $\z = 0$,
 named \mi{}, \mf{}, and \mm{},
 %mm for shorthand, 
@@ -1042,14 +1036,13 @@ to be in equilibrium in isolation.
  
 The mass resolution of the simulation is 
 %mm $2.6\times10^4$, $1.2\times10^4$, 
-       $2.6\times10^4\,\Msun$, $1.2\times10^4\,\Msun$, 
+       $2.6\times10^4$, $1.2\times10^4$, 
 and $1.0\times10^4\,\Msun$ for the dark matter, disk, and bulge components,
 respectively. For the disk and bulge components, a softening length of
 $30\,\pc$ is used whereas for the halo a softening length of $60\,\pc$ is
 used. For Sagittarius, the softening length for the dark matter and
 the stars is 
-%mm $60$
-     $60\,\pc$ 
+     $60$ 
 and $40\,\pc$, respectively.
 
 The fiducial coordinate system for these N-body simulations is the rest frame
@@ -1065,11 +1058,8 @@ galaxies%
 . Starting from the coordinate system
 described in the previous section, which is 
 approximately 
-%mm
-    \MM{[isn't this by definition, at least on average, not
-      approximate?]} 
 aligned so that the
-$z$-coordinate is perpendicular to the disk plane, we place our imaginary
+$z$-coordinate is perpendicular to the disk plane at the solar circle, we place our imaginary
 observer at $z=0$ and a galactocentric cylindrical radius of $8.2\,\kpc$ and
 vary the azimuth between $0<\phi<2\pi$. 
 %mm [this was written backwards.  Reordered.] 
@@ -1169,8 +1159,8 @@ for the $z$-axis from the values of
 %Strictly speaking should be corrected, though this is pretty minor.]
 %$\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$ for \mi{},
 %\mf{}, and \mm{}.  
-      $A$. We find for the same models $\Delta \theta = (0.020, 5.4
-      \times 10^{-3}, 1.0 \times 10^{-3})\,\text{rad}$.
+      $A$. We find for the same models $\Delta \theta = (1.15, 0.31,
+      0.062)\,\text{deg}$.
 These angle offsets are consistent with the
 values given in \citet{2018arXiv180610564S} for the difference between the
 $z$-axis as defined by the gas and stars.
@@ -1570,11 +1560,11 @@ mitigation of these effects in future work.
 \acknowledgments
 We would like to thank Megan Bedell, Robert A. Benjamin, Tobias Buck, Elena
 D'Onghia, Benoit Famaey, 
-%mm and Adrian Price-Whelan
-    Adrian Price-Whelan, and Todd Phillips
+and Adrian Price-Whelan
+    % Adrian Price-Whelan, and Todd Phillips
 for helpful
 discussions. 
-%mm A.B. would like to thank Todd Phillips for helpful discussions. 
+A.B. would like to thank Todd Phillips for helpful discussions. 
 A.B. was supported
 in part by the Roy \& Diana Vagelos Program in the Molecular Life Sciences and
 the Roy \& Diana Vagelos Challenge Award. K.V.J.'s, C.F.P.L.'s, and R.E.S.'s work was
