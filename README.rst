@@ -2,7 +2,7 @@
 The Galactic Midplane Is Not a Plane: Implications for Dynamical Analysis with *Gaia* Data and Beyond
 =======
 
-Angus Beane (abeane@sas.upenn.edu), Robyn Sanderson, Melissa K. Ness, Kathryn V. Johnston, Douglas Grion Filho, Mordecai-Mark Mac Low, Daniel Anglés-Alcázar, David W. Hogg, Chervin F. P. Laporte
+Angus Beane (abeane@sas.upenn.edu), Robyn Sanderson, Melissa K. Ness, Kathryn V. Johnston, Douglas Grion Filho, Mordecai-Mark Mac Low, Daniel Anglés-Alcázar, David W. Hogg, and Chervin F. P. Laporte
 
 Current paper draft: 
 
