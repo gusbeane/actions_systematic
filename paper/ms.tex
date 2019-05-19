@@ -179,7 +179,7 @@ mechanisms that give rise to these
     signatures. 
 In order to 
 construct such a
-system, the Sun's relative position must be defined and measured both precisely
+system, the Sun's relative position and velocity must be defined and measured both precisely
 and accurately. This involves determining the angular position of and distance
 to the Galactic center, the orientation of and distance to the Galactic 
    midplane,
@@ -205,7 +205,7 @@ momentum \citep{2008gady.book.....B,2014RvMP...86....1S}.
 
 With the advent of 6D phase-space measurements over a relatively large ($\gtrsim
 2$ kpc) volume from the \textit{Gaia} satellite, the study of stellar actions
-has gained new popularity. One reason is dimensionality reduction---an
+has gained new popularity. One reason is dimensionality reduction\,---\,an
 individual stellar orbit is concisely described by three actions, as opposed to
 six phase space coordinates. Second, under the assumption of a phase-mixed
 system, the dynamical properties of a population of stars should be uniquely a
@@ -359,12 +359,12 @@ z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$.
 \colhead{$(\mathrm{kpc})$} & \colhead{$(\mathrm{kpc})$} &
 \colhead{$(\mathrm{Myr}^{-1})$} & \colhead{$(\mathrm{Myr}^{-1})$}}
 \startdata
-\thin{} & (8, 0, 0) & (0, -190, 10) & 40.3 & -1520 & 0.69 & 0.12 & 1.29 & 0.049
+\thin{} & (8, 0, 0) & (0, -190, 10) & 40 & -1500 & 0.69 & 0.12 & 1.3 & 0.049
 & 0.093 \\
-\thick{} & (8, 0, 0) & (0, -190, 50) & 32.5 & -1520 & 23.0 & 0.85 &
-1.19 & 0.048 & 0.061 \\
-\halo{} & (8, 0, 0) & (0, -190, 190) & 32.8 & -1520 &
-529.1 & 6.16 & 2.34 & 0.033 & 0.025
+\thick{} & (8, 0, 0) & (0, -190, 50) & 33 & -1500 & 23 & 0.85 &
+1.2 & 0.048 & 0.061 \\
+\halo{} & (8, 0, 0) & (0, -190, 190) & 33 & -1500 &
+530 & 6.2 & 2.3 & 0.033 & 0.025
 \enddata
 \end{deluxetable*}
 
@@ -510,7 +510,7 @@ We assume the Sun is located at $(8.2, 0, 0)\,\kpc$. None of our orbit
 integrations depend on the value of the LSR in this toy potential (though this
 is important when using real data, since the conversion from heliocentric to
 Galactocentric coordinates depends on the LSR). In this potential, we have
-that the circular velocity $v_{\text{circ}}$ is $231\,\kms$ at the Solar
+that the circular velocity $v_{\text{circ}}$ is $231\,\kms$ at the solar
 circle.
 
 Other methods for computing actions are used in the literature. For example,
@@ -684,7 +684,7 @@ text and Figure~\ref{fig:Jz_hist} for the justification in using this to measure
 induced error. The left, center, and right panels show the result for $J_R$,
 $J_{\phi}$, and $J_z$, respectively. The upper panels consider an offset in
 $z$ and the lower panels consider an offset in $x$ (equivalently, an offset in
-the Solar radius). In some panels we also plot as dashed lines the epicyclic
+the solar radius). In some panels we also plot as dashed lines the epicyclic
 prediction of the induced action error (Equation~\eqref{eq:Ji_err_mosttime}).
 In the epicyclic approximation, a $z$ offset only induces an error in $J_z$
 --- for all three orbits the epicyclic approximation is a good description of
@@ -702,7 +702,7 @@ Consider first the \thick{} (top panel), where the offset in $z$ is
 much less than $z_{\text{max}}$ of the orbit. The peaks in the distribution
 correspond to the turning points of the orbit (or points of maximum vertical
 amplitude), where $v_z \sim 0$ and where the star is on most of it orbit. This
-is why the distribution, which is calculated at evenly spaced time intervals, peaks at these values. For the \thin{}
+is why the distribution, which is calculated at evenly spaced time intervals, peaks at these values. For \thin{}
 (bottom panel), the offset in $z$ is comparable to $z_{\text{max}}$. Now,
 there will be some points in the orbit where $v_z = 0$ and $z=0$ (in the
 erroneous coordinate system). At these points, the computed $J_z$
@@ -731,7 +731,7 @@ the action determined for \thin{} (\thincolor) and \halo{} (\halocolor).
 
 The upper panels of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread
 induced in each action for an offset in the $z$-component. In the lower panels we consider offsets in the $x$ component (i.e. the
-Solar radius). The left, center, and right columns show the fractional spread
+solar radius). The left, center, and right columns show the fractional spread
 in the values computed for $J_z$, $J_{\phi}$, and $J_R$, respectively.
 
 In the upper middle panel of Figure~\ref{fig:many_orbit_wrong_ref}, there is
@@ -751,7 +751,7 @@ in the $z$-coordinate results in a $25\%$ deviation in $J_z$,
 We find that \halo{} is relatively resistant to errors in the midplane, with
 only $\sim15\%$ error in $J_z$ out to an offset of $500\,\pc$.
 
-For the offset in the Solar radius (lower panels), the error is largest for
+For the offset in the solar radius (lower panels), the error is largest for
 $J_R$, with some deviations resulting in $J_{\phi}$ and relatively small
 deviations in $J_z$. In the lower middle and lower right panels all three
 lines nearly overlap.
@@ -1009,9 +1009,8 @@ that an observer might measure if they were situated in each of these
 galaxies% 
 . Starting from the coordinate system
 described in the previous section, which is 
-approximately 
 aligned so that the
-$z$-coordinate is perpendicular to the disk plane at the solar circle, we place our imaginary
+$z$-coordinate is approximately perpendicular to the disk plane at the solar circle, we place our imaginary
 observer at $z=0$ and a galactocentric cylindrical radius of $8.2\,\kpc$ and
 vary the azimuth between $0<\phi<2\pi$. 
 At 
@@ -1088,17 +1087,12 @@ simplified version of the strategy described in
 %and for $\text{C}$ the values are $-69$, $19$, and $-18\,\pc$ for
 %\mi{}, \mf{}, and \mm{}, respectively. 
     For models (\mi{}, \mf{}, \mm{}) the best fit values are $A =
-    (-165, 45, 8.8)\,\pc$, $B = (0.67, -0.088, 0.031)\,\text{rad}$,
+    (-165, 45, 8.8)\,\pc$, $B = (38, -5.0, 1.8)\,\text{deg}$,
     and $C = (-69, 19, -18)\,\pc$.
-For the assumed Solar radius of $8.2\,\kpc$, we can approximate the
+For the assumed solar radius of $8.2\,\kpc$, we can approximate the
 angle offset 
     $\Delta \theta$ 
 for the $z$-axis from the values of 
-%mm [change to rad for consistency with B.   Note that you did not
-%give two significant figures of accuracy for the last value.
-%Strictly speaking should be corrected, though this is pretty minor.]
-%$\text{A}$ --- we compute $1.15$, $0.31$, and $0.06\,\deg$ for \mi{},
-%\mf{}, and \mm{}.  
       $A$. We find for the same models $\Delta \theta = (1.15, 0.31,
       0.062)\,\text{deg}$.
 These angle offsets are consistent with the
@@ -1122,20 +1116,12 @@ We compute the same midplane variation in Figure~\ref{fig:midplane_chervin},
 but for four succcessive timesteps of the live N-body simulation of a
 Sagittarius encounter \citep{2018MNRAS.481..286L}. Again we have subtracted a
 best fit curve of the form 
-%mm [again, you are missing significant digits in B: always report the
-%same number. When you gave 3 I cut back to two, but I can't fill in when
-%you only give one.] $\text{A} \sin{\left(\phi + \text{B}\right)} +
-%\text{C}$, with the values for $\text{A}$ being $9.5$, $2.5$, $-212$, and
-%$-394\,\pc$, for $\text{B}$ being $0.0013$, $0.0007$, $-0.63$, and
-%$-1.00\,\text{rad}$ and $\text{C}$ being $2.6$, $-7.8$, $-65$, and
-%$-53\,\pc$ chronologically for each of the four timesteps shown. 
     given in Equation~(\ref{eq:fit-curve}), with the values at times
     $(2.0, 4.0, 6.0, 6.9)\,\Gyr$ being $A = (9.5, 2.5, -2.1 \times 10^2,
     -3.9 \times 10^2)\,\pc$, $B
-    = (1.3 \times 10^{-3}, 7 \times 10^{-4}, -0.63,
-    -1.0)\,\text{rad}$, and $C = (2.6,-7.8, -65, -53)\,\pc$.
+    = (0.074, 0.039, -36,
+    -57)\,\text{deg}$, and $C = (2.6,-7.8, -65, -53)\,\pc$.
 The middle $90\%$ of midplane values across the solar circle spans 
-%mm $49$, $62$, $137$, and $119\,\pc$, for each timestep.
        $(49, 62, 140, 120)\,\pc$.
 
 These values for the midplane variation are consistent with the azimuthal
@@ -1310,7 +1296,7 @@ error in $J_z$ for \thin{}
 Third, one must define the Sun's vertical distance from the Galactic midplane,
 which can be determined by identifying where the stellar density and
 velocities reach a maximum (effectively the median height of all disk stars).
-The Solar height is usually taken to be $\sim 25\,\pc$
+The solar height is usually taken to be $\sim 25\,\pc$
 \citep{2001ApJ...553..184C}, with a more recent measurement from \textit{Gaia}
 DR2 placing it at $20.8 \pm 0.3\,\pc$ \citep{2019MNRAS.482.1417B}. Another
 strategy is to use the cold gas or H~\textsc{ii} regions in the disk to define
@@ -1446,12 +1432,7 @@ Our main point is that the local midplane varies between different points in
 the Galaxy, and that this variation can lead to significant systematic errors
 in the computation of actions under the assumption of a global axisymmetric
 potential. 
-%mm [the "true" midplane is spatially and time dependent, so I'm not
-%sure this makes sense as something that could be proposed.] 
-%We do not propose here what a modeler should use for the ``true''
-%global midplane, since it depends on the particular problem being studied.
-Even without a high-precision definition of the global Galactic midplane,
-current observations from \textit{Gaia} should soon permit a measurement of the
+Current observations from \textit{Gaia} should soon permit a measurement of the
 real azimuthal dependence of the midplane location. For some applications,
 such as those using actions as labels to group stars on similar orbits, using
 such a measurement to shift stars to a consistent midplane height as a
