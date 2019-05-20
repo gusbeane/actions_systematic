@@ -9,7 +9,6 @@ import astropy.units as u
 import pickle
 
 from joblib import Parallel, delayed
-import multiprocessing
 from tqdm import tqdm
 
 nproc = 40
