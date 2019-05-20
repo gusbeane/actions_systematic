@@ -1,6 +1,6 @@
 \documentclass[twocolumn]{aastex62}
 
-% \submitjournal{ApJ}
+\submitjournal{ApJ}
 
 \shortauthors{Beane et al.}
 \shorttitle{The Galactic Midplane is Not a Plane}
@@ -532,7 +532,7 @@ orbit integration and torus mapping throughout \citep{2016MNRAS.457.2107S}.
 \end{center}
 \caption{The artificial phase-dependence in the computed actions with an
 error in the Galactocentric coordinate system. We consider here \thick{},
-which has actions of $(J_R, J_{\phi}, J_z) = (37.9, -1520,
+which has actions of $(J_R, J_{\phi}, J_z) = (38, -1500,
 7.0)\,\actunit$ and $z_{\text{max}}=850\,\pc$ (see Table~\ref{tab:orbits}). We
 integrate the orbit according to the procedure laid out in
 Section~\ref{ssec:action_comp}, and which we plot in
@@ -610,7 +610,7 @@ for each phase-space starting point are shown for the first
 of the orbit in the upper panels of
 Figure~\ref{fig:one_orbit_wrong_ref}.\footnote{Occasionally the numerical
 scheme fails and very large actions are reported by \texttt{gala}---we perform
-a $5\sigma$ clip on each action to exclude such orbits, but this only excludes
+a $4\sigma$ clip on each action to exclude such orbits, but this only excludes
 a total of $5$ orbits out of the $1000$ considered for
 Figure~\ref{fig:one_orbit_wrong_ref}. Some numerical artifacts remain, but the
 vast majority of orbits are computed properly.}
@@ -1105,7 +1105,7 @@ each galaxy, using their local solar neighborhood (the cylinder defined
 above). The
 $1\,\sigma$ error from the bootstrap procedure is shown as the dashed-line
 error bars. The middle $90\%$ of midplane values across the solar circle spans
-    $(1.9 \times 10^2, 1.6 \times 10^2, 84)\,\pc$ for these models.
+    $(190, 160, 84)\,\pc$ for these models.
 In two of the three cases
 the midplane therefore varies by more than $\pm 100\,\pc$ depending on the
 azimuth along the solar circle; in the third (\mm{}, which has the thinnest
@@ -1117,8 +1117,8 @@ but for four succcessive timesteps of the live N-body simulation of a
 Sagittarius encounter \citep{2018MNRAS.481..286L}. Again we have subtracted a
 best fit curve of the form 
     given in Equation~(\ref{eq:fit-curve}), with the values at times
-    $(2.0, 4.0, 6.0, 6.9)\,\Gyr$ being $A = (9.5, 2.5, -2.1 \times 10^2,
-    -3.9 \times 10^2)\,\pc$, $B
+    $(2.0, 4.0, 6.0, 6.9)\,\Gyr$ being $A = (9.5, 2.5, -210,
+    -390)\,\pc$, $B
     = (0.074, 0.039, -36,
     -57)\,\text{deg}$, and $C = (2.6,-7.8, -65, -53)\,\pc$.
 The middle $90\%$ of midplane values across the solar circle spans 
@@ -1392,13 +1392,7 @@ the local galactic
 midplane along the solar circle in three different high-resolution, zoom-in
 simulations of Milky Way mass galaxies from the FIRE collaboration, as well as a controlled simulation of the interaction of the Milky Way with Sagittarius. We found
 that the midplane varies as a function of azimuth at the solar circle by
-%mm [too much detail] $\sim185$, $162$, $84\,\pc$ (middle $90\%$) for
-%the three cosmological simulations we considered (\mi{}, \mf{}, and
-%\mm{}, respectively) and by $\sim60$ and $\sim120\,\pc$ before and
-%after the interaction in the controlled simulation. 
-   60--185~pc in these simulations.
-%mm [this seems redundant with the next point.] Comparison of the corresponding velocity variations with recent measurements in the Milky Way suggests that these values are consistent with expectations for midplane variations in the Milky Way itself, which have not yet been measured as a function of azimuth.
-
+   $60\textup{--}185\,\pc$ in these simulations.
 
 \item Assuming a vertical velocity variation of the Milky Way of
 $\sim5\textup{--}10\,\kms$, consistent with recent results from
@@ -1460,9 +1454,9 @@ K.V.J.'s contributions were supported in part by the NSF under Grant No.
 AST-1614743. M.-M.M.L. was partly supported by the NSF under Grant No.
 AST-1815461.
 
-\software{\texttt{matplotlib} \citep{Hunter:2007}, \texttt{scipy}
-\citep{scipy:2001}, \texttt{numpy} \citep{numpy:2011}, \texttt{gala}
-\citep{gala, gala:zenodo}, \texttt{astropy} \citep{astropy:2013,astropy:2018}, \texttt{tqdm} \citep{casper_o_da_costa_luis_2019_2800317}}
+\software{This work made use of the following software: \texttt{astropy} \citep{astropy:2013,astropy:2018}, \texttt{gala}
+\citep{gala, gala:zenodo}, \texttt{matplotlib} \citep{Hunter:2007}, \texttt{numpy} \citep{numpy:2011}, \texttt{scipy}
+\citep{scipy:2001}, and \texttt{tqdm} \citep{casper_o_da_costa_luis_2019_2800317}.}
 
 \appendix
 \section{Orbits} \label{app:orbits}
