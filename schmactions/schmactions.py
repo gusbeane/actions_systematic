@@ -10,7 +10,6 @@ from tqdm import tqdm
 import warnings
 
 from joblib import Parallel, delayed
-import multiprocessing
 
 class schmactions(object):
     def __init__(self, init_pos, init_vel, mw=None,

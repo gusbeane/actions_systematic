@@ -130,7 +130,7 @@ ax.set_xscale('log')
 ax.set_xlim([xmin, xmax])
 ax.set_ylim([ymin, ymax])
 
-ax.set_xlabel(r'$J_z\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+ax.set_xlabel(r'$J_z\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
 ax.set_ylabel(r'$\Delta J_z/J_z\,[\,\%\,]$')
 
 myh = Line2D([0], [0], color='k', linestyle='dashed')

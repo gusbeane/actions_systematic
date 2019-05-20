@@ -108,11 +108,11 @@ for x in ax[1]:
     x.set_xticks(np.arange(0,1000,100), minor=True)
 
 for x in ax[:,0]:
-    x.set_ylabel(r'$J_{R,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$J_{R,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
 for x in ax[:,1]:
-    x.set_ylabel(r'$J_{\phi,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$J_{\phi,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
 for x in ax[:,2]:
-    x.set_ylabel(r'$J_{z,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    x.set_ylabel(r'$J_{z,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
 
 ax[0][1].set_title(r'$z\,\text{offset}=100\,\text{pc}$')
 ax[1][1].set_title(r'$x\,\text{offset}=100\,\text{pc}$')
@@ -154,7 +154,7 @@ if True: # so I can indent
     ax[1][0].set_ylabel(r'$\text{count}$')
     ax[1][0].text(35.1, 32.5, r'\texttt{thin-disk}', color='k')
  
-    ax[1][0].set_xlabel(r'$J_{R,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    ax[1][0].set_xlabel(r'$J_{R,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
     
     # # #
     # JR (z error) histogram
@@ -187,7 +187,7 @@ if True: # so I can indent
     ax[1][1].set_ylabel(r'$\text{count}$')
     ax[1][1].text(39.3, 59, r'\texttt{thin-disk}', color='k')
     
-    ax[1][1].set_xlabel(r'$J_{R,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    ax[1][1].set_xlabel(r'$J_{R,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
     
     # # #
     # Jphi (x error) histogram
@@ -219,7 +219,7 @@ if True: # so I can indent
     ax[1][2].set_ylabel(r'$\text{count}$')
     ax[1][2].text(-1550, 40.5, r'\texttt{thin-disk}', color='k')
     
-    ax[1][2].set_xlabel(r'$J_{\phi,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+    ax[1][2].set_xlabel(r'$J_{\phi,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
     
     fig.tight_layout()
     plt.savefig('schmactions_Jphi_JR_hist.pdf')
@@ -254,7 +254,7 @@ ax[1].axvline(x=J2_thin, color='k', ls='dashed', lw=1)
 ax[1].set_ylabel(r'$\text{count}$')
 ax[1].text(1, 104, r'\texttt{thin-disk}', color='k')
 
-ax[1].set_xlabel(r'$J_{z,\text{comp}}\,[\,\text{kpc}\,\text{km}/\text{s}\,]$')
+ax[1].set_xlabel(r'$J_{z,\text{comp}}\,[\,\text{kpc}\,\text{km}\,\text{s}^{-1}\,]$')
 
 
 fig.tight_layout()
