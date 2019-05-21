@@ -28,7 +28,7 @@ y = np.cos(x)
 y2 = 0.25*np.cos(x + np.pi) - 1.25
 y3 = 2.25*np.cos(x) - 1.25
 
-ax.set_xlabel(r'$\text{orbital angle}$')
+ax.set_xlabel(r'$\text{orbital phase}$')
 ax.set_ylabel(r'$z$')
 
 ax.set_xticklabels([])
