@@ -194,8 +194,8 @@ system where the equations of motion are separable in a particular coordinate
 system. They are the cyclical integral of the canonical momentum over its
 conjugate position: \beq\label{eq:actions} J_i \equiv \frac{1}{2\pi}
 \oint_{\text{orbit}}p_i\,\text{d}x_i\text{,} \eeq where $p_i$ are the conjugate
-momenta. Under the assumption of axisymmetry, $i=R,z,\phi$ are the radial,
-vertical, and azimuthal coordinates respectively in a cylindrical coordinate
+momenta. Under the assumption of axisymmetry, $i=R,\phi,z$ are the radial,
+azimuthal, and vertical coordinates respectively in a cylindrical coordinate
 system. In a slowly-evolving axisymmetric potential, these actions are invariant
 and $J_{\phi} \equiv L_z$, where $L_z$ is the $z$-component of the angular
 momentum \citep{2008gady.book.....B,2014RvMP...86....1S}.
@@ -254,13 +254,13 @@ in the actions computed for these stars. The further from the solar neighborhood
 the target star is, the more likely the mismatch will result in large systematic
 uncertainty, especially in the vertical action $J_z$. A similar argument applies
 to any remaining uncertainty in measurements of the Galactocentric radius of the
-Sun and to variations in the LSR.
+Sun, and to variations in the LSR.
 
 \begin{figure*}[ht!]
 \begin{center}
 \includegraphics[width=\textwidth]{fig/cartoon.pdf}
 \end{center}
-\caption{Cartoon approximation showing the effect an error in the determination
+\caption{Illustration showing the effect an error in the determination
 of the coordinate midplane can have on orbit integration and action estimation.
 The $x$-axis shows the orbital phase and the $y$-axis the vertical height. The
 top gray curve depicts an example ``true'' orbit oscillating about the true
@@ -273,11 +273,11 @@ obtain the teal and orange curves for the star's orbit, respectively. The
 actions estimated from these two erroneous measurements would subsequently
 differ, both from each other and from the true measurement (in the potential
 with the correct coordinate system). Hence an incorrect midplane in the
-potential model assumed will induce phase-dependence in the actions estimated
+potential model assumed will induce phase dependence in the actions estimated
 for a given star in that potential.} \label{fig:cartoon} \end{figure*}
 
 In Section~\ref{sec:ref_frame}, we describe the general impact coordinate system
-errors have on the measured actions. In Section~\ref{sec:local_fire} we examine
+errors have on the measured actions. In Section~\ref{sec:local_fire}, we examine
 the azimuthal variations of the midplane itself in examples from two classes of
 simulations: cosmological, hydrodynamical, zoom-in simulations of isolated Milky
 Way-mass galaxies from the Feedback in Realistic Environments (FIRE)
@@ -306,28 +306,26 @@ potential, and simply explore the consequences of offsets in the Galactocentric
 coordinate system.
 
 \subsection{Effect of Midplane Offset} \label{ssec:cartoon}
-We present a cartoon approximation of an orbit in Figure~\ref{fig:cartoon} to
+We present an illustration of an orbit in Figure~\ref{fig:cartoon} to
 show how an inaccurate or erroneous determination of the midplane leads to a
 dependence on orbital phase of the value of the actions calculated
 from a point in phase space and an
 assumed potential model. The $x$-axis corresponds to orbital phase and the
 $y$-axis to vertical height. The solid gray curve indicates the 
-true orbit of the star as it oscillates around the true midplane.
-
-The dashed gray line, offset from the true midplane, is the midplane location
+true orbit of the star as it oscillates around the true midplane. The dashed gray line, offset from the true midplane, is the midplane location
 used by an observer to integrate the orbit of the star and estimate its actions.
 The model potential is otherwise identical to the one in which the star is
 actually moving.
 
 Now suppose this observer makes a measurement of the star's position and
-velocity at the teal point or the orange point (i.e. at two different orbital
-phases). Then the teal and orange curves correspond to the orbits that the
+velocity at the teal point or the orange point (i.e., at two different orbital
+phases). Then, the teal and orange curves correspond to the orbits that the
 observer would compute for each point based on the potential model with the
 offset midplane. In action space, this would correspond to a different value of
 $J_z$ for the teal and orange points. In this way, assuming the wrong coordinate
 system induces a phase-dependence in the actions estimated for the star, which
 in the correct potential (in this example, the one with the correct midplane)
-should be phase-independent.
+should be phase independent.
 
 This example uses an offset in $z$, but 
 analagous effects occur from offsets in other coordinates, 
@@ -339,8 +337,8 @@ a time-varying potential was pointed out by \citet{2015A&A...584A.120B}.
 
 \begin{deluxetable*}{cCCCCCCCCC}
 
-\tablecaption{Description and names of the three orbits considered in this work.
-For the last four columns: $z_{\text{max}}$ is the maximum height of the orbit,
+\tablecaption{Names and properties of the three orbits considered in this work, where
+$z_{\text{max}}$ is the maximum height of the orbit,
 $\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of the radial
 excursions of the orbit, and $\kappa$ and $\nu$ are the radial/epicyclic and
 vertical frequencies of the orbit. In the epicyclic approximation, $A_z =
@@ -368,12 +366,14 @@ Before turning to numerical methods, we derive analytic expressions for the
 systematic error in the actions induced from offsets in the position (e.g., the midplane or
 Galactic center distance) or velocity (e.g., the 
 LSR) 
-of the assumed coordinate system's origin. We use the epicyclic approximation, which
+of the assumed coordinate system's origin. 
+
+We use the epicyclic approximation, which
 assumes that the motion in the $z$ and $R$ components of the orbit are
 decoupled and follow simple harmonic motion about a circular and planar
 guiding orbit 
 \citep[][Section~3.2 and references
-therein]{2008gady.book.....B}. We refer to the radius of this orbit
+therein]{2008gady.book.....B}. The radius of this orbit is referred to
 as the guiding radius $R_g$.
 This approximation is an excellent description
 of the thin disk and a good description of the thick disk in
@@ -388,21 +388,21 @@ Under this approximation, we can write down the cylindrical components
 of the orbits as
 \beq\label{eq:orbits_epi}
 \begin{split}
-\phi(t) &= \Omega_c t \\
 R(t) &= R_g + A_R \sin{(\kappa t + \alpha)} \\
+\phi(t) &= \Omega_c t \\
 z(t) &= A_z \sin{(\nu t + \beta)}
 \text{,}
 \end{split}
 \eeq
 where $\kappa$ and $\nu$ are the radial/epicyclic and vertical frequencies, $\Omega_c
-\equiv v_c/R_g$ is the orbital frequency of the guiding center, $A_z$ and $A_R$ are the amplitudes in the vertical and radial coordinates, and $\alpha$ and
+\equiv v_c/R_g$ is the orbital frequency of the guiding center, $A_R$ and $A_z$ are the amplitudes in the radial and vertical coordinates, and $\alpha$ and
 $\beta$ are 
 the initial orbital phases.
 Similarly, the velocities of the orbit are given by:
 \beq\label{eq:orbits_vel_epi}
 \begin{split}
-v_{\phi}(t) &= v_c \\
 v_R(t) &= \kappa A_R \cos{(\kappa t + \alpha)} \\
+v_{\phi}(t) &= v_c \\
 v_z(t) &= \nu A_z \cos{(\nu t + \beta)}
 \text{.}
 \end{split}
@@ -446,16 +446,17 @@ Equation~\eqref{eq:JR_Jz_epi_energy} is phase dependent. Now assume that the
 coordinates $(R, z, v_{\phi}, v_R, v_z)$ are offset by $(\Delta R, \Delta z,
 \Delta v_{\phi}, \Delta v_R, \Delta v_z)$. We can then apply the standard
 propagation of errors formula to Equation~\eqref{eq:JR_Jz_epi_energy} to
-determine the error in each of the actions. For $J_{\phi}$, the induced error
-is:
-\beq\label{eq:induced_Jphi}
-\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}
-                                    + \frac{\Delta v_{\phi}}{v_c}\text{.}
-\eeq
+determine the error in each of the actions. 
 For $J_R$, the induced error is:
 \beq\label{eq:induced_JR}
 \frac{\Delta J_R}{J_R} = \frac{2(R-R_g)}{A_R^2}\Delta R
                          + \frac{2v_R}{v_{R,\text{max}}^2} \Delta v_R \text{.}
+\eeq
+For $J_{\phi}$, the induced error
+is:
+\beq\label{eq:induced_Jphi}
+\frac{\Delta J_{\phi}}{J_{\phi}} = \frac{\Delta R}{R_g}
+                                    + \frac{\Delta v_{\phi}}{v_c}\text{.}
 \eeq
 For $J_z$, the induced error is:
 \beq\label{eq:induced_Jz}
@@ -464,14 +465,14 @@ For $J_z$, the induced error is:
 \eeq
 We have ignored second order contributions.
 
-Since most of the time stars will be at maximum amplitude (i.e. turnaround) in
+Since most of the time stars will be at maximum amplitude (i.e., turnaround) in
 both $R$ and $z$, we can approximate the order of magnitude of the systematic
 error in the actions by
 \beq\label{eq:Ji_err_mosttime}
 \begin{split}
+\frac{\Delta J_{R}}{J_{R}} &= \frac{2\Delta R}{A_R} \\
 \frac{\Delta J_{\phi}}{J_{\phi}} &= \frac{\Delta R}{R_g}
                                     + \frac{\Delta v_{\phi}}{v_c} \\
-\frac{\Delta J_{R}}{J_{R}} &= \frac{2\Delta R}{A_R} \\
 \frac{\Delta J_{z}}{J_{z}} &= \frac{2\Delta z}{A_z} \text{,}
 \end{split}
 \eeq
@@ -486,8 +487,8 @@ to future work, as we discuss in Section~\ref{ssec:lsr_var}.
 We now quantify the argument made in Section~\ref{ssec:cartoon} using
 numerical computations of the actions for a range of orbits in a model
 Galactic potential. We compute actions as in \citet{2018ApJ...867...31B},
-using the code \texttt{gala} v0.3 to perform orbit integrations and conversion
-to action space \citep{2017JOSS....2..388P,Price-Whelan:2018}. To compute
+using the code \texttt{gala}~v0.3 to perform orbit integrations and conversion
+to action space \citep{gala, gala:zenodo}. To compute
 actions we use the torus-mapping technique first presented by
 \citet{1990MNRAS.244..634M} and adapted by \citet{2014MNRAS.441.3284S} to
 calculate actions for an orbital time-series starting from a phase-space
@@ -632,18 +633,18 @@ system.
 
 For a systematic offset in $z$ (upper panels), the 95\textsuperscript{th}
 minus 5\textsuperscript{th} percentiles are $2.2$ and $6.2\,\actunit$ for
-$J_R$ and $J_z$, respectively. These are fractional errors of $5.7\%$ and
-$86\%$, respectively. The error induced in $J_{\phi}$ is negligible, as
+$J_R$ and $J_z$, respectively. As a fraction of the true values, these are $5.7\%$ and
+$86\%$, respectively. The spread induced in $J_{\phi}$ is negligible, as
 expected since $J_{\phi}$ only depends on the $x$- and $y$-components of the
 position and velocity of the stars.\footnote{In practice, however, $J_{\phi}$
 is computed as part of the torus-fitting method.} It is worth pointing out
-that a $100\,\pc$ error in an orbit with $z_{\text{max}}=850\,\pc$\,---\,a
-$12\%$ error\,---\,induced an $86\%$ error in the computation of $J_z$.
+that a $100\,\pc$ offset in an orbit with $z_{\text{max}}=850\,\pc$\,---\,a
+$12\%$ error\,---\,induced an $86\%$ spread in the computation of $J_z$.
 
 For a systematic offset in $x$ (or distance to the Galactic center), the
 95\textsuperscript{th} minus 5\textsuperscript{th} percentiles are $6.9$,
 $47$, and $0.71\,\actunit$ for $J_R$, $J_{\phi}$ and $J_z$, respectively.
-These are fractional errors of $21\%$, $3.1\%$ and $3.1\%$ in these actions, respectively, despite only a $1.2\%$ error in the distance to the Galactic center.
+These are fractionally $21\%$, $3.1\%$ and $3.1\%$ in these actions, respectively, despite only a $1.2\%$ error in the distance to the Galactic center.
 
 In Figure~\ref{fig:Jz_hist}, we plot a histogram of the values of
 $J_z$ computed at different orbital phases for \thick{} (top panel) and \thin{} (bottom panel),
@@ -671,14 +672,13 @@ Gaussian distribution.
 \begin{center}
 \includegraphics[width=\textwidth]{fig/schmactions_many_orbits.pdf}
 \end{center}
-\caption{We report one half the 95th minus 5th percentile of the error
-in the measured action ($\Delta J_i$) from coordinate system errors for
-\thin{}, \thick{}, and \halo{} orbits (Table~\ref{tab:orbits}). See discussion in the
+\caption{We report the fractional error in each action $J_i$ induced by coordinate system offsets for \thin{}, \thick{}, and \halo{} (Table~\ref{tab:orbits}). The error ($\Delta J_i$) is computed as one half the 95th minus 5th percentile of the distribution of computed action values.
+See discussion in the
 text and Figure~\ref{fig:Jz_hist} for the justification in using this to measure the magnitude of the
 induced error. The left, center, and right panels show the result for $J_R$,
 $J_{\phi}$, and $J_z$, respectively. The upper panels consider an offset in
 $z$ and the lower panels consider an offset in $x$ (equivalently, an offset in
-the solar radius). In some panels we also plot as dashed lines the epicyclic
+the solar radius). In some panels, we also plot as dashed lines the epicyclic
 prediction of the induced action error (Equation~\eqref{eq:Ji_err_mosttime}).
 In the epicyclic approximation, a $z$ offset only induces an error in $J_z$\,---\,for all three orbits the epicyclic approximation is a good description of
 the $J_z$ error. An $x$ offset induces an error in $J_R$ and $J_{\phi}$. The
@@ -691,7 +691,7 @@ epicyclic approximation is not a good description for any orbit.}
 We now suggest a heuristic explanation for
 the shape of Figure~\ref{fig:Jz_hist}.
 Consider first the \thick{} (top panel), where the offset in $z$ is
-much less than $z_{\text{max}}$ of the orbit. The peaks in the distribution
+much less than the $z_{\text{max}}$ of the orbit. The peaks in the distribution
 correspond to the turning points of the orbit (or points of maximum vertical
 amplitude), where $v_z \sim 0$ and where the star is on most of it orbit. This
 is why the distribution, which is calculated at evenly spaced time intervals, peaks at these values. For \thin{}
@@ -718,9 +718,6 @@ We now repeat the same procedure as in Figure~\ref{fig:one_orbit_wrong_ref}
 but for systematic offsets between $0$ and $500\,\pc$ in the $z$ and $x$
 components. In Figure~\ref{fig:many_orbit_wrong_ref}, we report $\Delta
 J_i/J_i$ for the three different fiducial orbits in Table~\ref{tab:orbits}.
-Figure~\ref{fig:one_orbit_wrong_ref} considered \thick{} (\thickcolor), but we also now consider the effect on
-the action determined for \thin{} (\thincolor) and \halo{} (\halocolor).
-
 The upper panels of Figure~\ref{fig:many_orbit_wrong_ref} shows the spread
 induced in each action for an offset in the $z$-component. In the lower panels we consider offsets in the $x$ component (i.e. the
 solar radius). The left, center, and right columns show the fractional spread
@@ -745,7 +742,7 @@ only $\sim15\%$ error in $J_z$ out to an offset of $500\,\pc$.
 
 For the offset in the solar radius (lower panels), the error is largest for
 $J_R$, with some deviations resulting in $J_{\phi}$ and relatively small
-deviations in $J_z$. In the lower middle and lower right panels all three
+deviations in $J_z$. In the lower center and lower right panels all three
 lines nearly overlap.
 
 In each panel of Figure~\ref{fig:many_orbit_wrong_ref}, where relevant, we
@@ -779,9 +776,9 @@ different offsets in $z$. All orbits have the same initial position of $(8, 0,
 0)\,\kpc$ and velocity $(0, -190, v_z)\,\kms$, where we vary $v_z$.\footref{note:vz_orbits} We show
 this for a $z$ offset of $10$, $50$, and $100\,\pc$ (orange, teal, and green,
 respectively). As before, the error ($\Delta J_z$) is one half the 95th
-minus 5th percentile of the distribution of $J_z$ values over the
+minus 5th percentile of the distribution of computed $J_z$ values over the
 course of the orbit. There are large errors for \thin{}-like orbits ($J_z
-\sim 0.5\,\actunit$), even for a small midplane offset of $10\,\pc$. As dashed
+\sim 0.7\,\actunit$), even for a small midplane offset of $10\,\pc$. As dashed
 lines in each color we also plot the prediction for $\Delta J_z/J_z$ from the
 epicyclic approximation (Equation~\eqref{eq:Ji_err_mosttime}), which shows
 excellent agreement with the numerically computed values.}
@@ -961,12 +958,11 @@ controlled environment. The simulation is described by
 details here.
 
 For the Milky Way, the dark halo is modeled as a Hernquist
-sphere of mass $10^{12}\,\Msun$ and scale length of $52\,\kpc$, the
+sphere of mass $10^{12}\,\Msun$ and scale length of $52\,\kpc$ \citep{1990ApJ...356..359H}, the
 disk is
 modeled as an exponential disk with a scale radius of $3.5\,\kpc$, scale
-height $0.53\,\kpc$, and mass $6\times10^{10}\,\Msun$, and a Hernquist bulge
-of mass $10^{10}\,\Msun$ and scale length $0.7\,\kpc$
-\citep{1990ApJ...356..359H} is included. The Sagittarius dwarf is
+height $0.53\,\kpc$, and mass $6\times10^{10}\,\Msun$, and the bulge as a Hernquist sphere
+of mass $10^{10}\,\Msun$ and scale length $0.7\,\kpc$. The Sagittarius dwarf is
 modeled with two components: a dark matter Hernquist sphere of mass $8\times10^{10}\,\Msun$ and
 scale length $8\,\kpc$, and a stellar component modeled as a Hernquist
 sphere of mass $6.4\times10^8\,\Msun$ and scale length $0.85\,\kpc$. All
@@ -997,12 +993,12 @@ observer at $z=0$ and a galactocentric cylindrical radius of $8.2\,\kpc$ and
 vary the azimuth between $0<\phi<2\pi$. 
 At equally spaced values of 
 $\phi$ we then compute the median $z$ for stars within a cylinder of radius $0.5\,\kpc$ and
-height $1\,\kpc$ perpendicular to the fiducial disk and centered on it. We choose to use 50 values, sufficiently few that no cylinder shares stars with its neighbors.
+height $1\,\kpc$ perpendicular to the fiducial disk and centered on it. We choose to use 50 bins in azimuth, sufficiently few that no cylinder shares stars with its neighbors.
 We then re-define the new
 midplane of the cylinder to be the median $z$, re-select stars, and iterate
 until the median $z$ value converges. We find that only $10$ iterations of
 this procedure are necessary for convergence. The resulting median $z$ is
-taken to be what our observer would measure as the local Galactic midplane at
+taken to be what our observer would measure as the local galactic midplane at
 each $\phi$.
 
 \begin{figure*}[htb!]
@@ -1026,7 +1022,7 @@ $1\,\sigma $ error bars, which we report as dashed lines.}
 \includegraphics[width=342.078286667pt]{fig/midplane_fit_chervinsim.pdf}
 \end{center}
 \caption{The local midplane determined at the fiducial solar circle
-($R_0 = 8.2\,\kpc$) for four different time steps from live N-body simulations of a
+($R_0 = 8.2\,\kpc$) for four different time steps from a live N-body simulation of a
 Sagittarius encounter with the Milky Way \citep{2018MNRAS.481..286L}. As
 before, we have subtracted the best fit sine
 curve to account
@@ -1059,19 +1055,14 @@ from the midplane as a
 function of azimuth to account for an overall tilt of the midplane (a
 simplified version of the strategy described in
 \citealt{2019ApJ...871..145A}). 
-%mm [perhaps this would be better presented as a table] For
-%$\text{A}$, the values are $-165$, $45$, and $8.8\,\pc$, for
-%$\text{B}$ the values are $0.67$, $-0.088$, and $0.031\,\text{rad}$
-%and for $\text{C}$ the values are $-69$, $19$, and $-18\,\pc$ for
-%\mi{}, \mf{}, and \mm{}, respectively. 
-For models (\mi{}, \mf{}, \mm{}) the best fit values are $A =
-(-165, 45, 8.8)\,\pc$, $B = (38, -5.0, 1.8)\,\text{deg}$,
+For simulations (\mi{}, \mf{}, \mm{}), the best fit values are $A =
+(-170, 45, 8.8)\,\pc$, $B = (38, -5.0, 1.8)\,\text{deg}$,
 and $C = (-69, 19, -18)\,\pc$.
 For the assumed solar radius of $8.2\,\kpc$, we can approximate the
 angle offset 
 $\Delta \theta$ 
 for the $z$-axis from the values of 
-$A$. We find for the same models $\Delta \theta = (1.15, 0.31, 0.062)\,\text{deg}$.
+$A$. We find for the same simulations $\Delta \theta = (1.15, 0.31, 0.062)\,\text{deg}$.
 These angle offsets are consistent with the
 values given in \citet{2018arXiv180610564S} for the difference between the
 $z$-axis as defined by the gas and stars.
@@ -1081,7 +1072,7 @@ midplane an observer would determine as a function of azimuth for
 each galaxy, using their local solar neighborhood (the cylinder defined
 above). The
 $1\,\sigma$ error from the bootstrap procedure is shown as the dashed-line
-error bars. The middle $90\%$ of midplane values across the solar circle spans $(190, 160, 84)\,\pc$ for these models.
+error bars. The middle $90\%$ of midplane values across the solar circle spans $(190, 160, 84)\,\pc$ for these simulations.
 In two of the three cases
 the midplane therefore varies by more than $\pm 100\,\pc$ depending on the
 azimuth along the solar circle; in the third (\mm{}, which has the thinnest
@@ -1130,7 +1121,7 @@ Section~\ref{ssec:epi_action}), we defer this calculation to future work.
 We have used high-resolution simulations to illustrate 
 why
 we expect the local midplane defined by stellar density to vary with azimuth by up to $\pm
-100$ pc, as a natural consequence of the non-axisymmetry of the Galactic disk
+100\,\pc$ as a natural consequence of the non-axisymmetry of the Galactic disk
 at small scales. While this is not in itself surprising or new, we have also
 argued
 that the discrepancy between our local midplane and that of distant
@@ -1152,7 +1143,7 @@ molecular clouds \citep{2014RvMP...86....1S}.
 
 \label{ssec:mw_data_midplane}
 
-Systematic variations in $v_z$ and number were first noted as asymmetries in the local
+Systematic variations in $v_z$ and number density were first noted as asymmetries in the local
 velocity distribution towards the North and South Galactic Caps from the
 radial velocity surveys of the Sloan Digital Sky Surveys
 \citep{2012ApJ...750L..41W} and RAdial Velocity Experiment
@@ -1216,7 +1207,7 @@ neighborhood are orbiting. This assumption, although sensible and frequently
 made, has not yet been justified.
 
 If the dynamical Galactic center is offset from \sgra{} by $100\,\pc$, only a
-$1.2\%$ difference, then this induces a $\sim20\%$ error in $J_R$ for the disk-like orbits we considered (see
+$1.2\%$ difference, then this induces a $\sim15\%$ error in $J_R$ for the disk-like orbits we considered (see
 Section~\ref{ssec:quant}). The reason such a large error in $J_R$ can be
 generated by a small error in $R_0$ can be understood from the epicyclic
 approximation (Equation~\eqref{eq:Ji_err_mosttime}),
@@ -1224,8 +1215,8 @@ which states that $\Delta J_R/J_R = 2\Delta R/A_R$. The
 fractional error in $J_R$ is related to the error in $R_0$ as a fraction of
 the \emph{radial amplitude} of the orbit, which is much smaller than $R_0$
 ($\sim1.2\,\kpc$ for \thin{} and \thick{}). This
-also implies the very precise $0.3\%$ measurement of $R_0$ still translates to
-a $\sim4\%$ uncertainty in $J_R$.
+also implies the very precise $0.4\%$ measurement of $R_0$ still translates to
+a $\sim6\%$ uncertainty in $J_R$.
 
 The assumption that the dynamical Galactic center and \sgra{} are colocated is
 tested in any construction of a dynamical model where $R_0$ is a free
@@ -1235,7 +1226,7 @@ measurements of $R_0$ have been made (\citealt{2016ARAA..54..529B} summarize
 many pre-\textit{Gaia} results), but none have yet achieved a precision
 comparable to that of the distance to \sgra{}.
 
-We did not consider in this work the effect of the \emph{angular position} of
+We did not consider in this work the effect of the angular position of
 the dynamical Galactic center being offset from
 \sgra{}.
 
@@ -1322,10 +1313,10 @@ their orbital phases, this results in systematic error in the computed actions
 (Figure~\ref{fig:many_orbit_wrong_ref}).
 
 \item Inaccuracy in the midplane location most severely affects computation of
-the vertical action $J_z$. A midplane offset of $\sim6\,\pc$ 
+the vertical action $J_z$. A midplane offset of $\sim15\,\pc$ 
 for a typical thin
-disk orbit results in a $10\%$ error in $J_z$, 
-and even for a thick disk orbit a $50\,\pc$ offset will result
+disk orbit results in a $25\%$ error in $J_z$, 
+and even for a thick disk orbit a $120\,\pc$ offset will result
 in the same size error.
 The fractional error is
 significantly less for halo orbits.
@@ -1372,7 +1363,7 @@ dynamical Galactic center is colocated with \sgra{}. We discuss how to
 do this in Section~\ref{ssec:coord_off}.
 
 \item This work underlines the importance of combining chemistry and dynamics.
-Since chemical tagging \citep{2002ARA&A..40..487F} is not subject to the same systematic errors discussed in this paper, it should be used to confirm dynamical associations and to offset the effect of these systematic errors on the action-space distribution function.
+Since chemical tagging \citep{2002ARA&A..40..487F} is not subject to the same systematic errors discussed in this work, it should be used to confirm dynamical associations and to offset the effect of these systematic errors on the action-space distribution function.
 
 \item While in this work we have focused on systematic errors in action
 computation, all of our conclusions also extend to studies of stars that
@@ -1394,20 +1385,20 @@ potential may be sufficient, although this ignores the \emph{dynamical}
 implications of shifts in the midplane height (which result from fluctuations
 in the local density). However, for other applications, such as the study of
 action diffusion,
-a more extensive perturbative approach is likely to be needed. We plan to explore the
+a more extensive perturbative approach is likely needed. We plan to explore the
 mitigation of these effects in future work.
 
 \acknowledgments
 We would like to thank Megan Bedell, Robert A. Benjamin, Tobias Buck, Elena
 D'Onghia, Benoit Famaey, and Adrian Price-Whelan for helpful discussions. A.B.
-would like to thank Todd Phillips for helpful discussions. This project was
+would like to thank Todd Phillips for helpful discussions. This work uses data hosted by the Flatiron Institute's FIRE data hub. This project was
 developed in part at the 2019 Santa Barbara Gaia Sprint, hosted by the Kavli
 Institute for Theoretical Physics (KITP) at the University of California,
 Santa Barbara. This research was supported in part at KITP by the
 Heising-Simons Foundation and the National Science Foundation (NSF) under
 Grant No. PHY-1748958. This work used the Extreme Science and Engineering
 Discovery Environment (XSEDE), which is supported by NSF Grant No.
-OCI-1053575. This work uses data hosted by the Flatiron Institute's FIRE data hub. A.B. was supported in part by the Roy \& Diana Vagelos Program in
+OCI-1053575. A.B. was supported in part by the Roy \& Diana Vagelos Program in
 the Molecular Life Sciences and the Roy \& Diana Vagelos Challenge Award.
 K.V.J.'s contributions were supported in part by the NSF under Grant No.
 AST-1614743. M.-M.M.L. was partly supported by the NSF under Grant No.
@@ -1467,7 +1458,7 @@ In Figure~\ref{fig:Jphi_JR_hist} we plot the distribution of $J_R$ as a
 function of orbital phase induced by an offset in $x$ and $z$ and the
 distribution of $J_{\phi}$ for an offset in $x$. We plot the distributions for
 \thick{} (upper panels) and \thin{} (lower panels). We find that the $J_R$ distribution induced by an offset in $x$ more
-closely resembles a Gaussian, while the $J_R$ distribution induced by
+closely resembles a Gaussian distribution, while the $J_R$ distribution induced by
 an offset in $z$ and the $J_{\phi}$ distribution induced by an offset
 in $x$ are both similar to the $J_z$ distribution induced by an
 offset in $z$ (see Figure~\ref{fig:Jz_hist}).
