@@ -499,11 +499,10 @@ where we have again ignored second order terms.
 \textbf{Because the energies in the radial and vertical coordinates are
 related to the radial and vertical actions by a constant
 (Equation~\eqref{eq:JR_Jz_epi}), the fractional error in these two energies is
-the same as the actions. The energy in the azimuthal coordinate can be readily
-computed ($E_{\phi} = \frac{1}{2}v_{\phi}^2$), and we therefore conclude that
-the error induced in the total energy is:
+the same as the actions.\footnote{This ignores any potential error in the epicyclic and vertical frequencies.} The energy in the azimuthal coordinate can be readily
+computed ($E_{\phi} = \frac{1}{2}v_{\phi}^2$). Using standard propagation of errors, we see that $\Delta E_{\phi}/E_{\phi}$ and $\Delta J_{\phi}/J_{\phi}$ (Equation~\eqref{eq:induced_Jphi}) differ by a $\Delta R/R_g$ term. Since $R_g\approx 8\,\kpc$, we expect this term to be negligible and we therefore conclude that:
 \beq\label{eq:error_total_energy}
-\frac{\Delta E}{E} = \frac{\Delta J_R}{J_R} + 2\frac{\Delta J_{\phi}}{J_{\phi}}
+\frac{\Delta E}{E} \approx \frac{\Delta J_R}{J_R} + 2\frac{\Delta J_{\phi}}{J_{\phi}}
                      + \frac{\Delta J_z}{J_z}\text{.}
 \eeq}
 
