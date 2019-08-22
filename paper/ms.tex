@@ -234,6 +234,27 @@ stellar populations originated from the disk \citep{2015MNRAS.452..676P,
 2018ApJ...854...47S, 2018Natur.555..334B}. See, e.g.,
 \citet{2018MNRAS.481..286L} for a discussion of these observations.
 
+\begin{figure*}[ht!]
+\begin{center}
+\includegraphics[width=\textwidth]{fig/cartoon.pdf}
+\end{center}
+\caption{Illustration showing the effect an error in the determination
+of the coordinate midplane can have on orbit integration and action
+estimation. The $x$-axis shows the orbital phase and the $y$-axis the vertical
+height. The top gray curve depicts an example ``true'' orbit oscillating about
+the true midplane (horizontal solid gray line). Consider an observer who
+erroneously assumes the midplane is located at the horizontal dashed line.
+Suppose this observer measures the phase-space position of the star at two
+different orbital phases (teal and orange points). If the observer were to
+then integrate the star's orbit using a model potential with the erroneous
+midplane, they would obtain the teal and orange curves for the star's orbit,
+respectively. The actions estimated from these two erroneous measurements
+would subsequently differ, both from each other and from the true measurement
+(in the potential with the correct coordinate system). Hence an incorrect
+midplane in the potential model assumed will induce phase dependence in the
+actions estimated for a given star in that potential.} \label{fig:cartoon}
+\end{figure*}
+
 With the vast improvement in the quality of phase-space measurements
 due to \textit{Gaia} the assumption of axisymmetry is increasingly inadequate
 \citep[e.g.,][]{2018Natur.561..360A, 2019MNRAS.485.3134L}. The presence of the
@@ -255,27 +276,6 @@ the solar neighborhood the target star is, the more likely the mismatch will
 result in large systematic uncertainty, especially in the vertical action
 $J_z$. A similar argument applies to any remaining uncertainty in measurements
 of the Galactocentric radius of the Sun, and to variations in the LSR.
-
-\begin{figure*}[ht!]
-\begin{center}
-\includegraphics[width=\textwidth]{fig/cartoon.pdf}
-\end{center}
-\caption{Illustration showing the effect an error in the determination
-of the coordinate midplane can have on orbit integration and action
-estimation. The $x$-axis shows the orbital phase and the $y$-axis the vertical
-height. The top gray curve depicts an example ``true'' orbit oscillating about
-the true midplane (horizontal solid gray line). Consider an observer who
-erroneously assumes the midplane is located at the horizontal dashed line.
-Suppose this observer measures the phase-space position of the star at two
-different orbital phases (teal and orange points). If the observer were to
-then integrate the star's orbit using a model potential with the erroneous
-midplane, they would obtain the teal and orange curves for the star's orbit,
-respectively. The actions estimated from these two erroneous measurements
-would subsequently differ, both from each other and from the true measurement
-(in the potential with the correct coordinate system). Hence an incorrect
-midplane in the potential model assumed will induce phase dependence in the
-actions estimated for a given star in that potential.} \label{fig:cartoon}
-\end{figure*}
 
 In Section~\ref{sec:ref_frame}, we describe the general impact coordinate
 system errors have on the measured actions. In Section~\ref{sec:local_fire},
@@ -356,33 +356,6 @@ observational challenges will likely limit this type of measurement to a small
 number of local stars for the near future.
 
 \subsection{Epicyclic Approximation} \label{ssec:epi_action}
-
-\begin{deluxetable*}{cCCCCCCCCC}
-
-\tablecaption{Names and properties of the three orbits considered in this work, where
-$z_{\text{max}}$ is the maximum height of the orbit,
-$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of the radial
-excursions of the orbit, and $\kappa$ and $\nu$ are the radial/epicyclic and
-vertical frequencies of the orbit. In the epicyclic approximation, $A_z =
-z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$.
-\label{tab:orbits}} \tablehead{\colhead{name} & \colhead{\makecell{initial \\ position}} &
-\colhead{\makecell{initial \\ velocity}} & \colhead{$J_R$} & \colhead{$J_{\phi}$} &
-\colhead{$J_z$} & \colhead{$z_{\text{max}}$} &
-\colhead{$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$} & \colhead{$\kappa$} &
-\colhead{$\nu$} \\ \colhead{ } & \colhead{$(\mathrm{kpc})$} &
-\colhead{$(\mathrm{km\,s}^{-1})$} & \colhead{$(\mathrm{kpc\,km\,s^{-1}})$} &
-\colhead{$(\mathrm{kpc\,km\,s^{-1}})$} & \colhead{$(\mathrm{kpc\,km\,s^{-1}})$} &
-\colhead{$(\mathrm{kpc})$} & \colhead{$(\mathrm{kpc})$} &
-\colhead{$(\mathrm{Myr}^{-1})$} & \colhead{$(\mathrm{Myr}^{-1})$}}
-\startdata
-\thin{} & (8, 0, 0) & (0, -190, 10) & 40 & -1500 & 0.69 & 0.12 & 1.3 & 0.049
-& 0.093 \\
-\thick{} & (8, 0, 0) & (0, -190, 50) & 33 & -1500 & 23 & 0.85 &
-1.2 & 0.048 & 0.061 \\
-\halo{} & (8, 0, 0) & (0, -190, 190) & 33 & -1500 &
-530 & 6.2 & 2.3 & 0.033 & 0.025
-\enddata
-\end{deluxetable*}
 
 Before turning to numerical methods, we derive analytic expressions for the
 systematic error in the actions induced from offsets in the position (e.g.,
@@ -480,6 +453,32 @@ For $J_z$, the induced error is:
                          + \frac{2v_z}{v_{z,\text{max}}^2} \Delta v_z \text{.}
 \eeq
 We have ignored second order contributions.
+
+\begin{deluxetable*}{cCCCCCCCCC}
+\tablecaption{Names and properties of the three orbits considered in this work, where
+$z_{\text{max}}$ is the maximum height of the orbit,
+$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$ is the magnitude of the radial
+excursions of the orbit, and $\kappa$ and $\nu$ are the radial/epicyclic and
+vertical frequencies of the orbit. In the epicyclic approximation, $A_z =
+z_{\text{max}}$ and $A_R = \frac{1}{2}(R_{\text{max}} - R_{\text{min}})$.
+\label{tab:orbits}} \tablehead{\colhead{name} & \colhead{\makecell{initial \\ position}} &
+\colhead{\makecell{initial \\ velocity}} & \colhead{$J_R$} & \colhead{$J_{\phi}$} &
+\colhead{$J_z$} & \colhead{$z_{\text{max}}$} &
+\colhead{$\frac{1}{2}(R_{\text{max}} - R_{\text{min}})$} & \colhead{$\kappa$} &
+\colhead{$\nu$} \\ \colhead{ } & \colhead{$(\mathrm{kpc})$} &
+\colhead{$(\mathrm{km\,s}^{-1})$} & \colhead{$(\mathrm{kpc\,km\,s^{-1}})$} &
+\colhead{$(\mathrm{kpc\,km\,s^{-1}})$} & \colhead{$(\mathrm{kpc\,km\,s^{-1}})$} &
+\colhead{$(\mathrm{kpc})$} & \colhead{$(\mathrm{kpc})$} &
+\colhead{$(\mathrm{Myr}^{-1})$} & \colhead{$(\mathrm{Myr}^{-1})$}}
+\startdata
+\thin{} & (8, 0, 0) & (0, -190, 10) & 40 & -1500 & 0.69 & 0.12 & 1.3 & 0.049
+& 0.093 \\
+\thick{} & (8, 0, 0) & (0, -190, 50) & 33 & -1500 & 23 & 0.85 &
+1.2 & 0.048 & 0.061 \\
+\halo{} & (8, 0, 0) & (0, -190, 190) & 33 & -1500 &
+530 & 6.2 & 2.3 & 0.033 & 0.025
+\enddata
+\end{deluxetable*}
 
 Since most of the time stars will be at maximum amplitude (i.e., turnaround)
 in both $R$ and $z$, we can approximate the order of magnitude of the
@@ -869,6 +868,32 @@ Milky Way (such as the scale height or scale length, or the details of the
 accretion history). We use these simulations to span the range of
 possibilities for azimuthal midplane variations.
 
+\begin{deluxetable*}{cCCCCC}[htb!]
+\tablecaption{Stellar and gas disk scale heights of the Milky Way and the
+FIRE galaxies considered in this work (described in
+Section~\ref{ssec:cosmozoom}). For comparison, we also give the median
+softening lengths for the FIRE galaxies, computed for cold gas
+($T<1000\,\text{K}$) and stars with $\abs{R-R_0} < 0.5\,\kpc$ and $\abs{z} <
+1\,\kpc$. We have assumed that $R_0=8.2\,\kpc$.\label{tab:scale_height}}
+\tablehead{\colhead{galaxy} & \colhead{\makecell{cold\tablenotemark{a} gas disk \\ scale height}} &
+\colhead{\makecell{thin disk \\ scale height}} & \colhead{\makecell{thick disk \\ scale height}} & \colhead{\makecell{cold\tablenotemark{a} gas \\
+softening length}} & \colhead{\makecell{stellar \\ softening length}} \\
+\colhead{} & \colhead{(pc)} & \colhead{(pc)} & \colhead{(pc)} & \colhead{(pc)}
+& \colhead{(pc)} }
+\startdata
+Milky Way\tablenotemark{b} & 40 & 300 & 900 & \nodata & \nodata \\
+\mi\tablenotemark{c} & 800\tablenotemark{d} & 480 & 2000 & 53.4 & 11.2 \\
+\mf\tablenotemark{c} & 360 & 440 & 1280 & 57.2 & 11.2 \\
+\mm\tablenotemark{c} & 250 & 290 & 1030 & 60.1 & 11.2 \\
+\enddata
+\tablenotetext{a}{$T<100\,\text{K}$}
+\tablenotetext{b}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
+\tablenotetext{c}{\citet{2018arXiv180610564S}}
+\tablenotetext{d}{The azimuthally averaged gas vertical density profile in
+\mi{} is nearly constant to this height, though individual regions show smaller
+scale heights and dense clouds.}
+\end{deluxetable*}
+
 The other set of simulations are isolated N-body simulations of interactions
 between the Milky Way and a Sagittarius-like dwarf galaxy, described briefly
 in Section~\ref{ssec:sag_sim}. These include dark matter and stars and are
@@ -906,32 +931,6 @@ $\z$.} of these three simulations, The snapshots of these three simulations at
 cosmological redshift $\z = 0$, named \mi{}, \mf{}, and \mm{}, are publicly
 available alongside associated mock \textit{Gaia} DR2 catalogues generated
 from them.\footnote{\url{http://ananke.hub.yt}}
-
-\begin{deluxetable*}{cCCCCC}[htb!]
-\tablecaption{Stellar and gas disk scale heights of the Milky Way and the
-FIRE galaxies considered in this work (described in
-Section~\ref{ssec:cosmozoom}). For comparison, we also give the median
-softening lengths for the FIRE galaxies, computed for cold gas
-($T<1000\,\text{K}$) and stars with $\abs{R-R_0} < 0.5\,\kpc$ and $\abs{z} <
-1\,\kpc$. We have assumed that $R_0=8.2\,\kpc$.\label{tab:scale_height}}
-\tablehead{\colhead{galaxy} & \colhead{\makecell{cold\tablenotemark{a} gas disk \\ scale height}} &
-\colhead{\makecell{thin disk \\ scale height}} & \colhead{\makecell{thick disk \\ scale height}} & \colhead{\makecell{cold\tablenotemark{a} gas \\
-softening length}} & \colhead{\makecell{stellar \\ softening length}} \\
-\colhead{} & \colhead{(pc)} & \colhead{(pc)} & \colhead{(pc)} & \colhead{(pc)}
-& \colhead{(pc)} }
-\startdata
-Milky Way\tablenotemark{b} & 40 & 300 & 900 & \nodata & \nodata \\
-\mi\tablenotemark{c} & 800\tablenotemark{d} & 480 & 2000 & 53.4 & 11.2 \\
-\mf\tablenotemark{c} & 360 & 440 & 1280 & 57.2 & 11.2 \\
-\mm\tablenotemark{c} & 250 & 290 & 1030 & 60.1 & 11.2 \\
-\enddata
-\tablenotetext{a}{$T<100\,\text{K}$}
-\tablenotetext{b}{\citet{2008ApJ...673..864J,2016ARAA..54..529B}}
-\tablenotetext{c}{\citet{2018arXiv180610564S}}
-\tablenotetext{d}{The azimuthally averaged gas vertical density profile in
-\mi{} is nearly constant to this height, though individual regions show smaller
-scale heights and dense clouds.}
-\end{deluxetable*}
 
 These simulations contain dark matter particles of mass $\sim35,000\,\Msun$,
 gas particles of mass $\sim7000$ to $20,000\,\Msun$, and star particles of
@@ -1090,7 +1089,7 @@ with that reselection.
 To allow for potential small inaccuracies in the determination of the original
 fiducial coordinate system, we also subtract the best fit curve of the form
 \beq \label{eq:fit-curve}
-A \sin{\left(\phi + B\right)} + C 
+A \sin{\left(\phi + B\right)} + C\text{,}
 \eeq 
 from the midplane as a function of azimuth to account for an overall tilt of
 the midplane (a simplified version of the strategy described in
@@ -1415,6 +1414,8 @@ from fluctuations in the local density). However, for other applications, such
 as the study of action diffusion, a more extensive perturbative approach is
 likely needed. We plan to explore the mitigation of these effects in future
 work.
+
+\vspace{12pt}
 
 \subsection*{Supplementary Material}
 All code used in this work is available at
