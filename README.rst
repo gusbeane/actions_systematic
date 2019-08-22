@@ -14,11 +14,11 @@ consequence of local midplane variations expected for the Milky Way. This
 error is difficult to model because it is non-Gaussian and bimodal, with
 neither mode peaking on the null value. An offset in the vertical position of
 the Galactic midplane of ~15pc for a thin disk-like orbit or ~120pc for a thick disk-like orbit induces a 25% systematic error in the
-vertical action J_z. In FIRE simulations of Milky Way-mass galaxies, these
-variations are on the order of $\sim100\,\pc$ at the solar circle. From
+vertical action Jz. In FIRE simulations of Milky Way-mass galaxies, these
+variations are on the order of ~100pc at the solar circle. From
 observations of the mean vertical velocity variation of
-~5--10km/s with radius, we estimate that the Milky Way
-midplane variations are ~60--170pc, consistent with
+~5-10km/s with radius, we estimate that the Milky Way
+midplane variations are ~60-170pc, consistent with
 three-dimensional dust maps. Action calculations and orbit integrations, which
 assume the global and local midplanes are identical, are likely to include
 this induced error, depending on the volume considered. Variation in the local
